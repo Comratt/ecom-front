@@ -1,0 +1,89 @@
+{
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": [
+          "src"
+        ]
+      }
+    }
+  },
+  "extends": ["airbnb"],
+  "plugins": [
+    "only-warn"
+  ],
+  "rules": {
+    "camelcase": "off",
+    "indent": [
+      "error",
+      4,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "arrow-parens": [
+      "error",
+      "always"
+    ],
+    "import/prefer-default-export": ["off"],
+    "no-bitwise": 1,
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "return"
+      },
+      {
+        "blankLine": "always",
+        "prev": [
+          "const",
+          "let",
+          "var"
+        ],
+        "next": "*"
+      },
+      {
+        "blankLine": "any",
+        "prev": [
+          "const",
+          "let",
+          "var"
+        ],
+        "next": [
+          "const",
+          "let",
+          "var"
+        ]
+      }
+    ],
+    "newline-before-return": 2,
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-indent-props": [
+      2,
+      "first"
+    ],
+    "react/prefer-stateless-function": [
+      "warn"
+    ],
+    "react/jsx-indent": [
+      2,
+      4
+    ],
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/label-has-for":"off"
+  },
+  "globals": {
+    "window": true,
+    "document": true,
+    "localStorage": true,
+    "FormData": true,
+    "FileReader": true,
+    "Blob": true,
+    "navigator": true,
+    "Headers": true,
+    "Request": true,
+    "fetch": true
+  },
+  "parser": "babel-eslint"
+}
