@@ -2,12 +2,14 @@ import {
     useState, useEffect, useCallback, useMemo,
 } from 'react';
 
-export const useAsync = ({ method, defaultData = [], adaptor }) => {
+export const useAsync = ({
+    method, defaultData = [], adaptor, params,
+}) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [data, setData] = useState(defaultData);
 
-    const asyncMethod = () => method();
+    const asyncMethod = () => method(params);
 
     const adaptData = (serverData) => {
         if (typeof adaptor === 'function') {
@@ -25,8 +27,12 @@ export const useAsync = ({ method, defaultData = [], adaptor }) => {
             const asyncData = await asyncMethod();
 
             setData(adaptData(asyncData));
+
+            return asyncData;
         } catch (e) {
             setError(e);
+
+            return e;
         } finally {
             setLoading(false);
         }
@@ -40,9 +46,13 @@ export const useAsync = ({ method, defaultData = [], adaptor }) => {
         data,
         loading,
         error,
+        setData,
+        fetch,
     }), [
         data,
         loading,
         error,
+        setData,
+        fetch,
     ]);
 };

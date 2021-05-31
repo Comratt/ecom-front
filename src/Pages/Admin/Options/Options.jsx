@@ -1,21 +1,117 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { v4 as uuidv4 } from 'uuid';
 import { useAsync } from 'hooks/useAsync';
 import OptionService from 'Services/OptionService';
 import Loader from 'Components/Loader';
 import Alert from 'Components/Alert';
 import Modal from 'Components/Modal';
 import { Edit, Remove } from 'Icons';
+import { usePostOptions } from '../hooks/usePostOptions';
 import Layout from '../Layout';
 import OptionForm from './OptionForm';
+import { ADD_METHOD, UPDATE_METHOD } from '../../../Constants';
 
 const Options = () => {
     const [show, setShow] = useState(false);
     const {
-        register, handleSubmit, errors, setValue,
+        register, handleSubmit, errors,
     } = useForm({ mode: 'onChange' });
-    const { data, loading, error } = useAsync({ method: OptionService.getOptions });
+    const {
+        data, loading, error, setData,
+    } = useAsync({ method: OptionService.getOptions });
     const toggleModal = () => setShow((a) => !a);
+    const [optionValues, setOptionValues] = useState([]);
+    const {
+        loading: postOptionLoading,
+        deleteLoading,
+        handleSubmit: postOption,
+        deleteOption,
+    } = usePostOptions();
+
+    const handleAddOptionValue = () => {
+        setOptionValues((prevOptions) => ([
+            ...prevOptions,
+            {
+                id: uuidv4(),
+                name: '',
+                image: '',
+            },
+        ]));
+    };
+
+    const handleDeleteOptionValue = (id) => () => {
+        setOptionValues((prevOptions) => prevOptions.filter(
+            (item) => item.id !== id,
+        ));
+    };
+
+    const onChangeOptionValueName = (id) => ({ target }) => {
+        setOptionValues((prevOptions) => prevOptions.map(
+            (item) => {
+                if (item.id === id) {
+                    return {
+                        ...item,
+                        name: target.value,
+                    };
+                }
+
+                return item;
+            },
+        ));
+    };
+
+    const onChangeOptionValueImage = (id) => ({ target }) => {
+        setOptionValues((prevOptions) => prevOptions.map(
+            (item) => {
+                if (item.id === id) {
+                    return {
+                        ...item,
+                        image: target.files[0],
+                    };
+                }
+
+                return item;
+            },
+        ));
+    };
+
+    const onRemove = (id) => {
+        window.confirm('Удалить категорию?') && deleteOption(id)
+            .then(() => {
+                setData(
+                    (prevOptions) => prevOptions.filter(
+                        (prevOption) => prevOption.option_id !== id,
+                    ),
+                );
+            })
+            .catch(console.warn);
+    };
+
+    const onSubmit = ({ name }) => {
+        if (optionValues.length === 0) {
+            return;
+        }
+
+        const type = typeof show === 'number' ? UPDATE_METHOD : ADD_METHOD;
+
+        postOption({
+            name,
+            values: optionValues,
+        }, show, type)
+            .then(({ option }) => {
+                if (type === UPDATE_METHOD) {
+                    setData((prevOptions) => prevOptions);
+                } else {
+                    setData((prevData) => [
+                        ...prevData,
+                        option,
+                    ]);
+                }
+                toggleModal();
+            })
+            .catch(console.warn);
+    };
 
     const renderContent = () => {
         if (loading) {
@@ -68,18 +164,18 @@ const Options = () => {
                                 <button
                                     type="button"
                                     className="btn btn-outline-danger"
-                                    // onClick={() => onRemove(option.option_id)}
-                                    // disabled={deleteLoading === option.option_id}
+                                    onClick={() => onRemove(option.option_id)}
+                                    disabled={deleteLoading === option.option_id}
                                 >
-                                    {/*{deleteLoading === option.option_id ? (*/}
-                                    {/*    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />*/}
-                                    {/*) : (*/}
+                                    {deleteLoading === option.option_id ? (
+                                        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
+                                    ) : (
                                         <Remove
                                             fill="red"
                                             width={14}
                                             height={14}
                                         />
-                                    {/*)}*/}
+                                    )}
                                 </button>
                             </td>
                         </tr>
@@ -99,13 +195,18 @@ const Options = () => {
                     <Modal
                         show={show}
                         toggleModal={toggleModal}
-                        // loadingForm={postCategoryLoading}
+                        loadingForm={postOptionLoading}
                         submit
-                        // onSubmit={handleSubmit(onSubmit)}
+                        onSubmit={handleSubmit(onSubmit)}
                     >
                         <OptionForm
                             register={register}
                             errors={errors}
+                            optionValues={optionValues}
+                            handleAddOptionValue={handleAddOptionValue}
+                            handleDeleteOptionValue={handleDeleteOptionValue}
+                            onChangeOptionValueName={onChangeOptionValueName}
+                            onChangeOptionValueImage={onChangeOptionValueImage}
                         />
                     </Modal>
                 )}
