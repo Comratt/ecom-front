@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: var(--fz-small);
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--accent-ff);
+    margin: 0;
+    background-color: white;
+}
+
+body.bottom-modal-opened {
+    background-color: black;
+}
+
+a {
+    display: inline-flex;
+    cursor: pointer;
+}
+
+img {
+    display: block;
+}
+
+button,
+label {
+    cursor: pointer;
+}
+
+img {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+}

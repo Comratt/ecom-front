@@ -1,0 +1,24 @@
+.lib-title {
+  --title-ff: var(--accent-ff);
+  --title-color: var(--color-accent);
+  --type-1-fz: var(--fz-biggest);
+  --type-1-lh: var(--size-biggest);
+  --type-2-fz: var(--fz-normal-bigger);
+  --type-2-lh: var(--line-h-biggest);
+
+  font-family: var(--title-ff);
+  color: var(--title-color);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.lib-title-1 {
+  font-size: var(--type-1-fz);
+  line-height: var(--type-1-lh);
+  letter-spacing: 0.5px;
+}
+
+.lib-title-2 {
+  font-size: var(--type-2-fz);
+  line-height: var(--type-2-lh);
+}

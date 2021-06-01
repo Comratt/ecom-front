@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'Cera Pro Regular';
+    src: url(../assets/fonts/CeraPro/CeraPro-Regular.eot);
+    src: url(../assets/fonts/CeraPro/CeraPro-Regular.woff) format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Cera Pro Medium';
+    src: url(../assets/fonts/CeraPro/CeraPro-Medium.eot);
+    src: url(../assets/fonts/CeraPro/CeraPro-Medium.woff) format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+/*@font-face {
+    font-family: 'SourceSansPro-Bold';
+    font-display: swap;
+    src: url('./assets/fonts/Source-Sans-Pro/SourceSansPro-Bold.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SourceSansPro-Light';
+    font-display: swap;
+    src: url('./assets/fonts/Source-Sans-Pro/SourceSansPro-Light.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SourceSansPro-Regular';
+    font-display: swap;
+    src: url('./assets/fonts/Source-Sans-Pro/SourceSansPro-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SourceSansPro-SemiBold';
+    font-display: swap;
+    src: url('./assets/fonts/Source-Sans-Pro/SourceSansPro-SemiBold.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}*/

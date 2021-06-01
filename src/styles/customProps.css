@@ -1,0 +1,37 @@
+:root  {
+    /*---------- FONTS ---------*/
+
+    --accent-ff-light: 'SourceSansPro-Light', sans-serif;
+    --accent-ff: 'Cera Pro Regular', sans-serif;
+    --accent-ff-bold: 'Cera Pro Medium', sans-serif;
+
+    --line-h-bigger: 22px;
+    --line-h-normal: 20px;
+    --line-h-small: 16px;
+    --line-h-smaller: 12px;
+
+    /*--fz-tinier: 10px;
+    --fz-tiny: 12px;
+    --fz-smallest: 13px;
+    --fz-smaller: 14px;*/
+    --fz-small: 14px;
+    --fz-mid: 15px;
+    --fz-normal: 16px;
+    /*--fz-normal-bigger: 20px;
+    --fz-biggest: 30px;*/
+
+    /*----------- COLORS ---------*/
+    --color-lightest: #fff;
+    --color-accent: #887569;
+    --color-accent-light: #c4a996;
+
+    /*------------ SIZES -----------*/
+    --size-smaller: 6px;
+    --size-small: 10px;
+    --size-mid: 15px;
+    --size-mid-bigger: 16px;
+    --size-normal-small: 18px;
+    --size-normal: 20px;
+    --size-big: 28px;
+    --size-biggest: 32px;
+}
