@@ -1,0 +1,17 @@
+.header-input-search {
+    height: 36px;
+    font-size: 16px;
+    padding: 0 16px 0 40px;
+    line-height: normal;
+    background: #F5F3F3;
+    color: #887569;
+    border-radius: 4px;
+    border: 0;
+}
+.header-icon-search{
+    position: relative;
+    top: -1px;
+    bottom: 0;
+    right: 0;
+    left: 130%;
+}
