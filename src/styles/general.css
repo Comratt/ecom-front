@@ -20,6 +20,7 @@ body.bottom-modal-opened {
 a {
     display: inline-flex;
     cursor: pointer;
+    text-decoration: none;
 }
 
 img {
@@ -35,4 +36,10 @@ img {
     width: 100%;
     max-width: 100%;
     height: 100%;
+}
+hr {
+    margin-top: 0;
+}
+input:focus {
+    outline: none;
 }
