@@ -24,14 +24,26 @@
     --color-lightest: #fff;
     --color-accent: #887569;
     --color-accent-light: #c4a996;
+    --color-border-accent: #e6e6e6;
+    --color-border-lightest: #E5E5E5;
+    --color-arrow-black: #000000;
 
     /*------------ SIZES -----------*/
+    --size-min-small: 3px;
     --size-smaller: 6px;
     --size-small: 10px;
+    --size-mid-low: 12px;
     --size-mid: 15px;
     --size-mid-bigger: 16px;
     --size-normal-small: 18px;
     --size-normal: 20px;
+    --size-normal-mid: 24px;
     --size-big: 28px;
+    --size-bigger: 30px;
     --size-biggest: 32px;
+
+    /* CONTAINER WIDTH */
+    --size--margin-big: 1500px;
+
+
 }

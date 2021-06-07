@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import './CheckboxFilterItem.css';
+import PropTypes from 'prop-types';
 
 const CheckboxFilterItem = (
     className,
@@ -34,6 +35,14 @@ const CheckboxFilterItem = (
             </div>
         </>
     );
+};
+
+CheckboxFilterItem.propTypes = {
+    className: PropTypes.string,
+};
+
+CheckboxFilterItem.defaultProps = {
+    className: '',
 };
 
 export default CheckboxFilterItem;

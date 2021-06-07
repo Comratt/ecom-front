@@ -8,23 +8,23 @@
 }
 
 .filters__item {
-    margin-right: 24px;
+    margin-right: var(--size-normal-mid);
     cursor: pointer;
 }
 
 
 .filters__text {
-    padding-right: 7px;
+    padding-right: var(--size-smaller);
 }
 
 .arrow {
-    border: solid var(--header-color);
+    border: solid var(--color-arrow-black);
     border-width: 0 1px 1px 0;
     display: inline-block;
-    padding: 3px;
+    padding: var(--size-min-small);
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
-    margin-bottom: 2px;
+    margin-bottom: var(--size-min-small);
 }
 
 .arrow.up {
