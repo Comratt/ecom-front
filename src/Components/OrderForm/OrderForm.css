@@ -1,0 +1,111 @@
+.lib-order {
+    display: flex;
+    /*margin: 5% 5%;*/
+}
+
+.order__form {
+    /*margin: 40px auto;*/
+    padding-bottom: 40px;
+}
+
+.order__main {
+    display: flex;
+    width: 50%;
+}
+
+.order__title {
+    display: flex;
+}
+
+.order__log-in {
+    display: flex;
+}
+
+.order__title-name {
+    font-size: 18px;
+}
+
+.order__sidebar {
+    width: 50%;
+    background: #fafafa;
+}
+
+.order__svg {
+    display: flex;
+    justify-content: center;
+}
+
+.order__contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.order__location-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.order__country-name {
+    display: flex;
+}
+
+.order__first-name {
+    width: 50%;
+}
+
+.order__last-name {
+    width: 50%;
+}
+
+.order__select {
+    width: 50%;
+}
+
+.order__phone {
+    width: 100%;
+}
+
+.order__postal {
+    width: 50%;
+}
+
+.order__order-button {
+    display: flex;
+}
+
+.order__btn-submit {
+    width: 50%;
+}
+
+.order__btn-return {
+    width: 50%;
+}
+
+.order__policy-lists {
+    display: flex;
+    margin-top: 20px;
+    border-top: 1px solid black;
+}
+
+.order__sidebar-content {
+    margin: 0 auto;
+}
+
+.order__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order__item-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.order__discount {
+    display: flex;
+    padding: 20px 0;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+}
