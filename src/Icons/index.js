@@ -5,6 +5,8 @@ import Search from './Search';
 import Heart from './Heart';
 import Logo from './Logo';
 import Menu from './Menu';
+import IconLogo from './IconLogo';
+import Arrow from './Arrow';
 
 export {
     Remove,
@@ -14,4 +16,6 @@ export {
     Heart,
     Logo,
     Menu,
+    IconLogo,
+    Arrow,
 };

@@ -1,0 +1,30 @@
+.footer-form {
+    display: flex;
+    justify-content: center;
+}
+.footer-input {
+    width: 240px;
+    height: 40px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    font-size: var(--fz-normal);
+    font-weight: 400;
+    align-items: center;
+    align-content: center;
+    transition: background-color .3s ease,color .3s ease;
+    margin-right: var(--size-small);
+    background: #F5F3F3;
+    color: #887569;
+    border-radius: 4px;
+    border: 0;
+}
+.arrow {
+    border-radius: 5px;
+    border: 1px solid;
+    width: 20%;
+    background-color: var(--color-accent);
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+}

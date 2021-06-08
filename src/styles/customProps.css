@@ -10,10 +10,10 @@
     --line-h-small: 16px;
     --line-h-smaller: 12px;
 
-    /*--fz-tinier: 10px;
+    --fz-tinier: 10px;
     --fz-tiny: 12px;
     --fz-smallest: 13px;
-    --fz-smaller: 14px;*/
+    --fz-smaller: 14px;
     --fz-small: 14px;
     --fz-mid: 15px;
     --fz-normal: 16px;
@@ -32,6 +32,7 @@
     --size-mid-bigger: 16px;
     --size-normal-small: 18px;
     --size-normal: 20px;
+    --size-normal-big: 24px;
     --size-big: 28px;
     --size-biggest: 32px;
 }
