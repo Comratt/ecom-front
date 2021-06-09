@@ -24,28 +24,28 @@ const OrderForm = (
                             <div className="order__title">
                                 <h2 className="order__title-name">Contact Information</h2>
                                 <div className="order__log-in">
-                                    <span>Already have an account?</span>
+                                    <span className="order__log-in-text">Already have an account?</span>
                                     <a href="#">LogIn</a>
                                 </div>
                             </div>
                             <div className="order__contact-form">
-                                <input type="text" placeholder="Email" />
-                                <div>
-                                    <input id="checkbox-keep" type="checkbox" />
-                                    <label htmlFor="checkbox-keep">Keep me up to date on news and exclusive offers</label>
+                                <input className="btn" type="text" placeholder="Email" />
+                                <div className="order__contact-form-checkbox">
+                                    <input className="order__contact-form-checkbox" id="checkbox-keep" type="checkbox" />
+                                    <label className="label-btn" htmlFor="checkbox-keep">Keep me up to date on news and exclusive offers</label>
                                 </div>
                             </div>
                         </div>
                         <div className="order__shipping-address">
-                            <h2>Shipping address (use the Latin alphabet)</h2>
+                            <h2 className="order__shipping-address-title">Shipping address (use the Latin alphabet)</h2>
                             <div className="order__address-name">
-                                <input className="order__first-name" placeholder="First name" type="text" />
-                                <input className="order__last-name" placeholder="Last name" type="text" />
+                                <input className="btn order__first-name" placeholder="First name" type="text" />
+                                <input className="btn order__last-name" placeholder="Last name" type="text" />
                             </div>
                             <div className="order__location-info">
-                                <input placeholder="Address" type="text" />
-                                <input placeholder="Apartment, suite, etc. (optional)" type="text" />
-                                <input placeholder="City (use the Latin alphabet)" type="text" />
+                                <input className="btn" placeholder="Address" type="text" />
+                                <input className="btn" placeholder="Apartment, suite, etc. (optional)" type="text" />
+                                <input className="btn" placeholder="City (use the Latin alphabet)" type="text" />
                             </div>
                             <div className="order__country-name">
                                 <select className="order__select" name="Country" id="">
@@ -56,28 +56,28 @@ const OrderForm = (
                                 <input className="order__postal" placeholder="Postal Code" type="text" />
                             </div>
                             <div className="order__phone">
-                                <input placeholder="Phone" type="text" />
+                                <input className="btn order__phone-input" placeholder="Phone" type="text" />
                             </div>
                             <div className="order__checkbox-save">
-                                <input id="checkbox-save-info" type="checkbox" />
-                                <label htmlFor="checkbox-save-info">Save this information for next time</label>
+                                <input className="order__contact-form-checkbox" id="checkbox-save-info" type="checkbox" />
+                                <label className="label-btn" htmlFor="checkbox-save-info">Save this information for next time</label>
                             </div>
                             <div className="order__order-button">
                                 <button className="order__btn-submit" type="submit">Continue shipping</button>
                                 <div className="order__btn-return">
-                                    <a href="#">Return to card</a>
+                                    <a className="order__btn-return-link" href="#">Return to card</a>
                                 </div>
                             </div>
                         </div>
                     </form>
-                    <div className="order__policy-lists">
+                    <footer className="order__policy-lists">
                         <div className="order__privacy">
                             <a href="#">Privacy policy</a>
                         </div>
                         <div className="order__term">
                             <a href="#">Terms of service</a>
                         </div>
-                    </div>
+                    </footer>
                 </div>
             </div>
             <div className="order__sidebar">
@@ -97,17 +97,19 @@ const OrderForm = (
                         </div>
                     </div>
                     <div className="order__discount">
-                        <div className="order__discount-input">
-                            <input placeholder="discount" type="text" />
+                        <div className="order__discount-input-block">
+                            <input className="order__discount-input" placeholder="Discount code" type="text" />
                         </div>
-                        <button className="order__discount-bnt">
-                            Apply
-                        </button>
+                        <div className="order__discount-btn-block">
+                            <button className="order__discount-bnt">
+                                Apply
+                            </button>
+                        </div>
                     </div>
                     <div className="order__summary">
                         <div className="order__subtotal">
                             <span>Subtotal</span>
-                            <span>€245.00</span>
+                            <span className="order__subtotal-amount">€245.00</span>
                         </div>
                         <div className="order__shipping">
                             <span>Shipping</span>
@@ -116,7 +118,7 @@ const OrderForm = (
                     </div>
                     <div className="order__total">
                         <span>Total</span>
-                        <span>€245.00</span>
+                        <span className="order__total-amount">€245.00</span>
                     </div>
                 </div>
             </div>
