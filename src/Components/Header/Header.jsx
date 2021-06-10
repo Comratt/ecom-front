@@ -62,7 +62,7 @@ const Header = ({
                             UAH
                         </span>
                     </div>
-                    <a href="/" className="header-links-icon">
+                    <a href="/" className="header-links-icon heart">
                         <Heart
                             width={24}
                             height={24}
