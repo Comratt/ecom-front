@@ -15,6 +15,7 @@ const AdminBanners = lazy(() => import('Pages/Admin/Banners'));
 const AdminCategories = lazy(() => import('Pages/Admin/Categories'));
 const AdminOptions = lazy(() => import('Pages/Admin/Options'));
 const Header = lazy(() => import('Components/Header/Header'));
+const CheckboxFilter = lazy(() => import('Components/CheckboxFilter/CheckboxFilter'));
 
 const RouterComponent = () => (
     <Router history={history}>
@@ -27,6 +28,8 @@ const RouterComponent = () => (
                 <Route path="/admin/login" component={AdminLogin} />
 
                 <Route exact path="/" component={() => <Header />} />
+                <Route exact path="/checkboxfilter" component={() => <CheckboxFilter />} />
+
                 <Route component={NotFoundPage} />
             </Switch>
         </Suspense>
