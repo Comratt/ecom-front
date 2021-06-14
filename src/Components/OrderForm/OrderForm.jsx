@@ -4,13 +4,8 @@ import './OrderForm.css';
 import PropTypes from 'prop-types';
 import Logo from '../../Icons/Logo';
 
-const OrderForm = (
-    className,
-) => {
-    const componentClasses = classNames(
-        'lib-order',
-        className,
-    );
+const OrderForm = (className) => {
+    const componentClasses = classNames('lib-order', className);
 
     return (
         <div className={componentClasses}>
@@ -24,28 +19,58 @@ const OrderForm = (
                             <div className="order__title">
                                 <h2 className="order__title-name">Contact Information</h2>
                                 <div className="order__log-in">
-                                    <span className="order__log-in-text">Already have an account?</span>
+                                    <span className="order__log-in-text">
+                                        Already have an account?
+                                    </span>
                                     <a href="#">LogIn</a>
                                 </div>
                             </div>
                             <div className="order__contact-form">
-                                <input className="btn" type="text" placeholder="Email" />
+                                <input
+                                    className="input half-input"
+                                    type="text"
+                                    placeholder="Email"
+                                />
                                 <div className="order__contact-form-checkbox">
-                                    <input className="order__contact-form-checkbox" id="checkbox-keep" type="checkbox" />
-                                    <label className="label-btn" htmlFor="checkbox-keep">Keep me up to date on news and exclusive offers</label>
+                                    <input
+                                        className="order__contact-form-checkbox"
+                                        id="checkbox-keep"
+                                        type="checkbox"
+                                    />
+                                    <label className="label-btn" htmlFor="checkbox-keep">
+                                        Keep me up to date on news and exclusive offers
+                                    </label>
                                 </div>
                             </div>
                         </div>
                         <div className="order__shipping-address">
-                            <h2 className="order__shipping-address-title">Shipping address (use the Latin alphabet)</h2>
+                            <h2 className="order__shipping-address-title">
+                                Shipping address (use the Latin alphabet)
+                            </h2>
                             <div className="order__address-name">
-                                <input className="btn order__first-name" placeholder="First name" type="text" />
-                                <input className="btn order__last-name" placeholder="Last name" type="text" />
+                                <input
+                                    className="input order__first-name"
+                                    placeholder="First name"
+                                    type="text"
+                                />
+                                <input
+                                    className="input order__last-name"
+                                    placeholder="Last name"
+                                    type="text"
+                                />
                             </div>
                             <div className="order__location-info">
-                                <input className="btn" placeholder="Address" type="text" />
-                                <input className="btn" placeholder="Apartment, suite, etc. (optional)" type="text" />
-                                <input className="btn" placeholder="City (use the Latin alphabet)" type="text" />
+                                <input className="input" placeholder="Address" type="text" />
+                                <input
+                                    className="input"
+                                    placeholder="Apartment, suite, etc. (optional)"
+                                    type="text"
+                                />
+                                <input
+                                    className="input"
+                                    placeholder="City (use the Latin alphabet)"
+                                    type="text"
+                                />
                             </div>
                             <div className="order__country-name">
                                 <select className="order__select" name="Country" id="">
@@ -53,19 +78,37 @@ const OrderForm = (
                                     <option value="Russia">Russia</option>
                                     <option value="Poland">Poland</option>
                                 </select>
-                                <input className="order__postal" placeholder="Postal Code" type="text" />
+                                <input
+                                    className="input order__postal"
+                                    placeholder="Postal Code"
+                                    type="text"
+                                />
                             </div>
                             <div className="order__phone">
-                                <input className="btn order__phone-input" placeholder="Phone" type="text" />
+                                <input
+                                    className="input order__phone-input"
+                                    placeholder="Phone"
+                                    type="text"
+                                />
                             </div>
                             <div className="order__checkbox-save">
-                                <input className="order__contact-form-checkbox" id="checkbox-save-info" type="checkbox" />
-                                <label className="label-btn" htmlFor="checkbox-save-info">Save this information for next time</label>
+                                <input
+                                    className="order__contact-form-checkbox"
+                                    id="checkbox-save-info"
+                                    type="checkbox"
+                                />
+                                <label className="label-btn" htmlFor="checkbox-save-info">
+                                    Save this information for next time
+                                </label>
                             </div>
                             <div className="order__order-button">
-                                <button className="order__btn-submit" type="submit">Continue shipping</button>
+                                <button className="order__btn-submit" type="submit">
+                                    Continue shipping
+                                </button>
                                 <div className="order__btn-return">
-                                    <a className="order__btn-return-link" href="#">Return to card</a>
+                                    <a className="order__btn-return-link" href="#">
+                                        Return to card
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -85,25 +128,28 @@ const OrderForm = (
                     <div className="order__item">
                         <div className="order__item-section">
                             <div className="order__item-image">
-                                <img src="https://cdn.shopify.com/s/files/1/0292/1375/3428/products/IMG_0358_9f2d406a-b3cc-4a50-9f39-c79cb8aafb20_small.jpg?v=1622012823" alt="" />
+                                <img
+                                    src="https://cdn.shopify.com/s/files/1/0292/1375/3428/products/IMG_0358_9f2d406a-b3cc-4a50-9f39-c79cb8aafb20_small.jpg?v=1622012823"
+                                    alt=""
+                                />
                             </div>
                             <div className="order__item-description">
                                 <div className="order__item-title">Knot detail dress</div>
                                 <div className="order__item-size">XS</div>
                             </div>
                         </div>
-                        <div className="order__item-price">
-                            €65.00
-                        </div>
+                        <div className="order__item-price">€65.00</div>
                     </div>
                     <div className="order__discount">
                         <div className="order__discount-input-block">
-                            <input className="order__discount-input" placeholder="Discount code" type="text" />
+                            <input
+                                className="order__discount-input"
+                                placeholder="Discount code"
+                                type="text"
+                            />
                         </div>
                         <div className="order__discount-btn-block">
-                            <button className="order__discount-bnt">
-                                Apply
-                            </button>
+                            <button className="order__discount-bnt">Apply</button>
                         </div>
                     </div>
                     <div className="order__summary">
