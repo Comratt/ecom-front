@@ -26,12 +26,8 @@ const OrderForm = (className) => {
                                 </div>
                             </div>
                             <div className="order__contact-form">
-                                <input
-                                    className="input half-input"
-                                    type="text"
-                                    placeholder="Email"
-                                />
-                                <div className="order__contact-form-checkbox">
+                                <input className="input" type="text" placeholder="Email" />
+                                <div className="order__contact-form-checkbox-block">
                                     <input
                                         className="order__contact-form-checkbox"
                                         id="checkbox-keep"
@@ -49,12 +45,12 @@ const OrderForm = (className) => {
                             </h2>
                             <div className="order__address-name">
                                 <input
-                                    className="input order__first-name"
+                                    className="input order__fifty-to-fifty"
                                     placeholder="First name"
                                     type="text"
                                 />
                                 <input
-                                    className="input order__last-name"
+                                    className="input order__fifty-to-fifty"
                                     placeholder="Last name"
                                     type="text"
                                 />
@@ -73,13 +69,13 @@ const OrderForm = (className) => {
                                 />
                             </div>
                             <div className="order__country-name">
-                                <select className="order__select" name="Country" id="">
+                                <select className="order__fifty-to-fifty" name="Country" id="">
                                     <option value="Ukraine">Ukraine</option>
                                     <option value="Russia">Russia</option>
                                     <option value="Poland">Poland</option>
                                 </select>
                                 <input
-                                    className="input order__postal"
+                                    className="input order__fifty-to-fifty"
                                     placeholder="Postal Code"
                                     type="text"
                                 />
@@ -91,7 +87,7 @@ const OrderForm = (className) => {
                                     type="text"
                                 />
                             </div>
-                            <div className="order__checkbox-save">
+                            <div className="order__contact-form-checkbox-block">
                                 <input
                                     className="order__contact-form-checkbox"
                                     id="checkbox-save-info"
@@ -143,7 +139,7 @@ const OrderForm = (className) => {
                     <div className="order__discount">
                         <div className="order__discount-input-block">
                             <input
-                                className="order__discount-input"
+                                className="input order__discount-input"
                                 placeholder="Discount code"
                                 type="text"
                             />
@@ -154,12 +150,12 @@ const OrderForm = (className) => {
                     </div>
                     <div className="order__summary">
                         <div className="order__subtotal">
-                            <span>Subtotal</span>
+                            <span className="order__aside-text">Subtotal</span>
                             <span className="order__subtotal-amount">€245.00</span>
                         </div>
                         <div className="order__shipping">
-                            <span>Shipping</span>
-                            <span>Calculated at next step</span>
+                            <span className="order__aside-text">Shipping</span>
+                            <span className="order__aside-hint">Calculated at next step</span>
                         </div>
                     </div>
                     <div className="order__total">
