@@ -42,8 +42,8 @@ const CheckboxFilter = ({
 
     return (
         <div className={componentClasses}>
-            <div className="upper__filter">
-                <h2 className="title__text">Coming Soon</h2>
+            <div className="checkbox-filter__container">
+                <h2 className="checkbox-filter__title">Coming Soon</h2>
                 <div className={checkBoxContainerDesktop}>
                     <CheckboxFilterItem />
                 </div>
