@@ -15,6 +15,7 @@ const AdminBanners = lazy(() => import('Pages/Admin/Banners'));
 const AdminCategories = lazy(() => import('Pages/Admin/Categories'));
 const AdminOptions = lazy(() => import('Pages/Admin/Options'));
 const Header = lazy(() => import('Components/Header/Header'));
+const Cart = lazy(() => import('Components/Cart/Cart'));
 
 const RouterComponent = () => (
     <Router history={history}>
@@ -26,7 +27,7 @@ const RouterComponent = () => (
                 <Route path="/admin/option" component={AdminOptions} />
                 <Route path="/admin/login" component={AdminLogin} />
 
-                <Route exact path="/" component={() => <Header />} />
+                <Route exact path="/" component={() => <Cart />} />
                 <Route component={NotFoundPage} />
             </Switch>
         </Suspense>

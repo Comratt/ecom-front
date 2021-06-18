@@ -1,7 +1,7 @@
 import React from 'react';
 import Input from 'Components/Input';
 import { getValidationMessage } from 'Constants';
-import { Plus, Remove } from 'Icons';
+import { Pluss, Remove } from 'Icons';
 import {
     VALIDATION_RULES,
     OPTION_NAME_FIELD,
@@ -84,7 +84,7 @@ const OptionForm = ({
                             className="btn btn-outline-primary"
                             onClick={handleAddOptionValue}
                         >
-                            <Plus
+                            <Pluss
                                 fill="blue"
                                 width={14}
                                 height={14}

@@ -1,0 +1,7 @@
+.cart-product-quantity {
+    display: flex;
+}
+.cart-product-btn{
+    border: none;
+    background-color: white;
+}
