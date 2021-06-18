@@ -10,9 +10,9 @@
     --line-h-smaller: 12px;
 
     /*--fz-tinier: 10px;
-    --fz-tiny: 12px;
     --fz-smallest: 13px;
     --fz-smaller: 14px;*/
+    --fz-tiny: 12px;
     --fz-small: 14px;
     --fz-mid: 15px;
     --fz-normal: 16px;
@@ -28,14 +28,14 @@
     --color-border-lightest: #E5E5E5;
     --color-arrow-black: #000000;
 
-        /*Card additional colors*/
-        --color-focused-input: #c5a995;
-        --color-hint: #717171;
-        --color-link-card: #b8967e;
-        --color-border-card: #d5d5d5;
-        --color-btn-hover-card: #c8c8c8;
-        --coror-divides-line-card: #e6e6e6;
-        --color-card-aside-background: #fafafa;
+    /*Card additional colors*/
+    --color-focused-input: #c5a995;
+    --color-hint: #717171;
+    --color-link-card: #b8967e;
+    --color-border-card: #d5d5d5;
+    --color-btn-hover-card: #c8c8c8;
+    --coror-divides-line-card: #e6e6e6;
+    --color-card-aside-background: #fafafa;
 
     /*------------ SIZES -----------*/
     --size-min-small: 3px;
@@ -57,6 +57,12 @@
 
     /* CONTAINER WIDTH */
     --size-content-big: 110px;
+    --size-normal-bigger: 24px;
+    --size-big: 28px;
+    --size-bigger: 30px;
+    --size-biggest: 32px;
+
+    /* CONTAINER WIDTH */
     --size--margin-big: 1500px;
 
 

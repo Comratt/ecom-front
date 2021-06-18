@@ -1,0 +1,38 @@
+.lib-swatches {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.lib-swatches .lib-swatches__item button {
+    cursor: pointer;
+    position: relative;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    margin-right: 7px;
+    transition: .3s;
+    border: none;
+}
+
+.lib-swatches .lib-swatches__item button:after, .lib-swatches .lib-swatches__item.active button:after {
+    display: block;
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 1px solid transparent;
+    top: -3px;
+    left: -3px;
+}
+
+.lib-swatches .lib-swatches__item.active button:after {
+    border: 1px solid var(--color-accent);
+}
+
+.lib-swatches .lib-swatches__item button:hover {
+    transform: scale(1.1);
+}
