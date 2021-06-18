@@ -16,6 +16,8 @@ const AdminDashboard = lazy(() => import('Pages/Admin/Dashboard'));
 const AdminBanners = lazy(() => import('Pages/Admin/Banners'));
 const AdminCategories = lazy(() => import('Pages/Admin/Categories'));
 const AdminOptions = lazy(() => import('Pages/Admin/Options'));
+const CheckboxFilter = lazy(() => import('Components/CheckboxFilter/CheckboxFilter'));
+const OrderForm = lazy(() => import('Components/OrderForm/OrderForm'));
 
 const RouterComponent = () => (
     <Router history={history}>
@@ -29,6 +31,10 @@ const RouterComponent = () => (
                 <Layout>
                     <Route path="/" component={() => <Card />} />
                 </Layout>
+
+                <Route exact path="/" component={() => <ProductInfo />} />
+                <Route exact path="/checkboxfilter" component={() => <CheckboxFilter />} />
+                <Route exact path="/orderForm" component={() => <OrderForm />} />
                 <Route component={NotFoundPage} />
             </Switch>
         </Suspense>

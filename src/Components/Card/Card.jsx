@@ -2,12 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
-import { Heart } from 'Icons';
 import { Swatches } from '../Swatches';
 import { Title } from '../Title';
 
 import './Card.css';
+import WishlistHeart from '../WishlistHeart/WishlistHeart';
 
 export const Card = ({
     className,
@@ -21,9 +20,9 @@ export const Card = ({
 
     return (
         <div className={componentClassNames}>
-            <button title="Like product" type="button" className="lib-card__heart">
-                <Heart height="18" width="20" />
-            </button>
+            <div className="lib-card__heart_wh">
+                <WishlistHeart />
+            </div>
             <NavLink to={detailsPath}>
                 <img className="lib-card__picture" src={imagePath} alt="dress" />
             </NavLink>

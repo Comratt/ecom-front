@@ -1,0 +1,33 @@
+.lib-checkboxFilterItem {
+    font-family: var(--header-accent-ff);
+    color: var(--header-color);
+}
+
+.filters__items {
+    display: flex;
+}
+
+.filters__item {
+    margin-right: var(--size-normal-mid);
+    cursor: pointer;
+}
+
+
+.filters__text {
+    padding-right: var(--size-smaller);
+}
+
+.arrow {
+    border: solid var(--color-arrow-black);
+    border-width: 0 1px 1px 0;
+    display: inline-block;
+    padding: var(--size-min-small);
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    margin-bottom: var(--size-min-small);
+}
+
+.arrow.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}

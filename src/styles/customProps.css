@@ -1,6 +1,5 @@
 :root  {
     /*---------- FONTS ---------*/
-
     --accent-ff-light: 'SourceSansPro-Light', sans-serif;
     --accent-ff: 'Cera Pro Regular', sans-serif;
     --accent-ff-bold: 'Cera Pro Medium', sans-serif;
@@ -18,23 +17,50 @@
     --fz-small: 14px;
     --fz-mid: 15px;
     --fz-normal: 16px;
-    /*--fz-normal-bigger: 20px;
-    --fz-biggest: 30px;*/
+    --fz-normal-bigger: 20px;
+    --fz-biggest: 30px;
 
     /*----------- COLORS ---------*/
+
     --color-lightest: #fff;
     --color-accent: #887569;
     --color-accent-light: #c4a996;
     --color-grayish: #e5e5e5;
+    --color-border-accent: #e6e6e6;
+    --color-border-lightest: #E5E5E5;
+    --color-arrow-black: #000000;
+
+    /*Card additional colors*/
+    --color-focused-input: #c5a995;
+    --color-hint: #717171;
+    --color-link-card: #b8967e;
+    --color-border-card: #d5d5d5;
+    --color-btn-hover-card: #c8c8c8;
+    --coror-divides-line-card: #e6e6e6;
+    --color-card-aside-background: #fafafa;
 
     /*------------ SIZES -----------*/
+    --size-min-small: 3px;
     --size-smaller: 6px;
     --size-small: 10px;
+    --size-mid-low: 12px;
     --size-mid: 15px;
     --size-mid-bigger: 16px;
     --size-normal-small: 18px;
     --size-normal: 20px;
-    --size-normal-bigger: 24px;
+    --size-normal-mid: 24px;
     --size-big: 28px;
+    --size-bigger: 30px;
     --size-biggest: 32px;
+    --size-fourty: 40px;
+    --size-fifty: 50px;
+    --size-sixty: 60px;
+    --size-eigthty: 80px;
+
+    /* CONTAINER WIDTH */
+    --size-content-big: 110px;
+    --size-normal-bigger: 24px;
+
+    /* CONTAINER WIDTH */
+    --size--margin-big: 1500px;
 }

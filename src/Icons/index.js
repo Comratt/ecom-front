@@ -8,6 +8,7 @@ import Menu from './Menu';
 import User from './User';
 import Cart from './Cart';
 import Close from './Close';
+import AccardionArrow from './AccardionArrow';
 
 export {
     Remove,
@@ -20,4 +21,5 @@ export {
     User,
     Cart,
     Close,
+    AccardionArrow,
 };
