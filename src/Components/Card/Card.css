@@ -18,8 +18,7 @@
     display: flex;
     flex-direction: column;
 }
-
-.lib-card .lib-card__heart {
+.lib-card__heart_wh {
     background-color: transparent;
     cursor: pointer;
     position: absolute;
@@ -29,12 +28,6 @@
     padding: 0;
     margin: 0;
 }
-
-.lib-card .lib-card__heart:hover {
-    animation: .9s linear 0s infinite alternate pulse;
-    animation-iteration-count: infinite;
-}
-
 .lib-card .lib-card__info-supsale {
     display: flex;
     line-height: var(--line-h-normal);
