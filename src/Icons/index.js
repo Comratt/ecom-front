@@ -5,6 +5,9 @@ import Search from './Search';
 import Heart from './Heart';
 import Logo from './Logo';
 import Menu from './Menu';
+import User from './User';
+import Cart from './Cart';
+import Close from './Close';
 
 export {
     Remove,
@@ -14,4 +17,7 @@ export {
     Heart,
     Logo,
     Menu,
+    User,
+    Cart,
+    Close,
 };

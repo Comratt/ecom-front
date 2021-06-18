@@ -7,6 +7,7 @@
 
     --line-h-bigger: 22px;
     --line-h-normal: 20px;
+    --line-h-normal-smaller: 18px;
     --line-h-small: 16px;
     --line-h-smaller: 12px;
 
@@ -24,6 +25,7 @@
     --color-lightest: #fff;
     --color-accent: #887569;
     --color-accent-light: #c4a996;
+    --color-grayish: #e5e5e5;
 
     /*------------ SIZES -----------*/
     --size-smaller: 6px;

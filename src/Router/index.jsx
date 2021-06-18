@@ -7,6 +7,8 @@ import {
 } from 'react-router-dom';
 import isEqual from 'lodash/isEqual';
 import history from 'Services/history';
+import { Layout } from '../Components/Layout';
+import { Card } from '../Components/Card';
 
 const NotFoundPage = () => <Redirect to="/" />;
 const AdminLogin = lazy(() => import('Pages/Admin/Login'));
@@ -14,7 +16,6 @@ const AdminDashboard = lazy(() => import('Pages/Admin/Dashboard'));
 const AdminBanners = lazy(() => import('Pages/Admin/Banners'));
 const AdminCategories = lazy(() => import('Pages/Admin/Categories'));
 const AdminOptions = lazy(() => import('Pages/Admin/Options'));
-const Header = lazy(() => import('Components/Header/Header'));
 
 const RouterComponent = () => (
     <Router history={history}>
@@ -25,8 +26,9 @@ const RouterComponent = () => (
                 <Route path="/admin/banner" component={AdminBanners} />
                 <Route path="/admin/option" component={AdminOptions} />
                 <Route path="/admin/login" component={AdminLogin} />
-
-                <Route exact path="/" component={() => <Header />} />
+                <Layout>
+                    <Route path="/" component={() => <Card />} />
+                </Layout>
                 <Route component={NotFoundPage} />
             </Switch>
         </Suspense>
