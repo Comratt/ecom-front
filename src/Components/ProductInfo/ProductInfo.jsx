@@ -4,6 +4,7 @@ import './ProductInfo.css';
 import WishlistHeart from '../WishlistHeart/WishlistHeart';
 import { Swatches } from '../Swatches';
 import Accardion from '../AccardionProductInfo/AccardionProductInfo';
+import AddCartBtn from '../AddCartBtn/AddCartBtn';
 
 const ProductInfo = ({
     className,
@@ -63,63 +64,12 @@ const ProductInfo = ({
                         Size chart
                     </span>
                 </div>
-                <div className="lib-product_info_submit">
-                    <button>
-                        Add Cart
-                    </button>
-                </div>
+                <AddCartBtn />
                 <div className="lib-product_info_wishlist">
                     <WishlistHeart />
                     <span>in Wishlist</span>
                 </div>
                 <div className="lib-product_info_product_description">
-                    {/* <ul> */}
-                    {/*    <li> */}
-                    {/*        Description */}
-                    {/*        <span> */}
-                    {/*            <AccardionArrow */}
-                    {/*                width={20} */}
-                    {/*                fill="var(--color-accent)" */}
-                    {/*            /> */}
-                    {/*        </span> */}
-                    {/*    </li> */}
-                    {/*    <li> */}
-                    {/*        Size and fit */}
-                    {/*        <span> */}
-                    {/*            <AccardionArrow */}
-                    {/*                width={20} */}
-                    {/*                fill="var(--color-accent)" */}
-                    {/*            /> */}
-                    {/*        </span> */}
-                    {/*    </li> */}
-                    {/*    <li> */}
-                    {/*        Product measurements */}
-                    {/*        <span> */}
-                    {/*            <AccardionArrow */}
-                    {/*                width={20} */}
-                    {/*                fill="var(--color-accent)" */}
-                    {/*            /> */}
-                    {/*        </span> */}
-                    {/*    </li> */}
-                    {/*    <li> */}
-                    {/*        Care */}
-                    {/*        <span> */}
-                    {/*            <AccardionArrow */}
-                    {/*                width={20} */}
-                    {/*                fill="var(--color-accent)" */}
-                    {/*            /> */}
-                    {/*        </span> */}
-                    {/*    </li> */}
-                    {/*    <li> */}
-                    {/*        Composition */}
-                    {/*        <span> */}
-                    {/*            <AccardionArrow */}
-                    {/*                width={20} */}
-                    {/*                fill="var(--color-accent)" */}
-                    {/*            /> */}
-                    {/*        </span> */}
-                    {/*    </li> */}
-                    {/* </ul> */}
                     <Accardion />
                 </div>
             </div>

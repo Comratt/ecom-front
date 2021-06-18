@@ -1,0 +1,15 @@
+.lib-product_info_submit{
+    margin-top: 10px;
+}
+.lib-product_info_submit button {
+    width: 80%;
+    border-radius: 8px;
+    height: 50px;
+    background-color: #c4a996;
+    color: white;
+    border: none;
+    font-size: 16px;
+}
+.lib-product_info_submit button:hover {
+    background-color: #887569;
+}
