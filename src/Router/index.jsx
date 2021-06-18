@@ -28,7 +28,7 @@ const RouterComponent = () => (
                 <Route path="/admin/option" component={AdminOptions} />
                 <Route path="/admin/login" component={AdminLogin} />
 
-                <Route exact path="/" component={() => <Header />} />
+                <Route exact path="/" component={() => <ProductInfo />} />
                 <Route exact path="/checkboxfilter" component={() => <CheckboxFilter />} />
                 <Route exact path="/orderForm" component={() => <OrderForm />} />
 
