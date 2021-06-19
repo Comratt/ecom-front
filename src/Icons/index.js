@@ -5,6 +5,7 @@ import Search from './Search';
 import Heart from './Heart';
 import Logo from './Logo';
 import Menu from './Menu';
+import AccardionArrow from './AccardionArrow';
 
 export {
     Remove,
@@ -14,4 +15,5 @@ export {
     Heart,
     Logo,
     Menu,
+    AccardionArrow,
 };

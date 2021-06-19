@@ -30,11 +30,13 @@ const RouterComponent = () => (
                 <Route path="/admin/banner" component={AdminBanners} />
                 <Route path="/admin/option" component={AdminOptions} />
                 <Route path="/admin/login" component={AdminLogin} />
-
                 <Route exact path="/" component={() => <Header />} />
                 <Route exact path="/checkboxfilter" component={() => <CheckboxFilter />} />
                 <Route exact path="/orderForm" component={() => <OrderForm />} />
                 <Route exact path="/cardPopUp" component={() => <CardPopUp />} />
+                <Route exact path="/" component={() => <ProductInfo />} />
+                <Route exact path="/checkboxfilter" component={() => <CheckboxFilter />} />
+                <Route exact path="/orderForm" component={() => <OrderForm />} />
 
                 <Route component={NotFoundPage} />
             </Switch>

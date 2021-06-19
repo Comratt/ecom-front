@@ -1,0 +1,13 @@
+.lib-card__heart {
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}
+.lib-card__heart:focus{
+   outline: none;
+}
+
+.lib-card__heart:hover {
+    animation: .9s linear 0s infinite alternate pulse;
+    animation-iteration-count: infinite;
+}
