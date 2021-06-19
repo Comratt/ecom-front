@@ -1,27 +1,28 @@
 .card-pop-up {
     font-family: var(--accent-ff);
-    margin: 20px auto;
+    margin: var(--size-normal) auto;
     display: flex;
     flex-direction: column;
-    width: 200px;
-    border-radius: 7px;
-    border: 1px solid #E5E5E5;
+    border-radius: var(--size-smaller);
+    border: 1px solid var(--color-border-lightest);
     width: 270px;
+
+    --price-popup-color: #886579;
 }
 
 .card-pop-up__title {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 11px;
+    margin-top: var(--size-small);
+    margin-bottom: var(--size-small);
+    font-size: var(--fz-tiny);
     text-transform: uppercase;
-    color: #887569;
+    color: var(--color-accent);
 }
 
 .card-pop-up__info {
     display: flex;
-    margin-bottom: 15px;
+    margin-bottom: var(--size-mid);
 }
 
 .card-pop-up__img {
@@ -31,14 +32,14 @@
 }
 
 .card-pop-up__product-name {
-    color: #887569
+    color: var(--color-accent);
 }
 
 .card-pop-up__size {
-    color: #887569;
+    color: var(--color-accent);
 }
 
 
 .card-pop-up__price {
-    color: #886579;
+    color: var(--price-popup-color);
 }
