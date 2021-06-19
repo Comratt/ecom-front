@@ -28,7 +28,6 @@
     --color-border-lightest: #E5E5E5;
     --color-arrow-black: #000000;
 
-<<<<<<< HEAD
         /*Card additional colors*/
         --color-focused-input: #c5a995;
         --color-hint: #717171;
@@ -37,7 +36,6 @@
         --color-btn-hover-card: #c8c8c8;
         --coror-divides-line-card: #e6e6e6;
         --color-card-aside-background: #fafafa;
-=======
     /*Card additional colors*/
     --color-focused-input: #c5a995;
     --color-hint: #717171;
@@ -46,7 +44,6 @@
     --color-btn-hover-card: #c8c8c8;
     --coror-divides-line-card: #e6e6e6;
     --color-card-aside-background: #fafafa;
->>>>>>> b9844f2c330bd8b532f05e1ddc75a7370aae9a82
 
     /*------------ SIZES -----------*/
     --size-min-small: 3px;
@@ -68,16 +65,11 @@
 
     /* CONTAINER WIDTH */
     --size-content-big: 110px;
-<<<<<<< HEAD
-=======
     --size-normal-bigger: 24px;
     --size-big: 28px;
     --size-bigger: 30px;
     --size-biggest: 32px;
 
     /* CONTAINER WIDTH */
->>>>>>> b9844f2c330bd8b532f05e1ddc75a7370aae9a82
     --size--margin-big: 1500px;
-
-
 }
