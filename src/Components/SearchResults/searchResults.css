@@ -1,6 +1,8 @@
 .lib-search-results_info {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+
     font-family: var(--accent-ff);
     --search-result-title-color: #c6c6c6;
     --search-result-line-color: #eee;
@@ -25,6 +27,8 @@
 
 .product-matches__wrapper {
     display: flex;
+    justify-content: space-between;
+    height: 94vh;
     flex-direction: column;
     padding: var(--size-normal);
     justify-content: space-between;
@@ -52,9 +56,9 @@
     border: none;
     outline: none;
 
-    position: fixed;
-    bottom: 3%;
-    width: 94%;
+    /*position: fixed;*/
+    /*bottom: 3%;*/
+    width: 100%;
 }
 
 .product-matches__item-left {
