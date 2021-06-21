@@ -1,4 +1,6 @@
-import React, { Suspense, memo, lazy } from 'react';
+import React, {
+    Suspense, memo, lazy, Component,
+} from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -17,6 +19,7 @@ const AdminOptions = lazy(() => import('Pages/Admin/Options'));
 const Header = lazy(() => import('Components/Header/Header'));
 const CheckboxFilter = lazy(() => import('Components/CheckboxFilter/CheckboxFilter'));
 const OrderForm = lazy(() => import('Components/OrderForm/OrderForm'));
+const CardPopUp = lazy(() => import('Components/CardPopUp/CardPopUp'));
 
 const RouterComponent = () => (
     <Router history={history}>
@@ -27,7 +30,10 @@ const RouterComponent = () => (
                 <Route path="/admin/banner" component={AdminBanners} />
                 <Route path="/admin/option" component={AdminOptions} />
                 <Route path="/admin/login" component={AdminLogin} />
-
+                <Route exact path="/" component={() => <Header />} />
+                <Route exact path="/checkboxfilter" component={() => <CheckboxFilter />} />
+                <Route exact path="/orderForm" component={() => <OrderForm />} />
+                <Route exact path="/cardPopUp" component={() => <CardPopUp />} />
                 <Route exact path="/" component={() => <ProductInfo />} />
                 <Route exact path="/checkboxfilter" component={() => <CheckboxFilter />} />
                 <Route exact path="/orderForm" component={() => <OrderForm />} />
