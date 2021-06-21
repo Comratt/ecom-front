@@ -1,0 +1,105 @@
+.lib-search-results_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    font-family: var(--accent-ff);
+    --search-result-title-color: #c6c6c6;
+    --search-result-line-color: #eee;
+    --search-result-price-color: #788188;
+    --search-result-image-heigth: 75px;
+    --search-result-image-width: 60px;
+    --search-result-btn-heigth: 48px;
+}
+
+.product-matches__info {
+    display: flex;
+}
+
+.product-matches__title {
+    color: var(--search-result-title-color);
+    padding: var(--size-mid);
+    font-size: var(--fz-tiny);
+    font-weight: 700;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--search-result-line-color);
+}
+
+.product-matches__wrapper {
+    display: flex;
+    justify-content: space-between;
+    height: 94vh;
+    flex-direction: column;
+    padding: var(--size-normal);
+    justify-content: space-between;
+
+}
+
+.product-matches__item:first-child {
+    margin: 0px;
+}
+
+.product-matches__item:last-child {
+
+}
+
+.product-matches__btn-block {
+    width: 100%;
+}
+
+.product-matches__btn {
+    height: var(--search-result-btn-heigth);
+    font-size: var(--fz-normal);
+    background: var(--color-focused-input);
+    border-radius: 4px;
+    color: #fff;
+    border: none;
+    outline: none;
+
+    /*position: fixed;*/
+    /*bottom: 3%;*/
+    width: 100%;
+}
+
+.product-matches__item-left {
+    /*width: 30%;*/
+}
+
+.line {
+    margin-top: var(--size-small);
+    height: 1px;
+    background-color: var(--search-result-line-color);
+}
+
+.product-matches__info-content {
+    display: flex;
+}
+
+.product-matches__item-right {
+    padding: 0px var(--size-normal);
+}
+
+.product-matches__name {
+    margin-bottom: var(--size-smaller);
+}
+
+.product-matches__image {
+    width: var(--search-result-image-width);
+    height: var(--search-result-image-heigth)
+}
+
+.product-matches__name {
+    font-family: "Cera Pro Regular", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--color-accent);
+}
+
+.product-matches__price {
+    color: var(--search-result-price-color);
+    font-size: var(--size-mid);
+}
+
+.product-matches__item {
+    margin-top: var(--size-small);
+}
