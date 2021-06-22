@@ -1,4 +1,6 @@
-import React, { Suspense, memo, lazy } from 'react';
+import React, {
+    Suspense, memo, lazy, Component,
+} from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -18,6 +20,8 @@ const AdminOptions = lazy(() => import('Pages/Admin/Options'));
 const CheckboxFilter = lazy(() => import('Components/CheckboxFilter/CheckboxFilter'));
 const OrderForm = lazy(() => import('Components/OrderForm/OrderForm'));
 const SiteHome = lazy(() => import('Pages/Site/Home'));
+const CardPopUp = lazy(() => import('Components/CardPopUp/CardPopUp'));
+const SearchResults = lazy(() => import('Components/SearchResults/searchResults'));
 
 const RouterComponent = () => (
     <Router history={history}>
@@ -35,6 +39,15 @@ const RouterComponent = () => (
                 <Route exact path="/" component={() => <ProductInfo />} />
                 <Route exact path="/checkboxfilter" component={() => <CheckboxFilter />} />
                 <Route exact path="/orderForm" component={() => <OrderForm />} />
+                <Route exact path="/" component={() => <Header />} />
+                <Route exact path="/checkboxfilter" component={() => <CheckboxFilter />} />
+                <Route exact path="/orderForm" component={() => <OrderForm />} />
+                <Route exact path="/cardPopUp" component={() => <CardPopUp />} />
+                <Route exact path="/" component={() => <ProductInfo />} />
+                <Route exact path="/checkboxfilter" component={() => <CheckboxFilter />} />
+                <Route exact path="/orderForm" component={() => <OrderForm />} />
+                <Route exact path="/searchResult" component={() => <SearchResults />} />
+
                 <Route component={NotFoundPage} />
             </Switch>
         </Suspense>
