@@ -9,6 +9,8 @@ import User from './User';
 import Cart from './Cart';
 import Close from './Close';
 import AccardionArrow from './AccardionArrow';
+import Relevance from './Relevance';
+import Filters from './Filters';
 
 export {
     Remove,
@@ -22,4 +24,6 @@ export {
     Cart,
     Close,
     AccardionArrow,
+    Relevance,
+    Filters,
 };

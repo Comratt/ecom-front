@@ -8,7 +8,6 @@ import {
 import isEqual from 'lodash/isEqual';
 import history from 'Services/history';
 import { Layout } from '../Components/Layout';
-import { Card } from '../Components/Card';
 
 const NotFoundPage = () => <Redirect to="/" />;
 const AdminLogin = lazy(() => import('Pages/Admin/Login'));
@@ -18,6 +17,7 @@ const AdminCategories = lazy(() => import('Pages/Admin/Categories'));
 const AdminOptions = lazy(() => import('Pages/Admin/Options'));
 const CheckboxFilter = lazy(() => import('Components/CheckboxFilter/CheckboxFilter'));
 const OrderForm = lazy(() => import('Components/OrderForm/OrderForm'));
+const SiteHome = lazy(() => import('Pages/Site/Home'));
 
 const RouterComponent = () => (
     <Router history={history}>
@@ -29,7 +29,7 @@ const RouterComponent = () => (
                 <Route path="/admin/option" component={AdminOptions} />
                 <Route path="/admin/login" component={AdminLogin} />
                 <Layout>
-                    <Route path="/" component={() => <Card />} />
+                    <Route path="/" component={SiteHome} />
                 </Layout>
 
                 <Route exact path="/" component={() => <ProductInfo />} />
