@@ -37,10 +37,8 @@ const RouterComponent = () => (
                 </Layout>
 
                 <Route exact path="/" component={() => <ProductInfo />} />
-                <Route exact path="/checkboxfilter" component={() => <CheckboxFilter />} />
                 <Route exact path="/orderForm" component={() => <OrderForm />} />
                 <Route exact path="/" component={() => <Header />} />
-                <Route exact path="/checkboxfilter" component={() => <CheckboxFilter />} />
                 <Route exact path="/orderForm" component={() => <OrderForm />} />
                 <Route exact path="/cardPopUp" component={() => <CardPopUp />} />
                 <Route exact path="/" component={() => <ProductInfo />} />

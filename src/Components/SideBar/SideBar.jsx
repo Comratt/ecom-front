@@ -5,6 +5,7 @@ import { Close, Search } from 'Icons';
 import { useLayout } from '../../hooks/useLayout';
 
 import './SideBar.css';
+import AccardionArrow from '../../Icons/AccardionArrow';
 
 export const SideBar = ({ className }) => {
     const {
@@ -26,6 +27,85 @@ export const SideBar = ({ className }) => {
                 </button>
             </div>
             <div className="lib-sidebar__content">
+                <div className="lib-sidebar__content-wrapper">
+                    <div className="lib-sidebar__item">
+                        <div className="lib-sidebar__item-text">
+                            <a href="#">
+                                Sale
+                            </a>
+                        </div>
+                        <div className="lib-sidebar__item-arrow">
+                            <AccardionArrow fill="#887569" />
+                        </div>
+                    </div>
+                </div>
+                <div className="lib-sidebar__divide-block">
+                    <div className="lib-sidebar__line" />
+                </div>
+
+                <div className="lib-sidebar__content-wrapper">
+                    <div className="lib-sidebar__item">
+                        <div className="lib-sidebar__item-text">
+                            <a href="#">
+                                Clothing & Shoes
+                            </a>
+                        </div>
+                        <div className="lib-sidebar__item-arrow">
+                            <AccardionArrow fill="#887569" />
+                        </div>
+                    </div>
+                </div>
+                <div className="lib-sidebar__divide-block">
+                    <div className="lib-sidebar__line" />
+                </div>
+
+                <div className="lib-sidebar__content-wrapper">
+                    <div className="lib-sidebar__item">
+                        <div className="lib-sidebar__item-text">
+                            <a href="#">
+                                What's New
+                            </a>
+                        </div>
+                        <div className="lib-sidebar__item-arrow">
+                            <AccardionArrow fill="#887569" />
+                        </div>
+                    </div>
+                </div>
+                <div className="lib-sidebar__divide-block">
+                    <div className="lib-sidebar__line" />
+                </div>
+
+                <div className="lib-sidebar__content-wrapper">
+                    <div className="lib-sidebar__item">
+                        <div className="lib-sidebar__item-text">
+                            <a href="#">
+                                About
+                            </a>
+                        </div>
+                        <div className="lib-sidebar__item-arrow">
+                            <AccardionArrow fill="#887569" />
+                        </div>
+                    </div>
+                </div>
+                <div className="lib-sidebar__divide-block">
+                    <div className="lib-sidebar__line" />
+                </div>
+
+                <div className="lib-sidebar__content-wrapper">
+                    <div className="lib-sidebar__item">
+                        <div className="lib-sidebar__item-text">
+                            <a href="#">
+                                EUR
+                            </a>
+                        </div>
+                        <div className="lib-sidebar__item-arrow">
+                            <AccardionArrow fill="#887569" />
+                        </div>
+                    </div>
+                </div>
+                <div className="lib-sidebar__divide-block">
+                    <div className="lib-sidebar__line" />
+                </div>
             </div>
         </div>
     );
