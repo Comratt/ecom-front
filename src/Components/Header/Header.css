@@ -14,6 +14,7 @@
     height: var(--header-height);
     padding: 0 var(--size-normal);
     top: 0;
+    transition: .3s;
 }
 
 .lib-header .lib-header__btn {
@@ -23,8 +24,17 @@
     padding: 0;
 }
 
-.lib-header.header_transparent {
+.lib-header.header_transparent, .lib-header.header_transparent .lib-link {
     background-color: transparent;
+    color: var(--color-lightest);
+}
+
+.lib-header.header_transparent .header-input-search {
+    background: rgba(255, 255, 255, 0.32);
+}
+
+.lib-header.header_transparent .header-input-search::placeholder {
+    color: var(--color-lightest);
 }
 
 .lib-header .menu {
@@ -63,6 +73,10 @@
 }
 .header-links-icon {
     margin-left: var(--size-normal-bigger);
+    fill: var(--color-accent);
+}
+.lib-header.header_transparent .header-links-icon {
+    fill: var(--color-lightest);
 }
 .header-links-icon:first-child {
     margin-left: 0;
@@ -93,7 +107,7 @@
 }
 .header-icon-search {
     position: relative;
-    top: 4px;
+    top: 2px;
     bottom: 0;
     right: 0;
     left: 130%;

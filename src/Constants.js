@@ -28,3 +28,5 @@ export const getValidationMessage = ({ type = '', message } = {}) => {
 
     return '';
 };
+
+export const getFormattedPrice = (price = '0', prefix = '₴') => `${price} ${prefix}`;

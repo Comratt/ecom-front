@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Link } from '../Link';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {
@@ -8,6 +7,7 @@ import {
 import Cart from 'Icons/Cart';
 import User from 'Icons/User';
 import { useLayout } from 'hooks/useLayout';
+import { Link } from '../Link';
 import HeaderInput from '../HeaderInput/HeaderInput';
 
 import './Header.css';
@@ -70,7 +70,7 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
             </div>
             {showLogo && (
                 <div className="header-main-logo">
-                    <Logo />
+                    <Logo isTransparent={transparent} />
                 </div>
             )}
             <div className="header-right-menu">

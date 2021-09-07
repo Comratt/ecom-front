@@ -2,6 +2,9 @@
     position: relative;
     height: 100vh;
     background-color: var(--color-grayish);
+    overflow: hidden;
+    touch-action: pan-y;
+    user-select: none;
 }
 
 .lib-big-slider-arrow {
@@ -85,7 +88,7 @@
 .lib-big-slider .item-title {
     position: absolute;
     z-index: 2;
-    font-size: 60px;
+    font-size: 2.5rem;
     line-height: 76px;
     border-bottom: 2px solid var(--color-grayish);
     color: var(--color-lightest);
@@ -107,7 +110,7 @@
 
 .lib-big-slider .item-title h2 {
     color: var(--color-lightest);
-    font-size: 60px;
+    font-size: 2.5rem;
     line-height: 76px;
 }
 
@@ -167,5 +170,11 @@
 @media (max-width: 768px) {
     .lib-big-slider-arrow {
         display: none;
+    }
+}
+
+@media (max-width: 550px) {
+    .lib-big-slider {
+        height: 80vh;
     }
 }

@@ -66,6 +66,8 @@ const BigSliderDots = memo(({ data, active }) => {
 export const BigSlider = memo(({ className, data }) => {
     const timer = useRef(0);
     const [activeSlide, setActiveSlide] = useState(0);
+    const [touchStart, setTouchStart] = useState(0);
+    const [touchEnd, setTouchEnd] = useState(0);
 
     const handlePrev = useCallback(() => {
         if (activeSlide <= 0) return setActiveSlide(data.length - 1);
@@ -78,6 +80,18 @@ export const BigSlider = memo(({ className, data }) => {
 
         return setActiveSlide((prevSlide) => prevSlide + 1);
     }, [activeSlide, setActiveSlide, data]);
+
+    const handleTouchStart = (e) => setTouchStart(e.targetTouches[0].clientX);
+    const handleTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+    const handleTouchEnd = () => {
+        if (touchStart - touchEnd > 150) {
+            handleNext();
+        }
+
+        if (touchStart - touchEnd < -150) {
+            handlePrev();
+        }
+    };
 
     const startTimer = useCallback(() => (
         timer.current = setTimeout(() => handleNext(), 6000)
@@ -94,7 +108,12 @@ export const BigSlider = memo(({ className, data }) => {
     const componentClasses = classNames('lib-big-slider', className);
 
     return (
-        <View className={componentClasses}>
+        <View
+            className={componentClasses}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+        >
             <button
                 aria-label="Slider previous slide"
                 onClick={handlePrev}
