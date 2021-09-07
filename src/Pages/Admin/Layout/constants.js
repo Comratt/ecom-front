@@ -29,4 +29,9 @@ export const menuItems = [
         name: 'Заказы',
         link: '/admin/order',
     },
+    {
+        key: 'productlist',
+        name: 'Продукты',
+        link: '/admin/productlist',
+    },
 ];

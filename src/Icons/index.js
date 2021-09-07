@@ -6,6 +6,7 @@ import Heart from './Heart';
 import Logo from './Logo';
 import Menu from './Menu';
 import AccardionArrow from './AccardionArrow';
+import Pencil from './Pencil';
 
 export {
     Remove,
@@ -16,4 +17,5 @@ export {
     Logo,
     Menu,
     AccardionArrow,
+    Pencil,
 };
