@@ -3,8 +3,16 @@ import { Tab, Tabs, Content } from './ProductTab';
 import Layout from '../Layout';
 import './ProductEdit.css';
 import { Pencil } from '../../../Icons';
+import ProductTabGeneral from './ProductTabGeneral';
+import ProductTabsData from './ProductTabsData';
+import ProductTabLinks from './ProductTabLinks';
+import ProductTabOptions from './ProductTabOption/ProductTabOptions';
+import ProductTabDiscount from './ProductTabDiscount';
+import ProductTabSpecial from './ProductTabSpecial';
+import ProductTabImage from './ProductTabImage';
+import ProductTabSeo from './ProductTabSeo';
 
-const App = () => {
+const ProductEdit = () => {
     const [active, setActive] = useState(0);
     const handleClick = (e) => {
         const index = parseInt(e.target.id, 0);
@@ -16,7 +24,10 @@ const App = () => {
 
     return (
         <div className="App">
-            <h5 className="header-tabs">Edit Product</h5>
+            <h5 className="header-tabs">
+                <Pencil style={{ marginRight: '10px' }} />
+                Edit Product
+            </h5>
 
             <Tabs>
                 <Tab onClick={handleClick} active={active === 0} id={0}>
@@ -62,52 +73,37 @@ const App = () => {
             </Tabs>
             <>
                 <Content active={active === 0}>
-                    <form>
-                        <div className="from-section">
-                            <label htmlFor="productName">
-                                Product Name
-                            </label>
-                            <input id="ProductName" type="text" />
-                        </div>
-                        <div className="from-section">
-                            <label htmlFor="productTextArea">
-                                Description
-                            </label>
-                            <textarea id="productTextArea">
-                                Text Area
-                            </textarea>
-                        </div>
-                    </form>
+                    <ProductTabGeneral />
                 </Content>
                 <Content active={active === 1}>
-                    <h1>Content 2</h1>
+                    <ProductTabsData />
                 </Content>
                 <Content active={active === 2}>
-                    <h1>Content 2</h1>
+                    <ProductTabLinks />
                 </Content>
                 <Content active={active === 3}>
                     <h1>Content 2</h1>
                 </Content>
                 <Content active={active === 4}>
-                    <h1>Content 2</h1>
+                    <ProductTabOptions />
                 </Content>
                 <Content active={active === 5}>
                     <h1>Content 2</h1>
                 </Content>
                 <Content active={active === 6}>
-                    <h1>Content 2</h1>
+                    <ProductTabDiscount />
                 </Content>
                 <Content active={active === 7}>
-                    <h1>Content 2</h1>
+                    <ProductTabSpecial />
                 </Content>
                 <Content active={active === 8}>
-                    <h1>Content 2</h1>
+                    <ProductTabImage />
                 </Content>
                 <Content active={active === 9}>
                     <h1>Content 2</h1>
                 </Content>
                 <Content active={active === 10}>
-                    <h1>Content 2</h1>
+                    <ProductTabSeo />
                 </Content>
                 <Content active={active === 11}>
                     <h1>Content 2</h1>
@@ -117,4 +113,4 @@ const App = () => {
     );
 };
 
-export default Layout(App);
+export default Layout(ProductEdit);

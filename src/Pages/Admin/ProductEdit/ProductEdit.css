@@ -1,59 +1,49 @@
 .App {
-    margin-top: 10px;
     border: 1px solid #dcdcdc;
+    margin-top: 30px;
 }
-
-.tabs{
-}
-
-.tabs-titles{
-    list-style: none;
-    padding: 0px;
-    margin: 0;
-}
-
-.tab-title{
-    background-color: #fff;
-    display: inline-block;
-    padding: 10px;
-    color: #c7c6c2;
-    cursor: pointer;
-    margin-left:1px;
-}
-
-.tab-title--active {
-    background-color: #f5f5f5;
-    color: #00070a;
-}
-.header-tabs {
-    padding: 10px;
-    background-color: #f6f6f6;
+.header-tabs{
     border-bottom: 1px solid #dcdcdc;
+    padding: 17px;
+    background-color: #f6f6f6;
 }
-
-.tab-content{
-    background-color: #f5f5f5;
-    padding: 5px;
-    margin: 0;
+table, thead, tbody, th, td, tr {
+    border: 1px solid gray;
 }
-label{
-    padding-right: 10px;
+table {
+    margin-top: 15px;
+    width: 100%;
+}
+th, td {
+    padding: 10px;
+}
+.productTabOptionInput{
+    width: 100%;
+}
+.productTabOptionSelect{
+    width: 100%;
+    margin-bottom: 5px;
 }
 form {
     display: flex;
     flex-direction: column;
-    padding: 20px ;
-}
-.from-section {
-    display: flex;
-    margin-top: 20px;
-    border-bottom: 1px solid #dcdcdc;
 }
 input {
-    margin-bottom: 10px;
-    width: 90%;
+    width: 95%;
 }
 textarea {
-    margin-bottom: 10px;
-    width: 90%;
+    width: 95%;
+}
+.from-section{
+    display: flex;
+    margin-left: 20px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #dcdcdc;
+}
+.productTabLabel {
+    width: 20%;
+}
+.productTabInput {
+    width: 80%;
 }
