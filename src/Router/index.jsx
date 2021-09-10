@@ -18,6 +18,8 @@ const AdminProductList = lazy(() => import('Pages/Admin/ProductList'));
 const AdminProductEdit = lazy(() => import('Pages/Admin/ProductEdit'));
 const AdminCategories = lazy(() => import('Pages/Admin/Categories'));
 const AdminOptions = lazy(() => import('Pages/Admin/Options'));
+const AdminOrder = lazy(() => import('Pages/Admin/Order'));
+const AdminOrderProduct = lazy(() => import('Pages/Admin/OrderProduct'));
 const Header = lazy(() => import('Components/Header/Header'));
 const CheckboxFilter = lazy(() => import('Components/CheckboxFilter/CheckboxFilter'));
 const OrderForm = lazy(() => import('Components/OrderForm/OrderForm'));
@@ -34,6 +36,8 @@ const RouterComponent = () => (
                 <Route path="/admin/productlist" component={AdminProductList} />
                 <Route path="/admin/productedit" component={AdminProductEdit} />
                 <Route path="/admin/option" component={AdminOptions} />
+                <Route path="/admin/order" component={AdminOrder} />
+                <Route path="/admin/orderproduct" component={AdminOrderProduct} />
                 <Route path="/admin/login" component={AdminLogin} />
                 <Route exact path="/" component={() => <Header />} />
                 <Route exact path="/checkboxfilter" component={() => <CheckboxFilter />} />

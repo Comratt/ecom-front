@@ -1,0 +1,35 @@
+.orderListHeader{
+    border-bottom: 1px solid #dcdcdc;
+    margin: 15px;
+}
+.orderListContent{
+    border: 1px solid #dcdcdc;
+}
+table {
+    width: 100%;
+}
+th{
+    padding:10px
+}
+td{
+    padding: 10px;
+}
+table, thead, tbody, th,td {
+    border: 1px solid #dcdcdc;
+}
+.orderButtonDetails{
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    background-color: #1e91cf;
+    border-right: 1px solid #dcdcdc;
+}
+.popButton {
+    display: none;
+}
+.orderButton{
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    background-color: #1e91cf;
+}
