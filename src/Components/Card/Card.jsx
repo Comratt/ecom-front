@@ -15,13 +15,15 @@ export const Card = ({
     title,
     price,
     currency,
+    colors,
+    cardId,
 }) => {
     const componentClassNames = classNames('lib-card', className);
 
     return (
         <div className={componentClassNames}>
             <div className="lib-card__heart_wh">
-                <WishlistHeart />
+                <WishlistHeart cardId={cardId} />
             </div>
             <NavLink to={detailsPath}>
                 <img className="lib-card__picture" src={imagePath} alt="dress" />
@@ -37,7 +39,7 @@ export const Card = ({
                     {currency}
                     {price}
                 </p>
-                <Swatches />
+                <Swatches data={colors} />
             </div>
         </div>
     );

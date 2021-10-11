@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import './ProductInfo.css';
 import WishlistHeart from '../WishlistHeart/WishlistHeart';
 import { Swatches } from '../Swatches';
-import Accardion from '../AccardionProductInfo/AccardionProductInfo';
+import Accardion from '../Accordion/Accordion';
 import AddCartBtn from '../AddCartBtn/AddCartBtn';
 
 const ProductInfo = ({
@@ -13,13 +13,6 @@ const ProductInfo = ({
         'lib-product_info',
         className,
     );
-
-    const data = [
-        {
-            id: 1,
-            color: '#ccc',
-        },
-    ];
 
     return (
         <div className={componentClasses}>
@@ -78,3 +71,22 @@ const ProductInfo = ({
 };
 
 export default ProductInfo;
+
+ProductInfo.propTypes = {
+    className: PropTypes.string,
+    dataList: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        image: PropTypes.string,
+        images: PropTypes.arrayOf(PropTypes.shape({})),
+        price: PropTypes.string,
+        name: PropTypes.string,
+        description: PropTypes.string,
+        colors: PropTypes.arrayOf(PropTypes.shape({})),
+        sizes: PropTypes.arrayOf(PropTypes.shape({})),
+    })),
+};
+
+ProductInfo.defaultProps = {
+    className: '',
+    dataList: [],
+};

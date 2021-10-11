@@ -4,11 +4,19 @@ import qs from 'query-string';
 import ServerException from 'Exceptions/ServerException';
 
 class ProductsService {
-    static async getAll(page) {
+    static async getAll(filters) {
         try {
-            const pageQuery = qs.stringify({ page });
+            const pageQuery = qs.stringify(filters);
 
             return (await API.get(`api/admin/products?${pageQuery}`)).data;
+        } catch (e) {
+            throw new ServerException(e.response);
+        }
+    }
+
+    static async getById(id) {
+        try {
+            return (await API.get(`api/admin/products/${id}`)).data;
         } catch (e) {
             throw new ServerException(e.response);
         }

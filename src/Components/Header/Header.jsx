@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 import {
     Heart, Logo, Menu, Search,
 } from 'Icons';
 import Cart from 'Icons/Cart';
 import User from 'Icons/User';
+
+import { getCartQuantity } from 'Store/Modules/Cart/selectors';
+import { getWishlistQuantity } from 'Store/Modules/Wishlist/selectors';
+
 import { useLayout } from 'hooks/useLayout';
 import { Link } from '../Link';
 import HeaderInput from '../HeaderInput/HeaderInput';
@@ -24,6 +28,8 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
             title,
         },
     } = useLayout();
+    const cartQuantity = useSelector(getCartQuantity);
+    const wishQuantity = useSelector(getWishlistQuantity);
 
     useEffect(() => {
         if (hamburgerMenu) {
@@ -91,12 +97,14 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
                         width={24}
                         height={24}
                     />
+                    {!!wishQuantity && <div className="cart-badge">{wishQuantity}</div>}
                 </a>
-                <a href="/" className="header-links-icon">
+                <a href="/" className="header-links-icon cart">
                     <Cart
                         width={24}
                         height={24}
                     />
+                    {!!cartQuantity && <div className="cart-badge">{cartQuantity}</div>}
                 </a>
                 <a href="/" className="header-links-icon user">
                     <User

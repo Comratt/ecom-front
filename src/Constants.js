@@ -21,6 +21,11 @@ const ALL_VALIDATION_RULES = [
 export const ADD_METHOD = 'add';
 export const UPDATE_METHOD = 'update';
 
+export const OPTION_TYPES = {
+    Color: 1,
+    Size: 2,
+};
+
 export const getValidationMessage = ({ type = '', message } = {}) => {
     if (ALL_VALIDATION_RULES.includes(type)) {
         return message;

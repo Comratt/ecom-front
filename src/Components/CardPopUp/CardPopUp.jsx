@@ -1,30 +1,36 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import './CardPopUp.css';
 
-export const CardPopUp = ({ className }) => {
-    const componentClassNames = classNames('card-pop-up', className);
+export const CardPopUp = ({
+    message: {
+        size, price, image, name,
+    },
+    style,
+}) => {
+    const componentClassNames = classNames('card-pop-up');
 
     return (
-        <div className={componentClassNames}>
+        <div className={componentClassNames} style={style}>
             <div className="card-pop-up__title">
                 1 item(s) added to your cart
             </div>
             <div className="card-pop-up__info">
                 <div className="card-pop-up__img">
-                    <img className="card-pop-up__img" src="https://cdn.shopify.com/s/files/1/0292/1375/3428/products/16-02-202148416_150x.jpg?v=1614201760" alt="" />
+                    <img className="card-pop-up__img" src={image} alt="" />
                 </div>
                 <div className="card-pop-up__description">
                     <div className="card-pop-up__product-name">
-                        <span>Draped double-breast...</span>
+                        <span>{name}</span>
                     </div>
                     <div className="card-pop-up__product-description" />
                     <div className="card-pop-up__size">
-                        <span>XS</span>
+                        <span>{size}</span>
                     </div>
                     <div className="card-pop-up__price">
-                        <span>₴5,001</span>
+                        <span>{price}</span>
                     </div>
                 </div>
             </div>
@@ -32,4 +38,11 @@ export const CardPopUp = ({ className }) => {
     );
 };
 
-export default CardPopUp;
+CardPopUp.propTypes = {
+    message: PropTypes.shape({
+        size: PropTypes.string,
+        price: PropTypes.string,
+        image: PropTypes.string,
+        name: PropTypes.string,
+    }).isRequired,
+};

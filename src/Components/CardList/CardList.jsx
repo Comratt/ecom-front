@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { View } from '../View';
@@ -6,20 +7,39 @@ import { Card } from '../Card';
 
 import './CardList.css';
 
-export const CardList = ({ className }) => {
+export const CardList = ({ className, data, images }) => {
     const componentClasses = classNames('card-list', className);
 
     return (
         <View className={componentClasses}>
-            {[1, 2, 3, 4].map((i) => (
+            {data && data.map((product) => (
                 <Card
-                    key={i}
-                    imagePath="https://cdn.shopify.com/s/files/1/0292/1375/3428/products/26-05-202170942_2048x2048.jpg?v=1623096447"
-                    detailsPath="/"
-                    price={1777}
-                    title="V-neck camisole"
+                    cardId={product.id}
+                    key={product.id}
+                    imagePath={product.image}
+                    detailsPath={product.link}
+                    price={product.price}
+                    title={product.name}
+                    colors={product.colors}
+                    images={images}
                 />
             ))}
         </View>
     );
+};
+
+CardList.propTypes = {
+    className: PropTypes.string,
+    data: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        image: PropTypes.string,
+        price: PropTypes.string,
+        name: PropTypes.string,
+        link: PropTypes.string,
+        colors: PropTypes.arrayOf(PropTypes.shape({})),
+    })).isRequired,
+};
+
+CardList.defaultProps = {
+    className: '',
 };

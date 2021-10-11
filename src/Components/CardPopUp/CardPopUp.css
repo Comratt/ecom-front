@@ -1,11 +1,14 @@
 .card-pop-up {
     font-family: var(--accent-ff);
     margin: var(--size-normal) auto;
+    margin-top: 60px;
+    margin-right: 60px;
     display: flex;
     flex-direction: column;
     border-radius: var(--size-smaller);
     border: 1px solid var(--color-border-lightest);
     width: 270px;
+    background: var(--color-lightest);
 
     --price-popup-color: #886579;
 }

@@ -10,16 +10,14 @@ import { useHome } from 'context/home/hooks/useHome';
 import './Home.css';
 
 export const Home = () => {
-    const { result } = useHome();
-
-    console.log(result);
+    const { result, pResult } = useHome();
 
     return (
         <View>
             <BigSlider data={result} />
             <View className="main-container">
                 <CheckboxFilter />
-                <CardList />
+                <CardList data={pResult} />
             </View>
         </View>
     );

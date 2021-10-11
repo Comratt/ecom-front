@@ -1,7 +1,6 @@
 .lib-big-slider {
     position: relative;
     height: 100vh;
-    background-color: var(--color-grayish);
     overflow: hidden;
     touch-action: pan-y;
     user-select: none;
@@ -132,7 +131,6 @@
     width: 8px;
     height: 8px;
     margin: 0 4px;
-    background: rgba(255, 255, 255, 0.5);
     border-radius: 50%;
     overflow: hidden;
 }
@@ -155,7 +153,6 @@
 .lib-big-slider_dots-item.active {
     width: 24px;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.5);
 }
 
 @keyframes load {

@@ -29,7 +29,7 @@ export const Swatches = ({
                         style={{ backgroundColor: item.color }}
                         type="button"
                         aria-label="Option"
-                        onClick={() => setActive(item.id)}
+                        onClick={() => setActive(item)}
                     />
                 </li>
             ))}

@@ -3,6 +3,8 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import styled from 'styled-components';
+import { useDetectedMobileDevice } from 'hooks/useDetectMobileDevice';
 
 import { View } from '../View';
 import { Link } from '../Link';
@@ -10,23 +12,34 @@ import { Title } from '../Title';
 
 import './BigSlider.css';
 
+const ItemImage = styled.div`
+  background: url('${({ image }) => image}') center center no-repeat;
+  background-size: ${({ clientHeight }) => `${clientHeight}px`};
+`;
+
 const BigSliderItem = memo(({
-    link, title, image, active, onHover, onLeave,
+    link, title, image, active, onHover, onLeave, onClick,
 }) => {
     const componentClasses = classNames('lib-big-slider_item', { active });
+    const { clientHeight } = useDetectedMobileDevice();
 
     return (
         <div
             className={componentClasses}
             onMouseOver={onHover}
             onMouseLeave={onLeave}
+            onClick={onClick}
         >
-            <Link className="item-link" to={link} />
-            <Link className="item-title" to={link}>
-                <Title type={2}>{title}</Title>
-            </Link>
+            {link && (
+                <>
+                    <Link className="item-link" to={link} />
+                    <Link className="item-title" to={link}>
+                        <Title type={2}>{title}</Title>
+                    </Link>
+                </>
+            )}
             <div className="item-overlay" />
-            <div className="item-image" style={{ background: `url(${image}) no-repeat center center fixed` }} />
+            {link ? <div className="item-image" style={{ background: `url(${image}) no-repeat center center fixed` }} /> : <ItemImage className="item-image" clientHeight={clientHeight} image={image} />}
         </div>
     );
 });
@@ -63,19 +76,23 @@ const BigSliderDots = memo(({ data, active }) => {
     );
 });
 
-export const BigSlider = memo(({ className, data }) => {
+export const BigSlider = memo(({
+    className, data, onClick, activeImage,
+}) => {
     const timer = useRef(0);
-    const [activeSlide, setActiveSlide] = useState(0);
+    const [activeSlide, setActiveSlide] = useState(activeImage || 0);
     const [touchStart, setTouchStart] = useState(0);
     const [touchEnd, setTouchEnd] = useState(0);
 
-    const handlePrev = useCallback(() => {
+    const handlePrev = useCallback((e) => {
+        e?.stopPropagation();
         if (activeSlide <= 0) return setActiveSlide(data.length - 1);
 
         return setActiveSlide((prevSlide) => prevSlide - 1);
     }, [activeSlide, setActiveSlide, data]);
 
-    const handleNext = useCallback(() => {
+    const handleNext = useCallback((e) => {
+        e?.stopPropagation();
         if (activeSlide >= data.length - 1) return setActiveSlide(0);
 
         return setActiveSlide((prevSlide) => prevSlide + 1);
@@ -113,6 +130,7 @@ export const BigSlider = memo(({ className, data }) => {
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
+            onClick={onClick}
         >
             <button
                 aria-label="Slider previous slide"
@@ -120,7 +138,7 @@ export const BigSlider = memo(({ className, data }) => {
                 type="button"
                 className="lib-big-slider-arrow lib-big-slider__prev"
             />
-            {data.map(({ title, link, image }, index) => (
+            {typeof data[0] === 'object' ? data.map(({ title, link, image }, index) => (
                 <BigSliderItem
                     onHover={clearTimer}
                     onLeave={startTimer}
@@ -129,6 +147,18 @@ export const BigSlider = memo(({ className, data }) => {
                     title={title}
                     link={link}
                     image={image}
+                    onClick={() => ({})}
+                />
+            )) : data.map((image, index) => (
+                <BigSliderItem
+                    onHover={clearTimer}
+                    onLeave={startTimer}
+                    key={image}
+                    active={(activeSlide === index)}
+                    title=""
+                    link=""
+                    image={image}
+                    onClick={onClick}
                 />
             ))}
             <BigSliderDots data={data} active={(activeSlide)} />

@@ -8,7 +8,14 @@ import { useHomeData } from './useHomeData';
 
 export const useHome = () => {
     const [isTransparent, setTransparent] = useState(true);
-    const { result, error, loading } = useHomeData();
+    const {
+        result,
+        error,
+        loading,
+        pResult,
+        pError,
+        pLoading,
+    } = useHomeData();
     const { changeTopNavState } = useLayout();
 
     const handleScroll = useCallback(
@@ -33,9 +40,15 @@ export const useHome = () => {
         loading,
         result,
         error,
+        pResult,
+        pError,
+        pLoading,
     }), [
         loading,
         result,
         error,
+        pResult,
+        pError,
+        pLoading,
     ]);
 };

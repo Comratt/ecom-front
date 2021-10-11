@@ -46,6 +46,7 @@ export const View = ({
     padRightMedium,
     padBottomMedium,
     padLeftMedium,
+    ...rest
 }) => {
     const componentClasses = classNames(
         'lib-view',
@@ -97,6 +98,7 @@ export const View = ({
             id={id}
             onClick={onClick}
             role={role}
+            {...rest}
         >
             {children}
         </div>

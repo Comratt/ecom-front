@@ -20,7 +20,8 @@ const AdminOptions = lazy(() => import('Pages/Admin/Options'));
 const CheckboxFilter = lazy(() => import('Components/CheckboxFilter/CheckboxFilter'));
 const OrderForm = lazy(() => import('Components/OrderForm/OrderForm'));
 const SiteHome = lazy(() => import('Pages/Site/Home'));
-const CardPopUp = lazy(() => import('Components/CardPopUp/CardPopUp'));
+const SiteProductDetails = lazy(() => import('Pages/Site/ProductDetails'));
+const CardPopUp = lazy(() => import('Components/CardPopUp'));
 const SearchResults = lazy(() => import('Components/SearchResults/searchResults'));
 
 const RouterComponent = () => (
@@ -33,7 +34,8 @@ const RouterComponent = () => (
                 <Route path="/admin/option" component={AdminOptions} />
                 <Route path="/admin/login" component={AdminLogin} />
                 <Layout>
-                    <Route path="/" component={SiteHome} />
+                    <Route exact path="/" component={SiteHome} />
+                    <Route path="/products/:id" component={SiteProductDetails} />
                 </Layout>
 
                 <Route exact path="/" component={() => <ProductInfo />} />

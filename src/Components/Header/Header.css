@@ -75,6 +75,28 @@
     margin-left: var(--size-normal-bigger);
     fill: var(--color-accent);
 }
+.header-links-icon.cart, .header-links-icon.heart {
+    position: relative;
+}
+.header-links-icon .cart-badge {
+    position: absolute;
+    right: -3px;
+    bottom: 13px;
+    z-index: 2;
+    background: var(--header-color);
+    color: var(--color-lightest);
+    width: 14px;
+    height: 14px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -1px 1px 0 0 #fff;
+    border-radius: 7px;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+}
 .lib-header.header_transparent .header-links-icon {
     fill: var(--color-lightest);
 }

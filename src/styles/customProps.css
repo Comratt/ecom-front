@@ -30,6 +30,7 @@
     --color-border-lightest: #E5E5E5;
     --color-dark-light: #333333;
     --color-arrow-black: #000000;
+    --color-error: #fa4343;
 
         /*Card additional colors*/
         --color-focused-input: #c5a995;
