@@ -10,6 +10,7 @@ const HeaderInput = () => (
                 className="header-icon-search"
                 width={24}
                 height={24}
+                fill="red"
             />
         </label>
         <input type="text" placeholder="Search" className="header-input-search" id="search" />

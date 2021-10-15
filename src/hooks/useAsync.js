@@ -3,7 +3,7 @@ import {
 } from 'react';
 
 export const useAsync = ({
-    method, defaultData = [], adaptor, params,
+    method, defaultData = [], adaptor, params, isPrepare = false,
 }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -36,10 +36,12 @@ export const useAsync = ({
         } finally {
             setLoading(false);
         }
-    }, []);
+    }, [asyncMethod]);
 
     useEffect(() => {
-        fetch();
+        if (!isPrepare) {
+            fetch();
+        }
     }, []);
 
     return useMemo(() => ({

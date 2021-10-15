@@ -6,6 +6,7 @@
 
     --line-h-bigger: 22px;
     --line-h-normal: 20px;
+    --line-h-normal-smaller: 18px;
     --line-h-small: 16px;
     --line-h-smaller: 12px;
 
@@ -24,8 +25,10 @@
     --color-lightest: #fff;
     --color-accent: #887569;
     --color-accent-light: #c4a996;
+    --color-grayish: #e5e5e5;
     --color-border-accent: #e6e6e6;
     --color-border-lightest: #E5E5E5;
+    --color-dark-light: #333333;
     --color-arrow-black: #000000;
 
         /*Card additional colors*/
@@ -65,9 +68,6 @@
     /* CONTAINER WIDTH */
     --size-content-big: 110px;
     --size-normal-bigger: 24px;
-    --size-big: 28px;
-    --size-bigger: 30px;
-    --size-biggest: 32px;
 
     /* CONTAINER WIDTH */
     --size--margin-big: 1500px;

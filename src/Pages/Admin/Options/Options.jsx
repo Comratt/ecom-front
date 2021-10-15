@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
 import { useAsync } from 'hooks/useAsync';
+
 import OptionService from 'Services/OptionService';
 import Loader from 'Components/Loader';
 import Alert from 'Components/Alert';
@@ -20,6 +21,9 @@ const Options = () => {
     const {
         data, loading, error, setData,
     } = useAsync({ method: OptionService.getOptions });
+    const {
+        data: ovData, loading: ovLoading, error: ovError, fetch: ovFetch,
+    } = useAsync({ method: () => OptionService.getOption(show), isPrepare: true, defaultData: {} });
     const toggleModal = () => setShow((a) => !a);
     const [optionValues, setOptionValues] = useState([]);
     const {
@@ -27,7 +31,30 @@ const Options = () => {
         deleteLoading,
         handleSubmit: postOption,
         deleteOption,
+        deleteValueLoading,
+        deleteOptionValue,
     } = usePostOptions();
+
+    useEffect(() => {
+        if (typeof show === 'number') {
+            ovFetch();
+        } else {
+            setOptionValues([]);
+        }
+    }, [show]);
+
+    useEffect(() => {
+        console.log(ovData);
+        if (ovData?.values) {
+            const modifiedData = ovData?.values?.map((item) => ({
+                id: item.option_value_id,
+                name: item.name_value,
+                image: item.image,
+            }));
+
+            setOptionValues(modifiedData);
+        }
+    }, [ovData, setOptionValues]);
 
     const handleAddOptionValue = () => {
         setOptionValues((prevOptions) => ([
@@ -41,9 +68,13 @@ const Options = () => {
     };
 
     const handleDeleteOptionValue = (id) => () => {
-        setOptionValues((prevOptions) => prevOptions.filter(
-            (item) => item.id !== id,
-        ));
+        window.confirm('Удалить значение опции?') && deleteOptionValue(id)
+            .then(() => {
+                setOptionValues((prevOptions) => prevOptions.filter(
+                    (item) => item.id !== id,
+                ));
+            })
+            .catch(console.warn);
     };
 
     const onChangeOptionValueName = (id) => ({ target }) => {
@@ -68,6 +99,7 @@ const Options = () => {
                     return {
                         ...item,
                         image: target.files[0],
+                        imagePreview: URL.createObjectURL(target.files[0]),
                     };
                 }
 
@@ -101,7 +133,13 @@ const Options = () => {
         }, show, type)
             .then(({ option }) => {
                 if (type === UPDATE_METHOD) {
-                    setData((prevOptions) => prevOptions);
+                    setData((prevOptions) => prevOptions.map((prevOption) => {
+                        if (prevOption.option_id === option.option_id) {
+                            return option;
+                        }
+
+                        return prevOption;
+                    }));
                 } else {
                     setData((prevData) => [
                         ...prevData,
@@ -155,11 +193,15 @@ const Options = () => {
                                     onClick={() => setShow(option.option_id)}
                                     disabled={loading === option.option_id}
                                 >
-                                    <Edit
-                                        fill="blue"
-                                        width={14}
-                                        height={14}
-                                    />
+                                    {ovLoading && option.option_id === show ? (
+                                        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
+                                    ) : (
+                                        <Edit
+                                            fill="blue"
+                                            width={14}
+                                            height={14}
+                                        />
+                                    )}
                                 </button>
                                 <button
                                     type="button"
@@ -207,6 +249,8 @@ const Options = () => {
                             handleDeleteOptionValue={handleDeleteOptionValue}
                             onChangeOptionValueName={onChangeOptionValueName}
                             onChangeOptionValueImage={onChangeOptionValueImage}
+                            defaultValue={typeof show === 'number' ? ovData?.name : ''}
+                            deleteValueLoading={deleteValueLoading}
                         />
                     </Modal>
                 )}
