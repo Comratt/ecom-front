@@ -36,7 +36,6 @@ export const Card = ({
                     <Title type={4} className="lib-card__info-title">{title}</Title>
                 </NavLink>
                 <p className="lib-card__info-price">
-                    {currency}
                     {price}
                 </p>
                 <Swatches data={colors} />

@@ -12,9 +12,6 @@ export const useHome = () => {
         result,
         error,
         loading,
-        pResult,
-        pError,
-        pLoading,
     } = useHomeData();
     const { changeTopNavState } = useLayout();
 
@@ -40,15 +37,9 @@ export const useHome = () => {
         loading,
         result,
         error,
-        pResult,
-        pError,
-        pLoading,
     }), [
         loading,
         result,
         error,
-        pResult,
-        pError,
-        pLoading,
     ]);
 };

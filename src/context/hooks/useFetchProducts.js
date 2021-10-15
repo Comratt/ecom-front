@@ -1,18 +1,28 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useAsync } from 'react-async-hook';
 import { fetchProducts, fetchProduct } from '../api/fetchProducts';
 
-export const useFetchProducts = () => {
-    const { loading, error, result } = useAsync(fetchProducts, []);
+export const useFetchProducts = (filters) => {
+    const [sdata, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [isLastPage, setLastPage] = useState(false);
+
+    useEffect(() => {
+        setLoading(false);
+        fetchProducts(filters).then(({ data, last_page }) => {
+            setLastPage(last_page === filters?.page);
+            setData((prevData) => [...prevData, ...data]);
+        });
+    }, [filters?.page]);
 
     return useMemo(() => ({
         loading,
-        error,
-        result,
+        result: sdata,
+        isLastPage,
     }), [
         loading,
-        error,
-        result,
+        sdata,
+        isLastPage,
     ]);
 };
 
