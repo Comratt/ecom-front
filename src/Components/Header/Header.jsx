@@ -99,13 +99,13 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
                     />
                     {!!wishQuantity && <div className="cart-badge">{wishQuantity}</div>}
                 </a>
-                <a href="/" className="header-links-icon cart">
+                <Link to="/cart" className="header-links-icon cart">
                     <Cart
                         width={24}
                         height={24}
                     />
                     {!!cartQuantity && <div className="cart-badge">{cartQuantity}</div>}
-                </a>
+                </Link>
                 <a href="/" className="header-links-icon user">
                     <User
                         width={24}

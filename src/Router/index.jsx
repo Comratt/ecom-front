@@ -1,5 +1,5 @@
 import React, {
-    Suspense, memo, lazy, Component,
+    Suspense, memo, lazy,
 } from 'react';
 import {
     BrowserRouter as Router,
@@ -28,7 +28,7 @@ const SiteHome = lazy(() => import('Pages/Site/Home'));
 const SiteProductDetails = lazy(() => import('Pages/Site/ProductDetails'));
 const CardPopUp = lazy(() => import('Components/CardPopUp'));
 const SearchResults = lazy(() => import('Components/SearchResults/searchResults'));
-const Cart = lazy(() => import('Components/Cart/Cart'));
+const Cart = lazy(() => import('Pages/Cart'));
 
 const RouterComponent = () => (
     <Router history={history}>
@@ -46,6 +46,7 @@ const RouterComponent = () => (
                 <Layout>
                     <Route exact path="/" component={SiteHome} />
                     <Route path="/products/:id" component={SiteProductDetails} />
+                    <Route path="/cart" component={() => <Cart />} />
                 </Layout>
 
                 <Route exact path="/" component={() => <ProductInfo />} />
@@ -57,7 +58,6 @@ const RouterComponent = () => (
                 <Route exact path="/checkboxfilter" component={() => <CheckboxFilter />} />
                 <Route exact path="/orderForm" component={() => <OrderForm />} />
                 <Route exact path="/searchResult" component={() => <SearchResults />} />
-                <Route exact path="/cart" component={() => <Cart />} />
 
                 <Route component={NotFoundPage} />
             </Switch>

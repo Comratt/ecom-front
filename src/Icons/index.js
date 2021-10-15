@@ -5,7 +5,6 @@ import Heart from './Heart';
 import Logo from './Logo';
 import Menu from './Menu';
 import User from './User';
-import Cart from './Cart';
 import Close from './Close';
 import AccardionArrow from './AccardionArrow';
 import Pencil from './Pencil';
@@ -28,7 +27,6 @@ export {
     Logo,
     Menu,
     User,
-    Cart,
     Close,
     AccardionArrow,
     Pencil,

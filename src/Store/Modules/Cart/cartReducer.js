@@ -1,4 +1,9 @@
-import { ADD_ITEM_TO_CART, REMOVE_ITEM_FROM_CART, CLEAR_CART } from './types';
+import {
+    ADD_ITEM_TO_CART,
+    REMOVE_ITEM_FROM_CART,
+    CLEAR_CART,
+    TOGGLE_CART_QUANTITY,
+} from './types';
 
 export const initialState = {
     products: [],
@@ -6,7 +11,7 @@ export const initialState = {
 };
 
 const addToCart = (products, {
-    id, size, color, name, price,
+    id, size, color, name, price, purePrice, image,
 }) => {
     if (products.find((item) => item.id === id && item.size === size && item.color === color)) {
         return products.map(
@@ -22,8 +27,10 @@ const addToCart = (products, {
             id,
             name,
             price,
+            purePrice,
             size,
             color,
+            image,
             quantity: 1,
         },
     ]);
@@ -40,12 +47,31 @@ const cartReducer = (state = initialState, { type, payload }) => {
         case REMOVE_ITEM_FROM_CART:
             return ({
                 ...state,
-                products: state.products.filter(({ id }) => id !== payload.id),
+                products: state.products.filter(({ id, size, color }) => (
+                    !((id === payload.id) && (size === payload.size) && (color === payload.color))
+                )),
             });
         case CLEAR_CART:
             return ({
                 ...state,
                 products: [],
+            });
+        case TOGGLE_CART_QUANTITY:
+            return ({
+                ...state,
+                products: state.products.map((product) => {
+                    if (product.id === payload.id
+                        && product.size === payload.size
+                        && product.color === payload.color
+                    ) {
+                        return ({
+                            ...product,
+                            quantity: payload.quantity,
+                        });
+                    }
+
+                    return product;
+                }),
             });
         default:
             return state;

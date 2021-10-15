@@ -25,6 +25,8 @@ export const ProductDetails = () => {
     const [modalSrc, setModalSrc] = useState(false);
     const { result, error, loading } = useProduct();
 
+    console.log(result);
+
     const itemClassNames = (id) => (
         classNames(
             'size_list',
@@ -46,6 +48,8 @@ export const ProductDetails = () => {
             id: result?.id,
             name: result?.name,
             price: result?.price,
+            purePrice: result?.purePrice,
+            image: result?.image,
             size: activeSize?.name,
             color: activeColor?.name,
         }));
