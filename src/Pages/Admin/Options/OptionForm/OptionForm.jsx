@@ -103,7 +103,7 @@ const OptionForm = ({
                             className="btn btn-outline-primary"
                             onClick={handleAddOptionValue}
                         >
-                            <Plus
+                            <PlusIcon
                                 fill="blue"
                                 width={14}
                                 height={14}
