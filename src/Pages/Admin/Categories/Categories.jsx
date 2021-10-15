@@ -29,6 +29,7 @@ const Categories = () => {
     useEffect(() => {
         if (typeof show === 'number') {
             const cat = categories.find((category) => category.category_id === show);
+
             Object.keys(cat).forEach((key) => {
                 if (key !== 'image') {
                     setValue(key, cat[key]);
@@ -186,9 +187,7 @@ const Categories = () => {
                         type="button"
                         className="btn btn-primary px-3 py-1 mr-0"
                         style={{ fontSize: 22 }}
-                    >
-                        +
-                    </button>
+                    />
                 </div>
             </div>
             <div className="container">

@@ -1,0 +1,49 @@
+.App {
+    border: 1px solid #dcdcdc;
+    margin-top: 30px;
+}
+.header-tabs{
+    border-bottom: 1px solid #dcdcdc;
+    padding: 17px;
+    background-color: #f6f6f6;
+}
+table, thead, tbody, th, td, tr {
+    border: 1px solid gray;
+}
+table {
+    margin-top: 15px;
+    width: 100%;
+}
+th, td {
+    padding: 10px;
+}
+.productTabOptionInput{
+    width: 100%;
+}
+.productTabOptionSelect{
+    width: 100%;
+    margin-bottom: 5px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+input {
+    width: 95%;
+}
+textarea {
+    width: 95%;
+}
+.from-section{
+    display: flex;
+    margin-left: 20px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #dcdcdc;
+}
+.productTabLabel {
+    width: 20%;
+}
+.productTabInput {
+    width: 80%;
+}

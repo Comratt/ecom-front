@@ -1,0 +1,76 @@
+table, thead, tbody, th, td {
+    border: 1px solid #dcdcdc;
+}
+table {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 30%;
+}
+th {
+    background-color: #f6f6f6;
+}
+th, td {
+    padding: 10px;
+}
+ul {
+    padding: 0;
+}
+li {
+    list-style: none;
+}
+select {
+    width: 100%;
+}
+textarea {
+    width: 100%;
+}
+.orderProductDetailsTable{
+    display: flex;
+    justify-content: space-between;
+}
+.orderProductId{
+    border: 1px solid #dcdcdc;
+}
+.orderProductIdHeader{
+    padding: 10px;
+    border-bottom: 1px solid #dcdcdc;
+}
+.orderProductTableAddress {
+    width: 100%;
+}
+.orderProductTablePrice {
+    width: 100%;
+}
+.orderProductHistory{
+    margin-top: 30px;
+}
+.orderProductHistoryHeader{
+    border-bottom: 1px solid #dcdcdc;
+}
+.orderFormContent {
+    display: flex;
+}
+.orderLabelContent{
+    width: 20%;
+}
+.orderInputContent{
+    width: 80%;
+}
+.orderButtonHistory {
+    border: none;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: flex;
+    float: right;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color: #fff;
+    background-color: #1e91cf;
+    border-color: #197bb0;
+}
+.orderButtonContent{
+    display: flex;
+}
+
+

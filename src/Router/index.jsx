@@ -15,14 +15,20 @@ const NotFoundPage = () => <Redirect to="/" />;
 const AdminLogin = lazy(() => import('Pages/Admin/Login'));
 const AdminDashboard = lazy(() => import('Pages/Admin/Dashboard'));
 const AdminBanners = lazy(() => import('Pages/Admin/Banners'));
+const AdminProductList = lazy(() => import('Pages/Admin/ProductList'));
+const AdminProductEdit = lazy(() => import('Pages/Admin/ProductEdit'));
 const AdminCategories = lazy(() => import('Pages/Admin/Categories'));
 const AdminOptions = lazy(() => import('Pages/Admin/Options'));
+const AdminOrder = lazy(() => import('Pages/Admin/Order'));
+const AdminOrderProduct = lazy(() => import('Pages/Admin/OrderProduct'));
+const Header = lazy(() => import('Components/Header/Header'));
 const CheckboxFilter = lazy(() => import('Components/CheckboxFilter/CheckboxFilter'));
 const OrderForm = lazy(() => import('Components/OrderForm/OrderForm'));
 const SiteHome = lazy(() => import('Pages/Site/Home'));
 const SiteProductDetails = lazy(() => import('Pages/Site/ProductDetails'));
 const CardPopUp = lazy(() => import('Components/CardPopUp'));
 const SearchResults = lazy(() => import('Components/SearchResults/searchResults'));
+const Cart = lazy(() => import('Components/Cart/Cart'));
 
 const RouterComponent = () => (
     <Router history={history}>
@@ -31,7 +37,11 @@ const RouterComponent = () => (
                 <Route path="/admin/dashboard" component={AdminDashboard} />
                 <Route path="/admin/category" component={AdminCategories} />
                 <Route path="/admin/banner" component={AdminBanners} />
+                <Route path="/admin/productlist" component={AdminProductList} />
+                <Route path="/admin/productedit" component={AdminProductEdit} />
                 <Route path="/admin/option" component={AdminOptions} />
+                <Route path="/admin/order" component={AdminOrder} />
+                <Route path="/admin/orderproduct" component={AdminOrderProduct} />
                 <Route path="/admin/login" component={AdminLogin} />
                 <Layout>
                     <Route exact path="/" component={SiteHome} />
@@ -47,6 +57,7 @@ const RouterComponent = () => (
                 <Route exact path="/checkboxfilter" component={() => <CheckboxFilter />} />
                 <Route exact path="/orderForm" component={() => <OrderForm />} />
                 <Route exact path="/searchResult" component={() => <SearchResults />} />
+                <Route exact path="/cart" component={() => <Cart />} />
 
                 <Route component={NotFoundPage} />
             </Switch>
