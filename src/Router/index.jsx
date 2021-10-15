@@ -25,6 +25,7 @@ const CheckboxFilter = lazy(() => import('Components/CheckboxFilter/CheckboxFilt
 const OrderForm = lazy(() => import('Components/OrderForm/OrderForm'));
 const CardPopUp = lazy(() => import('Components/CardPopUp/CardPopUp'));
 const SearchResults = lazy(() => import('Components/SearchResults/searchResults'));
+const Cart = lazy(() => import('Components/Cart/Cart'));
 
 const RouterComponent = () => (
     <Router history={history}>
@@ -47,6 +48,7 @@ const RouterComponent = () => (
                 <Route exact path="/checkboxfilter" component={() => <CheckboxFilter />} />
                 <Route exact path="/orderForm" component={() => <OrderForm />} />
                 <Route exact path="/searchResult" component={() => <SearchResults />} />
+                <Route exact path="/cart" component={() => <Cart />} />
 
                 <Route component={NotFoundPage} />
             </Switch>
