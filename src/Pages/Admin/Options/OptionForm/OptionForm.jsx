@@ -2,6 +2,7 @@ import React from 'react';
 import Input from 'Components/Input';
 import { getValidationMessage } from 'Constants';
 import { Plus, Remove } from 'Icons';
+import { getImage } from 'API';
 import {
     VALIDATION_RULES,
     OPTION_NAME_FIELD,
@@ -17,11 +18,14 @@ const OptionForm = ({
     onChangeOptionValueImage,
     handleDeleteOptionValue,
     handleAddOptionValue,
+    defaultValue,
+    deleteValueLoading,
 }) => (
     <div>
         <div className="form-row mb-2">
             <div className="col-12">
                 <Input
+                    defaultValue={defaultValue}
                     ref={register(VALIDATION_RULES[OPTION_NAME_FIELD])}
                     name={OPTION_NAME_FIELD}
                     type="text"
@@ -54,11 +58,22 @@ const OptionForm = ({
                             />
                         </td>
                         <td>
-                            <input
-                                type="file"
-                                name={OPTION_VALUE_IMAGE}
-                                onChange={onChangeOptionValueImage(optionValue.id)}
-                            />
+                            <div className="media d-flex flex-column">
+                                {optionValue.image && (
+                                    <img
+                                        src={(
+                                            optionValue.imagePreview || getImage(optionValue.image)
+                                        )}
+                                        alt="Option describer"
+                                        style={{ maxWidth: 128, maxHeight: 128 }}
+                                    />
+                                )}
+                                <input
+                                    type="file"
+                                    name={OPTION_VALUE_IMAGE}
+                                    onChange={onChangeOptionValueImage(optionValue.id)}
+                                />
+                            </div>
                         </td>
                         <td>
                             <button
@@ -66,11 +81,15 @@ const OptionForm = ({
                                 className="btn btn-outline-danger"
                                 onClick={handleDeleteOptionValue(optionValue.id)}
                             >
-                                <Remove
-                                    fill="red"
-                                    width={14}
-                                    height={14}
-                                />
+                                {deleteValueLoading === optionValue.id ? (
+                                    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
+                                ) : (
+                                    <Remove
+                                        fill="red"
+                                        width={14}
+                                        height={14}
+                                    />
+                                )}
                             </button>
                         </td>
                     </tr>
@@ -84,7 +103,7 @@ const OptionForm = ({
                             className="btn btn-outline-primary"
                             onClick={handleAddOptionValue}
                         >
-                            <Plus
+                            <PlusIcon
                                 fill="blue"
                                 width={14}
                                 height={14}

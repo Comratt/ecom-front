@@ -1,0 +1,1 @@
+import { ProductInfo } from './ProductInfo';

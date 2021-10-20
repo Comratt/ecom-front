@@ -22,6 +22,8 @@ const store = createStore(reducers, persistedState, enhancer);
 
 store.subscribe(() => {
     const localSettingsState = store.getState().localSettings;
+    const cartState = store.getState().cart;
+    const wishListState = store.getState().wishlist;
 
     const localSettings = {
         ...LocalSettingsInitialState,
@@ -32,6 +34,8 @@ store.subscribe(() => {
     };
 
     LocalStorageService.setItem('localSettings', localSettings);
+    LocalStorageService.setItem('cart', cartState);
+    LocalStorageService.setItem('wishlist', wishListState);
 });
 
 if (process.env.NODE_ENV !== 'production' && module.hot) {

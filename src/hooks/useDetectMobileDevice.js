@@ -7,11 +7,13 @@ const detectIsTablet = () => document.body.clientWidth <= TABLET_VIEWPORT_MAX_WI
 export const useDetectedMobileDevice = () => {
     const [isMobileSize, setMobileSize] = useState(detectIsMobile());
     const [isTabletSize, setTabletSize] = useState(detectIsTablet());
+    const [clientHeight, setClientHeight] = useState(document.body.clientHeight);
 
     useEffect(() => {
         const handleResize = () => {
             setMobileSize(detectIsMobile());
             setTabletSize(detectIsTablet());
+            setClientHeight(document.body.clientHeight);
         };
 
         window.addEventListener('resize', handleResize);
@@ -19,5 +21,5 @@ export const useDetectedMobileDevice = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    return { isMobileSize, isTabletSize };
+    return { isMobileSize, isTabletSize, clientHeight };
 };

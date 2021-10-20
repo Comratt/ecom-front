@@ -1,6 +1,8 @@
 import React from 'react';
 import { Search } from '../../Icons';
 
+import './HeaderInput.css';
+
 const HeaderInput = () => (
     <form action="#">
         <label htmlFor="search">

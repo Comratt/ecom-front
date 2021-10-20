@@ -1,11 +1,12 @@
 import { useState, useCallback, useMemo } from 'react';
 import { ADD_METHOD, UPDATE_METHOD } from 'Constants';
-import OptionService from '../../../Services/OptionService';
+import OptionService from 'Services/OptionService';
 
 export const usePostOptions = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [deleteLoading, setDeleteLoading] = useState(0);
+    const [deleteValueLoading, setDeleteValueLoading] = useState(0);
 
     const addOptions = useCallback((params) => {
         setLoading(true);
@@ -39,6 +40,22 @@ export const usePostOptions = () => {
             });
     }, []);
 
+    const deleteOptionValue = useCallback((id) => {
+        setDeleteValueLoading(id);
+
+        return OptionService.deleteValue(id)
+            .then((option) => {
+                setDeleteValueLoading(0);
+
+                return option;
+            })
+            .catch((e) => {
+                setDeleteValueLoading(0);
+
+                return e;
+            });
+    }, []);
+
     const updateOption = useCallback((params, id) => {
         setLoading(true);
         setError(null);
@@ -66,14 +83,18 @@ export const usePostOptions = () => {
     return useMemo(() => ({
         loading,
         deleteLoading,
+        deleteValueLoading,
         error,
         handleSubmit,
         deleteOption,
+        deleteOptionValue,
     }), [
         loading,
         deleteLoading,
+        deleteValueLoading,
         error,
         handleSubmit,
         deleteOption,
+        deleteOptionValue,
     ]);
 };

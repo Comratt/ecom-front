@@ -1,0 +1,57 @@
+.lib-card {
+    max-height: 550px;
+}
+
+/*.slick-list .slick-track {
+    display: flex;
+}*/
+
+.arrow-left {
+    top: 35%;
+    transform: none;
+    left: -10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    z-index: 1;
+    display: flex;
+    background: rgba(0,0,0,.24);
+}
+
+.arrow-left:before {
+    transform: rotate(180deg);
+}
+
+.arrow-right {
+    top: 35%;
+    transform: none;
+    right: -10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    z-index: 1;
+    display: flex;
+    background: rgba(0,0,0,.24);
+}
+
+.arrow-right:hover, .arrow-left:hover {
+    background: rgba(0,0,0,.14);
+}
+
+.arrow-right:before, .arrow-left:before {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    content: '';
+    display: block;
+    width: 8px;
+    height: 12px;
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDggMTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xIDEwLjA1MUwxLjg0ODUzIDEwLjg5OTVMNi43OTgyOCA1Ljk0OTc1TDEuODQ4NTMgMUwxIDEuODQ4NTNMNS4xMDEyMiA1Ljk0OTc1TDEgMTAuMDUxWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==) no-repeat!important;
+}
+
+.arrow-right.slick-disabled, .arrow-left.slick-disabled {
+    display: none!important;
+}

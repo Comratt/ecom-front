@@ -18,8 +18,19 @@ const ALL_VALIDATION_RULES = [
     VALIDATION_REGEXP_PATTERN,
 ];
 
+export const emailRegExp = new RegExp('^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([a-z]{2,6}(?:\\.[a-z]{2})?)$');
+export const numberRegExp = new RegExp('^[0-9]+$');
+export const floatRegExp = new RegExp('^\\d+(\\.\\d+)?$');
+export const dateRegExp = new RegExp('^(0[1-9]|1\\d|2[0-8]|29(?=-\\d\\d-(?!1[01345789]00|2[1235679]00)\\d\\d(?:[02468][048]|[13579][26]))|30(?!-02)|31(?=-0[13578]|-1[02]))-(0[1-9]|1[0-2])-([12]\\d{3})$');
+export const phoneNumberRegExp = new RegExp('^\\+38 \\(\\d{3}\\) \\d{3}(-\\d{2}){2}$');
+
 export const ADD_METHOD = 'add';
 export const UPDATE_METHOD = 'update';
+
+export const OPTION_TYPES = {
+    Color: 1,
+    Size: 2,
+};
 
 export const getValidationMessage = ({ type = '', message } = {}) => {
     if (ALL_VALIDATION_RULES.includes(type)) {
@@ -28,3 +39,5 @@ export const getValidationMessage = ({ type = '', message } = {}) => {
 
     return '';
 };
+
+export const getFormattedPrice = (price = '0', prefix = '₴') => `${price} ${prefix}`;

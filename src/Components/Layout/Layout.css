@@ -1,0 +1,11 @@
+.layout {
+    --top-nav-height: 50px;
+}
+
+.layout__content-wrapper {
+    height: 100%;
+    width: 100%;
+    padding-top: var(--top-nav-height);
+    display: flex;
+    flex-direction: column;
+}
