@@ -1,0 +1,21 @@
+.lib-link {
+    --link-ff: var(--accent-ff);
+    --link-color: var(--color-accent);
+    --link-fz: var(--fz-small);
+    --link-line-h: var(--line-h-normal-smaller);
+
+    font-family: var(--link-ff);
+    color: var(--link-color);
+    font-size: var(--link-fz);
+    line-height: var(--link-line-h);
+    margin-top: 0;
+    margin-bottom: 0;
+    text-decoration: none;
+}
+
+.lib-link:active,
+.lib-link:visited,
+.lib-link:focus {
+    color: var(--link-color);
+    text-decoration: none;
+}

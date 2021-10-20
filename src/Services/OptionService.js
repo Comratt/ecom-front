@@ -12,6 +12,16 @@ class OptionService {
         }
     }
 
+    static async getOption(id) {
+        try {
+            const option = await API.get(`api/admin/options/${id}`);
+
+            return option.data;
+        } catch (e) {
+            throw new ServerException(e.response);
+        }
+    }
+
     static async add(params) {
         try {
             const formData = new FormData();
@@ -53,6 +63,16 @@ class OptionService {
     static async delete(id) {
         try {
             const option = await API.delete(`api/admin/options/${id}`);
+
+            return option.data;
+        } catch (e) {
+            throw new ServerException(e.response);
+        }
+    }
+
+    static async deleteValue(id) {
+        try {
+            const option = await API.delete(`api/admin/options-value/${id}`);
 
             return option.data;
         } catch (e) {
