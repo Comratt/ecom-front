@@ -1,89 +1,110 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {
     Heart, Logo, Menu, Search,
 } from 'Icons';
-import './Header.css';
-import Cart from '../../Icons/Cart';
-import User from '../../Icons/User';
+import Cart from 'Icons/Cart';
+import User from 'Icons/User';
+import { useLayout } from 'hooks/useLayout';
+import { Link } from '../Link';
 import HeaderInput from '../HeaderInput/HeaderInput';
 
-const Header = ({
-    className,
-}) => {
+import './Header.css';
+
+export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
+    const {
+        topNavState: {
+            bordered,
+            className,
+            transparent,
+            showMenuButton,
+            hamburgerMenu,
+            showLogo,
+            title,
+        },
+    } = useLayout();
+
+    useEffect(() => {
+        if (hamburgerMenu) {
+            setNavigationMenu(hamburgerMenu);
+        }
+    }, [hamburgerMenu]);
+
     const componentClasses = classNames(
         'lib-header',
+        { header_transparent: transparent },
+        { 'line-bottom': bordered },
         className,
     );
 
     return (
-        <div className="content">
-            <header className={componentClasses}>
-                <div className="header-left-navigation">
+        <header className={componentClasses}>
+            <div className="header-left-navigation">
+                <button onClick={handleOpenNavigationModal} type="button" className="lib-header__btn menu">
                     <Menu
-                        className="menu"
                         width={24}
                         height={24}
                     />
+                </button>
+                <button type="button" className="lib-header__btn header-search-second">
                     <Search
-                        className="header-search-second"
                         width={24}
                         height={24}
                     />
-                    <ul className="header-list-navigation">
-                        <li className="list-group">
-                            Whats New
-                        </li>
-                        <li className="list-group">
-                            Clothing & Shoes
-                        </li>
-                        <li className="list-group">
-                            Coming Soon
-                        </li>
-                        <li className="list-group">
-                            About
-                        </li>
-                    </ul>
-                </div>
+                </button>
+                <ul className="header-list-navigation">
+                    <li className="list-group">
+                        <Link to="/">Whats New</Link>
+                    </li>
+                    <li className="list-group">
+                        <Link to="/">Clothing & Shoes</Link>
+                    </li>
+                    <li className="list-group">
+                        <Link to="/">Coming Soon</Link>
+                    </li>
+                    <li className="list-group">
+                        <Link to="/">About</Link>
+                    </li>
+                </ul>
+            </div>
+            {showLogo && (
                 <div className="header-main-logo">
                     <Logo />
                 </div>
-                <div className="header-right-menu">
-                    <HeaderInput />
-                    <div
-                        className="header-links-icon dollar"
-                        style={{
-                            fontSize: '16px',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        <span>
-                            UAH
-                        </span>
-                    </div>
-                    <a href="/" className="header-links-icon heart">
-                        <Heart
-                            width={24}
-                            height={24}
-                        />
-                    </a>
-                    <a href="/" className="header-links-icon">
-                        <Cart
-                            width={24}
-                            height={24}
-                        />
-                    </a>
-                    <a href="/" className="header-links-icon user">
-                        <User
-                            width={24}
-                            height={24}
-                        />
-                    </a>
+            )}
+            <div className="header-right-menu">
+                <HeaderInput />
+                <div
+                    className="header-links-icon dollar"
+                    style={{
+                        fontSize: '16px',
+                        textDecoration: 'none',
+                    }}
+                >
+                    <span>
+                        UAH
+                    </span>
                 </div>
-            </header>
-        </div>
+                <a href="/" className="header-links-icon heart">
+                    <Heart
+                        width={24}
+                        height={24}
+                    />
+                </a>
+                <a href="/" className="header-links-icon">
+                    <Cart
+                        width={24}
+                        height={24}
+                    />
+                </a>
+                <a href="/" className="header-links-icon user">
+                    <User
+                        width={24}
+                        height={24}
+                    />
+                </a>
+            </div>
+        </header>
     );
 };
-
-export default Header;

@@ -8,8 +8,6 @@
 .wrapper {
     display: flex;
     flex-direction: column;
-    max-width: var(--size--margin-big);
-    margin: 0 var(--size-bigger) auto;
     box-sizing: border-box;
     padding: var(--size-normal);
 }
