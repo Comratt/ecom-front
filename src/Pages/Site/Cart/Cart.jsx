@@ -1,8 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
-import { getCartProducts } from 'Store/Modules/Cart/selectors';
-import { toggleQuantity, removeItemFromCart } from 'Store/Modules/Cart/cartActions';
+import { getCartProducts, getCartNotes } from 'Store/Modules/Cart/selectors';
+import { toggleQuantity, removeItemFromCart, changeNotes } from 'Store/Modules/Cart/cartActions';
 import { getFormattedPrice } from 'Constants';
 import { Remove } from 'Icons';
 
@@ -49,7 +50,9 @@ const CartQuantity = ({ product, handleQuantity }) => (
 
 export const Cart = () => {
     const products = useSelector(getCartProducts);
+    const notes = useSelector(getCartNotes);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const toggleCartQuantity = ({
         id,
@@ -67,6 +70,9 @@ export const Cart = () => {
     const removeProduct = ({ id, size, color }) => () => (
         dispatch(removeItemFromCart({ id, size, color }))
     );
+    const changeCartNotes = ({ target }) => dispatch(changeNotes(target.value));
+
+    const goToCheckoutPage = () => history.push('/order');
 
     const totalPrice = ({ purePrice, quantity }) => getFormattedPrice(purePrice * quantity);
     const subtotalPrice = (p) => (
@@ -76,7 +82,7 @@ export const Cart = () => {
     );
 
     return (
-        <div>
+        <div className="cart-page">
             <h4 className="cart-product-header">
                 Shopping Cart
             </h4>
@@ -162,10 +168,16 @@ export const Cart = () => {
                     </div>
                     <div className="orders">
                         <label htmlFor="orders">Order notes</label>
-                        <textarea name="" id="orders" cols="30" rows="10" />
+                        <textarea
+                            id="orders"
+                            cols="30"
+                            rows="10"
+                            value={notes}
+                            onChange={changeCartNotes}
+                        />
                     </div>
                     <div>
-                        <button className="cart-product-btn-checkout">
+                        <button onClick={goToCheckoutPage} className="cart-product-btn-checkout">
                             Checkout
                         </button>
                     </div>

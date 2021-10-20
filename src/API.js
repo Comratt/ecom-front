@@ -3,6 +3,8 @@ import axios from 'axios';
 import store from './Store/createStore';
 
 export const baseURL = 'http://ecom.back/';
+export const novaPoshtaURL = 'https://api.novaposhta.ua/v2.0/json/';
+export const novaPoshtaAPIKEY = '3c34390ca4d3a3b2b97eeb228159beea';
 
 export const loginUrl = 'api/auth/login';
 export const dataUrl = 'api';
@@ -25,6 +27,28 @@ const API = axios.create({
     headers,
 });
 
+const novaPoshtaAPI = axios.create({
+    baseURL: novaPoshtaURL,
+    headers: {
+        'Content-Type': 'application/json',
+    },
+});
+
+novaPoshtaAPI.interceptors.request.use(
+    (resp) => {
+        if (resp.method === 'post' || resp.method === 'POST') {
+            const modifiedParams = { ...resp };
+
+            modifiedParams.data.apiKey = novaPoshtaAPIKEY;
+
+            return modifiedParams;
+        }
+
+        return resp;
+    },
+    (error) => Promise.reject(error),
+);
+
 API.interceptors.request.use(
     (config) => {
         const modifiedConfig = { ...config };
@@ -40,5 +64,7 @@ API.interceptors.response.use(
     (response) => response,
     (error) => Promise.reject(error),
 );
+
+export { novaPoshtaAPI };
 
 export default API;

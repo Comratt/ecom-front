@@ -9,3 +9,7 @@ export const getCartQuantity = createSelector(
 export const getCartProducts = createSelector(
     [getCart], ({ products }) => products || [],
 );
+
+export const getCartNotes = createSelector(
+    [getCart], ({ notes }) => notes || '',
+);

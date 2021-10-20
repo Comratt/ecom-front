@@ -75,9 +75,9 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
                 </ul>
             </div>
             {showLogo && (
-                <div className="header-main-logo">
+                <Link to="/" className="header-main-logo">
                     <Logo isTransparent={transparent} />
-                </div>
+                </Link>
             )}
             <div className="header-right-menu">
                 <HeaderInput />

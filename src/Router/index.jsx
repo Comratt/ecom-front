@@ -23,12 +23,12 @@ const AdminOrder = lazy(() => import('Pages/Admin/Order'));
 const AdminOrderProduct = lazy(() => import('Pages/Admin/OrderProduct'));
 const Header = lazy(() => import('Components/Header/Header'));
 const CheckboxFilter = lazy(() => import('Components/CheckboxFilter/CheckboxFilter'));
-const OrderForm = lazy(() => import('Components/OrderForm/OrderForm'));
+const OrderForm = lazy(() => import('Pages/Site/OrderForm'));
 const SiteHome = lazy(() => import('Pages/Site/Home'));
 const SiteProductDetails = lazy(() => import('Pages/Site/ProductDetails'));
 const CardPopUp = lazy(() => import('Components/CardPopUp'));
 const SearchResults = lazy(() => import('Components/SearchResults/searchResults'));
-const Cart = lazy(() => import('Pages/Cart'));
+const Cart = lazy(() => import('Pages/Site/Cart'));
 
 const RouterComponent = () => (
     <Router history={history}>
@@ -47,16 +47,11 @@ const RouterComponent = () => (
                     <Route exact path="/" component={SiteHome} />
                     <Route path="/products/:id" component={SiteProductDetails} />
                     <Route path="/cart" component={() => <Cart />} />
+                    <Route path="/order" component={() => <OrderForm />} />
                 </Layout>
-
-                <Route exact path="/" component={() => <ProductInfo />} />
-                <Route exact path="/orderForm" component={() => <OrderForm />} />
                 <Route exact path="/" component={() => <Header />} />
-                <Route exact path="/orderForm" component={() => <OrderForm />} />
                 <Route exact path="/cardPopUp" component={() => <CardPopUp />} />
-                <Route exact path="/" component={() => <ProductInfo />} />
                 <Route exact path="/checkboxfilter" component={() => <CheckboxFilter />} />
-                <Route exact path="/orderForm" component={() => <OrderForm />} />
                 <Route exact path="/searchResult" component={() => <SearchResults />} />
 
                 <Route component={NotFoundPage} />

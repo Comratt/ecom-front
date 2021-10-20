@@ -3,11 +3,13 @@ import {
     REMOVE_ITEM_FROM_CART,
     CLEAR_CART,
     TOGGLE_CART_QUANTITY,
+    CHANGE_CART_NOTE,
 } from './types';
 
 export const initialState = {
     products: [],
     showPopUp: false,
+    notes: '',
 };
 
 const addToCart = (products, {
@@ -72,6 +74,11 @@ const cartReducer = (state = initialState, { type, payload }) => {
 
                     return product;
                 }),
+            });
+        case CHANGE_CART_NOTE:
+            return ({
+                ...state,
+                notes: payload.notes,
             });
         default:
             return state;

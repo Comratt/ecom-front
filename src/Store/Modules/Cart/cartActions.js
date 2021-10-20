@@ -3,6 +3,7 @@ import {
     CLEAR_CART,
     REMOVE_ITEM_FROM_CART,
     TOGGLE_CART_QUANTITY,
+    CHANGE_CART_NOTE,
 } from './types';
 
 export const addToCart = ({
@@ -32,3 +33,8 @@ export const removeItemFromCart = ({ id, size, color }) => (dispatch) => (
 );
 
 export const clearCart = () => (dispatch) => dispatch(CLEAR_CART);
+
+export const changeNotes = (notes) => (dispatch) => dispatch({
+    type: CHANGE_CART_NOTE,
+    payload: { notes },
+});
