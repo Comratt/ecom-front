@@ -22,6 +22,7 @@ const AdminOptions = lazy(() => import('Pages/Admin/Options'));
 const AdminOrder = lazy(() => import('Pages/Admin/Order'));
 const AdminOrderProduct = lazy(() => import('Pages/Admin/OrderProduct'));
 const Header = lazy(() => import('Components/Header/Header'));
+const Footer = lazy(() => import('Components/Footer/Footer'));
 const CheckboxFilter = lazy(() => import('Components/CheckboxFilter/CheckboxFilter'));
 const OrderForm = lazy(() => import('Pages/Site/OrderForm'));
 const Login = lazy(() => import('Components/Login/Login'));
