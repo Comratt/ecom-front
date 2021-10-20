@@ -23,6 +23,8 @@ const AdminOrder = lazy(() => import('Pages/Admin/Order'));
 const AdminOrderProduct = lazy(() => import('Pages/Admin/OrderProduct'));
 const Header = lazy(() => import('Components/Header/Header'));
 const CheckboxFilter = lazy(() => import('Components/CheckboxFilter/CheckboxFilter'));
+const Login = lazy(() => import('Components/Login/Login'));
+const SignUp = lazy(() => import('Components/SignUp/SignUp'));
 const OrderForm = lazy(() => import('Components/OrderForm/OrderForm'));
 const SiteHome = lazy(() => import('Pages/Site/Home'));
 const CardPopUp = lazy(() => import('Components/CardPopUp/CardPopUp'));
@@ -47,6 +49,7 @@ const RouterComponent = () => (
                     <Route path="/" component={SiteHome} />
                 </Layout>
 
+                <Route exact path="/" component={() => <SignUp />} />
                 <Route exact path="/" component={() => <ProductInfo />} />
                 <Route exact path="/orderForm" component={() => <OrderForm />} />
                 <Route exact path="/" component={() => <Header />} />

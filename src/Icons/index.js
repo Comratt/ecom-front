@@ -4,6 +4,7 @@ import Search from './Search';
 import Heart from './Heart';
 import Logo from './Logo';
 import Menu from './Menu';
+import AccardionArrow from './AccardionArrow';
 import User from './User';
 import Cart from './Cart';
 import Close from './Close';
@@ -27,6 +28,7 @@ export {
     Heart,
     Logo,
     Menu,
+    AccardionArrow,
     User,
     Cart,
     Close,

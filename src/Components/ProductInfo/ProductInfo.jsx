@@ -4,7 +4,7 @@ import './ProductInfo.css';
 import WishlistHeart from '../WishlistHeart/WishlistHeart';
 import { Swatches } from '../Swatches';
 import Accardion from '../AccardionProductInfo/AccardionProductInfo';
-import AddCartBtn from '../AddCartBtn/AddCartBtn';
+import AddCartBtn from '../Buttons/AddCartBtn/AddCartBtn';
 
 const ProductInfo = ({
     className,
@@ -18,6 +18,10 @@ const ProductInfo = ({
         {
             id: 1,
             color: '#ccc',
+        },
+        {
+            id: 2,
+            color: '#0377fc',
         },
     ];
 

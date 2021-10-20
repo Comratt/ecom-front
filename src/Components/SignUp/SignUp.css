@@ -1,0 +1,36 @@
+.lib-login{
+    --header-accent-ff: var(--accent-ff);
+    --header-color: var(--color-accent);
+    font-family: var(--header-accent-ff);
+    color: var(--header-color);
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+.content-login {
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.from-login {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.from-login input {
+    margin-bottom: var(--size-small);
+    border-radius: var(--size-small);
+    color: var(--color-accent);
+    background-color: var(--color-lightest);
+    border: 1px solid var(--color-accent-brown);
+    height: 50px;
+}
+.lib-login_sign_up{
+    margin-top: var(--size-small);
+}
