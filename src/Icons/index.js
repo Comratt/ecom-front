@@ -4,6 +4,9 @@ import Search from './Search';
 import Heart from './Heart';
 import Logo from './Logo';
 import Menu from './Menu';
+import User from './User';
+import Cart from './Cart';
+import Close from './Close';
 import AccardionArrow from './AccardionArrow';
 import Pencil from './Pencil';
 import Eye from './Eye';
@@ -14,6 +17,8 @@ import Truck from './Truck';
 import Mail from './Mail';
 import Phone from './Phone';
 import PlusIcon from './PlusIcon';
+import Relevance from './Relevance';
+import Filters from './Filters';
 
 export {
     Remove,
@@ -22,6 +27,9 @@ export {
     Heart,
     Logo,
     Menu,
+    User,
+    Cart,
+    Close,
     AccardionArrow,
     Pencil,
     Eye,
@@ -32,4 +40,6 @@ export {
     Mail,
     Phone,
     PlusIcon,
+    Relevance,
+    Filters,
 };

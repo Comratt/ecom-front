@@ -1,3 +1,1 @@
-import { CheckboxFilter } from './CheckboxFilter';
-
-export default CheckboxFilter;
+export { CheckboxFilter } from './CheckboxFilter';

@@ -5,8 +5,8 @@
 
     display: flex;
     justify-content: space-between;
-    background-color: #fff;
-    border-bottom: 1px solid #e5e5e5;
+    background-color: rgba(255, 255, 255, .96);
+    z-index: 3;
     font-family: var(--header-accent-ff);
     color: var(--header-color);
     position: fixed;
@@ -14,9 +14,30 @@
     height: var(--header-height);
     padding: 0 var(--size-normal);
     top: 0;
+    transition: .3s;
 }
 
-.menu {
+.lib-header .lib-header__btn {
+    border: none;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+.lib-header.header_transparent, .lib-header.header_transparent .lib-link {
+    background-color: transparent;
+    color: var(--color-lightest);
+}
+
+.lib-header.header_transparent .header-input-search {
+    background: rgba(255, 255, 255, 0.32);
+}
+
+.lib-header.header_transparent .header-input-search::placeholder {
+    color: var(--color-lightest);
+}
+
+.lib-header .menu {
     display: none;
     margin-right: var(--size-small);
 }
@@ -47,11 +68,18 @@
     margin: 0;
     padding: 0;
 }
+.header-list-navigation .lib-link {
+    font-size: var(--fz-normal);
+}
 .header-links-icon {
-    padding-left: var(--size-normal-bigger);
+    margin-left: var(--size-normal-bigger);
+    fill: var(--color-accent);
+}
+.lib-header.header_transparent .header-links-icon {
+    fill: var(--color-lightest);
 }
 .header-links-icon:first-child {
-    padding-left: 0;
+    margin-left: 0;
 }
 .list-group {
     padding-right: 25px;
@@ -79,7 +107,7 @@
 }
 .header-icon-search {
     position: relative;
-    top: 4px;
+    top: 2px;
     bottom: 0;
     right: 0;
     left: 130%;
@@ -90,35 +118,40 @@
 @media (max-width: 500px) {
     .header-links-icon.user {
         display: none;
+        user-select: none;
     }
     .header-links-icon.dollar {
         display: none;
+        user-select: none;
     }
     .header-links-icon.heart {
-        padding-left: 0;
+        margin-left: 0;
     }
 }
 
 @media (max-width: 1023px) {
     .header-input-search {
         display: none;
+        user-select: none;
     }
     .header-icon-search {
         display: none;
+        user-select: none;
     }
 }
 
 @media (max-width: 1094px) {
     .header-list-navigation {
         display: none;
+        user-select: none;
     }
-    .menu {
+    .lib-header .menu {
         display: block;
     }
     .header-search-second {
         display: block;
     }
     .header-links-icon {
-        padding-left: var(--size-mid-bigger);
+        margin-left: var(--size-mid-bigger);
     }
 }

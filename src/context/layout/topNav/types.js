@@ -6,11 +6,11 @@ export const TopNavActionType = {
 
 export const defaultTopNavState = {
     title: '',
-    showLogo: false,
-    bordered: false,
+    showLogo: true,
+    bordered: true,
     className: '',
     closeButton: undefined,
     transparent: false,
-    showMenuButton: false,
+    showMenuButton: true,
     initialTitle: '',
 };
