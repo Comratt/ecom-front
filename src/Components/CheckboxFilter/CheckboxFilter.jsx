@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Relevance, Filters } from 'Icons';
 import CheckboxFilterItem from '../CheckboxFilterItem/CheckboxFilterItem';
 import { useDetectedMobileDevice } from '../../hooks/useDetectMobileDevice';
 
-import Relevance from '../../Icons/Relevance';
-import Filters from '../../Icons/Filters';
 import './CheckboxFilter.css';
 
-const CheckboxFilter = ({
+export const CheckboxFilter = ({
     className,
 }) => {
     const initialOptions = [
@@ -42,8 +41,8 @@ const CheckboxFilter = ({
 
     return (
         <div className={componentClasses}>
-            <div className="upper__filter">
-                <h2 className="title__text">Coming Soon</h2>
+            <div className="checkbox-filter__container">
+                <h2 className="checkbox-filter__title">Coming Soon</h2>
                 <div className={checkBoxContainerDesktop}>
                     <CheckboxFilterItem />
                 </div>
@@ -93,5 +92,3 @@ CheckboxFilter.propTypes = {
 CheckboxFilter.defaultProps = {
     className: '',
 };
-
-export default CheckboxFilter;

@@ -1,3 +1,1 @@
-import { Header } from './Header';
-
-export default Alert;
+export { Header } from './Header';

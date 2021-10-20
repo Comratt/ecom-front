@@ -43,7 +43,7 @@ const ProductInfo = ({
                 </div>
                 <Swatches
                     data={data}
-                    active={2}
+                    active={1}
                 />
                 <div className="lib-product_info_size">
                     <p className="size-title"><b>Size</b></p>
