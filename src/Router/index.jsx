@@ -56,7 +56,6 @@ const RouterComponent = () => (
                 <Route exact path="/checkboxfilter" component={() => <CheckboxFilter />} />
                 <Route exact path="/orderForm" component={() => <OrderForm />} />
                 <Route exact path="/searchResult" component={() => <SearchResults />} />
-                <Route exact path="/cart" component={() => <Cart />} />
                 <Route exact path="/account" component={() => <UserAccount />} />
 
                 <Route component={NotFoundPage} />
