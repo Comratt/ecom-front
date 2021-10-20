@@ -1,0 +1,18 @@
+.lib-guest-btn{
+    margin-top: 10px;
+}
+.lib-guest-btn button {
+    width: 100%;
+    height: 50px;
+    margin-top: 8px;
+    background: var(--color-lightest);
+    border: 1px solid var(--color-accent-light);
+    box-sizing: border-box;
+    border-radius: 8px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: var(--fz-normal);
+    line-height: var(--size-mid-bigger);
+    text-align: center;
+    color: var(--color-accent-light);
+}

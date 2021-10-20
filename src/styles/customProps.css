@@ -31,16 +31,10 @@
     --color-dark-light: #333333;
     --color-arrow-black: #000000;
     --color-error: #8d0624;
+    --color-accent-brown: #dbd7d2;
 
-        /*Card additional colors*/
-        --color-focused-input: #c5a995;
-        --color-hint: #717171;
-        --color-link-card: #b8967e;
-        --color-border-card: #d5d5d5;
-        --color-btn-hover-card: #c8c8c8;
-        --coror-divides-line-card: #e6e6e6;
-        --color-card-aside-background: #fafafa;
     /*Card additional colors*/
+    --color-focused-input: #c5a995;
     --color-hint: #717171;
     --color-link-card: #b8967e;
     --color-border-card: #d5d5d5;
