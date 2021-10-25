@@ -22,7 +22,6 @@ const AdminOptions = lazy(() => import('Pages/Admin/Options'));
 const AdminOrder = lazy(() => import('Pages/Admin/Order'));
 const AdminOrderProduct = lazy(() => import('Pages/Admin/OrderProduct'));
 const Header = lazy(() => import('Components/Header/Header'));
-const Footer = lazy(() => import('Components/Footer/Footer'));
 const CheckboxFilter = lazy(() => import('Components/CheckboxFilter/CheckboxFilter'));
 const OrderForm = lazy(() => import('Pages/Site/OrderForm'));
 const Login = lazy(() => import('Components/Login/Login'));
@@ -52,16 +51,16 @@ const RouterComponent = () => (
                     <Route path="/products/:id" component={SiteProductDetails} />
                     <Route path="/cart" component={() => <Cart />} />
                     <Route path="/order" component={() => <OrderForm />} />
-                    <Route exact path="/sign" component={() => <SignUp />} />
-                    <Route exact path="/login" component={() => <Login />} />
+                    <Route path="/sign" component={() => <SignUp />} />
+                    <Route path="/login" component={() => <Login />} />
+                    <Route path="/searchResult" component={() => <SearchResults />} />
+                    <Route path="/checkboxfilter" component={() => <CheckboxFilter />} />
+                    <Route path="/account" component={() => <UserAccount />} />
                 </Layout>
 
                 <Route exact path="/orderForm" component={() => <OrderForm />} />
                 <Route exact path="/" component={() => <Header />} />
                 <Route exact path="/cardPopUp" component={() => <CardPopUp />} />
-                <Route exact path="/checkboxfilter" component={() => <CheckboxFilter />} />
-                <Route exact path="/searchResult" component={() => <SearchResults />} />
-                <Route exact path="/account" component={() => <UserAccount />} />
 
                 <Route component={NotFoundPage} />
             </Switch>

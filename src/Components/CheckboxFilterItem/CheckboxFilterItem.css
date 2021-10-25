@@ -3,21 +3,21 @@
     color: var(--header-color);
 }
 
-.filters__items {
+.lib-checkboxFilterItem .filters__items {
     display: flex;
 }
 
-.filters__item {
+.lib-checkboxFilterItem .filters__item {
     margin-right: var(--size-normal-mid);
     cursor: pointer;
 }
 
 
-.filters__text {
+.lib-checkboxFilterItem .filters__text {
     padding-right: var(--size-smaller);
 }
 
-.arrow {
+.lib-checkboxFilterItem .arrow {
     border: solid var(--color-arrow-black);
     border-width: 0 1px 1px 0;
     display: inline-block;
@@ -27,7 +27,7 @@
     margin-bottom: var(--size-min-small);
 }
 
-.arrow.up {
+.lib-checkboxFilterItem .arrow.up {
     transform: rotate(-135deg);
     -webkit-transform: rotate(-135deg);
 }

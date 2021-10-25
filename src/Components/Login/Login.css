@@ -23,14 +23,16 @@
     flex-direction: column;
     width: 100%;
 }
-.from-login input {
+.from-login .lib-input__common {
     margin-bottom: var(--size-small);
-    border-radius: var(--size-small);
-    color: var(--color-accent);
-    background-color: var(--color-lightest);
-    border: 1px solid var(--color-accent-brown);
-    height: 50px;
 }
 .lib-login_sign_up{
     margin-top: var(--size-small);
+}
+
+p.field-message__error {
+    font-size: 14px;
+    color: var(--color-error);
+    margin-bottom: 7px;
+    margin-top: 0;
 }

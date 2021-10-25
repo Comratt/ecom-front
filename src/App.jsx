@@ -15,6 +15,7 @@ const options = {
 };
 const containerStyle = {
     marginTop: 60,
+    zIndex: 999,
 };
 
 const App = () => (

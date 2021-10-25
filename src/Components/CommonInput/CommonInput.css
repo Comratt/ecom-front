@@ -1,0 +1,47 @@
+.lib-input__common {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.lib-input__common .input {
+    border-radius: var(--size-smaller);
+    border: 1px solid #d9d9d9;
+    margin-top: var(--size-smaller);
+    padding: var(--size-small);
+    height: var(--size-fourty);
+    box-sizing: border-box;
+    font-size: var(--fz-normal);
+    font-weight: 400;
+    align-items: center;
+    align-content: center;
+    transition: background-color .3s ease,color .3s ease;
+}
+
+.lib-input__common .input, .lib-input__common .input::placeholder {
+    color: var(--color-accent);
+}
+
+.lib-input__common .input:focus {
+    outline: 0;
+    border: 2px solid var(--color-focused-input);
+    transition: all .2s ease-out;
+    box-shadow: var(--color-focused-input);
+}
+
+.lib-input__common .input.field-error {
+    border-color: var(--color-error);
+    border-width: 2px;
+}
+
+.lib-input__common .field-message__error {
+    font-size: 14px;
+    color: var(--color-error);
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.lib-input__common .lib-input__common-label {
+    font-size: 16px;
+    color: var(--color-accent);
+}

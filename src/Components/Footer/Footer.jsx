@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import './Footer.css';
 import FooterInput from '../FooterInput/FooterInput';
 
-const Footer = ({
+export const Footer = ({
     className,
 }) => {
     const componentClasses = classNames(
@@ -76,5 +76,3 @@ const Footer = ({
         </div>
     );
 };
-
-export default Footer;

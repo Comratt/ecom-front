@@ -1,16 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import SuccessIcon from './icons/SuccessIcon';
 
 import './CardPopUp.css';
+
+const alertStyle = {
+    padding: '20px',
+    textTransform: 'uppercase',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    boxShadow: '0px 2px 2px 2px rgba(0, 0, 0, 0.03)',
+    boxSizing: 'border-box',
+};
 
 export const CardPopUp = ({
     message: {
         size, price, image, name,
     },
     style,
+    options: { type } = { type: '' },
 }) => {
     const componentClassNames = classNames('card-pop-up');
+
+    if (type === 'success') {
+        return (
+            <div className={componentClassNames} style={{ ...alertStyle, ...style }}>
+                <SuccessIcon />
+                <span style={{ flex: 2 }}>{name}</span>
+            </div>
+        );
+    }
 
     return (
         <div className={componentClassNames} style={style}>
