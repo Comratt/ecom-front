@@ -1,7 +1,7 @@
 import React from 'react';
 import Input from 'Components/Input';
 import { getValidationMessage } from 'Constants';
-import { Plus, Remove } from 'Icons';
+import { Remove, PlusIcon } from 'Icons';
 import { getImage } from 'API';
 import {
     VALIDATION_RULES,

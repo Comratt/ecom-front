@@ -32,6 +32,7 @@ const CardPopUp = lazy(() => import('Components/CardPopUp'));
 const SearchResults = lazy(() => import('Components/SearchResults/searchResults'));
 const Cart = lazy(() => import('Pages/Site/Cart'));
 const UserAccount = lazy(() => import('Pages/UserAccount/UserAccount'));
+const CollectionList = lazy(() => import('Components/CollectionList'));
 
 const RouterComponent = () => (
     <Router history={history}>
@@ -56,6 +57,7 @@ const RouterComponent = () => (
                     <Route path="/searchResult" component={() => <SearchResults />} />
                     <Route path="/checkboxfilter" component={() => <CheckboxFilter />} />
                     <Route path="/account" component={() => <UserAccount />} />
+                    <Route exact path="/collection" component={() => <CollectionList />} />
                 </Layout>
 
                 <Route exact path="/orderForm" component={() => <OrderForm />} />

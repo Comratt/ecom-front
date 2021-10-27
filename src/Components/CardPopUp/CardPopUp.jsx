@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import SuccessIcon from './icons/SuccessIcon';
+import ErrorIcon from './icons/ErrorIcon';
 
 import './CardPopUp.css';
 
@@ -25,10 +26,11 @@ export const CardPopUp = ({
 }) => {
     const componentClassNames = classNames('card-pop-up');
 
-    if (type === 'success') {
+    if (type === 'success' || type === 'error') {
         return (
             <div className={componentClassNames} style={{ ...alertStyle, ...style }}>
-                <SuccessIcon />
+                {type === 'success' && <SuccessIcon />}
+                {type === 'error' && <ErrorIcon />}
                 <span style={{ flex: 2 }}>{name}</span>
             </div>
         );

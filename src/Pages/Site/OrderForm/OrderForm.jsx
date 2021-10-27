@@ -1,21 +1,28 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import { useAlert } from 'react-alert';
 import TextInput from 'react-autocomplete-input';
 import 'react-autocomplete-input/dist/bundle.css';
 
 import { novaPoshtaAPI } from 'API';
-import { getCartProducts } from 'Store/Modules/Cart/selectors';
+import { getCartProducts, getCartNotes } from 'Store/Modules/Cart/selectors';
+import { clearCart } from 'Store/Modules/Cart/cartActions';
+import OrderService from 'Services/OrderService';
 
 import { Link } from 'Components/Link';
+import LoginBtn from 'Components/Buttons/LoginBtn/LoginBtn';
 import { Logo, Cart, AccardionArrow } from 'Icons';
 import { getFormattedPrice, emailRegExp, getValidationMessage } from 'Constants';
 
 import './OrderForm.css';
 
 export const OrderForm = (className) => {
+    const dispatch = useDispatch();
+    const alert = useAlert();
+    const [formLoading, setFormLoading] = useState(false);
     const [selectedCity, setSelectedCity] = useState('');
     const [showSideBar, setShowSideBar] = useState(false);
     const [cities, setCities] = useState({
@@ -42,12 +49,30 @@ export const OrderForm = (className) => {
     });
     const componentClasses = classNames('lib-order', className);
     const products = useSelector(getCartProducts);
+    const orderNotes = useSelector(getCartNotes);
     const toggleSidebar = () => setShowSideBar((sideBar) => !sideBar);
 
-    const onSubmit = (v) => {
+    const onSubmit = (formInfo) => {
         if (!selectedCity) {
-            setError('city', { message: 'Enter city' });
+            return setError('shippingCity', { message: 'Enter city' });
         }
+        setFormLoading(true);
+
+        OrderService.store({
+            ...formInfo,
+            products,
+            comment: orderNotes,
+            status_id: 1,
+        })
+            .then((response) => {
+                setFormLoading(false);
+                dispatch(clearCart());
+                alert.success({ name: 'Заказ успешно оформлен!' });
+            })
+            .catch((error) => {
+                setFormLoading(false);
+                alert.error({ name: 'Ошибка при оформлении заказа!' });
+            });
     };
 
     const totalPrice = ({ purePrice, quantity }) => getFormattedPrice(purePrice * quantity);
@@ -59,11 +84,11 @@ export const OrderForm = (className) => {
 
     const handleCitySelect = (city) => {
         setSelectedCity(city);
-        clearErrors('city');
+        clearErrors('shippingCity');
     };
 
     useEffect(() => {
-        register('city', { required: true });
+        register('shippingCity', { required: true });
     }, []);
 
     useEffect(() => {
@@ -173,7 +198,7 @@ export const OrderForm = (className) => {
                             <div className="order__contact-form">
                                 <TextInput
                                     Component="input"
-                                    className={classNames('input input__full-width', { 'field-error': errors?.city })}
+                                    className={classNames('input input__full-width', { 'field-error': errors?.shippingCity })}
                                     placeholder="Apartment, suite, etc. (optional)"
                                     type="text"
                                     options={cityNames}
@@ -185,21 +210,21 @@ export const OrderForm = (className) => {
                                     onSelect={handleCitySelect}
                                     onChange={(str = '') => {
                                         if (!str.length && !selectedCity) {
-                                            return setError('city', { message: 'Enter city' });
+                                            return setError('shippingCity', { message: 'Enter city' });
                                         }
-                                        clearErrors('city');
-                                        setValue('city', str);
+                                        clearErrors('shippingCity');
+                                        setValue('shippingCity', str);
                                     }}
                                 />
-                                {errors?.city && <p className="field-message__error">Enter valid city</p>}
+                                {errors?.shippingCity && <p className="field-message__error">Enter valid city</p>}
                             </div>
                             <div className="order__contact-form">
                                 {!!offices.data.length && (
                                     <>
                                         <select
-                                            name="warehouses"
+                                            name="shippingAddress"
                                             ref={register({ required: true })}
-                                            className={classNames({ 'field-error': errors?.warehouses })}
+                                            className={classNames({ 'field-error': errors?.shippingAddress })}
                                         >
                                             <option disabled selected value="">Выберите отделение</option>
                                             {offices.data.map(({ DescriptionRu }) => (
@@ -208,7 +233,7 @@ export const OrderForm = (className) => {
                                                 </option>
                                             ))}
                                         </select>
-                                        {errors?.warehouses && <p className="field-message__error">Выберите отделение</p>}
+                                        {errors?.shippingAddress && <p className="field-message__error">Выберите отделение</p>}
                                     </>
                                 )}
                             </div>
@@ -233,9 +258,11 @@ export const OrderForm = (className) => {
                                 </label>
                             </div>
                             <div className="order__order-button">
-                                <button className="order__btn-submit" type="submit">
-                                    Continue shipping
-                                </button>
+                                <LoginBtn
+                                    className="order__btn-submit"
+                                    text="Continue shipping"
+                                    loading={formLoading}
+                                />
                                 <div className="order__btn-return">
                                     <Link className="order__btn-return-link" to="/cart">
                                         Return to card
