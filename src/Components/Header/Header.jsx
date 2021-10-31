@@ -13,6 +13,7 @@ import { getWishlistQuantity } from 'Store/Modules/Wishlist/selectors';
 import { useLayout } from 'hooks/useLayout';
 import { Link } from '../Link';
 import HeaderInput from '../HeaderInput/HeaderInput';
+import HeaderListCollectionNews from '../HeaderListCollectionNews/HeaderListCollectionNews';
 
 import './Header.css';
 
@@ -62,15 +63,18 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
                 <ul className="header-list-navigation">
                     <li className="list-group">
                         <Link to="/">Whats New</Link>
+                        <HeaderListCollectionNews className="header-list-collection" />
                     </li>
                     <li className="list-group">
                         <Link to="/">Clothing & Shoes</Link>
+                        <HeaderListCollectionNews className="header-list-collection" />
                     </li>
                     <li className="list-group">
                         <Link to="/">Coming Soon</Link>
                     </li>
                     <li className="list-group">
                         <Link to="/">About</Link>
+                        <HeaderListCollectionNews className="header-list-collection" />
                     </li>
                 </ul>
             </div>
