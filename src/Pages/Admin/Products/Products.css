@@ -8,11 +8,15 @@
     -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
     display: inline-block;
-    max-width: 100%;
+    max-width: 80px;
     height: auto;
 }
 
 .product-quantity {
     font-size: 12px;
     color: white;
+}
+
+.table-cell__img {
+    padding: 5px;
 }

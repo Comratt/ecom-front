@@ -1,1 +1,13 @@
+.product-tab__link .minus__button {
+    padding: 0;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
 
+.product-tab__link .label-with-button {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    line-height: 1.7;
+}

@@ -1,115 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import classNames from 'classnames';
+
+import { useProduct } from 'context/product/hooks/useProduct';
+import Loader from 'Components/Loader';
+import Alert from 'Components/Alert';
+
 import { Tab, Tabs, Content } from './ProductTab';
 import Layout from '../Layout';
 import './ProductEdit.css';
-import { Pencil } from '../../../Icons';
-import ProductTabGeneral from './ProductTabGeneral';
-import ProductTabsData from './ProductTabsData';
-import ProductTabLinks from './ProductTabLinks';
-import ProductTabOptions from './ProductTabOption/ProductTabOptions';
-import ProductTabDiscount from './ProductTabDiscount';
-import ProductTabSpecial from './ProductTabSpecial';
-import ProductTabImage from './ProductTabImage';
-import ProductTabSeo from './ProductTabSeo';
+import { items } from './constants';
 
 const ProductEdit = () => {
+    const { result, error, loading } = useProduct();
     const [active, setActive] = useState(0);
-    const handleClick = (e) => {
-        const index = parseInt(e.target.id, 0);
+    const handleClick = (id) => () => {
+        const index = parseInt(id, 10);
 
         if (index !== active) {
             setActive(index);
         }
     };
 
-    return (
-        <div className="App">
-            <h5 className="header-tabs">
-                <Pencil style={{ marginRight: '10px' }} />
-                Edit Product
-            </h5>
+    const renderContent = useCallback(() => {
+        if (loading) {
+            return <Loader size={7} center />;
+        }
+        if (!loading && error) {
+            return <Alert type="warning" text={error.message} />;
+        }
 
-            <Tabs>
-                <Tab onClick={handleClick} active={active === 0} id={0}>
-                    General
-                </Tab>
-
-                <Tab onClick={handleClick} active={active === 1} id={1}>
-                    Data
-                </Tab>
-                <Tab onClick={handleClick} active={active === 2} id={2}>
-                    Links
-                </Tab>
-                <Tab onClick={handleClick} active={active === 3} id={3}>
-                    Attribute
-                </Tab>
-                <Tab onClick={handleClick} active={active === 4} id={4}>
-                    Option
-                </Tab>
-                <Tab onClick={handleClick} active={active === 5} id={5}>
-                    Reccuring
-                </Tab>
-                <Tab onClick={handleClick} active={active === 6} id={6}>
-                    Discount
-                </Tab>
-                <Tab onClick={handleClick} active={active === 7} id={7}>
-                    Special
-                </Tab>
-                <Tab onClick={handleClick} active={active === 8} id={8}>
-                    Image
-                </Tab>
-                <Tab onClick={handleClick} active={active === 9} id={9}>
-                    Reward
-                </Tab>
-
-                <Tab onClick={handleClick} active={active === 10} id={10}>
-                    Seo
-                </Tab>
-
-                <Tab onClick={handleClick} active={active === 11} id={11}>
-                    Design
-                </Tab>
-
-            </Tabs>
+        return (
             <>
-                <Content active={active === 0}>
-                    <ProductTabGeneral />
-                </Content>
-                <Content active={active === 1}>
-                    <ProductTabsData />
-                </Content>
-                <Content active={active === 2}>
-                    <ProductTabLinks />
-                </Content>
-                <Content active={active === 3}>
-                    <h1>Content 2</h1>
-                </Content>
-                <Content active={active === 4}>
-                    <ProductTabOptions />
-                </Content>
-                <Content active={active === 5}>
-                    <h1>Content 2</h1>
-                </Content>
-                <Content active={active === 6}>
-                    <ProductTabDiscount />
-                </Content>
-                <Content active={active === 7}>
-                    <ProductTabSpecial />
-                </Content>
-                <Content active={active === 8}>
-                    <ProductTabImage />
-                </Content>
-                <Content active={active === 9}>
-                    <h1>Content 2</h1>
-                </Content>
-                <Content active={active === 10}>
-                    <ProductTabSeo />
-                </Content>
-                <Content active={active === 11}>
-                    <h1>Content 2</h1>
-                </Content>
+                <Tabs className="nav nav-tabs">
+                    {items.map(({ id, name }) => (
+                        <Tab key={id} onClick={handleClick(id)} className="nav-item">
+                            <a className={classNames('nav-link', { active: active === id })}>{name}</a>
+                        </Tab>
+                    ))}
+                </Tabs>
+                {items.map(({ id, content }) => (
+                    <Content key={id} active={active === id}>
+                        {content}
+                    </Content>
+                ))}
             </>
-        </div>
+        );
+    }, [loading, error, handleClick, active, items]);
+
+    return (
+        <>
+            <div
+                className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+            >
+                <h1>Products</h1>
+                <div className="btn-toolbar mb-2 mb-md-0">
+                    <button
+                        // onClick={toggleModal}
+                        type="button"
+                        className="btn btn-primary px-3 py-1 mr-0"
+                        style={{ fontSize: 22 }}
+                    >
+                        +
+                    </button>
+                </div>
+            </div>
+            <div className="container">
+                <div className="row d-block">
+                    {renderContent()}
+                </div>
+            </div>
+        </>
     );
 };
 
