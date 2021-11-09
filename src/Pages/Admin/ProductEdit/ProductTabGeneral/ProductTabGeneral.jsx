@@ -3,7 +3,6 @@ import { convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToMarkdown from 'draftjs-to-markdown';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-
 import Input from 'Components/Input';
 import { useAddProduct } from 'context/addProduct/useAddProduct';
 
@@ -48,6 +47,9 @@ const ProductTabGeneral = () => {
                     <div className="productTabInput">
                         <Editor
                             onEditorStateChange={onEditorStateChange}
+                            toolbar={{
+                                history: { inDropdown: true },
+                            }}
                         />
                     </div>
                 </div>
