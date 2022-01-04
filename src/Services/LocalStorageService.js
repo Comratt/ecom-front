@@ -30,10 +30,13 @@ class LocalStorageService {
         }
     }
 
-    setItem(key, value) {
+    setItem(state) {
         try {
             const parsedLocalStore = this.localStore ? JSON.parse(this.localStore) : {};
-            const modifiedObject = set(parsedLocalStore, key, value);
+            const modifiedObject = {
+                ...parsedLocalStore,
+                ...state,
+            };
             const stringifyObject = JSON.stringify(modifiedObject);
 
             window.localStorage.setItem(this.localStorageKey, stringifyObject);

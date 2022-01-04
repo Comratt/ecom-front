@@ -2,6 +2,9 @@
     margin-top: 10px;
 }
 .lib-product_info_submit button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     border-radius: 8px;
     height: 50px;
@@ -9,6 +12,16 @@
     color: white;
     border: none;
     font-size: var(--fz-normal);
+}
+
+.lib-product_info_submit button .button-loader {
+    margin-right: 10px;
+}
+.lib-product_info_submit button .button-loader circle {
+    stroke-width: 6;
+}
+.lib-product_info_submit button .button-loader g g {
+    stroke-width: 4;
 }
 .lib-product_info_submit button:hover {
     background-color: var(--color-accent);

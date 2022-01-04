@@ -1,20 +1,25 @@
 import React, { useState, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import classNames from 'classnames';
 
 import Loader from 'Components/Loader';
 import Alert from 'Components/Alert';
+import { Edit } from 'Icons';
 import { useFetchProducts } from '../hooks/useFetchProducts';
 import Layout from '../Layout';
 
 import './Products.css';
 
 const Products = () => {
+    const history = useHistory();
     const [show, setShow] = useState(false);
     const {
         register, handleSubmit, errors, setValue,
     } = useForm();
     const { result, loading, error } = useFetchProducts();
+
+    const handleClick = (id) => () => history.push(`/admin/products/${id}`);
 
     const quantityBadgeClass = (quantity = 0) => classNames('product-quantity badge', {
         'badge-success': quantity > 10,
@@ -37,7 +42,7 @@ const Products = () => {
                     <tr>
                         {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
                         <th scope="col" style={{ width: '3%' }} />
-                        <th scope="col">Картинка</th>
+                        <th scope="col" style={{ width: '9%' }}>Картинка</th>
                         <th scope="col">Название продукта</th>
                         <th scope="col">Модель</th>
                         <th scope="col">Цена</th>
@@ -62,7 +67,7 @@ const Products = () => {
                                     />
                                 </div>
                             </td>
-                            <td>
+                            <td className="table-cell__img">
                                 <img
                                     src={product.image}
                                     alt="Apple Cinema 30&quot;"
@@ -87,14 +92,24 @@ const Products = () => {
                                 {product.status}
                             </td>
                             <td>
-                                {product.status}
+                                <button
+                                    type="button"
+                                    className="btn btn-outline-primary mr-2"
+                                    onClick={handleClick(product.product_id)}
+                                >
+                                    <Edit
+                                        fill="blue"
+                                        width={14}
+                                        height={14}
+                                    />
+                                </button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
         );
-    }, [loading, error, result]);
+    }, [loading, error, result, handleClick]);
 
     return (
         <>

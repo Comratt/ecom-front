@@ -33,9 +33,11 @@ store.subscribe(() => {
         theme: localSettingsState.theme,
     };
 
-    LocalStorageService.setItem('localSettings', localSettings);
-    LocalStorageService.setItem('cart', cartState);
-    LocalStorageService.setItem('wishlist', wishListState);
+    LocalStorageService.setItem({
+        localSettings,
+        cart: cartState,
+        wishlist: wishListState,
+    });
 });
 
 if (process.env.NODE_ENV !== 'production' && module.hot) {

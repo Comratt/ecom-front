@@ -137,6 +137,18 @@
 .header-search-second {
     display: none;
 }
+.header-list-collection{
+    position: absolute;
+    top: 100%;
+    display: none;
+    left: 0%;
+    width: 100%;
+    box-shadow: 0px 6px 10px -15px #111;
+    transition: 3s;
+}
+.list-group:hover .header-list-collection {
+    display: block;
+}
 @media (max-width: 500px) {
     .header-links-icon.user {
         display: none;

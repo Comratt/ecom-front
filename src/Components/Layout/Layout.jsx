@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { View } from '../View';
 import { Header } from '../Header';
 import { SideBar } from '../SideBar';
+import { Footer } from '../Footer';
 
 import { useLayout } from '../../hooks/useLayout';
 
@@ -38,6 +39,7 @@ export const Layout = ({ children }) => {
                         {children}
                     </View>
                 </main>
+                <Footer />
             </section>
 
             <View id="modal-root" />

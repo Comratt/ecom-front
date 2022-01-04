@@ -22,7 +22,7 @@ export const menuItems = [
     {
         key: 'product',
         name: 'Товары',
-        link: '/admin/product',
+        link: '/admin/products',
     },
     {
         key: 'order',
