@@ -1,0 +1,15 @@
+.rdw-option-wrapper{
+    padding: 0;
+    margin: 0 6px;
+}
+.rdw-dropdown-selectedtext img {
+    width: 20px;
+    height: 20px;
+    max-width: 100%;
+}
+.rdw-dropdown-selectedtext {
+    color: black;
+}
+.rdw-editor-main{
+    border: 1px solid #F1F1F1;;
+}
