@@ -12,6 +12,16 @@ class OptionService {
         }
     }
 
+    static async getOptionsValue() {
+        try {
+            const options = await API.get('api/admin/options-value');
+
+            return options.data;
+        } catch (e) {
+            throw new ServerException(e.response);
+        }
+    }
+
     static async getOption(id) {
         try {
             const option = await API.get(`api/admin/options/${id}`);

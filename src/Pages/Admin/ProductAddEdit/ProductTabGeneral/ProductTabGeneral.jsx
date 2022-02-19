@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { convertToRaw } from 'draft-js';
+import React, { useState, useEffect } from 'react';
+import { convertToRaw, convertFromRaw, EditorState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
-import draftToMarkdown from 'draftjs-to-markdown';
+import { draftToMarkdown, markdownToDraft } from 'markdown-draft-js';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 import Input from 'Components/Input';
@@ -15,6 +15,14 @@ const ProductTabGeneral = () => {
     const onEditorStateChange = (editorState) => setV(editorState);
 
     console.log(v && draftToMarkdown(convertToRaw(v.getCurrentContent())));
+
+    useEffect(() => {
+        const rawData = markdownToDraft(values.description);
+        const contentState = convertFromRaw(rawData);
+        const newEditorState = EditorState.createWithContent(contentState);
+
+        setV(newEditorState);
+    }, [values.description]);
 
     return (
         <div>
@@ -39,6 +47,42 @@ const ProductTabGeneral = () => {
                 </div>
                 <div className="from-section">
                     <div className="productTabLabel">
+                        <label htmlFor="productName">
+                            <b>
+                                Model
+                            </b>
+                        </label>
+                    </div>
+                    <div className="productTabInput">
+                        <Input
+                            value={values.model}
+                            name="model"
+                            onChange={handleValuesChange}
+                            id="model"
+                            type="text"
+                        />
+                    </div>
+                </div>
+                <div className="from-section">
+                    <div className="productTabLabel">
+                        <label htmlFor="price">
+                            <b>
+                                Price
+                            </b>
+                        </label>
+                    </div>
+                    <div className="productTabInput">
+                        <Input
+                            value={values.price}
+                            name="price"
+                            onChange={handleValuesChange}
+                            id="price"
+                            type="number"
+                        />
+                    </div>
+                </div>
+                <div className="from-section">
+                    <div className="productTabLabel">
                         <label htmlFor="productTextArea">
                             <b>
                                 Description
@@ -47,6 +91,7 @@ const ProductTabGeneral = () => {
                     </div>
                     <div className="productTabInput">
                         <Editor
+                            editorState={v}
                             onEditorStateChange={onEditorStateChange}
                         />
                     </div>

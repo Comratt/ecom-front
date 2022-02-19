@@ -187,7 +187,9 @@ const Categories = () => {
                         type="button"
                         className="btn btn-primary px-3 py-1 mr-0"
                         style={{ fontSize: 22 }}
-                    />
+                    >
+                        +
+                    </button>
                 </div>
             </div>
             <div className="container">

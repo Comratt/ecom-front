@@ -1,4 +1,4 @@
-export const getFilteredOptions = (options, type) => (
+export const getFilteredOptions = (options = [], type) => (
     options.filter(({ option_type }) => option_type === type)?.map(
         (item) => ({ ...item, id: item.option_value_id, name: item.name_value }),
     )

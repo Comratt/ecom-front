@@ -7,47 +7,40 @@ import { useAddProduct } from 'context/addProduct/useAddProduct';
 import { MinusCircle } from 'Icons';
 
 import { useFetchCategories } from '../../hooks/useFetchCategories';
+import { useFetchProductModels } from '../../hooks/useFetchProductModels';
 
 import './ProductTabLinks.css';
 
 const ProductTabLinks = () => {
-    const [val, setVal] = useState('');
+    const [categoryValue, setCategoryValue] = useState('');
+    const [relatedValue, setRelatedValue] = useState('');
     const { categories } = useFetchCategories();
+    const { result: productModels } = useFetchProductModels();
+
     const {
-        values,
-        handleValuesChange,
         selectedCategories,
         handleSelectCategory,
         removeCategory,
+        relatedProducts,
+        handleSelectRelatedProducts,
+        removeSelectRelatedProducts,
     } = useAddProduct();
     const categoryNames = useMemo(() => (
         categories
-            .map(({ name }) => name)
+            .map(({ name, id }) => `${name} ~ ${id}`)
             .filter((name) => !selectedCategories.includes(name))
     ),
     [categories, selectedCategories]);
+    const productModelsNames = useMemo(() => (
+        productModels
+            .map(({ name, id }) => `${name} ~ ${id}`)
+            .filter((name) => !relatedProducts.includes(name))
+    ),
+    [productModels, relatedProducts]);
 
     return (
         <div className="product-tab__link">
             <form>
-                <div className="from-section">
-                    <div className="productTabLabel">
-                        <label htmlFor="Manufacturer">
-                            <b>
-                                Manufacturer
-                            </b>
-                        </label>
-                    </div>
-                    <div className="productTabInput">
-                        <Input
-                            value={values.manufacturer}
-                            name="manufacturer"
-                            onChange={handleValuesChange}
-                            id="manufacturer"
-                            type="text"
-                        />
-                    </div>
-                </div>
                 <div className="from-section">
                     <div className="productTabLabel">
                         <label htmlFor="Categories">
@@ -58,21 +51,21 @@ const ProductTabLinks = () => {
                     </div>
                     <div className="productTabInput">
                         <TextInput
-                            value={val}
-                            onChange={setVal}
+                            value={categoryValue}
+                            onChange={setCategoryValue}
                             Component="input"
                             className="form-control"
                             type="text"
                             options={categoryNames}
                             trigger=""
                             matchAny
-                            regex={/[а-яА-Я0-9_-]+/}
+                            regex={/[а-яА-Яa-zA-Z0-9_-]+/}
                             spacer=""
                             offsetY={15}
                             passThroughEnter
                             onSelect={(tName) => {
                                 handleSelectCategory(tName);
-                                setVal('');
+                                setCategoryValue('');
                             }}
                         />
                         <div className="well well-sm">
@@ -93,42 +86,6 @@ const ProductTabLinks = () => {
                 </div>
                 <div className="from-section">
                     <div className="productTabLabel">
-                        <label htmlFor="Filters">
-                            <b>
-                                Filters
-                            </b>
-                        </label>
-                    </div>
-                    <div className="productTabInput">
-                        <input id="Filters" type="text" />
-                    </div>
-                </div>
-                <div className="from-section">
-                    <div className="productTabLabel">
-                        <label htmlFor="Stores">
-                            <b>
-                                Stores
-                            </b>
-                        </label>
-                    </div>
-                    <div className="productTabInput">
-                        <input id="Stores" type="checkbox" />
-                    </div>
-                </div>
-                <div className="from-section">
-                    <div className="productTabLabel">
-                        <label htmlFor="Downloads">
-                            <b>
-                                Downloads
-                            </b>
-                        </label>
-                    </div>
-                    <div className="productTabInput">
-                        <input id="Downloads" type="text" />
-                    </div>
-                </div>
-                <div className="from-section">
-                    <div className="productTabLabel">
                         <label htmlFor="Related Products">
                             <b>
                                 Related Products
@@ -136,7 +93,38 @@ const ProductTabLinks = () => {
                         </label>
                     </div>
                     <div className="productTabInput">
-                        <input id="Related Products" type="text" />
+                        <TextInput
+                            value={relatedValue}
+                            onChange={setRelatedValue}
+                            Component="input"
+                            className="form-control"
+                            type="text"
+                            options={productModelsNames}
+                            trigger=""
+                            matchAny
+                            regex={/[а-яА-Яa-zA-Z0-9_-]+/}
+                            spacer=""
+                            offsetY={15}
+                            passThroughEnter
+                            onSelect={(tName) => {
+                                handleSelectRelatedProducts(tName);
+                                setRelatedValue('');
+                            }}
+                        />
+                        <div className="well well-sm">
+                            {relatedProducts.map((productName) => (
+                                <span key={productName} className="label-with-button">
+                                    <button
+                                        onClick={() => removeSelectRelatedProducts(productName)}
+                                        className="minus__button"
+                                        type="button"
+                                    >
+                                        <MinusCircle height={10} width={10} />
+                                    </button>
+                                    {productName}
+                                </span>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </form>

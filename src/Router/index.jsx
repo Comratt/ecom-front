@@ -16,7 +16,7 @@ const AdminLogin = lazy(() => import('Pages/Admin/Login'));
 const AdminDashboard = lazy(() => import('Pages/Admin/Dashboard'));
 const AdminBanners = lazy(() => import('Pages/Admin/Banners'));
 const AdminProductList = lazy(() => import('Pages/Admin/Products'));
-const AdminProductEdit = lazy(() => import('Pages/Admin/ProductEdit'));
+const AdminProductEdit = lazy(() => import('Pages/Admin/ProductAddEdit'));
 const AdminCategories = lazy(() => import('Pages/Admin/Categories'));
 const AdminOptions = lazy(() => import('Pages/Admin/Options'));
 const AdminOrder = lazy(() => import('Pages/Admin/Order'));
@@ -43,6 +43,7 @@ const RouterComponent = () => (
                 <Route path="/admin/banner" component={AdminBanners} />
                 <Route exact path="/admin/products" component={AdminProductList} />
                 <Route path="/admin/products/:id" component={AdminProductEdit} />
+                <Route path="/admin/add/products" component={(props) => <AdminProductEdit isFromAdd {...props} />} />
                 <Route path="/admin/option" component={AdminOptions} />
                 <Route path="/admin/order" component={AdminOrder} />
                 <Route path="/admin/orderproduct" component={AdminOrderProduct} />

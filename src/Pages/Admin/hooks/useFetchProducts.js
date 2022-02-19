@@ -8,7 +8,7 @@ import { getImage } from 'API';
 const adapt = (data = []) => data.map((product) => ({
     ...product,
     price: getFormattedPrice(product.price),
-    quantity: product?.options?.reduce((acc, option) => acc + option.quantity, 0),
+    quantity: product?.sizes?.reduce((acc, option) => acc + option.quantity, 0),
     image: getImage(product.image),
 }));
 

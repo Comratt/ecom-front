@@ -3,9 +3,9 @@ import { AddProductProvider } from 'context/addProduct/addPoductContext';
 
 import ProductEdit from './ProductEdit';
 
-const ProductEditContainer = () => (
+const ProductEditContainer = ({ isFromAdd }) => (
     <AddProductProvider>
-        <ProductEdit />
+        <ProductEdit isFromAdd={isFromAdd} />
     </AddProductProvider>
 );
 

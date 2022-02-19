@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import CategoryService from 'Services/CategoryService';
 
-const adapt = (data = []) => {
+export const adaptCategories = (data = []) => {
     const getParentName = (category) => {
         if (category && category.parent_id) {
             return `${getParentName(data.find(({ category_id }) => +category_id === category.parent_id))} > ${category.category_name}`;
@@ -12,6 +12,7 @@ const adapt = (data = []) => {
 
     return data.map((category) => ({
         ...category,
+        id: category.category_id,
         name: getParentName(category),
     }));
 };
@@ -27,7 +28,7 @@ const useFetchCategories = () => {
         try {
             const response = await CategoryService.getAll();
 
-            setCategories(adapt(response));
+            setCategories(adaptCategories(response));
         } catch (e) {
             console.warn(e);
             setError(e);

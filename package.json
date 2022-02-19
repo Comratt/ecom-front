@@ -9,6 +9,7 @@
     "draftjs-to-markdown": "^0.6.0",
     "history": "^5.0.0",
     "lodash": "^4.17.21",
+    "markdown-draft-js": "^2.4.0",
     "moment": "^2.29.1",
     "prop-types": "^15.7.2",
     "query-string": "^7.0.0",

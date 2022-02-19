@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import './Alert.css';
+
 const TYPE_WARNING = 'warning';
 const TYPE_SUCCESS = 'success';
 
@@ -34,7 +36,7 @@ const Alert = ({ text, type }) => {
 
     return (
         <div
-            className={classNames(`alert alert-dismissible fade ${getAlertType(type)}`, { show })}
+            className={classNames(`alert alert-dismissible fade ${getAlertType(type)}`, { show, hide: !show })}
             role="alert"
             style={{ width: '100%' }}
             onClick={handleClose}

@@ -20,6 +20,7 @@ const Products = () => {
     const { result, loading, error } = useFetchProducts();
 
     const handleClick = (id) => () => history.push(`/admin/products/${id}`);
+    const handleAddClick = () => history.push('/admin/add/products');
 
     const quantityBadgeClass = (quantity = 0) => classNames('product-quantity badge', {
         'badge-success': quantity > 10,
@@ -119,7 +120,7 @@ const Products = () => {
                 <h1>Products</h1>
                 <div className="btn-toolbar mb-2 mb-md-0">
                     <button
-                        // onClick={toggleModal}
+                        onClick={handleAddClick}
                         type="button"
                         className="btn btn-primary px-3 py-1 mr-0"
                         style={{ fontSize: 22 }}
