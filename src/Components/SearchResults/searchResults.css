@@ -28,19 +28,13 @@
 .product-matches__wrapper {
     display: flex;
     justify-content: space-between;
-    height: 94vh;
+    height: 100%;
     flex-direction: column;
     padding: var(--size-normal);
-    justify-content: space-between;
-
 }
 
 .product-matches__item:first-child {
-    margin: 0px;
-}
-
-.product-matches__item:last-child {
-
+    margin: 0;
 }
 
 .product-matches__btn-block {

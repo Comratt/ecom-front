@@ -93,6 +93,9 @@ const ProductTabGeneral = () => {
                         <Editor
                             editorState={v}
                             onEditorStateChange={onEditorStateChange}
+                            toolbar={{
+                                history: { inDropdown: true },
+                            }}
                         />
                     </div>
                 </div>

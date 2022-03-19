@@ -1,0 +1,20 @@
+.header-list-collection-item{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+}
+.header-list-collection-woman{
+    margin: 0;
+    font-size: 16px;
+    line-height: 24px;
+}
+.header-list-collection-woman li{
+    list-style: none;
+    padding-bottom: 10px;
+}
+.header-list-collection-item img {
+    padding-bottom: 20px;
+    border-radius: 4px;
+    padding-right: 10px;
+}
