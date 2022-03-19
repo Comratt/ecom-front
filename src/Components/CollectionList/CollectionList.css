@@ -4,8 +4,7 @@
 
     font-family: var(--footer-accent-ff);
     color: var(--footer-color);
-    margin-left: 50px;
-    margin-top: 100px;
+    width: 300px;
 }
 .lib-collection-list aside {
     width: 100%;
