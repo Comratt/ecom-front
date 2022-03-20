@@ -24,10 +24,8 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
             bordered,
             className,
             transparent,
-            showMenuButton,
             hamburgerMenu,
             showLogo,
-            title,
         },
     } = useLayout();
     const cartQuantity = useSelector(getCartQuantity);

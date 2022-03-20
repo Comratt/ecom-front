@@ -29,6 +29,11 @@
     color: var(--color-lightest);
 }
 
+.lib-header.header_transparent {
+    background-color: rgba(0, 0, 0, .18);
+    box-shadow: 0 14px 33px 25px rgba(0, 0, 0, 0.18);
+}
+
 .lib-header.header_transparent .react-select__control {
     background: rgba(255, 255, 255, 0.32);
 }
@@ -169,7 +174,7 @@
 }
 
 @media (max-width: 1023px) {
-    .header-input-search {
+    .header-right-menu .header-input-form {
         display: none;
         user-select: none;
     }

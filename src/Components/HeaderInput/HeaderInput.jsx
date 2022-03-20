@@ -1,22 +1,53 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import AsyncSelect from 'react-select/async';
 import { components } from 'react-select';
+import { fetchProducts } from 'context/api/fetchProducts';
+import { getFormattedPrice } from 'Constants';
+import { getImage } from 'API';
 import { Search } from '../../Icons';
 
 import './HeaderInput.css';
 import '../SearchResults/searchResults.css';
-
-const options = [
-    { value: 'chocolate', label: 'Chocolate', asd: 1 },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-];
+import { useLayout } from '../../hooks/useLayout';
 
 const styles = {
-    container: () => ({
+    control: (style) => ({
+        ...style,
+        borderColor: 'hsl(0, 0%, 70%)',
+        boxShadow: 'none',
+        outline: 'none',
+    }),
+    container: (style) => ({
+        ...style,
         width: '100%',
     }),
+    menu: (style) => ({
+        ...style,
+        marginTop: 0,
+        left: 0,
+    }),
+    menuPortal: (style) => ({
+        ...style,
+        marginTop: 4,
+        left: 0,
+        right: 0,
+        width: '100%',
+        zIndex: 100,
+    }),
+    option: (style, { isFocused }) => ({
+        ...style,
+        cursor: 'pointer',
+        backgroundColor: isFocused ? 'rgba(0, 0, 0, .05)' : 'transparent',
+    }),
 };
+
+const adaptFoundedProducts = (data = []) => data?.map((product) => ({
+    id: product.product_id,
+    name: product.model + product.name,
+    price: getFormattedPrice(product.price),
+    image: getImage(product.image),
+}));
 
 const DropdownIndicator = () => (
     <label className="dropdown-indicator-label">
@@ -39,58 +70,84 @@ const SelectOptionContainer = ({ children, ...props }) => (
                     {children}
                 </div>
                 <div className="product-matches__btn-block">
-                    <button className="product-matches__btn">View all results for</button>
+                    <button className="product-matches__btn">View all results</button>
                 </div>
             </div>
         </div>
     </components.Menu>
 );
 
-const SelectOption = ({ children, ...props }) => (
-    <components.Option {...props}>
-        <div className="product-matches__item">
-            <div className="product-matches__info-content">
-                <div className="product-matches__item-left">
-                    <div className="product-matches__image">
-                        <img src="https://cdn.shopify.com/s/files/1/0292/1375/3428/products/IMG_1739.jpg?v=1620139718" alt="" />
+const SelectOption = (props) => {
+    const {
+        data: {
+            image, name, id, price,
+        },
+    } = props;
+
+    return (
+        <components.Option {...props}>
+            <NavLink to={`/products/${id}`} className="product-matches__item">
+                <div className="product-matches__info-content">
+                    <div className="product-matches__item-left">
+                        <div className="product-matches__image">
+                            <img src={image} alt="" />
+                        </div>
+                    </div>
+                    <div className="product-matches__item-right">
+                        <div className="product-matches__name">
+                            {name}
+                        </div>
+                        <div className="product-matches__price">
+                            {price}
+                        </div>
                     </div>
                 </div>
-                <div className="product-matches__item-right">
-                    <div className="product-matches__name">
-                        V-neck silk camisole
-                    </div>
-                    <div className="product-matches__price">
-                        €55
-                    </div>
-                </div>
-            </div>
-            <div className="line" />
-        </div>
-    </components.Option>
-);
+                <div className="line" />
+            </NavLink>
+        </components.Option>
+    );
+};
 
-const filterColors = (inputValue) => (
-    options.filter((i) => i.label.toLowerCase().includes(inputValue.toLowerCase()))
-);
+const HeaderInput = () => {
+    const [foundProducts, setFoundProducts] = useState([]);
+    const {
+        handleCloseNavigationModal,
+        changeTopNavState,
+    } = useLayout();
 
-const promiseOptions = (inputValue) => new Promise((resolve) => {
-    setTimeout(() => {
-        resolve(filterColors(inputValue));
-    }, 1000);
-});
+    useEffect(() => {
+        fetchProducts().then(({ data }) => setFoundProducts(adaptFoundedProducts(data)));
+    }, []);
 
-const HeaderInput = () => (
-    <form action="#" className="header-input-form">
-        <AsyncSelect
-            cacheOptions
-            styles={styles}
-            defaultOptions={options}
-            loadOptions={promiseOptions}
-            components={{ DropdownIndicator, Option: SelectOption, Menu: SelectOptionContainer }}
-            className="react-select-container"
-            classNamePrefix="react-select"
-        />
-    </form>
-);
+    const filterProducts = async (inputValue) => {
+        const products = await fetchProducts({ search: inputValue });
+
+        return adaptFoundedProducts(products.data);
+    };
+
+    const promiseOptions = async (inputValue) => filterProducts(inputValue);
+
+    return (
+        <form action="#" className="header-input-form">
+            <AsyncSelect
+                menuPortalTarget={document.body}
+                menuShouldBlockScroll
+                cacheOptions
+                styles={styles}
+                defaultOptions={foundProducts}
+                loadOptions={promiseOptions}
+                components={{
+                    DropdownIndicator,
+                    Option: SelectOption,
+                    Menu: SelectOptionContainer,
+                }}
+                onChange={handleCloseNavigationModal}
+                onFocus={() => changeTopNavState({ transparent: false })}
+                className="react-select-container"
+                classNamePrefix="react-select"
+            />
+        </form>
+    );
+};
 
 export default HeaderInput;

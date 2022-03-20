@@ -96,4 +96,5 @@
 
 .product-matches__item {
     margin-top: var(--size-small);
+    width: 100%;
 }
