@@ -34,12 +34,18 @@ export const AddProductProvider = ({ children }) => {
                 price: product.purePrice,
             });
             if (product.categories && product.categories.length) {
-                const categoryNames = product.categories.map((cat) => `${cat.name} ~ ${cat.category_id}`);
+                const categoryNames = product.categories.map((cat) => ({
+                    value: cat.category_id,
+                    label: cat.name,
+                }));
 
                 setSelectedCategories(categoryNames);
             }
             if (product.related && product.related.length) {
-                const relatedProductNames = product.related.map((prod) => `${prod.name} ~ ${prod.related_product_id}`);
+                const relatedProductNames = product.related.map((prod) => ({
+                    value: prod.related_product_id,
+                    label: prod.name,
+                }));
 
                 setRelatedProducts(relatedProductNames);
             }
@@ -95,11 +101,11 @@ export const AddProductProvider = ({ children }) => {
         }))
     );
 
-    const handleSelectCategory = (name) => (
-        setSelectedCategories((prevState) => [...prevState, name])
+    const handleSelectCategory = (params) => (
+        setSelectedCategories((prevState) => [...prevState, params])
     );
-    const removeCategory = (name) => (
-        setSelectedCategories((prevState) => prevState.filter((n) => n !== name))
+    const removeCategory = (id) => (
+        setSelectedCategories((prevState) => prevState.filter(({ value }) => value !== id))
     );
 
     const handleSelectRelatedProducts = (name) => (
