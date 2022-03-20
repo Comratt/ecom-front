@@ -73,8 +73,8 @@ class ProductsService {
         try {
             const formData = new FormData();
             const settings = { headers: { 'Content-Type': 'multipart/form-data' } };
-            const categories = params.selectedCategories.map((name = '') => name.split(' ~ ')[1]);
-            const products = params.relatedProducts.map((name = '') => name.split(' ~ ')[1]);
+            const categories = params.selectedCategories.map(({ label, value }) => [label, value]);
+            const products = params.relatedProducts.map(({ label, value }) => [label, value]);
 
             formData.append('options', JSON.stringify(params.options));
             formData.append('product', JSON.stringify(params.product));

@@ -1,8 +1,8 @@
-import React, { useMemo, useState } from 'react';
-import TextInput from 'react-autocomplete-input';
+import React, { useMemo } from 'react';
 import 'react-autocomplete-input/dist/bundle.css';
-
-import Input from 'Components/Input';
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
+// eslint-disable-next-line import/no-cycle
 import { useAddProduct } from 'context/addProduct/useAddProduct';
 import { MinusCircle } from 'Icons';
 
@@ -12,8 +12,6 @@ import { useFetchProductModels } from '../../hooks/useFetchProductModels';
 import './ProductTabLinks.css';
 
 const ProductTabLinks = () => {
-    const [categoryValue, setCategoryValue] = useState('');
-    const [relatedValue, setRelatedValue] = useState('');
     const { categories } = useFetchCategories();
     const { result: productModels } = useFetchProductModels();
 
@@ -26,17 +24,24 @@ const ProductTabLinks = () => {
         removeSelectRelatedProducts,
     } = useAddProduct();
     const categoryNames = useMemo(() => (
-        categories
-            .map(({ name, id }) => `${name} ~ ${id}`)
-            .filter((name) => !selectedCategories.includes(name))
+        categories.map(({ name, id }) => ({
+            label: name,
+            value: id,
+        })).filter(({ value }) => !selectedCategories.map(({ value: v }) => v).includes(value))
+
     ),
     [categories, selectedCategories]);
     const productModelsNames = useMemo(() => (
         productModels
-            .map(({ name, id }) => `${name} ~ ${id}`)
-            .filter((name) => !relatedProducts.includes(name))
+            .map(({ name, id }) => ({
+                label: name,
+                value: id,
+            }))
+            .filter(({ value }) => !relatedProducts.map(({ value: v }) => v).includes(value))
     ),
     [productModels, relatedProducts]);
+
+    const animatedComponents = makeAnimated();
 
     return (
         <div className="product-tab__link">
@@ -50,35 +55,28 @@ const ProductTabLinks = () => {
                         </label>
                     </div>
                     <div className="productTabInput">
-                        <TextInput
-                            value={categoryValue}
-                            onChange={setCategoryValue}
-                            Component="input"
-                            className="form-control"
-                            type="text"
+                        <Select
+                            defaultOptions
+                            components={animatedComponents}
                             options={categoryNames}
-                            trigger=""
-                            matchAny
-                            regex={/[а-яА-Яa-zA-Z0-9_-]+/}
-                            spacer=""
-                            offsetY={15}
-                            passThroughEnter
-                            onSelect={(tName) => {
-                                handleSelectCategory(tName);
-                                setCategoryValue('');
+                            onChange={({ value, label }) => {
+                                handleSelectCategory({
+                                    value,
+                                    label,
+                                });
                             }}
                         />
                         <div className="well well-sm">
-                            {selectedCategories.map((categoryName) => (
-                                <span key={categoryName} className="label-with-button">
+                            {selectedCategories.map(({ value, label }) => (
+                                <span key={value} className="label-with-button">
                                     <button
-                                        onClick={() => removeCategory(categoryName)}
+                                        onClick={() => removeCategory(value)}
                                         className="minus__button"
                                         type="button"
                                     >
                                         <MinusCircle height={10} width={10} />
                                     </button>
-                                    {categoryName}
+                                    {label}
                                 </span>
                             ))}
                         </div>
@@ -93,22 +91,15 @@ const ProductTabLinks = () => {
                         </label>
                     </div>
                     <div className="productTabInput">
-                        <TextInput
-                            value={relatedValue}
-                            onChange={setRelatedValue}
-                            Component="input"
-                            className="form-control"
-                            type="text"
+                        <Select
+                            defaultOptions
                             options={productModelsNames}
-                            trigger=""
-                            matchAny
-                            regex={/[а-яА-Яa-zA-Z0-9_-]+/}
-                            spacer=""
-                            offsetY={15}
                             passThroughEnter
-                            onSelect={(tName) => {
-                                handleSelectRelatedProducts(tName);
-                                setRelatedValue('');
+                            onChange={({ value, label }) => {
+                                handleSelectRelatedProducts({
+                                    value,
+                                    label,
+                                });
                             }}
                         />
                         <div className="well well-sm">
