@@ -57,4 +57,52 @@
 .lib-footer .footer-list li {
     padding-top: var(--size-normal);
 }
+.lib-footer .footer-list-title{
+    padding-left: var(--size-normal);
+    font-size: 18px;
+}
+.footer-logo-img{
+    display: none;
+}
+.accordion-info{
+    display: none;
+    margin-top: 20px;
+}
+@media (max-width: 1024px) {
+    .footer-logo-content{
+        display: none;
+    }
+    .lib-footer .footer-links {
+        display: none;
+    }
+    .lib-footer .content-footer{
+        display: flex;
+        flex-direction: column-reverse;
+        margin-left: 30px;
+    }
+    .lib-footer .footer-list-company{
+        display: none;
+    }
+    .footer-form-input{
+        display: flex;
+        justify-content: flex-start;
+    }
+    .lib-footer .content-footer{
+        padding-top: 30px;
+        margin-top: 0;
+    }
+    .footer-logo-img{
+        display: block;
+        margin-bottom: 20px;
+    }
+    .lib-footer .footer-title-info-company{
+        display: none;
+    }
+    .footer-title-info-client{
+        display: none;
+    }
+    .accordion-info{
+        display: block;
+    }
+}
 

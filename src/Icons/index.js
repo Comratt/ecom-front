@@ -21,6 +21,7 @@ import PlusIcon from './PlusIcon';
 import Relevance from './Relevance';
 import Filters from './Filters';
 import MinusCircle from './MinusCircle';
+import FooterLogo from './FooterLogo';
 
 export {
     Remove,
@@ -46,4 +47,5 @@ export {
     Relevance,
     Filters,
     MinusCircle,
+    FooterLogo,
 };
