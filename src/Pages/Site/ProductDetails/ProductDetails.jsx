@@ -13,6 +13,8 @@ import { Accordion, AccordionItem } from 'Components/Accordion';
 import { ScrollSlider } from 'Components/ScrollSlider';
 import { SliderModal } from 'Components/SliderModal';
 import { BigSlider } from 'Components/Slider';
+import SliderMobileDevices from 'Components/SliderMobileDevices/SliderMobileDevices';
+import { useDetectedMobileDevice } from '../../../hooks/useDetectMobileDevice';
 
 import './ProductInfo.css';
 
@@ -24,6 +26,8 @@ export const ProductDetails = () => {
     const [sizeError, setSizeError] = useState(false);
     const [modalSrc, setModalSrc] = useState(false);
     const { result, error, loading } = useProduct();
+
+    const { isMobileSize, isTabletSize } = useDetectedMobileDevice();
 
     console.log(result);
 
@@ -74,16 +78,25 @@ export const ProductDetails = () => {
 
     return (
         <div className="lib-product_info">
-            {modalSrc && (
-                <SliderModal onClose={() => setModalSrc(null)}>
-                    <BigSlider
-                        activeImage={result.images.indexOf(modalSrc)}
+            <div>
+                {modalSrc && (
+                    <SliderModal onClose={() => setModalSrc(null)} className="lib-product-slider">
+                        <BigSlider
+                            activeImage={result.images.indexOf(modalSrc)}
+                            data={result.images}
+                            onClick={() => setModalSrc(null)}
+                        />
+                    </SliderModal>
+                )}
+                {!isMobileSize && !isTabletSize ? (
+                    <ScrollSlider setModalOpen={setModalSrc} data={result.images} />
+                ) : (
+                    <SliderMobileDevices
+                        setModalOpen={setModalSrc}
                         data={result.images}
-                        onClick={() => setModalSrc(null)}
                     />
-                </SliderModal>
-            )}
-            <ScrollSlider setModalOpen={setModalSrc} data={result.images} />
+                )}
+            </div>
             <div className="lib-product_info_content">
                 <div>
                     <h1 className="lib-product_info_product-title">
@@ -131,15 +144,17 @@ export const ProductDetails = () => {
                     <WishlistHeart cardId={result.id} />
                     <span>in Wishlist</span>
                 </div>
-                <div className="lib-product_info_product_description">
-                    <Accordion defaultIndex="0">
-                        <AccordionItem label="Description" index="0">
-                            {result.description}
-                        </AccordionItem>
-                        <AccordionItem label="Description" index="2">
-                            {result.description}
-                        </AccordionItem>
-                    </Accordion>
+                <div className="lib-product_info_product_description_block">
+                    <div className="lib-product_info_product_description">
+                        <Accordion defaultIndex="0">
+                            <AccordionItem label="Description" index="0">
+                                {result.description}
+                            </AccordionItem>
+                            <AccordionItem label="Description" index="2">
+                                {result.description}
+                            </AccordionItem>
+                        </Accordion>
+                    </div>
                 </div>
             </div>
         </div>
