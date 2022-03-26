@@ -77,6 +77,7 @@ export const ProductDetails = () => {
             {modalSrc && (
                 <SliderModal onClose={() => setModalSrc(null)}>
                     <BigSlider
+                        hideDots
                         activeImage={result.images.indexOf(modalSrc)}
                         data={result.images}
                         onClick={() => setModalSrc(null)}

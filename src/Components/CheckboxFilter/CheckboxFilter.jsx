@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Sticky } from 'react-sticky';
 import classNames from 'classnames';
-import { Relevance, Filters } from 'Icons';
+import { Title } from 'Components/Title';
+import { BottomModal } from 'Components/BottomModal';
+import { Filters } from 'Icons';
 import CheckboxFilterItem from '../CheckboxFilterItem/CheckboxFilterItem';
 import { useDetectedMobileDevice } from '../../hooks/useDetectMobileDevice';
 
@@ -10,18 +13,7 @@ import './CheckboxFilter.css';
 export const CheckboxFilter = ({
     className,
 }) => {
-    const initialOptions = [
-        { name: 'Relevance', id: 1 },
-        { name: 'Title A-Z', id: 2 },
-        { name: 'Title Z-A', id: 3 },
-        { name: 'Date | Old to New', id: 4 },
-        { name: 'Date | New to Old', id: 5 },
-        { name: 'Price | Low to high', id: 6 },
-        { name: 'Price | High to Low', id: 7 },
-        { name: 'Discount', id: 8 },
-    ];
-
-    const [options, setOption] = useState(initialOptions);
+    const [isOpen, setOpen] = useState(false);
     const { isTabletSize } = useDetectedMobileDevice();
 
     const componentClasses = classNames(
@@ -40,48 +32,28 @@ export const CheckboxFilter = ({
     );
 
     return (
-        <div className={componentClasses}>
-            <div className="checkbox-filter__container">
-                <h2 className="checkbox-filter__title">Coming Soon</h2>
-                <div className={checkBoxContainerDesktop}>
-                    <CheckboxFilterItem />
-                </div>
-                <div className={checkBoxContainerMobile}>
-                    <div className="wrapperSort sort__mobile">
-                        <span className="sort__mobile svg">
-                            <Relevance />
-                        </span>
-                        <select className="sort__select mobile">
-                            {options.map((option) => (
-                                <option key={option.id}>{option.name}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="wrapperSort sort__mobile filter">
-                        <span className="sort__mobile svg">
-                            <Filters />
-                        </span>
-                        <div className="modalButton">
-                            <span className="modalButton__text">Filters</span>
+        <>
+            <BottomModal isOpen={isOpen} setOpen={setOpen} />
+            <Sticky isSticky={false} topOffset={-50} className={componentClasses}>
+                {({ style }) => (
+                    <div
+                        style={{
+                            ...style,
+                            top: 50,
+                        }}
+                        className="checkbox-filter__container"
+                    >
+                        <Title type={2}>Coming Soon</Title>
+                        <div className={checkBoxContainerDesktop}>
+                            <CheckboxFilterItem />
+                        </div>
+                        <div className={checkBoxContainerMobile}>
+                            <Filters onClick={() => setOpen(true)} />
                         </div>
                     </div>
-                </div>
-            </div>
-            <div className="lower__filter">
-                <div className="counter">
-                    <div className="counter__amount">82</div>
-                    <span className="counter__text">products</span>
-                </div>
-                <div className="sort">
-                    <span className="sort__text">Sorting:</span>
-                    <select className="sort__select">
-                        {options.map((option) => (
-                            <option key={option.id}>{option.name}</option>
-                        ))}
-                    </select>
-                </div>
-            </div>
-        </div>
+                )}
+            </Sticky>
+        </>
     );
 };
 

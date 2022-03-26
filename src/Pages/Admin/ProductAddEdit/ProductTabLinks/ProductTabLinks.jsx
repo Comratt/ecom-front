@@ -103,16 +103,16 @@ const ProductTabLinks = () => {
                             }}
                         />
                         <div className="well well-sm">
-                            {relatedProducts.map((productName) => (
-                                <span key={productName} className="label-with-button">
+                            {relatedProducts.map(({ value, label }) => (
+                                <span key={value} className="label-with-button">
                                     <button
-                                        onClick={() => removeSelectRelatedProducts(productName)}
+                                        onClick={() => removeSelectRelatedProducts(value)}
                                         className="minus__button"
                                         type="button"
                                     >
                                         <MinusCircle height={10} width={10} />
                                     </button>
-                                    {productName}
+                                    {label}
                                 </span>
                             ))}
                         </div>

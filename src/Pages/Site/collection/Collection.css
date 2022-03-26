@@ -1,0 +1,35 @@
+.collection-page__container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.collection-page__container .lib-collection-list {
+    padding: 40px 56px 0;
+}
+
+@media (max-width: 1280px) {
+    .collection-page__container aside {
+        display: none;
+    }
+
+    .collection-page__container .lib-collection-list {
+        padding: 0 40px;
+    }
+
+    .collection-page__container .lib-collection-list .lib-card .lib-card__picture {
+        border-radius: 0;
+    }
+}
+
+@media (max-width: 1024px) {
+    .collection-page__container .lib-collection-list {
+        padding: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .collection-page__container .lib-card .lib-card__info {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}

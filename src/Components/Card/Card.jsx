@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Swatches } from '../Swatches';
 import { Title } from '../Title';
+import WishlistHeart from '../WishlistHeart/WishlistHeart';
 
 import './Card.css';
-import WishlistHeart from '../WishlistHeart/WishlistHeart';
 
 export const Card = ({
     className,
@@ -26,7 +26,10 @@ export const Card = ({
                 <WishlistHeart cardId={cardId} />
             </div>
             <NavLink to={detailsPath}>
-                <img className="lib-card__picture" src={imagePath} alt="dress" />
+                <div
+                    className="lib-card__picture"
+                    style={{ backgroundImage: `url(${imagePath})` }}
+                />
             </NavLink>
             <div className="lib-card__info">
                 <div className="lib-card__info-supsale">

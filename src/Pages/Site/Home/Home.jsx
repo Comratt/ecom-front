@@ -2,7 +2,6 @@ import React from 'react';
 
 import { View } from 'Components/View';
 import { BigSlider } from 'Components/Slider';
-import { CheckboxFilter } from 'Components/CheckboxFilter';
 import { SliderCardList } from 'Components/SliderCardList';
 
 import { useHome } from 'context/home/hooks/useHome';
@@ -16,8 +15,8 @@ export const Home = () => {
         <View>
             <BigSlider data={result} />
             <View className="main-container">
-                <CheckboxFilter />
-                <SliderCardList />
+                <SliderCardList title="New This Week" />
+                <SliderCardList title="New Collection" />
             </View>
         </View>
     );
