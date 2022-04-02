@@ -7,7 +7,7 @@ import './CheckboxFilterItem.css';
 import PropTypes from 'prop-types';
 import { AccardionArrow } from '../../Icons';
 
-const PriceRange = () => {
+export const PriceRange = () => {
     const STEP = 1;
     const MIN = 0;
     const MAX = 100;

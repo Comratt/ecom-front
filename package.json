@@ -29,6 +29,7 @@
     "react-input-mask": "^2.0.4",
     "react-loader-spinner": "^4.0.0",
     "react-modal-sheet": "^1.5.1",
+    "react-multilevel-sidebar": "^1.0.4",
     "react-range": "^1.8.11",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
