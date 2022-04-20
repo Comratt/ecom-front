@@ -10,7 +10,7 @@ import { useDetectedMobileDevice } from '../../hooks/useDetectMobileDevice';
 
 const CustomArrowRight = (props) => {
     const { className, style, onClick } = props;
-    const componentClassName = classNames('arrow-right', className);
+    const componentClassName = classNames('arrow-right-carousel', className);
 
     return (
         <div
@@ -22,8 +22,7 @@ const CustomArrowRight = (props) => {
 };
 const CustomArrowLeft = (props) => {
     const { className, style, onClick } = props;
-    const componentClassName = classNames('arrow-left', className);
-    const left = 95;
+    const componentClassName = classNames('arrow-left-carousel', className);
 
     return (
         <div
