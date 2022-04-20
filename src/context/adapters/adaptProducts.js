@@ -3,32 +3,36 @@ import { getFormattedPrice, OPTION_TYPES } from 'Constants';
 import { adaptCategories } from 'Pages/Admin/hooks/useFetchCategories';
 import { getFilteredOptions } from 'Helpers';
 
-export const adaptProducts = ({ data = [] } = {}) => data.map(({
-    product_id,
-    description,
-    name,
-    image,
-    price,
-    related,
-    discounts,
-    colors,
-    sizes,
-}) => ({
-    id: product_id,
-    link: `/products/${product_id}`,
-    name,
-    image: getImage(image),
-    price: getFormattedPrice(price),
-    colors: colors?.map(
-        (item) => ({ ...item, id: item.option_value_id, name: item.name_value }),
-    ),
-    sizes: sizes?.map(
-        (item) => ({ ...item, id: item.option_value_id, name: item.name_value }),
-    ),
-    description,
-    related,
-    discounts,
-}));
+export const adaptProducts = ({ data = [] } = {}) => {
+    if (!Array.isArray(data)) return [];
+
+    return data.map(({
+        p_id,
+        description,
+        name,
+        image,
+        price,
+        related,
+        discounts,
+        colors,
+        sizes,
+    }) => ({
+        id: p_id,
+        link: `/products/${p_id}`,
+        name,
+        image: getImage(image),
+        price: getFormattedPrice(price),
+        colors: colors?.map(
+            (item) => ({ ...item, id: item.option_value_id, name: item.name_value }),
+        ),
+        sizes: sizes?.map(
+            (item) => ({ ...item, id: item.option_value_id, name: item.name_value }),
+        ),
+        description,
+        related,
+        discounts,
+    }));
+};
 
 export const adaptProduct = (data = {}, allCategories) => {
     if (!Object.keys(data).length) {

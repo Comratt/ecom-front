@@ -80,49 +80,13 @@ export const ProductDetails = () => {
     return (
         <div className="lib-product_details">
             <div>
-                <div className="lib-product_info">
-                    <div>
-                        {modalSrc && (
-                            <SliderModal onClose={() => setModalSrc(null)} className="lib-product-slider">
-                                <BigSlider
-                                    activeImage={result.images.indexOf(modalSrc)}
-                                    data={result.images}
-                                    onClick={() => setModalSrc(null)}
-                                />
-                            </SliderModal>
-                        )}
-                        {!isMobileSize && !isTabletSize ? (
-                            <ScrollSlider setModalOpen={setModalSrc} data={result.images} />
-                        ) : (
-                            <SliderMobileDevices
-                                setModalOpen={setModalSrc}
-                                data={result.images}
-                            />
-                        )}
-                    </div>
-                    <div className="lib-product_info_content">
-                        <div>
-                            <h1 className="lib-product_info_product-title">
-                                {result.name}
-                            </h1>
-                            <p className="lib-product_info_product-normal-price">
-                                <b>{result.price}</b>
-                            </p>
-                            <p className="lib-product_info_colour">
-                                Color
-                                {' '}
-                                <span>
-                                    <b>
-                                        -
-                                        {activeColor?.name}
-                                    </b>
-                                </span>
-                            </p>
-                        </div>
-                        <Swatches
-                            data={result.colors}
-                            active={activeColor?.id}
-                            setActive={setActiveColor}
+                {modalSrc && (
+                    <SliderModal onClose={() => setModalSrc(null)} className="lib-product-slider">
+                        <BigSlider
+                            hideDots
+                            activeImage={result.images.indexOf(modalSrc)}
+                            data={result.images}
+                            onClick={() => setModalSrc(null)}
                         />
                         <div className="lib-product_info_size">
                             <p className="size-title"><b>Size</b></p>

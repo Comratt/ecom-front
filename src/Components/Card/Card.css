@@ -2,16 +2,24 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    margin: 20px 5px;
+    padding: 0 4px;
 }
 
 .lib-card .lib-card__picture {
-    border-radius: 7px;
-    max-height: 445px;
+    object-fit: cover;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 4px;
+    display: block;
+    margin-bottom: 8px;
+    padding-top: 162.5%;
+    width: 100%;
+    position: relative;
 }
 
 .lib-card .lib-card__info {
-    padding-top: 8px;
+    padding-top: 2px;
     padding-bottom: 25px;
 }
 
@@ -28,6 +36,7 @@
     border: none;
     padding: 0;
     margin: 0;
+    z-index: 2;
 }
 .lib-card .lib-card__info-supsale {
     display: flex;
@@ -35,7 +44,6 @@
     color: var(--color-accent-light);
     font-size: var(--fz-tiny);
     font-family: var(--accent-ff);
-    margin-bottom: var(--size-smaller);
     min-height: 10px;
 }
 
@@ -55,6 +63,7 @@
 }
 
 .lib-card .lib-card__info-price {
+    margin: 3px 0;
     line-height: var(--line-h-normal);
     color: var(--color-accent);
     font-size: var(--fz-small);

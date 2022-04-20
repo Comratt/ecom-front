@@ -77,7 +77,7 @@ const BigSliderDots = memo(({ data, active }) => {
 });
 
 export const BigSlider = memo(({
-    className, data, onClick, activeImage,
+    className, data, onClick, activeImage, hideDots,
 }) => {
     const timer = useRef(0);
     const [activeSlide, setActiveSlide] = useState(activeImage || 0);
@@ -110,9 +110,11 @@ export const BigSlider = memo(({
         }
     };
 
-    const startTimer = useCallback(() => (
-        timer.current = setTimeout(() => handleNext(), 6000)
-    ), [timer.current]);
+    const startTimer = useCallback(() => {
+        if (!hideDots) {
+            timer.current = setTimeout(() => handleNext(), 6000);
+        }
+    }, [timer.current]);
 
     const clearTimer = useCallback(() => clearTimeout(timer.current), [timer.current]);
 
@@ -161,7 +163,7 @@ export const BigSlider = memo(({
                     onClick={onClick}
                 />
             ))}
-            <BigSliderDots data={data} active={(activeSlide)} />
+            {!hideDots && <BigSliderDots data={data} active={(activeSlide)} />}
             <button
                 aria-label="Slider next slide"
                 onClick={handleNext}

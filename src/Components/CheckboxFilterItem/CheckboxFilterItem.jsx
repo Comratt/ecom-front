@@ -184,7 +184,12 @@ const CheckboxFilterItem = (
             name: 'Sort by',
             id: 5,
             text: [
-                'date',
+                'Relevance',
+                'Title A-Z',
+                'Title Z-A',
+                'Date | Old to New',
+                'Date | New to Old',
+                'Price | Low to high',
             ],
         },
     ];
