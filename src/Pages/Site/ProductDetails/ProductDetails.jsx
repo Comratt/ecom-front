@@ -5,6 +5,7 @@ import { useAlert } from 'react-alert';
 
 import { useProduct } from 'context/product/hooks/useProduct';
 import { addToCart } from 'Store/Modules/Cart/cartActions';
+import LocalStorageService from 'Services/LocalStorageService';
 
 import { Swatches } from 'Components/Swatches';
 import AddCartBtn from 'Components/AddCartBtn/AddCartBtn';
@@ -14,10 +15,10 @@ import { ScrollSlider } from 'Components/ScrollSlider';
 import { SliderModal } from 'Components/SliderModal';
 import { BigSlider } from 'Components/Slider';
 import SliderMobileDevices from 'Components/SliderMobileDevices/SliderMobileDevices';
+import ProductCarousel from 'Components/PorductCarousel';
 import { useDetectedMobileDevice } from '../../../hooks/useDetectMobileDevice';
 
 import './ProductInfo.css';
-import ProductCarousel from '../../../Components/PorductCarousel';
 
 export const ProductDetails = () => {
     const alert = useAlert();
@@ -26,10 +27,14 @@ export const ProductDetails = () => {
     const [activeSize, setActiveSize] = useState({});
     const [sizeError, setSizeError] = useState(false);
     const [modalSrc, setModalSrc] = useState(false);
-    const { result, error, loading } = useProduct();
+    const {
+        result, error, loading, productId,
+    } = useProduct();
     const filteredColorSizes = result.colorSizes
         ?.filter(({ colorValId }) => activeColor.id === colorValId);
 
+    const relatedIds = result?.related?.map(({ related_product_id }) => related_product_id);
+    const historyViewed = LocalStorageService.getItem('viewed', []);
     const { isMobileSize, isTabletSize } = useDetectedMobileDevice();
 
     const itemClassNames = (id) => (
@@ -76,6 +81,17 @@ export const ProductDetails = () => {
     };
 
     useEffect(() => {
+        const viewedPreviously = LocalStorageService.getItem('viewed') || [];
+        const modifiedViewed = viewedPreviously?.includes(productId)
+            ? viewedPreviously
+            : [...viewedPreviously, productId];
+
+        LocalStorageService.setItem({
+            viewed: modifiedViewed,
+        });
+    }, [productId]);
+
+    useEffect(() => {
         if (result?.colors && result?.colors?.length) {
             setActiveColor(result?.colors[0]);
         }
@@ -84,6 +100,7 @@ export const ProductDetails = () => {
     if (loading) {
         return <div>Loading...</div>;
     }
+    console.log(result);
 
     return (
         <>
@@ -188,7 +205,18 @@ export const ProductDetails = () => {
                 </div>
             </div>
             <div>
-                <ProductCarousel data={result.images} />
+                <ProductCarousel
+                    id={relatedIds}
+                    title="Related Products"
+                    data={result.images}
+                />
+            </div>
+            <div>
+                <ProductCarousel
+                    id={historyViewed}
+                    title="Related Products"
+                    data={result.images}
+                />
             </div>
         </>
     );

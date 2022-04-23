@@ -7,6 +7,7 @@ import './ProductCarousel.css';
 import { useFetchProducts } from '../../context/hooks/useFetchProducts';
 import { adaptProducts } from '../../context/adapters';
 import { useDetectedMobileDevice } from '../../hooks/useDetectMobileDevice';
+import { Card } from '../Card';
 
 const CustomArrowRight = (props) => {
     const { className, style, onClick } = props;
@@ -33,7 +34,10 @@ const CustomArrowLeft = (props) => {
     );
 };
 const ProductCarousel = ({
-    className, count = 4,
+    className,
+    title,
+    count = 4,
+    id = null,
 }) => {
     const componentClasses = classNames(
         'lib-product_related',
@@ -43,26 +47,30 @@ const ProductCarousel = ({
     const [filters, setFilters] = useState({
         page: 1,
         count: (count * 2) + 1,
+        id,
     });
     const { loading, result, isLastPage } = useFetchProducts(filters);
     const { isTabletSize } = useDetectedMobileDevice();
 
     const handlePage = (prevCount, nextCount) => (
         setTimeout(() => {
-            setFilters((prevFilters) => ({
-                ...prevFilters,
-                page: ((nextCount > prevCount) && !isLastPage)
-                    ? prevFilters.page + 1
-                    : prevFilters.page,
-            }));
+            if ((nextCount > prevCount) && !isLastPage) {
+                setFilters((prevFilters) => ({
+                    ...prevFilters,
+                    page: prevFilters.page + 1,
+                }));
+            }
         }, 700)
     );
 
     const settings = {
-        infinite: true,
         speed: 500,
         slidesToShow: isTabletSize ? 2 : count,
         slidesToScroll: isTabletSize ? 2 : count,
+        draggable: false,
+        lazyLoad: false,
+        infinite: false,
+        adaptiveHeight: true,
         nextArrow: <CustomArrowRight />,
         prevArrow: <CustomArrowLeft />,
         beforeChange: handlePage,
@@ -71,14 +79,20 @@ const ProductCarousel = ({
     return (
         <div className="lib-product_related_content">
             <div className="lib-product_related_title">
-                Related Products
+                {title}
             </div>
             <div className="lib-product_related_slider">
                 <Slider {...settings}>
                     {result && adaptProducts({ data: result }).map((product) => (
-                        <div className="lib-product_related_card">
-                            <img className="lib-product_related_img" src={product.image} />
-                        </div>
+                        <Card
+                            cardId={product.id}
+                            key={product.id}
+                            imagePath={product.image}
+                            detailsPath={product.link}
+                            price={product.price}
+                            title={product.name}
+                            colors={product.colors}
+                        />
                     ))}
                 </Slider>
             </div>

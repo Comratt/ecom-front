@@ -17,6 +17,7 @@ export const Card = ({
     currency,
     colors,
     cardId,
+    hideInfo,
 }) => {
     const componentClassNames = classNames('lib-card', className);
 
@@ -31,18 +32,20 @@ export const Card = ({
                     style={{ backgroundImage: `url(${imagePath})` }}
                 />
             </NavLink>
-            <div className="lib-card__info">
-                <div className="lib-card__info-supsale">
-                    <span>Coming soon</span>
+            {!hideInfo && (
+                <div className="lib-card__info">
+                    <div className="lib-card__info-supsale">
+                        <span>Coming soon</span>
+                    </div>
+                    <NavLink to={detailsPath} className="lib-card__info-content">
+                        <Title type={4} className="lib-card__info-title">{title}</Title>
+                    </NavLink>
+                    <p className="lib-card__info-price">
+                        {price}
+                    </p>
+                    <Swatches data={colors} />
                 </div>
-                <NavLink to={detailsPath} className="lib-card__info-content">
-                    <Title type={4} className="lib-card__info-title">{title}</Title>
-                </NavLink>
-                <p className="lib-card__info-price">
-                    {price}
-                </p>
-                <Swatches data={colors} />
-            </div>
+            )}
         </div>
     );
 };
@@ -56,6 +59,7 @@ Card.propTypes = {
         PropTypes.string, PropTypes.number,
     ]),
     currency: PropTypes.string,
+    hideInfo: PropTypes.bool,
 };
 
 Card.defaultProps = {
@@ -65,6 +69,5 @@ Card.defaultProps = {
     imagePath: '',
     title: '',
     price: 0,
+    hideInfo: false,
 };
-
-export default Card;
