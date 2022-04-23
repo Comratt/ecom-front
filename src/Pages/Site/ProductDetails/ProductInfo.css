@@ -1,3 +1,8 @@
+.lib-product_details{
+    display: flex;
+    flex-direction: column;
+}
+
 .product-details-page .lib-product_info {
     max-width: 1440px;
     margin: 0 auto;
