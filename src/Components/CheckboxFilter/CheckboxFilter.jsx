@@ -12,6 +12,10 @@ import './CheckboxFilter.css';
 
 export const CheckboxFilter = ({
     className,
+    handleSortBy,
+    handleFilterBy,
+    handleAvailable,
+    filters,
 }) => {
     const [isOpen, setOpen] = useState(false);
     const { isTabletSize } = useDetectedMobileDevice();
@@ -45,7 +49,12 @@ export const CheckboxFilter = ({
                     >
                         <Title type={2}>Coming Soon</Title>
                         <div className={checkBoxContainerDesktop}>
-                            <CheckboxFilterItem />
+                            <CheckboxFilterItem
+                                filters={filters}
+                                handleSortBy={handleSortBy}
+                                handleFilterBy={handleFilterBy}
+                                handleAvailable={handleAvailable}
+                            />
                         </div>
                         <div className={checkBoxContainerMobile}>
                             <Filters onClick={() => setOpen(true)} />

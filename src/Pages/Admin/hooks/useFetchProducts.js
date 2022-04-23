@@ -13,20 +13,22 @@ const adapt = (data = []) => data.map((product) => ({
 }));
 
 export const useFetchProducts = () => {
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState({ page: 1 });
+    const handleChangePage = (pageNumber) => setPage({ page: pageNumber });
     const { loading, error, result } = useAsync(ProductsService.getAll, [page]);
 
     return useMemo(() => ({
         loading,
         error,
         result: adapt(result?.data),
-        page,
-        setPage,
+        totalPages: result?.last_page,
+        page: page.page,
+        setPage: handleChangePage,
     }), [
         loading,
         error,
         result,
         page,
-        setPage,
+        handleChangePage,
     ]);
 };

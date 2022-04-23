@@ -1,89 +1,116 @@
-import React from 'react';
-import Layout from '../Layout';
-import './Order.css';
-import { Eye, Menu, Pencil } from '../../../Icons';
+import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
+
+import Loader from 'Components/Loader';
+import Alert from 'Components/Alert';
+import {
+    Edit,
+    Eye,
+    Menu,
+    Pencil,
+} from 'Icons';
+import { useFetchOrders } from '../hooks/useFetchOrders';
+import Layout from '../Layout';
+
+import './Order.css';
 
 const Order = () => {
     const history = useHistory();
+    const { result, loading, error } = useFetchOrders();
 
-    function handleClick() {
-        history.push('/admin/orderproduct');
-    }
+    const handleClick = (id) => () => history.push(`/admin/order/${id}`);
+
+    const renderContent = useCallback(() => {
+        if (loading) {
+            return <Loader size={7} center />;
+        }
+        if (!loading && error) {
+            return <Alert type="warning" text={error.message} />;
+        }
+
+        return (
+            <table className="table table-bordered">
+                <thead>
+                    <tr>
+                        {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+                        <th scope="col" style={{ width: '3%' }} />
+                        <th scope="col" style={{ width: '9%' }}>Orders Id</th>
+                        <th scope="col">Customer</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Date Added</th>
+                        <th scope="col">Date Modified</th>
+                        <th scope="col" style={{ width: '4%' }}>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {result.map((order) => (
+                        <tr key={order.id}>
+                            <td>
+                                <div className="custom-control custom-checkbox">
+                                    <input
+                                        type="checkbox"
+                                        className="custom-control-input"
+                                        id="customCheck"
+                                    />
+                                    <label
+                                        className="custom-control-label"
+                                        htmlFor="customCheck "
+                                    />
+                                </div>
+                            </td>
+                            <td className="table-cell__img">
+                                {order.id}
+                            </td>
+                            <td>
+                                {order.customer}
+                            </td>
+                            <td>
+                                {order.status}
+                            </td>
+                            <td>
+                                {order.totalPrice}
+                            </td>
+                            <td>
+                                {order.dateAdd}
+                            </td>
+                            <td>
+                                {order.dateUpdate}
+                            </td>
+                            <td>
+                                <button
+                                    type="button"
+                                    className="btn btn-outline-primary"
+                                    onClick={handleClick(order.id)}
+                                >
+                                    <Eye
+                                        width={14}
+                                        height={14}
+                                        fill="blue"
+                                    />
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        );
+    }, [loading, error, result, handleClick]);
 
     return (
-        <div>
-            <h4 className="orderListHeader">Orders</h4>
-            <div className="orderListContent">
-
-                <h6 className="orderListHeader">
-                    <Menu
-                        width={24}
-                        style={{ marginRight: '10px' }}
-                    />
-                    Order List
-                </h6>
-                <div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th><input type="checkbox" /></th>
-                                <th>Orders Id</th>
-                                <th>Customer</th>
-                                <th>Status</th>
-                                <th>Total</th>
-                                <th>Date Added</th>
-                                <th>Date Modified</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <input type="checkbox" />
-                                </td>
-                                <td>
-                                    3140
-                                </td>
-                                <td>
-                                    Virat Kohli
-                                </td>
-                                <td>
-                                    Pending
-                                </td>
-                                <td>
-                                    $284.99
-                                </td>
-                                <td>
-                                    01/06/2018
-                                </td>
-                                <td>
-                                    01/06/2018
-                                </td>
-                                <td>
-                                    <button
-                                        className="orderButtonDetails"
-                                        onClick={handleClick}
-                                    >
-                                        <Eye
-                                            width={20}
-                                            fill="white"
-                                        />
-                                    </button>
-                                    <button
-                                        className="orderButton"
-                                    >
-                                        <Pencil
-                                            fill="white"
-                                        />
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <>
+            <div
+                className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+            >
+                <h1>Orders</h1>
+                <div className="btn-toolbar mb-2 mb-md-0" />
+            </div>
+            <div className="container">
+                <div className="row">
+                    {renderContent()}
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

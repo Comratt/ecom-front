@@ -32,6 +32,7 @@ export const AddProductProvider = ({ children }) => {
                 metaTitle: product.meta_title,
                 metaTags: product.meta_tag,
                 price: product.purePrice,
+                status: product.status,
             });
             if (product.categories && product.categories.length) {
                 const categoryNames = product.categories.map((cat) => ({

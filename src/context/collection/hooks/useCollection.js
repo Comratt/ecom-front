@@ -11,6 +11,7 @@ export const useCollection = () => {
         isLastPage,
         currentPage,
         setFilters,
+        filters,
     } = useCollectionData();
     const handleSelectCategory = ({ target: { id } }) => {
         setFilters((prevFilters) => {
@@ -33,6 +34,25 @@ export const useCollection = () => {
         ...prevFilters,
         page,
     }));
+    const handleSortBy = (value) => setFilters((prevFilters) => ({
+        ...prevFilters,
+        page: 1,
+        sortBy: value,
+    }));
+    const handleFilterBy = (name, value) => {
+        setFilters((prevFilters) => ({
+            ...prevFilters,
+            page: 1,
+            [name]: value,
+        }));
+    };
+    const handleAvailable = () => {
+        setFilters((prevFilters) => ({
+            ...prevFilters,
+            page: 1,
+            available: !prevFilters.available,
+        }));
+    };
 
     useCollectionLayout();
 
@@ -44,6 +64,10 @@ export const useCollection = () => {
         currentPage,
         handleSelectCategory,
         handlePageCount,
+        handleSortBy,
+        handleFilterBy,
+        handleAvailable,
+        filters,
     }), [
         loading,
         result,
@@ -52,5 +76,9 @@ export const useCollection = () => {
         currentPage,
         handleSelectCategory,
         handlePageCount,
+        handleSortBy,
+        handleFilterBy,
+        handleAvailable,
+        filters,
     ]);
 };

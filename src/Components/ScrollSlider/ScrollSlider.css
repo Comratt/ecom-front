@@ -1,22 +1,23 @@
 .scroll-slider {
-    width: calc(100% - 560px);
     margin-bottom: 60px;
     position: relative;
-    float: left;
+    display: flex;
 }
 
 .scroll-slider_content {
     width: 100%;
-    padding-left: 126px;
+    display: flex;
+    padding-left: 30px;
+    padding-right: 60px;
     position: relative;
     margin: 0 auto;
-    max-width: calc(100vh - 60px);
     overflow: hidden;
 }
 
 .scroll-slider_content-inner {
     height: 671px;
     overflow: auto;
+    width: 100%;
 }
 
 .scroll-slider_content-inner::-webkit-scrollbar {
@@ -30,10 +31,9 @@
 }
 
 .scroll-slider .image-inner {
-    padding-top: 111.1%;
-    background-size: contain;
+    background-position: 50%;
     background-repeat: no-repeat;
-    background-position: center center;
+    background-size: contain;
     width: 100%;
     min-height: 1px;
     position: relative;
@@ -42,12 +42,7 @@
 
 .scroll-slider .scroll-slider_thumbnails {
     margin-bottom: 30px;
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    width: 56px;
-    background-color: #fff;
+    margin-right: 60px;
 }
 
 .scroll-slider .thumbnail-image {

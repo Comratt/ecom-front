@@ -16,13 +16,22 @@ export const Collection = () => {
         currentPage,
         handleSelectCategory,
         handlePageCount,
+        handleSortBy,
+        handleFilterBy,
+        handleAvailable,
+        filters,
     } = useCollection();
 
     return (
         <View className="collection-page__container">
             <CollectionList onChange={handleSelectCategory} data={categories}>
                 <div>
-                    <CheckboxFilter />
+                    <CheckboxFilter
+                        filters={filters}
+                        handleSortBy={handleSortBy}
+                        handleFilterBy={handleFilterBy}
+                        handleAvailable={handleAvailable}
+                    />
                     <CardList
                         isLastPage={isLastPage}
                         currentPage={currentPage}

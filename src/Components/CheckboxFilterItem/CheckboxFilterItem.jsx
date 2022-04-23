@@ -1,17 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import debounce from 'lodash/debounce';
 import { Range, getTrackBackground } from 'react-range';
 import Popup from 'reactjs-popup';
+import { useAsync } from 'react-async-hook';
 import 'reactjs-popup/dist/index.css';
 import classNames from 'classnames';
 import './CheckboxFilterItem.css';
 import PropTypes from 'prop-types';
 import { AccardionArrow } from '../../Icons';
+import ProductsService from '../../Services/ProductsService';
 
-const PriceRange = () => {
-    const STEP = 1;
-    const MIN = 0;
-    const MAX = 100;
-    const [values, setValues] = useState([25, 75]);
+const PriceRange = ({
+    min, max, onFinalChange, current,
+}) => {
+    const STEP = 25;
+    const MIN = parseFloat(min);
+    const MAX = parseFloat(max);
+    const [values, setValues] = useState([MIN, MAX]);
+
+    useEffect(() => {
+        if (current?.length) {
+            setValues(current);
+        }
+    }, [current]);
 
     return (
         <div>
@@ -20,10 +31,10 @@ const PriceRange = () => {
                 step={STEP}
                 min={MIN}
                 max={MAX}
-                onChange={(values) => {
-                    console.log(values);
-                    setValues(values);
+                onChange={(val) => {
+                    setValues(val);
                 }}
+                onFinalChange={(val) => onFinalChange('price', val)}
                 renderTrack={({ props, children }) => (
                     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
                     <div
@@ -114,96 +125,119 @@ const PriceRange = () => {
         </div>
     );
 };
-const CheckboxFilterItem = (
+const CheckboxFilterItem = ({
     className,
-) => {
-    const initialData = [
-        {
-            name: 'Color',
-            id: 1,
-            text: [
-                'green',
-                'red',
-                'blue',
-                'dark',
-                'green',
-                'red',
-                'blue',
-                'dark',
-                'green',
-                'red',
-                'blue',
-                'dark',
-                'green',
-                'red',
-                'blue',
-                'dark',
-            ],
-        },
+    handleSortBy,
+    handleFilterBy,
+    handleAvailable,
+    filters,
+}) => {
+    const [staticFilters, setStaticFilters] = useState([
+        { name: 'Color', id: 1, text: [] },
+        { name: 'Size', id: 2, text: [] },
+        { name: 'Price', id: 3, text: [] },
         {
             name: 'Stock',
-            id: 2,
-            text: [
-                'In Stock',
-            ],
-        },
-        {
-            name: 'Price',
-            id: 3,
-            text: [
-                <PriceRange />,
-            ],
-        },
-        {
-            name: 'Size',
             id: 4,
             text: [
-                'xs',
-                's',
-                'm',
-                'l',
-                'xl',
-                'xs',
-                's',
-                'm',
-                'l',
-                'xl',
-                'xs',
-                's',
-                'm',
-                'l',
-                'xl',
-                'xs',
-                's',
-                'm',
-                'l',
-                'xl',
+                { value: 'stock', name: 'stock', text: 'In stock' },
             ],
         },
         {
             name: 'Sort by',
             id: 5,
             text: [
-                'Relevance',
-                'Title A-Z',
-                'Title Z-A',
-                'Date | Old to New',
-                'Date | New to Old',
-                'Price | Low to high',
+                { value: 'relevance', name: 'sortBy', text: 'Relevance' },
+                { value: 'dateAsc', name: 'sortBy', text: 'Date | New to Old' },
+                { value: 'dateDesc', name: 'sortBy', text: 'Date | Old to New' },
+                { value: 'priceAsc', name: 'sortBy', text: 'Price | Low to high' },
+                { value: 'priceDesc', name: 'sortBy', text: 'Price | High to low' },
             ],
         },
-    ];
+    ]);
+    const { result: minMaxPrice } = useAsync(ProductsService.getMinMaxPrice, []);
+    const { result: colors } = useAsync(ProductsService.getColors, []);
+
+    useEffect(() => {
+        if (minMaxPrice?.length) {
+            setStaticFilters((prev) => prev.map((item) => {
+                if (item.id === 3) {
+                    return ({
+                        ...item,
+                        text: [{
+                            min: minMaxPrice[0],
+                            max: minMaxPrice[1],
+                        }],
+                    });
+                }
+
+                return item;
+            }));
+        }
+    }, [minMaxPrice]);
+
+    useEffect(() => {
+        if (colors?.length) {
+            setStaticFilters((prev) => prev.map((item) => {
+                if (item.id === 1) {
+                    return ({
+                        ...item,
+                        text: colors?.map(({ id, name }) => ({
+                            value: id,
+                            name: 'color',
+                            text: name,
+                        })),
+                    });
+                }
+
+                return item;
+            }));
+        }
+    }, [colors]);
 
     const componentClasses = classNames(
         'lib-checkboxFilterItem',
         className,
     );
 
+    const handleInputChange = (filterId) => ({ target }) => {
+        if (filterId === 4) {
+            handleAvailable();
+        }
+        if (filterId === 1) {
+            if (filters?.color?.includes(target.value)) {
+                handleFilterBy('color', filters?.color?.filter((colorId) => colorId !== target.value));
+            } else {
+                const colors = filters?.color || [];
+
+                handleFilterBy('color', [...colors, target.value]);
+            }
+        }
+        if (filterId === 5) {
+            if (filters.sortBy === target.value) {
+                return handleSortBy('');
+            }
+            handleSortBy(target.value);
+        }
+    };
+
+    const isChecked = (filterId, value) => {
+        if (filterId === 5) {
+            return filters.sortBy === value;
+        } if (filterId === 4) {
+            return filters.available;
+        } if (filterId === 1) {
+            return filters?.color?.includes(value?.toString());
+        }
+    };
+
+    console.log(filters?.color);
+
     return (
         <>
             <div className={componentClasses}>
                 <div className="filters__items">
-                    {initialData.map((list) => (
+                    {staticFilters.map((list) => (
                         <Popup
                             arrow={false}
                             trigger={(open) => (
@@ -221,14 +255,28 @@ const CheckboxFilterItem = (
                             position="bottom center"
                         >
                             <ul>
-                                {list.text.map((item) => (
-                                    <li className="filters__item__checkbox_list">
-                                        <label className="checkbox" htmlFor="1">
-                                            <input id="1" type="checkbox" />
-                                            <span>{item}</span>
+                                {list.text.map((data) => (data?.value ? (
+                                    <li className="filters__item__checkbox_list" key={data.value}>
+                                        <label className="checkbox" htmlFor={data.value}>
+                                            <input
+                                                onClick={handleInputChange(list.id)}
+                                                name={data.name}
+                                                id={data.value}
+                                                value={data.value}
+                                                checked={isChecked(list.id, data.value)}
+                                                type={list.id === 1 ? 'checkbox' : 'radio'}
+                                            />
+                                            <span>{data.text}</span>
                                         </label>
                                     </li>
-                                ))}
+                                ) : (
+                                    <PriceRange
+                                        onFinalChange={handleFilterBy}
+                                        min={data.min}
+                                        max={data.max}
+                                        current={filters?.price}
+                                    />
+                                )))}
                             </ul>
                         </Popup>
                     ))}

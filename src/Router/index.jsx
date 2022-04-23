@@ -46,8 +46,8 @@ const RouterComponent = () => (
                 <Route path="/admin/products/:id" component={AdminProductEdit} />
                 <Route path="/admin/add/products" component={(props) => <AdminProductEdit isFromAdd {...props} />} />
                 <Route path="/admin/option" component={AdminOptions} />
-                <Route path="/admin/order" component={AdminOrder} />
-                <Route path="/admin/orderproduct" component={AdminOrderProduct} />
+                <Route exact path="/admin/order" component={AdminOrder} />
+                <Route path="/admin/order/:id" component={AdminOrderProduct} />
                 <Route path="/admin/login" component={AdminLogin} />
                 <Layout>
                     <Route exact path="/" component={SiteHome} />

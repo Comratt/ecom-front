@@ -8,6 +8,8 @@ export const VALIDATION_MAX_NUMBER = 'max';
 export const VALIDATION_MIN_NUMBER = 'min';
 export const VALIDATION_REGEXP_PATTERN = 'pattern';
 export const VALIDATION_CUSTOM = 'validate';
+export const DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss';
+export const DATEDDMMYYYY = 'DD.MM.YYYY';
 
 const ALL_VALIDATION_RULES = [
     VALIDATION_REQUIRED,
@@ -31,6 +33,17 @@ export const OPTION_TYPES = {
     Color: 1,
     Size: 2,
 };
+
+export const SHIPPING_CODES = {
+    1: 'Pending manager',
+    2: 'In Progress',
+    3: 'On a way',
+    4: 'Derived',
+    5: 'Complete',
+    6: 'Canceled',
+};
+
+export const SHIPPING_RATE = 45;
 
 export const getValidationMessage = ({ type = '', message } = {}) => {
     if (ALL_VALIDATION_RULES.includes(type)) {

@@ -7,7 +7,7 @@ import { instanceOf } from 'prop-types';
 class ProductsService {
     static async getAll(filters) {
         try {
-            const pageQuery = qs.stringify(filters, { arrayFormat: 'bracket' });
+            const pageQuery = qs.stringify(filters, { arrayFormat: 'bracket', skipNull: true });
 
             return (await API.get(`api/admin/products?${pageQuery}`)).data;
         } catch (e) {
@@ -18,6 +18,22 @@ class ProductsService {
     static async getAllModels() {
         try {
             return (await API.get('api/admin/product/models')).data;
+        } catch (e) {
+            throw new ServerException(e.response);
+        }
+    }
+
+    static async getMinMaxPrice() {
+        try {
+            return (await API.get('api/admin/product/price')).data;
+        } catch (e) {
+            throw new ServerException(e.response);
+        }
+    }
+
+    static async getColors() {
+        try {
+            return (await API.get('api/admin/product/colors')).data;
         } catch (e) {
             throw new ServerException(e.response);
         }
