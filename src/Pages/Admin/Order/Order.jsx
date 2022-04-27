@@ -23,7 +23,7 @@ const Order = () => {
                     />
                     Order List
                 </h6>
-                <div>
+                <div className="orderListTable">
                     <table>
                         <thead>
                             <tr>

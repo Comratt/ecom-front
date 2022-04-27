@@ -10,6 +10,7 @@ import { useFetchProducts } from '../hooks/useFetchProducts';
 import Layout from '../Layout';
 
 import './Products.css';
+import Filter from '../Filter';
 
 const Products = () => {
     const history = useHistory();
@@ -130,8 +131,9 @@ const Products = () => {
                 </div>
             </div>
             <div className="container">
-                <div className="row">
+                <div className="d-flex">
                     {renderContent()}
+                    <Filter />
                 </div>
             </div>
         </>
