@@ -1,159 +1,194 @@
 import React from 'react';
+import './Dashboard.css';
+import Link from 'react-router-dom/es/Link';
+import {
+    BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar,
+} from 'recharts';
 import Layout from '../Layout';
+import {
+    AccardionArrow, Truck, UkraineMap, User,
+} from '../../../Icons';
+import Cart from '../../../Icons/Cart';
+import { useFetchProducts } from '../hooks/useFetchProducts';
+import Loader from '../../../Components/Loader';
+import Card from '../../../Icons/Card';
 
-const Dashboard = () => (
-    <>
-        <div
-            className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
-        >
-            <h1 className="h2">Главная</h1>
-            <div className="btn-toolbar mb-2 mb-md-0">
-                <div className="btn-group mr-2">
-                    <button type="button" className="btn btn-sm btn-outline-secondary">
-                        Share
-                    </button>
-                    <button type="button" className="btn btn-sm btn-outline-secondary">
-                        Export
-                    </button>
+const Dashboard = () => {
+    const { result, loading, error } = useFetchProducts();
+
+    const productTotal = {
+        totalProducts: result.length,
+        totalOrders: 100,
+        totalSales: 120,
+    };
+    const data = [
+        {
+            name: 'Page A',
+            uv: 4000,
+            pv: 2400,
+        },
+        {
+            name: 'Page B',
+            uv: 3000,
+            pv: 1398,
+        },
+        {
+            name: 'Page C',
+            uv: 2000,
+            pv: 9800,
+        },
+        {
+            name: 'Page D',
+            uv: 2780,
+            pv: 3908,
+        },
+        {
+            name: 'Page E',
+            uv: 1890,
+            pv: 4800,
+        },
+        {
+            name: 'Page F',
+            uv: 2390,
+            pv: 3800,
+        },
+        {
+            name: 'Page G',
+            uv: 3490,
+            pv: 4300,
+        },
+    ];
+
+    return (
+        (
+            <>
+                <div className="container">
+                    <h3 className="dashboardHeader">Dashboard</h3>
+                    <div className="card-total-info-block">
+                        <div className="card text-white bg-secondary  mb-3" style={{ width: '18rem' }}>
+                            <div className="card-header">
+                                <span>TOTAL ORDERS </span>
+                                <div>
+                                    <AccardionArrow
+                                        width={24}
+                                        fill="white"
+                                    />
+                                    <span>-117%</span>
+                                </div>
+                            </div>
+                            <div className="card-body">
+                                <span className="card-text">
+                                    <Truck width={24} />
+                                    <span>
+                                        200
+                                        <sub>штук</sub>
+                                    </span>
+                                </span>
+                            </div>
+                            <div className="card-header">view more...</div>
+                        </div>
+                        <div className="card text-white bg-secondary mb-3" style={{ width: '18rem' }}>
+                            <div className="card-header">
+                                <span>TOTAL SALES</span>
+                                <div>
+                                    <AccardionArrow
+                                        width={24}
+                                        fill="white"
+                                    />
+                                    <span>-117%</span>
+                                </div>
+                            </div>
+                            <div className="card-body">
+                                <p className="card-text">
+                                    <Card width={24} />
+                                    <span>
+                                        200
+                                        <sub>штук</sub>
+                                    </span>
+                                </p>
+                            </div>
+                            <div className="card-header">view more...</div>
+                        </div>
+                        <div className="card text-white bg-secondary  mb-3" style={{ width: '18rem' }}>
+                            <div className="card-header">
+                                TOTAL CUSTOMERS
+                                <div>
+                                    <AccardionArrow
+                                        width={24}
+                                        fill="white"
+                                    />
+                                    <span>-117%</span>
+                                </div>
+                            </div>
+                            <div className="card-body">
+                                <p className="card-text">
+                                    <User width={24} />
+                                    <span>
+                                        200
+                                        <sub>штук</sub>
+                                    </span>
+                                </p>
+                            </div>
+                            <div className="card-header">view more...</div>
+                        </div>
+                        <div className="card text-white bg-secondary  mb-3" style={{ width: '18rem' }}>
+                            <div className="card-header">
+                                TOTAL PRODUCTS
+                            </div>
+                            <div className="card-body">
+                                {loading ? <Loader size={2} />
+                                    : (
+                                        <p className="card-text">
+                                            <Cart width={24} />
+                                            <span>
+                                                {productTotal.totalProducts}
+                                                <sub>штук</sub>
+                                            </span>
+                                        </p>
+                                    )}
+                            </div>
+                            <Link to="/admin/products">
+                                <div className="card-header">view more...</div>
+                            </Link>
+                        </div>
+
+                    </div>
+
+                    <div className="dashboard-map">
+                        <h3 style={{ textAlign: 'center' }}>Order Map</h3>
+                        <div className="card mb-3">
+                            <div className="row g-0">
+                                <div style={{ padding: '20px' }}>
+                                    <UkraineMap className="card-img-top" />
+                                </div>
+                                <div>
+                                    <div className="card-body">
+                                        <div className="card-text">
+                                            <small className="text-muted">
+                                                Kiev - 20 заказов
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style={{ textAlign: 'center' }}>Graphic Orders</h3>
+                        <BarChart width={1000} height={250} data={data}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            <Bar dataKey="pv" fill="#8884d8" />
+                            <Bar dataKey="uv" fill="#82ca9d" />
+                        </BarChart>
+                    </div>
                 </div>
-                <button
-                    type="button"
-                    className="btn btn-sm btn-outline-secondary dropdown-toggle"
-                >
-                    <span data-feather="calendar" />
-                    This week
-                </button>
-            </div>
-        </div>
-        <h2>Section title</h2>
-        <div className="table-responsive">
-            <table className="table table-striped table-sm">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1,001</td>
-                        <td>Lorem</td>
-                        <td>ipsum</td>
-                        <td>dolor</td>
-                        <td>sit</td>
-                    </tr>
-                    <tr>
-                        <td>1,002</td>
-                        <td>amet</td>
-                        <td>consectetur</td>
-                        <td>adipiscing</td>
-                        <td>elit</td>
-                    </tr>
-                    <tr>
-                        <td>1,003</td>
-                        <td>Integer</td>
-                        <td>nec</td>
-                        <td>odio</td>
-                        <td>Praesent</td>
-                    </tr>
-                    <tr>
-                        <td>1,003</td>
-                        <td>libero</td>
-                        <td>Sed</td>
-                        <td>cursus</td>
-                        <td>ante</td>
-                    </tr>
-                    <tr>
-                        <td>1,004</td>
-                        <td>dapibus</td>
-                        <td>diam</td>
-                        <td>Sed</td>
-                        <td>nisi</td>
-                    </tr>
-                    <tr>
-                        <td>1,005</td>
-                        <td>Nulla</td>
-                        <td>quis</td>
-                        <td>sem</td>
-                        <td>at</td>
-                    </tr>
-                    <tr>
-                        <td>1,006</td>
-                        <td>nibh</td>
-                        <td>elementum</td>
-                        <td>imperdiet</td>
-                        <td>Duis</td>
-                    </tr>
-                    <tr>
-                        <td>1,007</td>
-                        <td>sagittis</td>
-                        <td>ipsum</td>
-                        <td>Praesent</td>
-                        <td>mauris</td>
-                    </tr>
-                    <tr>
-                        <td>1,008</td>
-                        <td>Fusce</td>
-                        <td>nec</td>
-                        <td>tellus</td>
-                        <td>sed</td>
-                    </tr>
-                    <tr>
-                        <td>1,009</td>
-                        <td>augue</td>
-                        <td>semper</td>
-                        <td>porta</td>
-                        <td>Mauris</td>
-                    </tr>
-                    <tr>
-                        <td>1,010</td>
-                        <td>massa</td>
-                        <td>Vestibulum</td>
-                        <td>lacinia</td>
-                        <td>arcu</td>
-                    </tr>
-                    <tr>
-                        <td>1,011</td>
-                        <td>eget</td>
-                        <td>nulla</td>
-                        <td>Class</td>
-                        <td>aptent</td>
-                    </tr>
-                    <tr>
-                        <td>1,012</td>
-                        <td>taciti</td>
-                        <td>sociosqu</td>
-                        <td>ad</td>
-                        <td>litora</td>
-                    </tr>
-                    <tr>
-                        <td>1,013</td>
-                        <td>torquent</td>
-                        <td>per</td>
-                        <td>conubia</td>
-                        <td>nostra</td>
-                    </tr>
-                    <tr>
-                        <td>1,014</td>
-                        <td>per</td>
-                        <td>inceptos</td>
-                        <td>himenaeos</td>
-                        <td>Curabitur</td>
-                    </tr>
-                    <tr>
-                        <td>1,015</td>
-                        <td>sodales</td>
-                        <td>ligula</td>
-                        <td>in</td>
-                        <td>libero</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </>
-);
+            </>
+        )
+    );
+};
 
 export default Layout(Dashboard);

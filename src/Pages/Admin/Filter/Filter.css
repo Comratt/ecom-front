@@ -1,0 +1,27 @@
+.orderListFilter {
+    margin-left: 10px;
+    border: 1px solid #ddd;
+}
+.orderListFilter-title{
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+.orderListFilter-form{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.orderListFilter-input{
+    padding: 5px;
+}
+.orderListFilter-label{
+    margin-top: 10px;
+}
+.btn{
+    margin-top: 10px;
+    width: 100px;
+}
+.form-select{
+    padding: 5px;
+}
+

@@ -52,9 +52,8 @@ const Login = ({
             <div className="container">
                 <div className="content-login">
                     <h2>Login</h2>
-                    {isError && Object.values(errorMessage).map((error) => (
-                        <p className="field-message__error">{error[0]}</p>
-                    ))}
+                    {isError
+                        && <p style={{ display: 'flex' }} className="field-message__error">{errorMessage}</p>}
                     <form onSubmit={handleSubmit(onSubmit)} className="from-login">
                         <CommonInput
                             name="email"

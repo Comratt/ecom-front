@@ -22,6 +22,7 @@ import Relevance from './Relevance';
 import Filters from './Filters';
 import MinusCircle from './MinusCircle';
 import FooterLogo from './FooterLogo';
+import UkraineMap from './UkraineMap';
 
 export {
     Remove,
@@ -48,4 +49,5 @@ export {
     Filters,
     MinusCircle,
     FooterLogo,
+    UkraineMap,
 };
