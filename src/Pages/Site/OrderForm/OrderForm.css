@@ -315,7 +315,6 @@ p.field-message__error {
 }
 
 .order__btn-submit {
-    border: none;
     outline: none;
     border: 1px transparent solid;
     border-radius: var(--size-smaller);
@@ -324,9 +323,6 @@ p.field-message__error {
     text-align: center;
 }
 
-.order__btn-submit:hover {
-    background-color: #b38e74;
-}
 
 .order__btn-return {
     display: flex;

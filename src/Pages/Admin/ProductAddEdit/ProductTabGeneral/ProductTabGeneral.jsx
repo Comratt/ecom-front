@@ -29,6 +29,26 @@ const ProductTabGeneral = () => {
             <form>
                 <div className="from-section">
                     <div className="productTabLabel">
+                        <label htmlFor="status">
+                            <b>
+                                Status
+                            </b>
+                        </label>
+                    </div>
+                    <div className="productTabInput">
+                        <select
+                            className="form-control"
+                            onChange={handleValuesChange}
+                            name="status"
+                            id="status"
+                        >
+                            <option selected={values.status == 1} value="1">Active</option>
+                            <option selected={values.status == 0} value="0">Disabled</option>
+                        </select>
+                    </div>
+                </div>
+                <div className="from-section">
+                    <div className="productTabLabel">
                         <label htmlFor="productName">
                             <b>
                                 Product Name

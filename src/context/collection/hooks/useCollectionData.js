@@ -21,6 +21,8 @@ export const useCollectionData = () => {
         page: 1,
         count: 15,
         category: [],
+        sortBy: '',
+        available: false,
     });
     const {
         loading: categoriesLoading,
@@ -41,6 +43,7 @@ export const useCollectionData = () => {
         isLastPage,
         currentPage,
         setFilters,
+        filters,
     }), [
         loading,
         categoriesLoading,
@@ -49,5 +52,6 @@ export const useCollectionData = () => {
         isLastPage,
         currentPage,
         setFilters,
+        filters,
     ]);
 };

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 import {
-    Heart, Logo, Menu, Search,
+    Heart, Logo, Menu,
 } from 'Icons';
 import Cart from 'Icons/Cart';
 import User from 'Icons/User';
@@ -49,12 +49,6 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
             <div className="header-left-navigation">
                 <button onClick={handleOpenNavigationModal} type="button" className="lib-header__btn menu">
                     <Menu
-                        width={24}
-                        height={24}
-                    />
-                </button>
-                <button type="button" className="lib-header__btn header-search-second">
-                    <Search
                         width={24}
                         height={24}
                     />

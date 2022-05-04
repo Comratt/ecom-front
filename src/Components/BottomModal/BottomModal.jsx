@@ -61,11 +61,15 @@ const CustomSheet = styled(Sheet)`
   .sidebar-main li{
     color: #887568;
     border-top: 1px solid #e5e5e5;
-    font-size: 10px;
+    font-size: 14px;
   }
   .first-back-btn{
     color: #887568;
     background: #F5F3F3;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
   }
   .sidebar-body{
     margin-top: 10px;
@@ -76,7 +80,16 @@ const CustomSheet = styled(Sheet)`
   
 `;
 
-export const BottomModal = ({ isOpen, setOpen }) => {
+export const BottomModal = ({
+    isOpen,
+    setOpen,
+    filters,
+    handleSortBy,
+    handleFilterBy,
+    handleAvailable,
+    minMaxPrice = [],
+    colors = [],
+}) => {
     const options = [
         {
             content: [
@@ -90,34 +103,37 @@ export const BottomModal = ({ isOpen, setOpen }) => {
                                 {
                                     id: 2,
                                     optionId: 2,
-                                    name: 'A - Z',
-                                    'Some property i need on clicking this': 'value',
+                                    value: 'relevance',
+                                    name: 'Relevance',
+                                    optName: 'sortBy',
                                 },
                                 {
                                     id: 3,
                                     optionId: 3,
-                                    name: 'Z - A',
-                                    'Some property i need on clicking this': 'value',
+                                    value: 'dateAsc',
+                                    name: 'Date | New to Old',
+                                    optName: 'sortBy',
                                 },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    id: 4,
-                    name: 'Product Type',
-                    children: [
-                        {
-                            content: [
+                                {
+                                    id: 4,
+                                    optionId: 4,
+                                    value: 'dateDesc',
+                                    name: 'Date | Old to New',
+                                    optName: 'sortBy',
+                                },
                                 {
                                     id: 5,
-                                    name: 'Blazers',
-                                    'Some property i need on clicking this': 'value',
+                                    optionId: 5,
+                                    value: 'priceAsc',
+                                    name: 'Price | Low to high',
+                                    optName: 'sortBy',
                                 },
                                 {
                                     id: 6,
-                                    name: 'Blouses',
-                                    'Some property i need on clicking this': 'value',
+                                    optionId: 6,
+                                    value: 'priceDesc',
+                                    name: 'Price | High to low',
+                                    optName: 'sortBy',
                                 },
                             ],
                         },
@@ -129,16 +145,27 @@ export const BottomModal = ({ isOpen, setOpen }) => {
                     type: 'color',
                     children: [
                         {
+                            content: colors?.map((color) => ({
+                                id: color.id,
+                                name: color.name,
+                                optionId: color.id,
+                                optName: 'color',
+                            })),
+                        },
+                    ],
+                },
+                {
+                    id: 8,
+                    name: 'Stock',
+                    type: 'stock',
+                    children: [
+                        {
                             content: [
                                 {
-                                    id: 8,
-                                    name: 'Blue',
-                                    optionId: 8,
-                                },
-                                {
-                                    id: 11,
-                                    name: 'red',
-                                    optionId: 11,
+                                    id: 'stock',
+                                    optionId: 'stock',
+                                    optName: 'stock',
+                                    name: 'In stock',
                                 },
                             ],
                         },
@@ -148,7 +175,12 @@ export const BottomModal = ({ isOpen, setOpen }) => {
                     id: 9,
                     name: 'Price',
                     children: [{
-                        element: <PriceRange />,
+                        element: <PriceRange
+                            current={filters?.price}
+                            min={minMaxPrice[0]}
+                            max={minMaxPrice[1]}
+                            onFinalChange={handleFilterBy}
+                        />,
                     }],
                 },
             ],
@@ -158,11 +190,25 @@ export const BottomModal = ({ isOpen, setOpen }) => {
     const [opt, setOpt] = useState(options);
 
     const handleItemClick = (o) => {
+        if (o.optName === 'sortBy') {
+            handleSortBy(filters.sortBy === o.value ? '' : o.value);
+        }
+        if (o.optName === 'stock') {
+            handleAvailable();
+        }
+        if (o.optName === 'color') {
+            const filterColors = filters?.color || [];
+            const modColors = filterColors?.includes(o.optionId)
+                ? filterColors?.filter((s) => s !== o.optionId)
+                : [...filterColors, o.optionId];
+
+            handleFilterBy('color', modColors);
+        }
         if (o.optionId) {
             setOpt((prevOptions) => ([{
                 ...prevOptions,
                 content: prevOptions[0].content?.map((option) => {
-                    if (['color', 'sort'].includes(option.type)) {
+                    if (['color', 'sort', 'stock'].includes(option.type)) {
                         return ({
                             ...option,
                             children: [{
@@ -203,13 +249,11 @@ export const BottomModal = ({ isOpen, setOpen }) => {
                         <div>
                             <MultilevelSidebar
                                 open
-                                // onToggle={this.handleSidebarToggle}
                                 options={opt}
                                 onItemClick={handleItemClick}
                             >
                                 <h1>Some text price</h1>
                             </MultilevelSidebar>
-
                         </div>
                     </div>
                 </Sheet.Content>

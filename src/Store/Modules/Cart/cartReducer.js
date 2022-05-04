@@ -13,7 +13,7 @@ export const initialState = {
 };
 
 const addToCart = (products, {
-    id, size, color, name, price, purePrice, image,
+    id, size, color, name, price, purePrice, image, ...rest
 }) => {
     if (products.find((item) => item.id === id && item.size === size && item.color === color)) {
         return products.map(
@@ -34,6 +34,7 @@ const addToCart = (products, {
             color,
             image,
             quantity: 1,
+            ...rest,
         },
     ]);
 };

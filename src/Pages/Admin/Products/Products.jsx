@@ -1,10 +1,10 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 import classNames from 'classnames';
 
 import Loader from 'Components/Loader';
 import Alert from 'Components/Alert';
+import { AdminPagination } from 'Components/AdminPagination';
 import { Edit } from 'Icons';
 import { useFetchProducts } from '../hooks/useFetchProducts';
 import Layout from '../Layout';
@@ -13,11 +13,9 @@ import './Products.css';
 
 const Products = () => {
     const history = useHistory();
-    const [show, setShow] = useState(false);
     const {
-        register, handleSubmit, errors, setValue,
-    } = useForm();
-    const { result, loading, error } = useFetchProducts();
+        result, loading, error, page, setPage, totalPages,
+    } = useFetchProducts();
 
     const handleClick = (id) => () => history.push(`/admin/products/${id}`);
     const handleAddClick = () => history.push('/admin/add/products');
@@ -27,7 +25,6 @@ const Products = () => {
         'badge-danger': quantity <= 5,
         'badge-warning': quantity > 5 && quantity <= 10,
     });
-    const toggleModal = () => setShow((a) => !a);
 
     const renderContent = useCallback(() => {
         if (loading) {
@@ -132,6 +129,12 @@ const Products = () => {
             <div className="container">
                 <div className="row">
                     {renderContent()}
+                    <AdminPagination
+                        loading={loading}
+                        current={page}
+                        onChange={(pageNumber) => setPage(pageNumber)}
+                        total={totalPages}
+                    />
                 </div>
             </div>
         </>

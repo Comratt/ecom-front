@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Sticky } from 'react-sticky';
+import { useAsync } from 'react-async-hook';
 import classNames from 'classnames';
 import { Title } from 'Components/Title';
 import { BottomModal } from 'Components/BottomModal';
+import ProductsService from 'Services/ProductsService';
 import { Filters } from 'Icons';
 import CheckboxFilterItem from '../CheckboxFilterItem/CheckboxFilterItem';
 import { useDetectedMobileDevice } from '../../hooks/useDetectMobileDevice';
@@ -12,9 +14,15 @@ import './CheckboxFilter.css';
 
 export const CheckboxFilter = ({
     className,
+    handleSortBy,
+    handleFilterBy,
+    handleAvailable,
+    filters,
 }) => {
     const [isOpen, setOpen] = useState(false);
     const { isTabletSize } = useDetectedMobileDevice();
+    const { result: minMaxPrice, loading: minMaxLoading } = useAsync(ProductsService.getMinMaxPrice, []);
+    const { result: colors, loading: colorsLoading } = useAsync(ProductsService.getColors, []);
 
     const componentClasses = classNames(
         'lib-checkboxFilter',
@@ -33,7 +41,18 @@ export const CheckboxFilter = ({
 
     return (
         <>
-            <BottomModal isOpen={isOpen} setOpen={setOpen} />
+            {(!minMaxLoading && !colorsLoading) && (
+                <BottomModal
+                    isOpen={isOpen}
+                    setOpen={setOpen}
+                    filters={filters}
+                    handleSortBy={handleSortBy}
+                    handleFilterBy={handleFilterBy}
+                    handleAvailable={handleAvailable}
+                    minMaxPrice={minMaxPrice}
+                    colors={colors}
+                />
+            )}
             <Sticky isSticky={false} topOffset={-50} className={componentClasses}>
                 {({ style }) => (
                     <div
@@ -45,7 +64,14 @@ export const CheckboxFilter = ({
                     >
                         <Title type={2}>Coming Soon</Title>
                         <div className={checkBoxContainerDesktop}>
-                            <CheckboxFilterItem />
+                            <CheckboxFilterItem
+                                filters={filters}
+                                handleSortBy={handleSortBy}
+                                handleFilterBy={handleFilterBy}
+                                handleAvailable={handleAvailable}
+                                minMaxPrice={minMaxPrice}
+                                colors={colors}
+                            />
                         </div>
                         <div className={checkBoxContainerMobile}>
                             <Filters onClick={() => setOpen(true)} />
