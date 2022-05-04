@@ -17,6 +17,7 @@ const CartQuantity = ({ product, handleQuantity }) => (
                 size: product.size,
                 color: product.color,
                 quantity: product.quantity - 1,
+                totalCount: product.totalCount,
             })}
             className="bt_minus"
         >
@@ -37,6 +38,7 @@ const CartQuantity = ({ product, handleQuantity }) => (
                 size: product.size,
                 color: product.color,
                 quantity: product.quantity + 1,
+                totalCount: product.totalCount,
             })}
             className="bt_plus"
         >
@@ -59,12 +61,14 @@ export const Cart = () => {
         quantity,
         color,
         size,
+        totalCount,
     }) => () => {
-        if (quantity) {
-            dispatch(toggleQuantity({
-                id, quantity, color, size,
-            }));
+        if ((quantity > totalCount) || (quantity < 1)) {
+            return;
         }
+        dispatch(toggleQuantity({
+            id, quantity, color, size,
+        }));
     };
 
     const removeProduct = ({ id, size, color }) => () => (
@@ -109,25 +113,27 @@ export const Cart = () => {
                         <tbody>
                             {products.map((product) => (
                                 <tr key={`${product.id}-${product.size}-${product.color}`}>
-                                    <td className="cart-product-description">
-                                        <img src={product.image} alt="product photo" />
-                                        <ul>
-                                            <li>
-                                                {product.name}
-                                            </li>
-                                            <li>
-                                                {product.size}
-                                            </li>
-                                            <li className="cart-product-li-hidden">
-                                                {product.price}
-                                            </li>
-                                            <li className="cart-product-li-hidden">
-                                                <CartQuantity
-                                                    product={product}
-                                                    handleQuantity={toggleCartQuantity}
-                                                />
-                                            </li>
-                                        </ul>
+                                    <td>
+                                        <div className="cart-product-description">
+                                            <img src={product.image} alt="product photo" />
+                                            <ul>
+                                                <li>
+                                                    {product.name}
+                                                </li>
+                                                <li>
+                                                    {product.size}
+                                                </li>
+                                                <li className="cart-product-li-hidden">
+                                                    {product.price}
+                                                </li>
+                                                <li className="cart-product-li-hidden">
+                                                    <CartQuantity
+                                                        product={product}
+                                                        handleQuantity={toggleCartQuantity}
+                                                    />
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </td>
                                     <td className="cart-product-tbody">
                                         {product.price}

@@ -7,7 +7,7 @@ import { instanceOf } from 'prop-types';
 class ProductsService {
     static async getAll(filters) {
         try {
-            const pageQuery = qs.stringify(filters);
+            const pageQuery = qs.stringify(filters, { arrayFormat: 'bracket', skipNull: true });
 
             return (await API.get(`api/admin/products?${pageQuery}`)).data;
         } catch (e) {
@@ -18,6 +18,22 @@ class ProductsService {
     static async getAllModels() {
         try {
             return (await API.get('api/admin/product/models')).data;
+        } catch (e) {
+            throw new ServerException(e.response);
+        }
+    }
+
+    static async getMinMaxPrice() {
+        try {
+            return (await API.get('api/admin/product/price')).data;
+        } catch (e) {
+            throw new ServerException(e.response);
+        }
+    }
+
+    static async getColors() {
+        try {
+            return (await API.get('api/admin/product/colors')).data;
         } catch (e) {
             throw new ServerException(e.response);
         }
@@ -43,8 +59,8 @@ class ProductsService {
         try {
             const formData = new FormData();
             const settings = { headers: { 'Content-Type': 'multipart/form-data' } };
-            const categories = params.selectedCategories.map((name = '') => name.split(' ~ ')[1]);
-            const products = params.relatedProducts.map((name = '') => name.split(' ~ ')[1]);
+            const categories = params.selectedCategories.map(({ value }) => value);
+            const products = params.relatedProducts.map(({ value }) => value);
 
             formData.append('options', JSON.stringify(params.options));
             formData.append('product', JSON.stringify(params.product));
@@ -56,12 +72,6 @@ class ProductsService {
             params.images.forEach(({ image, id: imgId }) => {
                 formData.append(`image_${imgId}`, image || '');
             });
-            // params?.images?.forEach(({ image, id }) => {
-            //     if (image instanceof File) {
-            //         formData.append(`image_${id}`, image);
-            //     }
-            // });
-            // console.log(formData);
 
             return (await API.post(`api/admin/products/${id}/edit`, formData, settings)).data;
         } catch (e) {
@@ -73,8 +83,8 @@ class ProductsService {
         try {
             const formData = new FormData();
             const settings = { headers: { 'Content-Type': 'multipart/form-data' } };
-            const categories = params.selectedCategories.map(({ label, value }) => [label, value]);
-            const products = params.relatedProducts.map(({ label, value }) => [label, value]);
+            const categories = params.selectedCategories.map(({ value }) => value);
+            const products = params.relatedProducts.map(({ value }) => value);
 
             formData.append('options', JSON.stringify(params.options));
             formData.append('product', JSON.stringify(params.product));
@@ -86,12 +96,6 @@ class ProductsService {
             params.images.forEach(({ image, id: imgId }) => {
                 formData.append(`image_${imgId}`, image || '');
             });
-            // params?.images?.forEach(({ image, id }) => {
-            //     if (image instanceof File) {
-            //         formData.append(`image_${id}`, image);
-            //     }
-            // });
-            // console.log(formData);
 
             return (await API.post('api/admin/products', formData, settings)).data;
         } catch (e) {

@@ -33,7 +33,7 @@ const SearchResults = lazy(() => import('Components/SearchResults/searchResults'
 const Cart = lazy(() => import('Pages/Site/Cart'));
 const UserAccount = lazy(() => import('Pages/UserAccount/UserAccount'));
 const CheckboxFilterItem = lazy(() => import('Components/CheckboxFilterItem/CheckboxFilterItem'));
-const CollectionList = lazy(() => import('Components/CollectionList'));
+const CollectionList = lazy(() => import('Pages/Site/collection'));
 
 const RouterComponent = () => (
     <Router history={history}>
@@ -46,8 +46,8 @@ const RouterComponent = () => (
                 <Route path="/admin/products/:id" component={AdminProductEdit} />
                 <Route path="/admin/add/products" component={(props) => <AdminProductEdit isFromAdd {...props} />} />
                 <Route path="/admin/option" component={AdminOptions} />
-                <Route path="/admin/order" component={AdminOrder} />
-                <Route path="/admin/orderproduct" component={AdminOrderProduct} />
+                <Route exact path="/admin/order" component={AdminOrder} />
+                <Route path="/admin/order/:id" component={AdminOrderProduct} />
                 <Route path="/admin/login" component={AdminLogin} />
                 <Layout>
                     <Route exact path="/" component={SiteHome} />
@@ -59,7 +59,7 @@ const RouterComponent = () => (
                     <Route path="/searchResult" component={() => <SearchResults />} />
                     <Route path="/checkboxfilter" component={() => <CheckboxFilter />} />
                     <Route path="/account" component={() => <UserAccount />} />
-                    <Route exact path="/collection" component={() => <CollectionList />} />
+                    <Route path="/collection" component={() => <CollectionList />} />
                 </Layout>
 
                 <Route exact path="/orderForm" component={() => <OrderForm />} />

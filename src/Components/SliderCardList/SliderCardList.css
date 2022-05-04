@@ -6,6 +6,19 @@
     display: flex;
 }*/
 
+.slider-card-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 15px 20px;
+}
+
+.slider-card-list-header .list-link {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
 .arrow-left {
     top: 35%;
     transform: none;

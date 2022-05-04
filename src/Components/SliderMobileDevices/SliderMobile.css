@@ -1,0 +1,15 @@
+.slider-mobile .slick-dots {
+    bottom: 45px;
+}
+
+.slider-mobile .slick-dots button:before {
+    font-size: 10px;
+    color: white;
+    opacity: .4;
+}
+
+.slider-mobile .slick-dots .slick-active button:before {
+    font-size: 10px;
+    color: white;
+    opacity: 1;
+}

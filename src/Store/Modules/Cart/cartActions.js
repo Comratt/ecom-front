@@ -7,12 +7,12 @@ import {
 } from './types';
 
 export const addToCart = ({
-    id, name, price, size, color, purePrice, image,
+    id, name, price, size, color, purePrice, image, ...restCart
 }) => (dispatch) => (
     dispatch({
         type: ADD_ITEM_TO_CART,
         payload: {
-            id, name, price, size, color, purePrice, image,
+            id, name, price, size, color, purePrice, image, ...restCart,
         },
     })
 );

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Slider from 'react-slick';
 import classNames from 'classnames';
+import { Link } from 'Components/Link';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+import { Title } from 'Components/Title';
 import { useDetectedMobileDevice } from 'hooks/useDetectMobileDevice';
 import { useFetchProducts } from 'context/hooks/useFetchProducts';
 import { adaptProducts } from 'context/adapters';
@@ -26,7 +28,9 @@ const CustomArrowLeft = (props) => {
 };
 
 const CustomArrowRight = (props) => {
-    const { className, style, onClick } = props;
+    const {
+        className, style, onClick, ...rest
+    } = props;
     const componentClassName = classNames('arrow-right', className);
 
     return (
@@ -38,22 +42,27 @@ const CustomArrowRight = (props) => {
     );
 };
 
-export const SliderCardList = ({ count = 4 }) => {
+export const SliderCardList = ({
+    count = 4,
+    title,
+    category,
+}) => {
     const [filters, setFilters] = useState({
         page: 1,
         count: (count * 2) + 1,
+        category: category || [],
     });
     const { loading, result, isLastPage } = useFetchProducts(filters);
     const { isTabletSize } = useDetectedMobileDevice();
 
     const handlePage = (prevCount, nextCount) => (
         setTimeout(() => {
-            setFilters((prevFilters) => ({
-                ...prevFilters,
-                page: ((nextCount > prevCount) && !isLastPage)
-                    ? prevFilters.page + 1
-                    : prevFilters.page,
-            }));
+            if ((nextCount > prevCount) && !isLastPage) {
+                setFilters((prevFilters) => ({
+                    ...prevFilters,
+                    page: prevFilters.page + 1,
+                }));
+            }
         }, 700)
     );
 
@@ -70,24 +79,46 @@ export const SliderCardList = ({ count = 4 }) => {
         beforeChange: handlePage,
     };
 
-    if (loading) {
-        return 'Loading...';
-    }
+    // if (loading) {
+    //     return 'Loading...';
+    // }
 
     return (
-        <Slider {...settings}>
-            {result && adaptProducts({ data: result }).map((product) => (
-                <Card
-                    cardId={product.id}
-                    key={product.id}
-                    imagePath={product.image}
-                    detailsPath={product.link}
-                    price={product.price}
-                    title={product.name}
-                    colors={product.colors}
-                    images={product.images}
-                />
-            ))}
-        </Slider>
+        <div>
+            <div className="slider-card-list-header">
+                <Link to="/collection" className="list-link">
+                    <Title type={2}>{title}</Title>
+                </Link>
+                <Link to="/collection" className="list-link">
+                    View All
+                    <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M10.5858 6.34317L12 4.92896L19.0711 12L12 19.0711L10.5858 17.6569L16.2427 12L10.5858 6.34317Z"
+                            fill="currentColor"
+                        />
+                    </svg>
+                </Link>
+            </div>
+            <Slider {...settings}>
+                {result && adaptProducts({ data: result }).map((product) => (
+                    <Card
+                        cardId={product.id}
+                        key={product.id}
+                        imagePath={product.image}
+                        detailsPath={product.link}
+                        price={product.price}
+                        title={product.name}
+                        colors={product.colors}
+                        images={product.images}
+                    />
+                ))}
+            </Slider>
+        </div>
     );
 };

@@ -8,3 +8,12 @@
         grid-template-columns: 1fr 1fr;
     }
 }
+
+@media (max-width: 768px) {
+    .card-list {
+        column-gap: 8px;
+    }
+    .card-list .lib-card {
+        padding: 0;
+    }
+}

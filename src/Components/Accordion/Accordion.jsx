@@ -8,7 +8,7 @@ export const AccordionItem = ({
     <>
         <button type="button" className="accordion-button" onClick={handleClick}>
             {label}
-            <div className={`accordion-item ${isCollapsed ? 'reverse' : 'position'}`}>
+            <div className={`accordion-item ${isCollapsed ? 'position' : 'reverse'}`}>
                 <AccardionArrow
                     width={20}
                     fill="var(--color-accent)"

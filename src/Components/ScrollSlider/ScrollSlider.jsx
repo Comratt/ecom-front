@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import classNames from 'classnames';
+import { scrollToElm } from 'Helpers';
 
 import './ScrollSlider.css';
 
@@ -11,10 +12,10 @@ export const ScrollSlider = ({ data, setModalOpen }) => {
     const thumbnailImageClassName = (src) => classNames('thumbnail-image', { active: src === activeImage });
 
     useEffect(() => {
-        if (activeImage && imagesRef.current && imagesRef.current[activeImage]) {
-            imagesRef.current[activeImage].scrollIntoView({ behavior: 'smooth' });
+        if (activeImage && imagesRef.current && imagesRef.current[activeImage] && isBlockScroll) {
+            scrollToElm(containerRef.current, imagesRef.current[activeImage], 1);
         }
-    }, [activeImage]);
+    }, [activeImage, isBlockScroll]);
     const getImagesDimensions = () => {
         if (imagesRef.current) {
             return Object.keys(imagesRef.current).reduce((acc, key) => ({
@@ -57,11 +58,13 @@ export const ScrollSlider = ({ data, setModalOpen }) => {
                     onMouseOver={() => setBlockScroll(false)}
                 >
                     {data.map((imageSrc) => (
-                        <div className="image-wrapper">
-                            <div
-                                ref={(imgRef) => imagesRef.current[imageSrc] = imgRef}
+                        <div
+                            ref={(imgRef) => imagesRef.current[imageSrc] = imgRef}
+                            className="image-wrapper"
+                        >
+                            <img
                                 className="image-inner"
-                                style={{ backgroundImage: `url('${imageSrc}')` }}
+                                src={imageSrc}
                                 onClick={() => setModalOpen(imageSrc)}
                             />
                         </div>

@@ -5,6 +5,7 @@ import { useAlert } from 'react-alert';
 
 import { useProduct } from 'context/product/hooks/useProduct';
 import { addToCart } from 'Store/Modules/Cart/cartActions';
+import LocalStorageService from 'Services/LocalStorageService';
 
 import { Swatches } from 'Components/Swatches';
 import AddCartBtn from 'Components/AddCartBtn/AddCartBtn';
@@ -14,10 +15,10 @@ import { ScrollSlider } from 'Components/ScrollSlider';
 import { SliderModal } from 'Components/SliderModal';
 import { BigSlider } from 'Components/Slider';
 import SliderMobileDevices from 'Components/SliderMobileDevices/SliderMobileDevices';
+import ProductCarousel from 'Components/PorductCarousel';
 import { useDetectedMobileDevice } from '../../../hooks/useDetectMobileDevice';
 
 import './ProductInfo.css';
-import ProductCarousel from '../../../Components/PorductCarousel';
 
 export const ProductDetails = () => {
     const alert = useAlert();
@@ -26,11 +27,15 @@ export const ProductDetails = () => {
     const [activeSize, setActiveSize] = useState({});
     const [sizeError, setSizeError] = useState(false);
     const [modalSrc, setModalSrc] = useState(false);
-    const { result, error, loading } = useProduct();
+    const {
+        result, error, loading, productId,
+    } = useProduct();
+    const filteredColorSizes = result.colorSizes
+        ?.filter(({ colorValId }) => activeColor.id === colorValId);
 
+    const relatedIds = result?.related?.map(({ related_product_id }) => related_product_id);
+    const historyViewed = LocalStorageService.getItem('viewed', []);
     const { isMobileSize, isTabletSize } = useDetectedMobileDevice();
-
-    console.log(result);
 
     const itemClassNames = (id) => (
         classNames(
@@ -45,6 +50,11 @@ export const ProductDetails = () => {
         setSizeError(false);
     };
 
+    const handleColorChange = (item) => {
+        setActiveColor(item);
+        setActiveSize({});
+    };
+
     const handleAddToCart = () => {
         setSizeError(false);
         if (!activeSize?.id) return setSizeError(true);
@@ -55,8 +65,11 @@ export const ProductDetails = () => {
             price: result?.price,
             purePrice: result?.purePrice,
             image: result?.image,
+            sizeId: activeSize?.size_id,
+            colorId: activeSize?.color_id,
             size: activeSize?.name,
             color: activeColor?.name,
+            totalCount: activeSize?.product_quantity,
         }));
 
         return alert.show({
@@ -68,6 +81,17 @@ export const ProductDetails = () => {
     };
 
     useEffect(() => {
+        const viewedPreviously = LocalStorageService.getItem('viewed') || [];
+        const modifiedViewed = viewedPreviously?.includes(productId)
+            ? viewedPreviously
+            : [...viewedPreviously, productId];
+
+        LocalStorageService.setItem({
+            viewed: modifiedViewed,
+        });
+    }, [productId]);
+
+    useEffect(() => {
         if (result?.colors && result?.colors?.length) {
             setActiveColor(result?.colors[0]);
         }
@@ -76,15 +100,17 @@ export const ProductDetails = () => {
     if (loading) {
         return <div>Loading...</div>;
     }
+    console.log(result);
 
     return (
-        <div className="lib-product_details">
-            <div>
-                <div className="lib-product_info">
-                    <div>
+        <>
+            <div className="lib-product_info">
+                <div className="container">
+                    <div className="left-part">
                         {modalSrc && (
                             <SliderModal onClose={() => setModalSrc(null)} className="lib-product-slider">
                                 <BigSlider
+                                    hideDots
                                     activeImage={result.images.indexOf(modalSrc)}
                                     data={result.images}
                                     onClick={() => setModalSrc(null)}
@@ -110,11 +136,9 @@ export const ProductDetails = () => {
                             </p>
                             <p className="lib-product_info_colour">
                                 Color
-                                {' '}
                                 <span>
                                     <b>
-                                        -
-                                        {activeColor?.name}
+                                        {` - ${activeColor?.name}`}
                                     </b>
                                 </span>
                             </p>
@@ -122,16 +146,32 @@ export const ProductDetails = () => {
                         <Swatches
                             data={result.colors}
                             active={activeColor?.id}
-                            setActive={setActiveColor}
+                            setActive={handleColorChange}
                         />
                         <div className="lib-product_info_size">
-                            <p className="size-title"><b>Size</b></p>
+                            <p className="size-title">
+                                <b>Size</b>
+                                {activeSize?.name && (
+                                    <b>
+                                        {` - ${activeSize?.name}`}
+                                    </b>
+                                )}
+                            </p>
                             <ul className="lib-product_info_size_list">
                                 {result.sizes.map((size) => (
                                     <li key={size.option_value_id}>
                                         <button
+                                            type="button"
                                             onClick={handleSizeChange(size.id)}
                                             className={itemClassNames(size.id)}
+                                            disabled={(
+                                                !filteredColorSizes
+                                                    .map(({ sizeValId }) => sizeValId)
+                                                    .includes(size.id)
+                                                || !filteredColorSizes
+                                                    .find(({ sizeValId }) => sizeValId === size.id)
+                                                    ?.quantity > 0
+                                            )}
                                         >
                                             {size.name_value}
                                         </button>
@@ -142,10 +182,12 @@ export const ProductDetails = () => {
                                 Size chart
                             </span>
                         </div>
-                        <AddCartBtn onClick={handleAddToCart} />
-                        <div className="lib-product_info_wishlist">
-                            <WishlistHeart cardId={result.id} />
-                            <span>in Wishlist</span>
+                        <div className="cart-container">
+                            <AddCartBtn onClick={handleAddToCart} />
+                            <div className="lib-product_info_wishlist">
+                                <WishlistHeart cardId={result.id} />
+                                <span>in Wishlist</span>
+                            </div>
                         </div>
                         <div className="lib-product_info_product_description_block">
                             <div className="lib-product_info_product_description">
@@ -163,8 +205,19 @@ export const ProductDetails = () => {
                 </div>
             </div>
             <div>
-                <ProductCarousel data={result.images} />
+                <ProductCarousel
+                    id={relatedIds}
+                    title="Related Products"
+                    data={result.images}
+                />
             </div>
-        </div>
+            <div>
+                <ProductCarousel
+                    id={historyViewed}
+                    title="Related Products"
+                    data={result.images}
+                />
+            </div>
+        </>
     );
 };

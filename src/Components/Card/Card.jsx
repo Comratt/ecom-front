@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Swatches } from '../Swatches';
 import { Title } from '../Title';
+import WishlistHeart from '../WishlistHeart/WishlistHeart';
 
 import './Card.css';
-import WishlistHeart from '../WishlistHeart/WishlistHeart';
 
 export const Card = ({
     className,
@@ -17,6 +17,7 @@ export const Card = ({
     currency,
     colors,
     cardId,
+    hideInfo,
 }) => {
     const componentClassNames = classNames('lib-card', className);
 
@@ -26,20 +27,25 @@ export const Card = ({
                 <WishlistHeart cardId={cardId} />
             </div>
             <NavLink to={detailsPath}>
-                <img className="lib-card__picture" src={imagePath} alt="dress" />
+                <div
+                    className="lib-card__picture"
+                    style={{ backgroundImage: `url(${imagePath})` }}
+                />
             </NavLink>
-            <div className="lib-card__info">
-                <div className="lib-card__info-supsale">
-                    <span>Coming soon</span>
+            {!hideInfo && (
+                <div className="lib-card__info">
+                    <div className="lib-card__info-supsale">
+                        <span>Coming soon</span>
+                    </div>
+                    <NavLink to={detailsPath} className="lib-card__info-content">
+                        <Title type={4} className="lib-card__info-title">{title}</Title>
+                    </NavLink>
+                    <p className="lib-card__info-price">
+                        {price}
+                    </p>
+                    <Swatches data={colors} />
                 </div>
-                <NavLink to={detailsPath} className="lib-card__info-content">
-                    <Title type={4} className="lib-card__info-title">{title}</Title>
-                </NavLink>
-                <p className="lib-card__info-price">
-                    {price}
-                </p>
-                <Swatches data={colors} />
-            </div>
+            )}
         </div>
     );
 };
@@ -53,6 +59,7 @@ Card.propTypes = {
         PropTypes.string, PropTypes.number,
     ]),
     currency: PropTypes.string,
+    hideInfo: PropTypes.bool,
 };
 
 Card.defaultProps = {
@@ -62,6 +69,5 @@ Card.defaultProps = {
     imagePath: '',
     title: '',
     price: 0,
+    hideInfo: false,
 };
-
-export default Card;

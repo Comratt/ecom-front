@@ -1,39 +1,76 @@
+import uniqBy from 'lodash/uniqBy';
 import { getImage } from 'API';
-import { getFormattedPrice, OPTION_TYPES } from 'Constants';
-import { adaptCategories } from 'Pages/Admin/hooks/useFetchCategories';
-import { getFilteredOptions } from 'Helpers';
+import { getFormattedPrice } from 'Constants';
 
-export const adaptProducts = ({ data = [] } = {}) => data.map(({
-    product_id,
-    description,
-    name,
-    image,
-    price,
-    related,
-    discounts,
-    colors,
-    sizes,
-}) => ({
-    id: product_id,
-    link: `/products/${product_id}`,
-    name,
-    image: getImage(image),
-    price: getFormattedPrice(price),
-    colors: colors?.map(
-        (item) => ({ ...item, id: item.option_value_id, name: item.name_value }),
-    ),
-    sizes: sizes?.map(
-        (item) => ({ ...item, id: item.option_value_id, name: item.name_value }),
-    ),
-    description,
-    related,
-    discounts,
-}));
+export const adaptProducts = ({ data = [] } = {}) => {
+    if (!Array.isArray(data)) return [];
 
-export const adaptProduct = (data = {}, allCategories) => {
+    return data.map(({
+        p_id,
+        description,
+        name,
+        image,
+        price,
+        related,
+        discounts,
+        colors,
+        sizes,
+    }) => {
+        const colorsF = colors?.map(
+            (item) => ({ ...item, id: item.option_value_id, name: item.name_value }),
+        );
+        const sizesF = sizes?.map(
+            (item) => ({ ...item, id: item.option_value_id, name: item.name_value }),
+        );
+
+        return ({
+            id: p_id,
+            link: `/products/${p_id}`,
+            name,
+            image: getImage(image),
+            price: getFormattedPrice(price),
+            colors: uniqBy(colorsF, 'id'),
+            sizes: uniqBy(sizesF, 'id'),
+            description,
+            related,
+            discounts,
+        });
+    });
+};
+
+export const adaptProduct = (data = {}, allCategories, isUniq) => {
     if (!Object.keys(data).length) {
         return ({});
     }
+
+    const colorsF = data?.colors?.map(
+        (item) => ({ ...item, id: item.option_value_id, name: item.name_value }),
+    );
+    const sizesF = data?.sizes?.map(
+        (item) => ({ ...item, id: item.option_value_id, name: item.name_value }),
+    );
+    const uniqColors = isUniq ? uniqBy(colorsF, 'id') : colorsF;
+    const uniqSizes = isUniq ? uniqBy(sizesF, 'id') : sizesF;
+    const colorSizes = data?.colors?.reduce((acc, val) => {
+        const findSize = data?.sizes?.find(
+            ({ color_size_product_id }) => (
+                color_size_product_id === val.color_size_product_id
+            ),
+        );
+
+        return [
+            ...acc,
+            {
+                colorId: val.color_id,
+                colorValId: val.opt_val_id,
+                colorName: val.name_value,
+                sizeId: findSize?.size_id,
+                sizeValId: findSize?.opt_val_id,
+                sizeName: findSize?.name_value,
+                quantity: val.product_quantity,
+            },
+        ];
+    }, []);
 
     return ({
         ...data,
@@ -52,12 +89,9 @@ export const adaptProduct = (data = {}, allCategories) => {
         image: getImage(data.image),
         price: getFormattedPrice(data.price),
         purePrice: data.price,
-        colors: data.colors?.map(
-            (item) => ({ ...item, id: item.option_value_id, name: item.name_value }),
-        ),
-        sizes: data.sizes?.map(
-            (item) => ({ ...item, id: item.option_value_id, name: item.name_value }),
-        ),
+        colors: uniqColors,
+        sizes: uniqSizes,
+        colorSizes,
         description: data.description,
         categories: data.categories?.map(({ category_id, ...rest }) => ({
             ...rest,

@@ -8,10 +8,11 @@ import './SliderMobile.css';
 const SliderMobileDevices = ({ data, setModalOpen }) => {
     const settings = {
         dots: true,
+        arrows: false,
     };
 
     return (
-        <Slider {...settings}>
+        <Slider className="slider-mobile" {...settings}>
             {data.map((imageSrc) => (
                 <img
                     src={imageSrc}

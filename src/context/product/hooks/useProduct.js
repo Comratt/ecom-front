@@ -4,9 +4,9 @@ import { useParams } from 'react-router-dom';
 import { useProductData } from './useProductData';
 import { useProductLayout } from './useProductLayout';
 
-export const useProduct = () => {
+export const useProduct = (isUniq = true) => {
     const { id } = useParams();
-    const { result, error, loading } = useProductData(id);
+    const { result, error, loading } = useProductData(id, isUniq);
 
     useProductLayout();
 
@@ -14,9 +14,11 @@ export const useProduct = () => {
         result,
         error,
         loading,
+        productId: id,
     }), [
         result,
         error,
         loading,
+        id,
     ]);
 };
