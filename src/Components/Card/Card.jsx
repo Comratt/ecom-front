@@ -20,6 +20,16 @@ export const Card = ({
     hideInfo,
 }) => {
     const componentClassNames = classNames('lib-card', className);
+    const isSale = {
+        label: `${(parseInt(price) - 200).toFixed(2)}₴`,
+    };
+    const { label } = isSale;
+
+    let clazz = 'lib-card__info-price';
+
+    if (label) {
+        clazz += ' sale';
+    }
 
     return (
         <div className={componentClassNames}>
@@ -40,13 +50,20 @@ export const Card = ({
                     <NavLink to={detailsPath} className="lib-card__info-content">
                         <Title type={4} className="lib-card__info-title">{title}</Title>
                     </NavLink>
-                    <p className="lib-card__info-price">
-                        {price}
-                    </p>
+                    <div className="lib-card__info-price-content">
+                        {label ? (
+                            <div>
+                                <div style={{ fontSize: '12px' }} className={clazz}>{price}</div>
+                                <div className="lib-card__info-price"><b>{label}</b></div>
+                            </div>
+                        ) : <div className={clazz}>{price}</div>}
+                    </div>
                     <Swatches data={colors} />
                 </div>
+
             )}
         </div>
+
     );
 };
 

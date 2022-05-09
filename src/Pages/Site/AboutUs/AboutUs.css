@@ -1,0 +1,82 @@
+.lib-company_about_us-title{
+    background-image: url("https://cdn.shopify.com/s/files/1/0292/1375/3428/files/image_212_1296x.png?v=1619122206");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 430px;
+    display: flex;
+    justify-content: center;
+}
+.lib-company_about_us-title-content{
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%
+}
+.lib-company_about_us-story-starts{
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+.lib-company_about_us-title-header{
+    margin: 20px;
+    color: white;
+    font-size: 18px;
+
+}
+.lib-company_about_us-img{
+    width: 550px;
+}
+.lib-company_about_us-text-content{
+    width: 450px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.lib-company_about_us-text-story{
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 25px;
+    color: var(--color-accent);
+}
+.lib-company_about_us-text-promo{
+    font-size: 24px;
+    line-height: 32px;
+    margin-bottom: 25px;
+    color: var(--color-accent-light);
+}
+.lib-company_about_us-text-born-company{
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 25px;
+    color: var(--color-accent);
+}
+.lib-company_about_us-choose-our-company{
+    width: 100%;
+    background-color: var(--color-accent);
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    line-height: 24px;
+    align-items: center;
+    color: white;
+    height: 250px;
+}
+.lib-company_about_us-choose-our-company-text{
+    width: 500px;
+    margin: 20px;
+}
+
+@media (max-width: 750px){
+.lib-company_about_us-story-starts{
+    flex-direction: column;
+    align-items: center;
+}
+    .lib-company_about_us-img{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+}

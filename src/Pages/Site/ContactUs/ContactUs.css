@@ -1,0 +1,24 @@
+.lib-company_contact_us{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: var(--color-accent);
+}
+.lib-company_contact_us-content{
+    padding: 30px;
+}
+.lib-company_contact_us-mail-info{
+    margin-right: 10px;
+}
+.lib-company_contact_us-list-contact{
+    list-style: none;
+    text-decoration: underline;
+}
+.lib-company_contact_us-list-contact li{
+    margin-bottom: 10px;
+}
+.lib-company_contact_us-p{
+    margin-bottom: 20px;
+}
+
