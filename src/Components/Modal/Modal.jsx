@@ -38,7 +38,7 @@ const Modal = ({
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <h5 className="modal-title" id="exampleModalLabel">Модальна назва</h5>
                             <button
                                 onClick={toggleModal}
                                 type="button"
@@ -61,11 +61,11 @@ const Modal = ({
                                         data-dismiss="modal"
                                         onClick={toggleModal}
                                     >
-                                        Закрыть
+                                        Закрити
                                     </button>
                                     <button type="submit" className="btn btn-primary" disabled={loadingForm}>
                                         {loadingForm && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />}
-                                        <span className="ml-1">Сохранить</span>
+                                        <span className="ml-1">Зберегти</span>
                                     </button>
                                 </div>
                             </form>

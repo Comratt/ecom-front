@@ -39,7 +39,14 @@ const BigSliderItem = memo(({
                 </>
             )}
             <div className="item-overlay" />
-            {link ? <div className="item-image" style={{ background: `url(${image}) no-repeat center center fixed` }} /> : <ItemImage className="item-image" clientHeight={clientHeight} image={image} />}
+            {link ? (
+                <div
+                    className="item-image"
+                    style={{
+                        background: `url(${image})`, backgroundPosition: 'center', backgroundAttachment: 'fixed', backgroundSize: 'cover', backgroundRepeat: 'no-repeat',
+                    }}
+                />
+            ) : <ItemImage className="item-image" clientHeight={clientHeight} image={image} />}
         </div>
     );
 });

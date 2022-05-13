@@ -18,8 +18,8 @@ const ProductTabImage = () => {
         <div>
             <table className="table table-bordered table-striped">
                 <thead>
-                    <th>Image</th>
-                    <th>Choose image</th>
+                    <th>Зображення</th>
+                    <th>Виберіть зображення</th>
                 </thead>
                 <tbody>
                     <tr>
@@ -51,8 +51,8 @@ const ProductTabImage = () => {
             <table className="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>Additional Images</th>
-                        <th>Sort Order</th>
+                        <th>Додаткові зображення</th>
+                        <th>Порядок сортування</th>
                         <th />
                     </tr>
                 </thead>

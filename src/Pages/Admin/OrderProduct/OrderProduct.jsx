@@ -77,7 +77,7 @@ const OrderProduct = () => {
                                     style={{ marginRight: '10px' }}
                                     width={18}
                                 />
-                                Order Details
+                                Деталі замовлення
                             </th>
                         </tr>
                     </thead>
@@ -88,7 +88,7 @@ const OrderProduct = () => {
                                     style={{ marginRight: '10px' }}
                                     width={18}
                                 />
-                                Your Store
+                                Ваш магазин
                             </td>
                         </tr>
                         <tr>
@@ -108,7 +108,7 @@ const OrderProduct = () => {
                                     width={18}
                                     fill="#887569"
                                 />
-                                Cash On Delivery
+                                Наложений платіж
                             </td>
                         </tr>
                         <tr>
@@ -118,7 +118,7 @@ const OrderProduct = () => {
                                     fill="#887569"
                                     width={18}
                                 />
-                                Flat Shipping Rate
+                                Фіксована ставка доставки
                             </td>
                         </tr>
                     </tbody>
@@ -132,7 +132,7 @@ const OrderProduct = () => {
                                     fill="#887569"
                                     width={18}
                                 />
-                                Customer Details
+                                Інформація про клієнта
                             </th>
                         </tr>
                     </thead>
@@ -154,7 +154,7 @@ const OrderProduct = () => {
                                     fill="#887569"
                                     width={18}
                                 />
-                                Default
+                                За замовчуванням
                             </td>
                         </tr>
                         <tr>
@@ -188,14 +188,14 @@ const OrderProduct = () => {
                                     fill="#887569"
                                     width={18}
                                 />
-                                Options
+                                Параметри
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>
-                                Invoice
+                                Рахунок-фактура
                                 <Edit
                                     style={{ float: 'right' }}
                                     fill="#887569"
@@ -205,7 +205,7 @@ const OrderProduct = () => {
                         </tr>
                         <tr>
                             <td>
-                                Reward Points
+                                Бонусні бали
                                 <PlusIcon
                                     style={{ float: 'right' }}
                                     fill="#887569"
@@ -215,7 +215,7 @@ const OrderProduct = () => {
                         </tr>
                         <tr>
                             <td>
-                                Cash On Delivery
+                                Наложений платіж
                                 <PlusIcon
                                     style={{ float: 'right' }}
                                     fill="#887569"
@@ -236,8 +236,8 @@ const OrderProduct = () => {
                 <table className="orderProductTableAddress">
                     <thead>
                         <tr>
-                            <th>Payment Address</th>
-                            <th>Shipping Address</th>
+                            <th>Платіжна адреса</th>
+                            <th>Адреса доставки</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -280,11 +280,11 @@ const OrderProduct = () => {
                 <table className="orderProductTablePrice">
                     <thead>
                         <tr>
-                            <th>Product</th>
-                            <th>Model</th>
-                            <th>Quantity</th>
-                            <th>Unit Price</th>
-                            <th>Total</th>
+                            <th>Продукт</th>
+                            <th>Модель</th>
+                            <th>Кількість</th>
+                            <th>Ціна за одиницю</th>
+                            <th>Всього</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -309,7 +309,7 @@ const OrderProduct = () => {
                         ))}
                         <tr>
                             <td className="text-right" colSpan="4">
-                                Sub-Total
+                                Проміжний підсумок
                             </td>
                             <td>
                                 {getFormattedPrice(result.order_total_sum)}
@@ -317,7 +317,7 @@ const OrderProduct = () => {
                         </tr>
                         <tr>
                             <td className="text-right" colSpan="4">
-                                Flat Shipping Rate
+                                Фіксована ставка доставки
                             </td>
                             <td>
                                 {getFormattedPrice(SHIPPING_RATE)}
@@ -325,7 +325,7 @@ const OrderProduct = () => {
                         </tr>
                         <tr>
                             <td className="text-right" colSpan="4">
-                                Total
+                                Всього
                             </td>
                             <td>
                                 {getFormattedPrice(+result.order_total_sum + SHIPPING_RATE)}
@@ -335,21 +335,21 @@ const OrderProduct = () => {
                 </table>
             </div>
             <div className="orderProductId">
-                <h4 className="orderProductIdHeader"> Order History</h4>
+                <h4 className="orderProductIdHeader"> Історія Замовлень</h4>
                 <table className="orderProductTableAddress">
                     <thead>
                         <tr>
                             <th>
-                                Date Added
+                                дату додано
                             </th>
                             <th>
-                                Comment
+                                Коментар
                             </th>
                             <th>
-                                Status
+                                Статус
                             </th>
                             <th>
-                                Customer Notified
+                                Повідомлено клієнта
                             </th>
                         </tr>
                     </thead>
@@ -375,7 +375,7 @@ const OrderProduct = () => {
             </div>
             <div className="orderProductHistory">
                 <h4 className="orderProductHistoryHeader">
-                    Add Order History
+                    Додати історію замовлень
                 </h4>
                 <div>
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -383,7 +383,7 @@ const OrderProduct = () => {
                             <div className="orderLabelContent">
                                 <label>
                                     <b>
-                                        Order Status
+                                        Статус замовлення
                                     </b>
                                 </label>
                             </div>
@@ -411,7 +411,7 @@ const OrderProduct = () => {
                             <div className="orderLabelContent">
                                 <label>
                                     <b>
-                                        Notify Customer
+                                        Повідомити клієнта
                                     </b>
                                 </label>
                             </div>
@@ -430,7 +430,7 @@ const OrderProduct = () => {
                             <div className="orderLabelContent">
                                 <label>
                                     <b>
-                                        Comment
+                                        Коментар
                                     </b>
                                 </label>
                             </div>
@@ -454,7 +454,7 @@ const OrderProduct = () => {
                                     width={18}
                                 />
                                 <div>
-                                    Add history
+                                    Додати історію
                                 </div>
                             </div>
                         </button>

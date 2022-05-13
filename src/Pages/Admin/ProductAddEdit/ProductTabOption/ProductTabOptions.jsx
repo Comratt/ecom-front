@@ -25,11 +25,11 @@ const ProductTabOptions = () => {
             <table className="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Color</th>
-                        <th>Size</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th style={{ width: '2%' }}>Deystvie</th>
+                        <th>Колір</th>
+                        <th>Розмір</th>
+                        <th>Кількість</th>
+                        <th>Ціна</th>
+                        <th style={{ width: '2%' }}>Діяння</th>
                     </tr>
                 </thead>
                 <tbody>

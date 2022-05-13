@@ -50,14 +50,14 @@ export const Accordion = ({ defaultIndex, onItemClick, children }) => {
 const Accardion = () => (
     <Accordion defaultIndex="0">
         <AccordionItem label="Description" index="1">
-            107584
-            Denim Bermuda shorts
-            Mid rise
-            Zipper fly and button closure
-            A classic five-pocket design
-            Contrast stitching
-            Raw hem
-            Made in China
+            07584
+            Джинсові бермуди
+            Середній підйом
+            Застібка на блискавку та гудзики
+            Класичний дизайн з п'ятьма кишенями
+            Контрастне зшивання
+            Сирий поділ
+            Виготовлено в Китаї
         </AccordionItem>
         <AccordionItem label="Size & fit" index="2">
             Dolor sit amet

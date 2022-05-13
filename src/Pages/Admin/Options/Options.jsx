@@ -68,7 +68,7 @@ const Options = () => {
     };
 
     const handleDeleteOptionValue = (id) => () => {
-        window.confirm('Удалить значение опции?') && deleteOptionValue(id)
+        window.confirm('Видалити значення опції?') && deleteOptionValue(id)
             .then(() => {
                 setOptionValues((prevOptions) => prevOptions.filter(
                     (item) => item.id !== id,
@@ -109,7 +109,7 @@ const Options = () => {
     };
 
     const onRemove = (id) => {
-        window.confirm('Удалить категорию?') && deleteOption(id)
+        window.confirm('Видалити категорію?') && deleteOption(id)
             .then(() => {
                 setData(
                     (prevOptions) => prevOptions.filter(
@@ -165,8 +165,8 @@ const Options = () => {
                     <tr>
                         {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
                         <th scope="col" style={{ width: '3%' }} />
-                        <th scope="col">Название категории</th>
-                        <th scope="col" style={{ width: '10%' }}>Действие</th>
+                        <th scope="col">Назва категорії</th>
+                        <th scope="col" style={{ width: '10%' }}>Дія</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -232,7 +232,7 @@ const Options = () => {
             <div
                 className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
             >
-                <h1 className="h2">Опции</h1>
+                <h1 className="h2">Опції</h1>
                 {show && (
                     <Modal
                         show={show}

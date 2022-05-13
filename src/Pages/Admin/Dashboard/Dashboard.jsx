@@ -62,8 +62,8 @@ const Dashboard = () => {
     return (
         (
             <>
-                <div className="container">
-                    <h3 className="dashboardHeader">Dashboard</h3>
+                <div className="s">
+                    <h3 className="dashboardHeader">Панель приладів</h3>
                     <div className="card-total-info-block">
                         <div className="card text-white bg-secondary  mb-3" style={{ width: '18rem' }}>
                             <div className="card-header">
@@ -156,22 +156,9 @@ const Dashboard = () => {
 
                     <div className="dashboard-map">
                         <h3 style={{ textAlign: 'center' }}>Order Map</h3>
-                        <div className="card mb-3">
-                            <div className="row g-0">
-                                <div style={{ padding: '20px' }}>
-                                    <UkraineMap className="card-img-top" />
-                                </div>
-                                <div>
-                                    <div className="card-body">
-                                        <div className="card-text">
-                                            <small className="text-muted">
-                                                Kiev - 20 заказов
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                    <div className="svg-container">
+                        <UkraineMap className="card-img-top" />
                     </div>
                     <div>
                         <h3 style={{ textAlign: 'center' }}>Graphic Orders</h3>

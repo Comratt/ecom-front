@@ -19,15 +19,15 @@ const ProductInfo = ({
             <div className="lib-product_info_content">
                 <div>
                     <h1 className="lib-product_info_product-title">
-                        Ruffled broderie dress
+                        Сукня з оборками
                     </h1>
                     <p className="lib-product_info_product-normal-price">
                         <b>₴3,522</b>
                     </p>
                     <p className="lib-product_info_colour">
-                        Colour
+                        Колір
                         {' '}
-                        <span><b>- black</b></span>
+                        <span><b>- чорний</b></span>
                     </p>
                 </div>
                 <Swatches
@@ -35,7 +35,7 @@ const ProductInfo = ({
                     active={1}
                 />
                 <div className="lib-product_info_size">
-                    <p className="size-title"><b>Size</b></p>
+                    <p className="size-title"><b>Розмір</b></p>
                     <ul className="lib-product_info_size_list">
                         <li>
                             <div className="size_list">XS</div>

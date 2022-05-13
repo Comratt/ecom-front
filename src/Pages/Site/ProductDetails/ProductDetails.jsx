@@ -98,7 +98,7 @@ export const ProductDetails = () => {
     }, [result?.colors]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div>Завантаження...</div>;
     }
     console.log(result);
 
@@ -135,7 +135,7 @@ export const ProductDetails = () => {
                                 <b>{result.price}</b>
                             </p>
                             <p className="lib-product_info_colour">
-                                Color
+                                Колір
                                 <span>
                                     <b>
                                         {` - ${activeColor?.name}`}
@@ -150,7 +150,7 @@ export const ProductDetails = () => {
                         />
                         <div className="lib-product_info_size">
                             <p className="size-title">
-                                <b>Size</b>
+                                <b>Розмір</b>
                                 {activeSize?.name && (
                                     <b>
                                         {` - ${activeSize?.name}`}
@@ -179,14 +179,14 @@ export const ProductDetails = () => {
                                 ))}
                             </ul>
                             <span>
-                                Size chart
+                                Таблиця розмірів
                             </span>
                         </div>
                         <div className="cart-container">
                             <AddCartBtn onClick={handleAddToCart} />
                             <div className="lib-product_info_wishlist">
                                 <WishlistHeart cardId={result.id} />
-                                <span>in Wishlist</span>
+                                <span>у списку бажань</span>
                             </div>
                         </div>
                         <div className="lib-product_info_product_description_block">

@@ -150,10 +150,10 @@ const CheckboxFilterItem = ({
             id: 5,
             text: [
                 { value: 'relevance', name: 'sortBy', text: 'Relevance' },
-                { value: 'dateAsc', name: 'sortBy', text: 'Date | New to Old' },
-                { value: 'dateDesc', name: 'sortBy', text: 'Date | Old to New' },
-                { value: 'priceAsc', name: 'sortBy', text: 'Price | Low to high' },
-                { value: 'priceDesc', name: 'sortBy', text: 'Price | High to low' },
+                { value: 'dateAsc', name: 'sortBy', text: 'Дата | Від нового до старого' },
+                { value: 'dateDesc', name: 'sortBy', text: 'Дата | Від старого до нового' },
+                { value: 'priceAsc', name: 'sortBy', text: 'Ціна | Від низького до високого' },
+                { value: 'priceDesc', name: 'sortBy', text: 'Ціна | Від високого до низького' },
             ],
         },
     ]);

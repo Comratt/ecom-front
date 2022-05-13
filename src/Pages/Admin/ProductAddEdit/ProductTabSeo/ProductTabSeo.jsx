@@ -12,7 +12,7 @@ const ProductTabSeo = () => {
                     <div className="productTabLabel">
                         <label htmlFor="metaTitle">
                             <b>
-                                Meta Tag Title
+                                Назва мета-тегу
                             </b>
                         </label>
                     </div>
@@ -31,7 +31,7 @@ const ProductTabSeo = () => {
                     <div className="productTabLabel">
                         <label htmlFor="metaDescription">
                             <b>
-                                Meta Tag Description
+                                Опис мета-тегу
                             </b>
                         </label>
                     </div>
@@ -50,7 +50,7 @@ const ProductTabSeo = () => {
                     <div className="productTabLabel">
                         <label htmlFor="metaKeywords">
                             <b>
-                                Meta Tag Keywords
+                                Ключові слова мета-тегів
                             </b>
                         </label>
                     </div>
@@ -69,7 +69,7 @@ const ProductTabSeo = () => {
                     <div className="productTabLabel">
                         <label htmlFor="metaTags">
                             <b>
-                                Product Tags
+                                Теги продукту
                             </b>
                         </label>
                     </div>
