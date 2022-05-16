@@ -66,6 +66,16 @@
     margin: 3px 0;
     line-height: var(--line-h-normal);
     color: var(--color-accent);
-    font-size: var(--fz-small);
+    font-size: var(--fz-normal);
     font-family: var(--accent-ff);
+    margin-right: 10px;
+}
+.lib-card .sale{
+    text-decoration: line-through;
+    color: var(--color-accent-light)!important;
+
+}
+.lib-card__info-price-content{
+    margin-top: 10px ;
+    margin-bottom: 10px;
 }
