@@ -65,7 +65,7 @@ export const Cart = () => {
             {products.length ? (
                 <>
                     <h4 className="cart-product-header">
-                        Shopping Cart
+                        Кошик
                     </h4>
                     <div className="cart-product-order">
                         <div className="cart-product-order-table">
@@ -73,16 +73,16 @@ export const Cart = () => {
                                 <thead>
                                     <tr>
                                         <th>
-                                            Product
+                                            Продукт
                                         </th>
                                         <th className="cart-product-thead">
-                                            Price
+                                            Ціна
                                         </th>
                                         <th className="cart-product-thead">
-                                            Quantity
+                                            Кількість
                                         </th>
                                         <th className="cart-product-thead">
-                                            Total
+                                            Всього
                                         </th>
                                         <th />
                                     </tr>
@@ -140,17 +140,17 @@ export const Cart = () => {
                         <div className="cart-product-order-submit">
                             <div className="cart-product-price">
                                 <div>
-                                    Subtotal:
+                                    Проміжний підсумок:
                                 </div>
                                 <div>
                                     {subtotalPrice(products)}
                                 </div>
                             </div>
                             <div className="info">
-                                Excluding taxes and shipping
+                                Без урахування податків та доставки
                             </div>
                             <div className="orders">
-                                <label htmlFor="orders">Order notes</label>
+                                <label htmlFor="orders">Примітки до замовлення</label>
                                 <textarea
                                     id="orders"
                                     cols="30"
@@ -161,12 +161,12 @@ export const Cart = () => {
                             </div>
                             <div>
                                 <button onClick={goToCheckoutPage} className="cart-product-btn-checkout">
-                                    Checkout
+                                    Оформити
                                 </button>
                             </div>
                             <div>
                                 <button className="cart-product-btn-continue">
-                                    Continue Shoppnig
+                                    Продовжити покупки :)
                                 </button>
                             </div>
                         </div>
@@ -175,14 +175,14 @@ export const Cart = () => {
             ) : (
                 <div className="cart-product-order">
                     <div className="cart-empty">
-                        <Title type={1}>Shopping cart</Title>
-                        <Title type={3}>Your cart is empty</Title>
+                        <Title type={1}>Кошик</Title>
+                        <Title type={3}>У Вашому кошику, поки що, порожньо :(</Title>
                         <button
                             type="button"
                             className="btn-continue-empty"
                             onClick={() => history.goBack()}
                         >
-                            Continue Shoppnig
+                            Продовжити покупки
                         </button>
                     </div>
                 </div>

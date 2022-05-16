@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import { useAlert } from 'react-alert';
 
 import { useProduct } from 'context/product/hooks/useProduct';
 import { addToCart } from 'Store/Modules/Cart/cartActions';
+import { getWishlistProducts } from 'Store/Modules/Wishlist/selectors';
 import LocalStorageService from 'Services/LocalStorageService';
 
 import { Swatches } from 'Components/Swatches';
@@ -32,6 +33,8 @@ export const ProductDetails = () => {
     } = useProduct();
     const filteredColorSizes = result.colorSizes
         ?.filter(({ colorValId }) => activeColor.id === colorValId);
+    const listWishProducts = useSelector(getWishlistProducts);
+    const isActive = useMemo(() => listWishProducts.includes(result?.id), [listWishProducts, result]);
 
     const relatedIds = result?.related?.map(({ related_product_id }) => related_product_id);
     const historyViewed = LocalStorageService.getItem('viewed', []);
@@ -98,9 +101,8 @@ export const ProductDetails = () => {
     }, [result?.colors]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div>Завантаження...</div>;
     }
-    console.log(result);
 
     return (
         <>
@@ -135,7 +137,7 @@ export const ProductDetails = () => {
                                 <b>{result.price}</b>
                             </p>
                             <p className="lib-product_info_colour">
-                                Color
+                                Колір
                                 <span>
                                     <b>
                                         {` - ${activeColor?.name}`}
@@ -150,7 +152,7 @@ export const ProductDetails = () => {
                         />
                         <div className="lib-product_info_size">
                             <p className="size-title">
-                                <b>Size</b>
+                                <b>Розмір</b>
                                 {activeSize?.name && (
                                     <b>
                                         {` - ${activeSize?.name}`}
@@ -179,14 +181,16 @@ export const ProductDetails = () => {
                                 ))}
                             </ul>
                             <span>
-                                Size chart
+                                Таблиця розмірів
                             </span>
                         </div>
                         <div className="cart-container">
                             <AddCartBtn onClick={handleAddToCart} />
                             <div className="lib-product_info_wishlist">
                                 <WishlistHeart cardId={result.id} />
-                                <span>in Wishlist</span>
+                                <span>
+                                    {!isActive ? 'Додати до списку бажань' : 'У списку бажань'}
+                                </span>
                             </div>
                         </div>
                         <div className="lib-product_info_product_description_block">

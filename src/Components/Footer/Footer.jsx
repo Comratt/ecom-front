@@ -26,10 +26,10 @@ export const Footer = ({
                             </span>
                         </div>
                         <div className="footer-logo-info">
-                            Скачайте приложение для iOSc
+                            Скачайте додаток для iOSc
                         </div>
                         <div>
-                            и получите ранний доступ
+                            і отримаєте ранній доступ
                         </div>
                         <div>
                             к новинкам
@@ -40,33 +40,33 @@ export const Footer = ({
                             <AccordionItem label="Покупателям" index="0" isCollapsed>
                                 <ul className="footer-list">
                                     <li>Доставка</li>
-                                    <li>Возврат</li>
-                                    <li>Как вибрать размер</li>
-                                    <li>Вопроси и ответи</li>
-                                    <li>Отзиви</li>
-                                    <li>Связаться с нами</li>
+                                    <li>Повернення</li>
+                                    <li>Як вибрати розмір</li>
+                                    <li>Запитання та відповіді</li>
+                                    <li>Відгуки</li>
+                                    <li>Зв'язатися з нами</li>
                                 </ul>
                             </AccordionItem>
                             <AccordionItem label="О Компании" index="2">
                                 <ul className="footer-list">
-                                    <li>О нас</li>
-                                    <li>Устойчивое развитие</li>
-                                    <li>Капсулы</li>
-                                    <li>Пресса о нас</li>
+                                    <li>Про нас</li>
+                                    <li>Стійкий розвиток</li>
+                                    <li>Капсули</li>
+                                    <li>преса про нас</li>
                                     <li>Карьера</li>
-                                    <li>Контакты</li>
-                                    <li>Офис</li>
+                                    <li>Контакти</li>
+                                    <li>Офіс</li>
                                 </ul>
                             </AccordionItem>
                         </Accordion>
                     </div>
                     <div className="footer-title-info-client">
                         <div className="footer-title-info">
-                            Покупателям
+                            Покупцям
                         </div>
                         <ul className="footer-list">
                             <li>Доставка</li>
-                            <li>Возврат</li>
+                            <li>Повернення</li>
                             <li>Как вибрать размер</li>
                             <li>Вопроси и ответи</li>
                             <li>Отзиви</li>

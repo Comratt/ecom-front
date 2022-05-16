@@ -57,25 +57,25 @@ const Login = () => {
         <div className="text-center">
             <GlobalStyle />
             <form className="form-signin" onSubmit={handleSubmit(onSubmit)}>
-                <h1 className="h3 mb-3 font-weight-normal">Введите ваши данные</h1>
+                <h1 className="h3 mb-3 font-weight-normal">Введіть ваші дані</h1>
                 <Input
                     name="email"
                     label="Email"
-                    placeholder="Enter email"
+                    placeholder="Введіть ваш email"
                     ref={register({
-                        required: 'Enter valid email',
-                        pattern: { message: 'Enter valid email', value: emailRegExp },
+                        required: 'Поле email порожнє',
+                        pattern: { message: 'Введіть коректний email', value: emailRegExp },
                     })}
                     error={getValidationMessage(errors?.email)}
                 />
                 <Input
                     name="password"
                     label="Password"
-                    placeholder="Enter password"
+                    placeholder="Введіть пароль"
                     ref={register({
-                        required: 'Enter password',
-                        maxLength: { message: 'Enter valid password', value: 20 },
-                        minLength: { message: 'password', value: 6 },
+                        required: 'Поле пароль порожнє',
+                        maxLength: { message: 'Ви впевнені, що запамʼятаєте?', value: 20 },
+                        minLength: { message: 'Необхідно, не менеше 6 символів', value: 6 },
                     })}
                     error={getValidationMessage(errors?.password)}
                 />
@@ -90,7 +90,7 @@ const Login = () => {
                             radius={16}
                         />
                     )}
-                    Войти
+                    Увійти
                 </button>
             </form>
         </div>

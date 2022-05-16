@@ -28,7 +28,7 @@ const Login = ({
 
     useEffect(() => {
         if (Object.keys(user).length) {
-            alert.success({ name: `Добро пожаловать ${user?.first_name}!` });
+            alert.success({ name: `Ласкаво просимо ${user?.first_name}!` });
             setTimeout(() => history.push('/'), 200);
         }
     }, [user]);
@@ -44,7 +44,7 @@ const Login = ({
                         <CommonInput
                             name="email"
                             label="Email"
-                            placeholder="Enter email"
+                            placeholder="Введіть електронну адресу"
                             ref={register({
                                 required: 'Enter valid email',
                                 pattern: { message: 'Enter valid email', value: emailRegExp },
@@ -54,7 +54,7 @@ const Login = ({
                         <CommonInput
                             name="password"
                             label="Password"
-                            placeholder="Enter password"
+                            placeholder="Введіть пароль"
                             ref={register({
                                 required: 'Enter password',
                                 maxLength: { message: 'Enter valid password', value: 20 },
@@ -66,10 +66,10 @@ const Login = ({
                         <GuestBtn />
                     </form>
                     <p className="lib-login_sign_up">
-                        Sign up
+                        Зареєструватися
                     </p>
                     <p>
-                        Recover password
+                        Відновити пароль
                     </p>
                 </div>
             </div>

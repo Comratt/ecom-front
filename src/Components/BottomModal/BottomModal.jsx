@@ -240,7 +240,7 @@ export const BottomModal = ({
             <Sheet.Container>
                 <Sheet.Header className="react-modal-sheet-header">
                     <Title type={2}>
-                        Filters
+                        Фільтри
                     </Title>
                     <button onClick={handleClose} className="modal-sheet-close-btn" />
                 </Sheet.Header>
@@ -252,7 +252,7 @@ export const BottomModal = ({
                                 options={opt}
                                 onItemClick={handleItemClick}
                             >
-                                <h1>Some text price</h1>
+                                <h1>Деякі текстові ціни</h1>
                             </MultilevelSidebar>
                         </div>
                     </div>

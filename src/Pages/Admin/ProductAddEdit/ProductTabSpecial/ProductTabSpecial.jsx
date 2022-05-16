@@ -6,17 +6,17 @@ const ProductTabSpecial = () => (
         <table>
             <thead>
                 <tr>
-                    <th>Customer Group</th>
-                    <th>Priority</th>
-                    <th>Date Start</th>
-                    <th>Date End</th>
+                    <th>Група клієнтів</th>
+                    <th>Пріоритет</th>
+                    <th>Дата початку</th>
+                    <th>Дата закінчення</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>
                         <select>
-                            <option value="Checkbox 1">Default</option>
+                            <option value="Checkbox 1">За замовчуванням</option>
                         </select>
                     </td>
                     <td>
@@ -29,7 +29,7 @@ const ProductTabSpecial = () => (
                         <input type="date" />
                     </td>
                     <td>
-                        <button>delet</button>
+                        <button>видалити</button>
                     </td>
                 </tr>
             </tbody>

@@ -72,11 +72,11 @@ export const OrderForm = (className) => {
             .then((response) => {
                 setFormLoading(false);
                 dispatch(clearCart());
-                alert.success({ name: 'Заказ успешно оформлен!' });
+                alert.success({ name: 'Дякуємо! Замовлення успішно оформлене.' });
             })
             .catch((error) => {
                 setFormLoading(false);
-                alert.error({ name: 'Ошибка при оформлении заказа!' });
+                alert.error({ name: 'Упсс... Щось пішло не так з оформленням Вашого замовлення.' });
             });
     };
 
@@ -151,12 +151,12 @@ export const OrderForm = (className) => {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="order__contact-info">
                             <div className="order__title">
-                                <h2 className="order__title-name">Contact Information</h2>
+                                <h2 className="order__title-name">Контактна інформація</h2>
                                 <div className="order__log-in">
                                     <span className="order__log-in-text">
-                                        Already have an account?
+                                        Вже маєте акаунт?
                                     </span>
-                                    <a href="#">LogIn</a>
+                                    <a href="#">Увійти</a>
                                 </div>
                             </div>
                             <div className="order__contact-form">
@@ -165,27 +165,27 @@ export const OrderForm = (className) => {
                                     ref={register({ required: true, pattern: emailRegExp })}
                                     className={classNames('input', { 'field-error': errors?.email })}
                                     type="text"
-                                    placeholder="Email"
+                                    placeholder="Ваш Email"
                                 />
-                                {errors?.email && <p className="field-message__error">Enter valid email</p>}
+                                {errors?.email && <p className="field-message__error">Введіть коректний email</p>}
                             </div>
                         </div>
                         <div className="order__shipping-address">
                             <h2 className="order__shipping-address-title">
-                                Shipping address (use the Latin alphabet)
+                                Адреса доставки
                             </h2>
                             <div className="order__address-name">
                                 <div className="order__contact-form">
                                     <input
                                         name="firstName"
                                         ref={register({
-                                            required: true, maxLength: 20, minLength: 3,
+                                            required: true, maxLength: 20, minLength: 2,
                                         })}
                                         className={classNames('input order__fifty-to-fifty', { 'field-error': errors?.firstName })}
-                                        placeholder="First name"
+                                        placeholder="Ім'я"
                                         type="text"
                                     />
-                                    {errors?.firstName && <p className="field-message__error">Enter valid email</p>}
+                                    {errors?.firstName && <p className="field-message__error">Не залишайте поле порожнім</p>}
                                 </div>
                                 <div className="order__contact-form">
                                     <input
@@ -194,17 +194,17 @@ export const OrderForm = (className) => {
                                             required: true, maxLength: 20, minLength: 3,
                                         })}
                                         className={classNames('input order__fifty-to-fifty lastName', { 'field-error': errors?.lastName })}
-                                        placeholder="Last name"
+                                        placeholder="Прізвище"
                                         type="text"
                                     />
-                                    {errors?.lastName && <p className="field-message__error">Enter valid email</p>}
+                                    {errors?.lastName && <p className="field-message__error">Не залишайте поле порожнім</p>}
                                 </div>
                             </div>
                             <div className="order__contact-form">
                                 <TextInput
                                     Component="input"
                                     className={classNames('input input__full-width', { 'field-error': errors?.shippingCity })}
-                                    placeholder="Apartment, suite, etc. (optional)"
+                                    placeholder="Виберіть місто"
                                     type="text"
                                     options={cityNames}
                                     trigger=""
@@ -215,7 +215,7 @@ export const OrderForm = (className) => {
                                     onSelect={handleCitySelect}
                                     onChange={(str = '') => {
                                         if (!str.length && !selectedCity) {
-                                            return setError('shippingCity', { message: 'Enter city' });
+                                            return setError('shippingCity', { message: 'Не залишайте поле порожнім' });
                                         }
                                         clearErrors('shippingCity');
                                         setValue('shippingCity', str);
@@ -231,14 +231,14 @@ export const OrderForm = (className) => {
                                             ref={register({ required: true })}
                                             className={classNames({ 'field-error': errors?.shippingAddress })}
                                         >
-                                            <option disabled selected value="">Выберите отделение</option>
+                                            <option disabled selected value="">Виберіть відділення для отримання замовлення</option>
                                             {offices.data.map(({ Description }) => (
                                                 <option value={Description}>
                                                     {Description}
                                                 </option>
                                             ))}
                                         </select>
-                                        {errors?.shippingAddress && <p className="field-message__error">Выберите отделение</p>}
+                                        {errors?.shippingAddress && <p className="field-message__error">Не залишайте поле порожнім</p>}
                                     </>
                                 )}
                             </div>
@@ -247,30 +247,20 @@ export const OrderForm = (className) => {
                                     name="phone"
                                     ref={register({ required: true, minLength: 10, maxLength: 13 })}
                                     className={classNames('input order__phone-input', { 'field-error': errors?.phone })}
-                                    placeholder="Phone"
+                                    placeholder="Номер телефону"
                                     type="text"
                                 />
-                                {errors?.phone && <p className="field-message__error">Введите номер телефона</p>}
-                            </div>
-                            <div className="order__contact-form-checkbox-block">
-                                <input
-                                    className="order__contact-form-checkbox"
-                                    id="checkbox-save-info"
-                                    type="checkbox"
-                                />
-                                <label className="label-btn" htmlFor="checkbox-save-info">
-                                    Save this information for next time
-                                </label>
+                                {errors?.phone && <p className="field-message__error">Введіть коректний номер</p>}
                             </div>
                             <div className="order__order-button">
                                 <LoginBtn
                                     className="order__btn-submit"
-                                    text="Continue shipping"
+                                    text="Оформити замовлення"
                                     loading={formLoading}
                                 />
                                 <div className="order__btn-return">
                                     <Link className="order__btn-return-link" to="/cart">
-                                        Return to card
+                                        Назад у кошик
                                     </Link>
                                 </div>
                             </div>
@@ -278,10 +268,10 @@ export const OrderForm = (className) => {
                     </form>
                     <footer className="order__policy-lists">
                         <div className="order__privacy">
-                            <a href="#">Privacy policy</a>
+                            <a href="#">Політика конфіденційності</a>
                         </div>
                         <div className="order__term">
-                            <a href="#">Terms of service</a>
+                            <a href="#">Умови обслуговування</a>
                         </div>
                     </footer>
                 </div>
@@ -333,27 +323,27 @@ export const OrderForm = (className) => {
                             <input
                                 name="discount"
                                 className={classNames('input order__discount-input', { 'field-error': discount.error })}
-                                placeholder="Discount code"
+                                placeholder="Промокод"
                                 type="text"
                             />
-                            {discount.error && <p className="field-message__error">Невірний код на знижку</p>}
+                            {discount.error && <p className="field-message__error">Невірний промокод</p>}
                         </div>
                         <div className="order__discount-btn-block">
-                            <button className="order__discount-bnt">Apply</button>
+                            <button className="order__discount-bnt">Застосувати</button>
                         </div>
                     </div>
                     <div className="order__summary">
                         <div className="order__subtotal">
-                            <span className="order__aside-text">Subtotal</span>
+                            <span className="order__aside-text">Проміжний підсумок</span>
                             <span className="order__subtotal-amount">{subtotalPrice(products)}</span>
                         </div>
                         <div className="order__shipping">
-                            <span className="order__aside-text">Shipping</span>
-                            <span className="order__aside-hint">Calculated at next step</span>
+                            <span className="order__aside-text">Доставка</span>
+                            <span className="order__aside-hint">Розраховано на наступному кроці</span>
                         </div>
                     </div>
                     <div className="order__total">
-                        <span>Total</span>
+                        <span>Всього</span>
                         <span className="order__total-amount">{subtotalPrice(products)}</span>
                     </div>
                 </div>

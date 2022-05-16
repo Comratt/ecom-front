@@ -13,9 +13,9 @@ const ProductTabDiscount = () => {
             <table className="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Priority</th>
+                        <th>Кількість</th>
+                        <th>Ціна</th>
+                        <th>Пріоритет</th>
                         {/* <th>Date Start</th>
                         <th>Date End</th> */}
                         <th />

@@ -59,17 +59,17 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
                         onMouseEnter={() => setHoverItem(true)}
                         onMouseLeave={() => setHoverItem(false)}
                     >
-                        <Link to="/">Whats New</Link>
+                        <Link to="/">Що нового</Link>
                         <HeaderListCollectionNews className="header-list-collection" />
                     </li>
                     <li className="list-group">
-                        <Link to="/">Clothing & Shoes</Link>
+                        <Link to="/">Одяг та взуття</Link>
                     </li>
                     <li className="list-group">
-                        <Link to="/">Coming Soon</Link>
+                        <Link to="/">Незабаром</Link>
                     </li>
                     <li className="list-group">
-                        <Link to="/">About</Link>
+                        <Link to="/">Про</Link>
                     </li>
                 </ul>
             </div>

@@ -31,7 +31,7 @@ const ProductTabGeneral = () => {
                     <div className="productTabLabel">
                         <label htmlFor="status">
                             <b>
-                                Status
+                                Статус
                             </b>
                         </label>
                     </div>
@@ -42,8 +42,8 @@ const ProductTabGeneral = () => {
                             name="status"
                             id="status"
                         >
-                            <option selected={values.status == 1} value="1">Active</option>
-                            <option selected={values.status == 0} value="0">Disabled</option>
+                            <option selected={values.status == 1} value="1">Активний</option>
+                            <option selected={values.status == 0} value="0">Вимкнено</option>
                         </select>
                     </div>
                 </div>
@@ -51,7 +51,7 @@ const ProductTabGeneral = () => {
                     <div className="productTabLabel">
                         <label htmlFor="productName">
                             <b>
-                                Product Name
+                                Назва продукту
                             </b>
                         </label>
                     </div>
@@ -69,7 +69,7 @@ const ProductTabGeneral = () => {
                     <div className="productTabLabel">
                         <label htmlFor="productName">
                             <b>
-                                Model
+                                Модель
                             </b>
                         </label>
                     </div>
@@ -87,7 +87,7 @@ const ProductTabGeneral = () => {
                     <div className="productTabLabel">
                         <label htmlFor="price">
                             <b>
-                                Price
+                                Ціна
                             </b>
                         </label>
                     </div>
@@ -105,7 +105,7 @@ const ProductTabGeneral = () => {
                     <div className="productTabLabel">
                         <label htmlFor="productTextArea">
                             <b>
-                                Description
+                                Опис
                             </b>
                         </label>
                     </div>

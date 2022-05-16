@@ -25,7 +25,12 @@ const WishlistHeart = ({ cardId }) => {
                 className="lib-card__heart"
                 onClick={handleClick(cardId, isActive)}
             >
-                <Heart height="23" width="23" fill={isActive ? '#fa4343' : '#000000'} />
+                <Heart
+                    height="23"
+                    width="23"
+                    fill={isActive ? '#fa4343' : 'var(--color-accent)'}
+                    fillOpacity={isActive ? '0.6' : '0.5'}
+                />
             </button>
         </div>
     );

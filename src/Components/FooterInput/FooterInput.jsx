@@ -5,7 +5,7 @@ import { Arrow } from '../../Icons';
 
 const FooterInput = () => (
     <form action="#" className="footer-form">
-        <input className="footer-input" type="text" name="" id="footer-input" placeholder="Подписаться на новинки" />
+        <input className="footer-input" type="text" name="" id="footer-input" placeholder="Підписатися на новинки" />
         <div className="arrow">
             <label htmlFor="footer-input">
                 <Arrow

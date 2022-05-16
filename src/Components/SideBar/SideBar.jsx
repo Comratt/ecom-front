@@ -33,7 +33,7 @@ export const SideBar = ({ className }) => {
                     <div className="lib-sidebar__item">
                         <div className="lib-sidebar__item-text">
                             <a href="#">
-                                Sale
+                                Продаж
                             </a>
                         </div>
                         <div className="lib-sidebar__item-arrow">
@@ -49,7 +49,7 @@ export const SideBar = ({ className }) => {
                     <div className="lib-sidebar__item">
                         <div className="lib-sidebar__item-text">
                             <a href="#">
-                                Clothing & Shoes
+                                Одяг та взуття
                             </a>
                         </div>
                         <div className="lib-sidebar__item-arrow">
@@ -65,7 +65,7 @@ export const SideBar = ({ className }) => {
                     <div className="lib-sidebar__item">
                         <div className="lib-sidebar__item-text">
                             <a href="#">
-                                What's New
+                                Що нового
                             </a>
                         </div>
                         <div className="lib-sidebar__item-arrow">
@@ -81,7 +81,7 @@ export const SideBar = ({ className }) => {
                     <div className="lib-sidebar__item">
                         <div className="lib-sidebar__item-text">
                             <a href="#">
-                                About
+                                Про нас
                             </a>
                         </div>
                         <div className="lib-sidebar__item-arrow">

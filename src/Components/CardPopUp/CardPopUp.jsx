@@ -39,7 +39,7 @@ export const CardPopUp = ({
     return (
         <div className={componentClassNames} style={style}>
             <div className="card-pop-up__title">
-                1 item(s) added to your cart
+                1 товар(ів) додано до вашого кошика
             </div>
             <div className="card-pop-up__info">
                 <div className="card-pop-up__img">

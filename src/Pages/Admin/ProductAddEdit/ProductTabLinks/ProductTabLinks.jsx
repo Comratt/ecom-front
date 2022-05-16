@@ -50,7 +50,7 @@ const ProductTabLinks = () => {
                     <div className="productTabLabel">
                         <label htmlFor="Categories">
                             <b>
-                                Categories
+                                Категорії
                             </b>
                         </label>
                     </div>
@@ -86,7 +86,7 @@ const ProductTabLinks = () => {
                     <div className="productTabLabel">
                         <label htmlFor="Related Products">
                             <b>
-                                Related Products
+                                Супутні товари
                             </b>
                         </label>
                     </div>

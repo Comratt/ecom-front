@@ -103,7 +103,7 @@ const Categories = () => {
                         {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
                         <th scope="col" style={{ width: '3%' }} />
                         <th scope="col">Название категории</th>
-                        <th scope="col" style={{ width: '10%' }}>Действие</th>
+                        <th scope="col" style={{ width: '10%' }}>Дія</th>
                     </tr>
                 </thead>
                 <tbody>

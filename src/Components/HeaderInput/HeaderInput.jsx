@@ -63,14 +63,14 @@ const SelectOptionContainer = ({ children, ...props }) => (
     <components.Menu {...props}>
         <div className="lib-search-results_info">
             <div className="product-matches__title">
-                Product matches
+                Збіги товару
             </div>
             <div className="product-matches__wrapper">
                 <div className="product-matches__items">
                     {children}
                 </div>
                 <div className="product-matches__btn-block">
-                    <button className="product-matches__btn">View all results</button>
+                    <button className="product-matches__btn">Переглянути всі результати</button>
                 </div>
             </div>
         </div>

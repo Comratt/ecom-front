@@ -37,7 +37,7 @@ export const CardList = ({
 
     if (loading) {
         return (
-            <div>Loading...</div>
+            <div>Завантаження...</div>
         );
     }
 

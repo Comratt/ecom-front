@@ -44,13 +44,13 @@ const Order = () => {
                     <tr>
                         {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
                         <th scope="col" style={{ width: '3%' }} />
-                        <th scope="col" style={{ width: '9%' }}>Orders Id</th>
-                        <th scope="col">Customer</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Date Added</th>
-                        <th scope="col">Date Modified</th>
-                        <th scope="col" style={{ width: '4%' }}>Action</th>
+                        <th scope="col" style={{ width: '9%' }}>Ідентифікатор замовлення</th>
+                        <th scope="col">Замовник</th>
+                        <th scope="col">Статус</th>
+                        <th scope="col">Всього</th>
+                        <th scope="col">дату додано</th>
+                        <th scope="col">Дата зміни</th>
+                        <th scope="col" style={{ width: '4%' }}>Дія</th>
                     </tr>
                 </thead>
                 <tbody>

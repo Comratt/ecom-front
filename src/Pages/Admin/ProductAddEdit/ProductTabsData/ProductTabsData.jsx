@@ -12,7 +12,7 @@ const ProductTabsData = () => {
                     <div className="productTabLabel">
                         <label htmlFor="productName">
                             <b>
-                                Model
+                                Модель
                             </b>
                         </label>
                     </div>
@@ -30,7 +30,7 @@ const ProductTabsData = () => {
                     <div className="productTabLabel">
                         <label htmlFor="Quantity">
                             <b>
-                                Quantity
+                                Кількість
                             </b>
                         </label>
                     </div>
