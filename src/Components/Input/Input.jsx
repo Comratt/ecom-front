@@ -5,7 +5,7 @@ import classNames from 'classnames';
 const Input = forwardRef(({
     name, type, required, placeholder, label, error, ...restProps
 }, ref) => (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: 'relative' }} className="lib-input-admin">
         {label && <label htmlFor={name}>{label}</label>}
         <input
             name={name}

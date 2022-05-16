@@ -4,19 +4,29 @@ import { useHistory } from 'react-router-dom';
 import Loader from 'Components/Loader';
 import Alert from 'Components/Alert';
 import {
-    Edit,
     Eye,
-    Menu,
-    Pencil,
 } from 'Icons';
+import { SHIPPING_CODES } from 'Constants';
 import { useFetchOrders } from '../hooks/useFetchOrders';
 import Layout from '../Layout';
 
 import './Order.css';
+import Filter from '../Filter';
+import { AdminPagination } from '../../../Components/AdminPagination';
 
 const Order = () => {
     const history = useHistory();
-    const { result, loading, error } = useFetchOrders();
+    const {
+        result,
+        loading,
+        error,
+        page,
+        setPage,
+        totalPages,
+        handleFilter,
+        filters,
+        resetFilters,
+    } = useFetchOrders();
 
     const handleClick = (id) => () => history.push(`/admin/order/${id}`);
 
@@ -97,6 +107,21 @@ const Order = () => {
         );
     }, [loading, error, result, handleClick]);
 
+    const filterFields = [
+        { name: 'orderId', label: 'Order ID', type: 'text' },
+        {
+            name: 'status',
+            label: 'Order status',
+            type: 'select',
+            options: Object.keys(SHIPPING_CODES).map((key) => ({
+                value: key,
+                name: SHIPPING_CODES[key],
+            })),
+        },
+        { name: 'createdAt', label: 'Created At', type: 'date' },
+        { name: 'updatedAt', label: 'Updated At', type: 'date' },
+    ];
+
     return (
         <>
             <div
@@ -106,9 +131,21 @@ const Order = () => {
                 <div className="btn-toolbar mb-2 mb-md-0" />
             </div>
             <div className="container">
-                <div className="row">
+                <div className="d-flex">
                     {renderContent()}
+                    <Filter
+                        fields={filterFields}
+                        filters={filters}
+                        handleFilter={handleFilter}
+                        resetFilters={resetFilters}
+                    />
                 </div>
+                <AdminPagination
+                    loading={loading}
+                    current={page}
+                    onChange={(pageNumber) => setPage(pageNumber)}
+                    total={totalPages}
+                />
             </div>
         </>
     );

@@ -5,11 +5,13 @@ import {
     SIGN_UP_FAILURE,
     SIGN_UP_START,
     SIGN_UP_SUCCESS,
+    LOGOUT,
 } from './types';
 
 export const initialState = {
     user: {},
     authorizationToken: '',
+    expiresAt: '',
     isLoading: false,
     isError: false,
     isSignUpSuccess: false,
@@ -23,6 +25,7 @@ const localSettingsReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 user: {},
                 authorizationToken: '',
+                expiresAt: '',
                 isLoading: true,
                 isError: false,
                 errorMessage: '',
@@ -32,6 +35,7 @@ const localSettingsReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 user: {},
                 authorizationToken: '',
+                expiresAt: '',
                 isLoading: true,
                 isError: false,
                 isSignUpSuccess: false,
@@ -42,6 +46,7 @@ const localSettingsReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 user: {},
                 authorizationToken: '',
+                expiresAt: '',
                 isLoading: false,
                 isError: true,
                 isSignUpSuccess: false,
@@ -60,6 +65,7 @@ const localSettingsReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 user: {},
                 authorizationToken: '',
+                expiresAt: '',
                 isLoading: false,
                 isError: true,
                 errorMessage: payload.message,
@@ -69,10 +75,13 @@ const localSettingsReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 user: payload.user,
                 authorizationToken: payload.acces_token,
+                expiresAt: payload.expires_at,
                 isLoading: false,
                 isError: false,
                 errorMessage: '',
             };
+        case LOGOUT:
+            return initialState;
         default:
             return state;
     }

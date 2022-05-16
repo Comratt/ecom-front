@@ -15,11 +15,19 @@ import Filter from '../Filter';
 const Products = () => {
     const history = useHistory();
     const {
-        result, loading, error, page, setPage, totalPages,
+        result,
+        loading,
+        error,
+        page,
+        setPage,
+        totalPages,
+        filters,
+        handleFilter,
+        resetFilters,
     } = useFetchProducts();
 
     const handleClick = (id) => () => history.push(`/admin/products/${id}`);
-    const handleAddClick = () => history.push('/admin/add/products');
+    const handleAddClick = () => history.push('/admin/product/add');
 
     const quantityBadgeClass = (quantity = 0) => classNames('product-quantity badge', {
         'badge-success': quantity > 10,
@@ -110,6 +118,20 @@ const Products = () => {
         );
     }, [loading, error, result, handleClick]);
 
+    const filterFields = [
+        { name: 'search', label: 'Product Name', type: 'text' },
+        { name: 'model', label: 'Product Model', type: 'text' },
+        {
+            name: 'available',
+            label: 'Select availability',
+            type: 'select',
+            options: [
+                { value: 'true', name: 'available' },
+                { value: 'false', name: 'unavailable' },
+            ],
+        },
+    ];
+
     return (
         <>
             <div
@@ -130,14 +152,19 @@ const Products = () => {
             <div className="container">
                 <div className="d-flex">
                     {renderContent()}
-                    <Filter />
-                    <AdminPagination
-                        loading={loading}
-                        current={page}
-                        onChange={(pageNumber) => setPage(pageNumber)}
-                        total={totalPages}
+                    <Filter
+                        fields={filterFields}
+                        filters={filters}
+                        handleFilter={handleFilter}
+                        resetFilters={resetFilters}
                     />
                 </div>
+                <AdminPagination
+                    loading={loading}
+                    current={page}
+                    onChange={(pageNumber) => setPage(pageNumber)}
+                    total={totalPages}
+                />
             </div>
         </>
     );

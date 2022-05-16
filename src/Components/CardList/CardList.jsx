@@ -33,7 +33,7 @@ export const CardList = ({
 
             setIsBottom(offsetY < 1000);
         }
-    }, [], containerRef);
+    }, [], containerRef, false, 250);
 
     if (loading) {
         return (

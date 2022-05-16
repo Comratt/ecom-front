@@ -43,14 +43,14 @@
     align-items: center;
 }
 
-.checkbox > span {
+.lib-checkboxFilterItem .checkbox > span {
     color: #a89583;
     padding: 0.5rem 0.25rem;
     font-size: 14px;
     text-transform: capitalize;
 }
 
-.checkbox > input {
+.lib-checkboxFilterItem .checkbox > input {
     height: 14px;
     width: 14px;
     -webkit-appearance: none;
@@ -90,7 +90,6 @@
     text-align: center;
     color: #887569;
     position: absolute;
-    left: 6.1px;
 }
 
 .checkbox > input:active {
@@ -122,6 +121,13 @@
     border: none;
     border-radius: 2px;
     width: 250px;
+}
+.popup-content .checkbox > input {
+    height: 14px;
+    width: 14px;
+}
+.popup-content .checkbox > input:checked + span::before {
+    left: 6.1px;
 }
 .popup-arrow {
     filter: none;

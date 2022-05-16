@@ -84,7 +84,7 @@ export const SliderCardList = ({
     // }
 
     return (
-        <div>
+        <div className="lib-slider-card">
             <div className="slider-card-list-header">
                 <Link to="/collection" className="list-link">
                     <Title type={2}>{title}</Title>

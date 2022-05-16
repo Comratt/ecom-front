@@ -91,13 +91,13 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
                         UAH
                     </span>
                 </div>
-                <a href="/" className="header-links-icon heart">
+                <Link to="/wishlist" className="header-links-icon heart">
                     <Heart
                         width={24}
                         height={24}
                     />
                     {!!wishQuantity && <div className="cart-badge">{wishQuantity}</div>}
-                </a>
+                </Link>
                 <Link to="/cart" className="header-links-icon cart">
                     <Cart
                         width={24}
@@ -105,12 +105,12 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
                     />
                     {!!cartQuantity && <div className="cart-badge">{cartQuantity}</div>}
                 </Link>
-                <a href="/" className="header-links-icon user">
+                <Link to="/account" className="header-links-icon user">
                     <User
                         width={24}
                         height={24}
                     />
-                </a>
+                </Link>
             </div>
         </header>
     );

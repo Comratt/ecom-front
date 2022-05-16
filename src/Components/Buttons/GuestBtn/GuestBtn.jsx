@@ -1,9 +1,9 @@
 import React from 'react';
 import './GuestBtn.css';
 
-const GuestBtn = () => (
+const GuestBtn = (...props) => (
     <div className="lib-guest-btn">
-        <button>
+        <button {...props}>
             Continue as Guest
         </button>
     </div>

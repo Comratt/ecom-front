@@ -1,47 +1,109 @@
 import React from 'react';
+import debounce from 'lodash/debounce';
 
 import './Filter.css';
 import { Filters } from '../../../Icons';
 
-const Filter = () => (
-    <div className="orderListFilter">
-        <div className="orderListFilter-title">
-            <h5>
-                <Filters />
-                {' '}
-                Filter
-            </h5>
-        </div>
-        <form className="orderListFilter-form">
+const Filter = ({
+    filters, handleFilter, fields, resetFilters,
+}) => {
+    const onInputChange = ({ target: { name, value } }) => {
+        handleFilter(name, value);
+    };
+    const onInputDateChange = ({ target: { name, value } }) => {
+        handleFilter(name, value);
+    };
 
-            <label className="orderListFilter-label" htmlFor="orderId"><b>Product Name</b></label>
-            <input className="orderListFilter-input" type="text" id="orederId" placeholder="Product Name" />
+    const debouncedChange = debounce(onInputChange, 500);
 
-            <label className="orderListFilter-label" htmlFor="Model"><b>Model</b></label>
-            <input className="orderListFilter-input" type="text" id="Model" placeholder="Model" />
+    const handleResetFilters = () => {
+        const inputs = document.querySelectorAll('.text-input');
 
-            <label className="orderListFilter-label" htmlFor="Price"><b>Price</b></label>
-            <input className="orderListFilter-input" type="text" id="Price" placeholder="Price" />
+        inputs.forEach((input) => input.value = '');
 
-            <label className="orderListFilter-label" htmlFor="Quantity"><b>Quantity</b></label>
-            <input className="orderListFilter-input" type="text" id="Quantity" placeholder="Quantity" />
+        resetFilters();
+    };
 
-            <label className="orderListFilter-label" htmlFor="Status"><b>Status</b></label>
-            <select className="form-select" name="status" id="status">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
-            <div className="d-flex justify-content-end">
-                <button className="btn btn-outline-primary">
+    return (
+        <div className="orderListFilter">
+            <div className="orderListFilter-title">
+                <h5>
                     <Filters />
                     {' '}
                     Filter
-                </button>
+                </h5>
             </div>
-        </form>
-    </div>
-);
+            <form className="orderListFilter-form">
+                {fields?.map((field) => {
+                    if (field.type === 'text') {
+                        return (
+                            <div key={field.name}>
+                                <label className="orderListFilter-label" htmlFor={field.name}>
+                                    <b>{field.label}</b>
+                                </label>
+                                <input
+                                    className="orderListFilter-input form-control text-input"
+                                    type="text"
+                                    name={field.name}
+                                    onChange={debouncedChange}
+                                    id={field.name}
+                                    placeholder={field.label}
+                                />
+                            </div>
+                        );
+                    } if (field.type === 'select') {
+                        return (
+                            <>
+                                <label className="orderListFilter-label" htmlFor={field.name}>
+                                    <b>{field.label}</b>
+                                </label>
+                                <select
+                                    className="form-select form-control"
+                                    name={field.name}
+                                    id={field.name}
+                                    onChange={debouncedChange}
+                                >
+                                    <option selected value="">Select</option>
+                                    {field.options?.map((option) => (
+                                        <option
+                                            value={option.value}
+                                            selected={filters[field.name] === option.value}
+                                        >
+                                            {option.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </>
+                        );
+                    } if (field.type === 'date') {
+                        return (
+                            <div key={field.name}>
+                                <label className="orderListFilter-label" htmlFor={field.name}>
+                                    <b>{field.label}</b>
+                                </label>
+                                <input
+                                    className="orderListFilter-input form-control"
+                                    type="date"
+                                    value={filters[field.name]}
+                                    name={field.name}
+                                    onChange={onInputDateChange}
+                                    id={field.name}
+                                    placeholder={field.label}
+                                />
+                            </div>
+                        );
+                    }
+                })}
+                <button
+                    className="btn btn-primary mt-2"
+                    type="button"
+                    onClick={handleResetFilters}
+                >
+                    Обнулить
+                </button>
+            </form>
+        </div>
+    );
+};
 
 export default Filter;

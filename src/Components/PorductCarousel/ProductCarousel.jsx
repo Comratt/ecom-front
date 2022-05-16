@@ -68,7 +68,7 @@ const ProductCarousel = ({
         slidesToShow: isTabletSize ? 2 : count,
         slidesToScroll: isTabletSize ? 2 : count,
         draggable: false,
-        lazyLoad: false,
+        lazyLoad: true,
         infinite: false,
         adaptiveHeight: true,
         nextArrow: <CustomArrowRight />,

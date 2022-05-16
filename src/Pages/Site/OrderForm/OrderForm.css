@@ -244,13 +244,19 @@ p.field-message__error {
 }
 
 .order__discount-bnt {
-    cursor: default;
-    background: var(--color-btn-hover-card);
+    background: var(--color-accent);
+    color: var(--color-lightest);
     border: none;
     outline: none;
     align-self: flex-end;
     padding: var(--size-small) var(--size-normal-mid);
-    border-radius: var(--size-smaller)
+    border-radius: var(--size-smaller);
+    transition: .2s ease;
+    height: 40px;
+}
+.order__discount-bnt:hover {
+    background: var(--color-accent-light);
+    transition: .2s ease;
 }
 
 .order__item-description {

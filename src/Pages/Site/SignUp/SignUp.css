@@ -1,0 +1,39 @@
+.lib-sign-up .lib-login {
+    --header-accent-ff: var(--accent-ff);
+    --header-color: var(--color-accent);
+    font-family: var(--header-accent-ff);
+    color: var(--header-color);
+}
+.lib-sign-up .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+.lib-sign-up .content-login {
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.lib-sign-up .from-login {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.lib-sign-up .from-login .lib-input__common {
+    margin-bottom: var(--size-small);
+}
+.lib-sign-up .lib-login_sign_up {
+    margin-top: var(--size-small);
+}
+
+.lib-sign-up p.field-message__error {
+    font-size: 14px;
+    color: var(--color-error);
+    margin-bottom: 7px;
+    margin-top: 0;
+}

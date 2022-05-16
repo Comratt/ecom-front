@@ -26,22 +26,46 @@ const adapt = (order = {}) => ({
     })) || [],
 });
 
+const defaultFilters = {
+    page: 1,
+    status: '',
+    orderId: '',
+    createdAt: '',
+    updatedAt: '',
+};
+
 export const useFetchOrders = () => {
-    const [page, setPage] = useState(1);
-    const { loading, error, result } = useAsync(OrderService.getAll, [page]);
+    const [filters, setFilters] = useState(defaultFilters);
+    const handleFilter = (name, value) => setFilters((prevFilters) => ({
+        ...prevFilters,
+        [name]: value,
+        page: 1,
+    }));
+    const handleChangePage = (pageNumber) => setFilters((prevFilters) => ({
+        ...prevFilters,
+        page: pageNumber,
+    }));
+    const resetFilters = () => setFilters(defaultFilters);
+    const { loading, error, result } = useAsync(OrderService.getAll, [filters]);
 
     return useMemo(() => ({
         loading,
         error,
         result: result?.data?.map(adapt),
-        page,
-        setPage,
+        totalPages: result?.last_page,
+        page: filters.page,
+        filters,
+        setPage: handleChangePage,
+        handleFilter,
+        resetFilters,
     }), [
         loading,
         error,
         result,
-        page,
-        setPage,
+        filters,
+        handleChangePage,
+        handleFilter,
+        resetFilters,
     ]);
 };
 

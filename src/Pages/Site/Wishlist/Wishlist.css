@@ -1,0 +1,8 @@
+.wishlist-page__container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.wishlist-page__container .card-list {
+    padding: 40px 56px 0;
+}

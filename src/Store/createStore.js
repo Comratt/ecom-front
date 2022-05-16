@@ -28,6 +28,7 @@ store.subscribe(() => {
     const localSettings = {
         ...LocalSettingsInitialState,
         authorizationToken: localSettingsState.authorizationToken,
+        expiresAt: localSettingsState.expiresAt,
         user: localSettingsState.user,
         currency: localSettingsState.currency,
         theme: localSettingsState.theme,

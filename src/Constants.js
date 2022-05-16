@@ -39,8 +39,9 @@ export const SHIPPING_CODES = {
     2: 'In Progress',
     3: 'On a way',
     4: 'Derived',
-    5: 'Complete',
-    6: 'Canceled',
+    5: 'Nova Poshta',
+    6: 'Complete',
+    7: 'Canceled',
 };
 
 export const SHIPPING_RATE = 45;

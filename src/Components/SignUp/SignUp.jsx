@@ -1,13 +1,7 @@
 import React, { useEffect } from 'react';
 import classNames from 'classnames';
-import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { useAlert } from 'react-alert';
-import { useHistory } from 'react-router-dom';
-
-import { signIn } from 'Store/Modules/LocalSettings/localSettingsActions';
-import { getLocalSettingsState } from 'Store/Modules/LocalSettings/selectors';
 import { emailRegExp, getValidationMessage } from 'Constants';
+import { useSignUp } from 'context/signUp/useSignUp';
 import { CommonInput } from '../CommonInput';
 import LoginBtn from '../Buttons/LoginBtn/LoginBtn';
 import GuestBtn from '../Buttons/GuestBtn/GuestBtn';
@@ -20,19 +14,17 @@ const SignUp = ({
         'lib-sign-up',
         className,
     );
-    const dispatch = useDispatch();
-    const alert = useAlert();
-    const history = useHistory();
     const {
-        isLoading, isError, errorMessage, isSignUpSuccess,
-    } = useSelector(getLocalSettingsState);
-    const { register, handleSubmit, errors } = useForm({
-        mode: 'onChange',
-    });
-
-    const onSubmit = (params) => {
-        dispatch(signIn(params));
-    };
+        isSignUpSuccess,
+        onSubmit,
+        isError,
+        isLoading,
+        register,
+        errors,
+        errorMessage,
+        alert,
+        history,
+    } = useSignUp();
 
     useEffect(() => {
         if (isSignUpSuccess) {
@@ -49,7 +41,7 @@ const SignUp = ({
                     {isError && Object.values(errorMessage).map((error) => (
                         <p className="field-message__error">{error[0]}</p>
                     ))}
-                    <form onSubmit={handleSubmit(onSubmit)} className="from-login">
+                    <form onSubmit={onSubmit} className="from-login">
                         <CommonInput
                             name="firstName"
                             label="First Name"

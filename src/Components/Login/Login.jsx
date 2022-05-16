@@ -25,20 +25,6 @@ const Login = ({
         'lib-login',
         className,
     );
-    const dispatch = useDispatch();
-    const alert = useAlert();
-    const history = useHistory();
-    const { register, handleSubmit, errors } = useForm({
-        mode: 'onChange',
-    });
-    const {
-        isLoading, isError, errorMessage,
-    } = useSelector(getLocalSettingsState);
-    const user = useSelector(getUser);
-
-    const onSubmit = ({ email, password }) => {
-        dispatch(login(email, password));
-    };
 
     useEffect(() => {
         if (Object.keys(user).length) {

@@ -9,17 +9,18 @@ import {
     AccardionArrow, Truck, UkraineMap, User,
 } from '../../../Icons';
 import Cart from '../../../Icons/Cart';
-import { useFetchProducts } from '../hooks/useFetchProducts';
+import { useAnalytics } from '../hooks/useAnalytics';
 import Loader from '../../../Components/Loader';
 import Card from '../../../Icons/Card';
 
 const Dashboard = () => {
-    const { result, loading, error } = useFetchProducts();
+    const { result, loading, error } = useAnalytics();
 
     const productTotal = {
-        totalProducts: result.length,
-        totalOrders: 100,
-        totalSales: 120,
+        totalProducts: result?.products || {},
+        totalOrders: result?.orders || {},
+        totalSales: result?.completed || {},
+        totalUsers: result?.users || {},
     };
     const data = [
         {
@@ -73,17 +74,20 @@ const Dashboard = () => {
                                         width={24}
                                         fill="white"
                                     />
-                                    <span>-117%</span>
+                                    <span>{`${productTotal?.totalOrders?.percent}%`}</span>
                                 </div>
                             </div>
                             <div className="card-body">
-                                <span className="card-text">
-                                    <Truck width={24} />
-                                    <span>
-                                        200
-                                        <sub>штук</sub>
-                                    </span>
-                                </span>
+                                {loading ? <Loader size={2} />
+                                    : (
+                                        <span className="card-text">
+                                            <Truck width={24} />
+                                            <span>
+                                                {productTotal?.totalOrders?.total}
+                                                <sub>штук</sub>
+                                            </span>
+                                        </span>
+                                    )}
                             </div>
                             <div className="card-header">view more...</div>
                         </div>
@@ -95,17 +99,20 @@ const Dashboard = () => {
                                         width={24}
                                         fill="white"
                                     />
-                                    <span>-117%</span>
+                                    <span>{`${productTotal?.totalSales?.percent}%`}</span>
                                 </div>
                             </div>
                             <div className="card-body">
-                                <p className="card-text">
-                                    <Card width={24} />
-                                    <span>
-                                        200
-                                        <sub>штук</sub>
-                                    </span>
-                                </p>
+                                {loading ? <Loader size={2} />
+                                    : (
+                                        <p className="card-text">
+                                            <Card width={24} />
+                                            <span>
+                                                {productTotal?.totalSales?.total}
+                                                <sub>грн</sub>
+                                            </span>
+                                        </p>
+                                    )}
                             </div>
                             <div className="card-header">view more...</div>
                         </div>
@@ -117,17 +124,20 @@ const Dashboard = () => {
                                         width={24}
                                         fill="white"
                                     />
-                                    <span>-117%</span>
+                                    <span>{`${productTotal?.totalUsers?.percent}%`}</span>
                                 </div>
                             </div>
                             <div className="card-body">
-                                <p className="card-text">
-                                    <User width={24} />
-                                    <span>
-                                        200
-                                        <sub>штук</sub>
-                                    </span>
-                                </p>
+                                {loading ? <Loader size={2} />
+                                    : (
+                                        <p className="card-text">
+                                            <User width={24} />
+                                            <span>
+                                                {productTotal?.totalUsers?.total}
+                                                <sub>штук</sub>
+                                            </span>
+                                        </p>
+                                    )}
                             </div>
                             <div className="card-header">view more...</div>
                         </div>
@@ -141,7 +151,7 @@ const Dashboard = () => {
                                         <p className="card-text">
                                             <Cart width={24} />
                                             <span>
-                                                {productTotal.totalProducts}
+                                                {productTotal.totalProducts?.total}
                                                 <sub>штук</sub>
                                             </span>
                                         </p>
@@ -158,7 +168,7 @@ const Dashboard = () => {
                         <h3 style={{ textAlign: 'center' }}>Order Map</h3>
                         <div className="card mb-3">
                             <div className="row g-0">
-                                <div style={{ padding: '20px' }}>
+                                <div style={{ padding: '20px', width: '100%' }}>
                                     <UkraineMap className="card-img-top" />
                                 </div>
                                 <div>

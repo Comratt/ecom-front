@@ -9,46 +9,33 @@ import {
 } from 'react-router-dom';
 import isEqual from 'lodash/isEqual';
 import history from 'Services/history';
+import { AdminRoutes, PrivateAdminRoutes } from './AdminRoutes';
 import { Layout } from '../Components/Layout';
 
 const NotFoundPage = () => <Redirect to="/" />;
-const AdminLogin = lazy(() => import('Pages/Admin/Login'));
-const AdminDashboard = lazy(() => import('Pages/Admin/Dashboard'));
-const AdminBanners = lazy(() => import('Pages/Admin/Banners'));
-const AdminProductList = lazy(() => import('Pages/Admin/Products'));
-const AdminProductEdit = lazy(() => import('Pages/Admin/ProductAddEdit'));
-const AdminCategories = lazy(() => import('Pages/Admin/Categories'));
-const AdminOptions = lazy(() => import('Pages/Admin/Options'));
-const AdminOrder = lazy(() => import('Pages/Admin/Order'));
-const AdminOrderProduct = lazy(() => import('Pages/Admin/OrderProduct'));
 const Header = lazy(() => import('Components/Header/Header'));
 const CheckboxFilter = lazy(() => import('Components/CheckboxFilter/CheckboxFilter'));
 const OrderForm = lazy(() => import('Pages/Site/OrderForm'));
-const Login = lazy(() => import('Components/Login/Login'));
-const SignUp = lazy(() => import('Components/SignUp/SignUp'));
+const Login = lazy(() => import('Pages/Site/Login'));
+const SignUp = lazy(() => import('Pages/Site/SignUp'));
 const SiteHome = lazy(() => import('Pages/Site/Home'));
 const SiteProductDetails = lazy(() => import('Pages/Site/ProductDetails'));
 const CardPopUp = lazy(() => import('Components/CardPopUp'));
 const SearchResults = lazy(() => import('Components/SearchResults/searchResults'));
 const Cart = lazy(() => import('Pages/Site/Cart'));
-const UserAccount = lazy(() => import('Pages/UserAccount/UserAccount'));
-const CheckboxFilterItem = lazy(() => import('Components/CheckboxFilterItem/CheckboxFilterItem'));
+const UserAccount = lazy(() => import('Pages/Site/UserAccount/UserAccount'));
 const CollectionList = lazy(() => import('Pages/Site/collection'));
+const WishList = lazy(() => import('Pages/Site/Wishlist'));
+const AdminLogin = lazy(() => import('Pages/Admin/Login'));
 
 const RouterComponent = () => (
     <Router history={history}>
         <Suspense fallback={<h1>LOADING...</h1>}>
             <Switch>
-                <Route path="/admin/dashboard" component={AdminDashboard} />
-                <Route path="/admin/category" component={AdminCategories} />
-                <Route path="/admin/banner" component={AdminBanners} />
-                <Route exact path="/admin/products" component={AdminProductList} />
-                <Route path="/admin/products/:id" component={AdminProductEdit} />
-                <Route path="/admin/add/products" component={(props) => <AdminProductEdit isFromAdd {...props} />} />
-                <Route path="/admin/option" component={AdminOptions} />
-                <Route exact path="/admin/order" component={AdminOrder} />
-                <Route path="/admin/order/:id" component={AdminOrderProduct} />
-                <Route path="/admin/login" component={AdminLogin} />
+                <Route exact path="/admin/login" component={() => <AdminLogin />} />
+                <PrivateAdminRoutes path="/admin">
+                    <AdminRoutes />
+                </PrivateAdminRoutes>
                 <Layout>
                     <Route exact path="/" component={SiteHome} />
                     <Route path="/products/:id" component={SiteProductDetails} />
@@ -60,13 +47,14 @@ const RouterComponent = () => (
                     <Route path="/checkboxfilter" component={() => <CheckboxFilter />} />
                     <Route path="/account" component={() => <UserAccount />} />
                     <Route path="/collection" component={() => <CollectionList />} />
+                    <Route path="/wishlist" component={() => <WishList />} />
                 </Layout>
 
                 <Route exact path="/orderForm" component={() => <OrderForm />} />
                 <Route exact path="/" component={() => <Header />} />
                 <Route exact path="/cardPopUp" component={() => <CardPopUp />} />
 
-                <Route component={NotFoundPage} />
+                <Route path="*" component={NotFoundPage} />
             </Switch>
         </Suspense>
     </Router>

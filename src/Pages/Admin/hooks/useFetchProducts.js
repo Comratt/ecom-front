@@ -12,23 +12,44 @@ const adapt = (data = []) => data.map((product) => ({
     image: getImage(product.image),
 }));
 
+const defaultFilters = {
+    page: 1,
+    name: '',
+    model: '',
+    status: '',
+};
+
 export const useFetchProducts = () => {
-    const [page, setPage] = useState({ page: 1 });
-    const handleChangePage = (pageNumber) => setPage({ page: pageNumber });
-    const { loading, error, result } = useAsync(ProductsService.getAll, [page]);
+    const [filters, setFilters] = useState(defaultFilters);
+    const handleFilter = (name, value) => setFilters((prevFilters) => ({
+        ...prevFilters,
+        [name]: value,
+        page: 1,
+    }));
+    const resetFilters = () => setFilters(defaultFilters);
+    const handleChangePage = (pageNumber) => setFilters((prevFilters) => ({
+        ...prevFilters,
+        page: pageNumber,
+    }));
+    const { loading, error, result } = useAsync(ProductsService.getAll, [filters]);
 
     return useMemo(() => ({
         loading,
         error,
+        filters,
         result: adapt(result?.data),
         totalPages: result?.last_page,
-        page: page.page,
+        page: filters.page,
         setPage: handleChangePage,
+        handleFilter,
+        resetFilters,
     }), [
         loading,
         error,
         result,
-        page,
+        filters,
         handleChangePage,
+        handleFilter,
+        resetFilters,
     ]);
 };

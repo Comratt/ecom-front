@@ -1,4 +1,6 @@
 import { createSelector } from 'reselect';
+import moment from 'moment';
+import { DATE_FORMAT } from 'Constants';
 
 const getLocalsSettings = (state) => state.localSettings;
 
@@ -22,4 +24,18 @@ export const getUser = createSelector(
 
 export const getAuthToken = createSelector(
     [getLocalsSettings], ({ authorizationToken }) => authorizationToken || '',
+);
+
+export const getIsAdmin = createSelector(
+    [getLocalsSettings], ({ authorizationToken, user }) => (
+        authorizationToken && user?.role === 'admin'
+    ),
+);
+
+export const getIsLoginLoading = createSelector(
+    [getLocalsSettings], ({ isLoading }) => isLoading,
+);
+
+export const getUserExpireDate = createSelector(
+    [getLocalsSettings], ({ expiresAt }) => moment(expiresAt, DATE_FORMAT),
 );

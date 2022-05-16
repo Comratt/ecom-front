@@ -15,7 +15,7 @@ import OrderService from 'Services/OrderService';
 import { Link } from 'Components/Link';
 import LoginBtn from 'Components/Buttons/LoginBtn/LoginBtn';
 import { Logo, Cart, AccardionArrow } from 'Icons';
-import { getFormattedPrice, emailRegExp, getValidationMessage } from 'Constants';
+import { getFormattedPrice, emailRegExp } from 'Constants';
 
 import './OrderForm.css';
 
@@ -25,6 +25,11 @@ export const OrderForm = (className) => {
     const [formLoading, setFormLoading] = useState(false);
     const [selectedCity, setSelectedCity] = useState('');
     const [showSideBar, setShowSideBar] = useState(false);
+    const [discount, setDiscount] = useState({
+        data: 0,
+        loading: false,
+        error: null,
+    });
     const [cities, setCities] = useState({
         data: [],
         loading: true,
@@ -35,7 +40,7 @@ export const OrderForm = (className) => {
         loading: true,
         error: null,
     });
-    const cityNames = useMemo(() => cities.data.map(({ DescriptionRu }) => DescriptionRu),
+    const cityNames = useMemo(() => cities.data.map(({ Description }) => Description),
         [cities]);
     const {
         register,
@@ -203,7 +208,7 @@ export const OrderForm = (className) => {
                                     type="text"
                                     options={cityNames}
                                     trigger=""
-                                    regex="^[а-яА-Я0-9_-]+$"
+                                    regex="^[А-Яа-яєі-]+$"
                                     spacer=""
                                     disabled={cities.loading}
                                     passThroughEnter
@@ -227,9 +232,9 @@ export const OrderForm = (className) => {
                                             className={classNames({ 'field-error': errors?.shippingAddress })}
                                         >
                                             <option disabled selected value="">Выберите отделение</option>
-                                            {offices.data.map(({ DescriptionRu }) => (
-                                                <option value={DescriptionRu}>
-                                                    {DescriptionRu}
+                                            {offices.data.map(({ Description }) => (
+                                                <option value={Description}>
+                                                    {Description}
                                                 </option>
                                             ))}
                                         </select>
@@ -326,10 +331,12 @@ export const OrderForm = (className) => {
                     <div className="order__discount">
                         <div className="order__discount-input-block">
                             <input
-                                className="input order__discount-input"
+                                name="discount"
+                                className={classNames('input order__discount-input', { 'field-error': discount.error })}
                                 placeholder="Discount code"
                                 type="text"
                             />
+                            {discount.error && <p className="field-message__error">Невірний код на знижку</p>}
                         </div>
                         <div className="order__discount-btn-block">
                             <button className="order__discount-bnt">Apply</button>

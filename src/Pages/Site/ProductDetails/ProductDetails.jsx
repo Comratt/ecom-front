@@ -214,7 +214,7 @@ export const ProductDetails = () => {
             <div>
                 <ProductCarousel
                     id={historyViewed}
-                    title="Related Products"
+                    title="Viewed Products"
                     data={result.images}
                 />
             </div>

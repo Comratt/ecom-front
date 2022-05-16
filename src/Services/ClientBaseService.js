@@ -2,11 +2,12 @@ import API from 'API';
 import ServerException from 'Exceptions/ServerException';
 
 class ClientBaseService {
-    static async signIn(email, password) {
+    static async signIn(email, password, fromAdmin = false) {
         try {
             const body = {
                 email,
                 password,
+                from_admin: fromAdmin,
             };
             const responseUser = await API.post('api/auth/login', body);
 
