@@ -30,8 +30,8 @@ const OptionForm = ({
                     name={OPTION_NAME_FIELD}
                     type="text"
                     required
-                    placeholder="Название опции"
-                    label="Введите название опции"
+                    placeholder="Назва опції"
+                    label="Введіть назву опції"
                     error={getValidationMessage(errors[OPTION_NAME_FIELD])}
                 />
             </div>
@@ -39,8 +39,8 @@ const OptionForm = ({
         <table className="table table-bordered">
             <thead>
                 <tr>
-                    <th scope="col">Значение опции</th>
-                    <th scope="col">Изображение</th>
+                    <th scope="col">Значення опції</th>
+                    <th scope="col">Зображення</th>
                     <th scope="col" style={{ width: '2%' }} />
                 </tr>
             </thead>
@@ -53,7 +53,7 @@ const OptionForm = ({
                                 onChange={onChangeOptionValueName(optionValue.id)}
                                 name={OPTION_VALUE_NAME}
                                 type="text"
-                                placeholder="Название опции"
+                                placeholder="Назва опції"
                                 error={getValidationMessage(errors[OPTION_VALUE_NAME])}
                             />
                         </td>

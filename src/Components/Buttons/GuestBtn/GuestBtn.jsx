@@ -4,7 +4,7 @@ import './GuestBtn.css';
 const GuestBtn = () => (
     <div className="lib-guest-btn">
         <button>
-            Continue as Guest
+            Продовжити як Гість
         </button>
     </div>
 );

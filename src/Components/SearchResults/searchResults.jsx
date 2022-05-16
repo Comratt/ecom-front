@@ -27,7 +27,7 @@ const SearchResults = ({
                             </div>
                             <div className="product-matches__item-right">
                                 <div className="product-matches__name">
-                                    V-neck silk camisole
+                                    Шовковий камзол з V-подібним вирізом
                                 </div>
                                 <div className="product-matches__price">
                                     €55
@@ -63,7 +63,8 @@ const SearchResults = ({
                             </div>
                             <div className="product-matches__item-right">
                                 <div className="product-matches__name">
-                                    V-neck silk camisole
+
+                                    Шовковий камзол з V-подібним вирізом
                                 </div>
                                 <div className="product-matches__price">
                                     €55
@@ -81,7 +82,8 @@ const SearchResults = ({
                             </div>
                             <div className="product-matches__item-right">
                                 <div className="product-matches__name">
-                                    V-neck silk camisole
+
+                                    Шовковий камзол з V-подібним вирізом
                                 </div>
                                 <div className="product-matches__price">
                                     €55

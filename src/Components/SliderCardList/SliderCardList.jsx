@@ -90,7 +90,7 @@ export const SliderCardList = ({
                     <Title type={2}>{title}</Title>
                 </Link>
                 <Link to="/collection" className="list-link">
-                    View All
+                    Подивитись все
                     <svg
                         width="18"
                         height="18"

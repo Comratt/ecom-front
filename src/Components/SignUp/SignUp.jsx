@@ -36,7 +36,7 @@ const SignUp = ({
 
     useEffect(() => {
         if (isSignUpSuccess) {
-            alert.success({ name: 'Вы успешно зарегистрированы!' });
+            alert.success({ name: 'Ви успішно зареєстровані!' });
             history.push('/login');
         }
     }, [isSignUpSuccess]);
@@ -53,7 +53,7 @@ const SignUp = ({
                         <CommonInput
                             name="firstName"
                             label="First Name"
-                            placeholder="Enter first name"
+                            placeholder="Введіть ім'я"
                             ref={register({
                                 required: 'Enter first name',
                                 maxLength: { message: 'Enter valid first name', value: 20 },
@@ -64,7 +64,7 @@ const SignUp = ({
                         <CommonInput
                             name="lastName"
                             label="Last Name"
-                            placeholder="Enter last name"
+                            placeholder="Введіть прізвище"
                             ref={register({
                                 required: 'Enter last name',
                                 maxLength: { message: 'Enter valid last name', value: 20 },
@@ -75,7 +75,7 @@ const SignUp = ({
                         <CommonInput
                             name="email"
                             label="Email"
-                            placeholder="Enter email"
+                            placeholder="Введіть електронну адресу"
                             ref={register({
                                 required: 'Enter valid email',
                                 pattern: { message: 'Enter valid email', value: emailRegExp },
@@ -85,7 +85,7 @@ const SignUp = ({
                         <CommonInput
                             name="password"
                             label="Password"
-                            placeholder="Enter password"
+                            placeholder="Введіть пароль"
                             ref={register({
                                 required: 'Enter password',
                                 maxLength: { message: 'Enter valid password', value: 20 },
@@ -97,10 +97,10 @@ const SignUp = ({
                         <GuestBtn />
                     </form>
                     <p className="lib-login_sign_up">
-                        Sign up
+                        Зареєструватися
                     </p>
                     <p>
-                        Recover password
+                        Відновити пароль
                     </p>
                 </div>
             </div>

@@ -33,5 +33,22 @@
     margin-left: 50px;
 }
 .card-img-top{
-    width: 500px;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 10%;
+    height: 350px;
+    transform: scale(0.5);
+    width: 600px!important;
 }
+
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    vertical-align: middle;
+    height: auto;
+}
+

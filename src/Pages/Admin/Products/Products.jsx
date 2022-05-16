@@ -42,12 +42,12 @@ const Products = () => {
                         {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
                         <th scope="col" style={{ width: '3%' }} />
                         <th scope="col" style={{ width: '9%' }}>Картинка</th>
-                        <th scope="col">Название продукта</th>
+                        <th scope="col">Назва продукту</th>
                         <th scope="col">Модель</th>
-                        <th scope="col">Цена</th>
-                        <th scope="col">Количество</th>
+                        <th scope="col">Ціна</th>
+                        <th scope="col">Кількість</th>
                         <th scope="col">Статус</th>
-                        <th scope="col" style={{ width: '10%' }}>Действие</th>
+                        <th scope="col" style={{ width: '10%' }}>Дія</th>
                     </tr>
                 </thead>
                 <tbody>

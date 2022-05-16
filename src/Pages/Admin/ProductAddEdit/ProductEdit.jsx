@@ -137,8 +137,8 @@ const ProductEdit = ({ isFromAdd = false }) => {
                 className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
             >
                 {!isFromAdd
-                    ? <h1>{!loading ? `${result.model} - ${result.name}` : 'Редактор товара'}</h1>
-                    : <h1>Добавление товара</h1>}
+                    ? <h1>{!loading ? `${result.model} - ${result.name}` : 'Редактор товару'}</h1>
+                    : <h1>Додавання товару</h1>}
             </div>
             <div className="container">
                 {formState === 'SUCCESS' && <Alert type="success" text={successText} />}
@@ -148,7 +148,7 @@ const ProductEdit = ({ isFromAdd = false }) => {
                     {!loading && (
                         <button onClick={onSubmit} type="submit" className="btn btn-primary" disabled={loadingForm}>
                             {loadingForm && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />}
-                            <span className="ml-1">Сохранить</span>
+                            <span className="ml-1">Зберегти</span>
                         </button>
                     )}
                 </div>

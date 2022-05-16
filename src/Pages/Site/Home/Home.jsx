@@ -15,8 +15,8 @@ export const Home = () => {
         <View>
             <BigSlider data={result} />
             <View className="main-container">
-                <SliderCardList title="New This Week" />
-                <SliderCardList title="New Collection" />
+                <SliderCardList title="Новинка цього тижня" />
+                <SliderCardList title="Нова колекція" />
             </View>
         </View>
     );

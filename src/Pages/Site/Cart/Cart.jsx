@@ -96,16 +96,16 @@ export const Cart = () => {
                         <thead>
                             <tr>
                                 <th>
-                                    Product
+                                    Продукт
                                 </th>
                                 <th className="cart-product-thead">
-                                    Price
+                                    Ціна
                                 </th>
                                 <th className="cart-product-thead">
-                                    Quantity
+                                    Кількість
                                 </th>
                                 <th className="cart-product-thead">
-                                    Total
+                                    Всього
                                 </th>
                                 <th />
                             </tr>
@@ -163,17 +163,17 @@ export const Cart = () => {
                 <div className="cart-product-order-submit">
                     <div className="cart-product-price">
                         <div>
-                            Subtotal:
+                            Проміжний підсумок:
                         </div>
                         <div>
                             {subtotalPrice(products)}
                         </div>
                     </div>
                     <div className="info">
-                        Excluding taxes and shipping
+                        Без урахування податків та доставки
                     </div>
                     <div className="orders">
-                        <label htmlFor="orders">Order notes</label>
+                        <label htmlFor="orders">Примітки до замовлення</label>
                         <textarea
                             id="orders"
                             cols="30"
@@ -184,12 +184,12 @@ export const Cart = () => {
                     </div>
                     <div>
                         <button onClick={goToCheckoutPage} className="cart-product-btn-checkout">
-                            Checkout
+                            Перевіряти
                         </button>
                     </div>
                     <div>
                         <button className="cart-product-btn-continue">
-                            Continue Shoppnig
+                            Продовжуйте Shopping
                         </button>
                     </div>
                 </div>

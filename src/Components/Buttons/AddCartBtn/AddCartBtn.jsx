@@ -4,7 +4,7 @@ import './AddCartBtn.css';
 const AddCartBtn = () => (
     <div className="lib-product_info_submit">
         <button>
-            Add Cart
+            Додати в кошик
         </button>
     </div>
 );

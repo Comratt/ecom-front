@@ -35,7 +35,7 @@ export const Card = ({
             {!hideInfo && (
                 <div className="lib-card__info">
                     <div className="lib-card__info-supsale">
-                        <span>Coming soon</span>
+                        <span>Незабаром</span>
                     </div>
                     <NavLink to={detailsPath} className="lib-card__info-content">
                         <Title type={4} className="lib-card__info-title">{title}</Title>
