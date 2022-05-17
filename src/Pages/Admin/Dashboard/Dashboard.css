@@ -1,38 +1,38 @@
-.dashboardHeader{
+.dashboard-page .dashboardHeader{
     border-bottom: 1px solid #dcdcdc;
     margin: 15px;
 }
-.card-total-info-block{
+.dashboard-page .card-total-info-block{
     display: flex;
     justify-content: space-around;
 }
 
-.bg-primary{
+.dashboard-page .bg-primary{
     background-color:#545f6b;
 }
-.card-header {
+.dashboard-page .card-header {
     background-color: rgba(0,0,0,0.10);
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
-.card-text sub{
+.dashboard-page .card-text sub{
     margin-left: 5px;
     font-size: 10px;
 }
-.card{
+.dashboard-page .card{
     display: flex;
     justify-content: center;
 }
 
-.card-body{
+.dashboard-page .card-body{
     display: flex;
     justify-content: center;
 }
-.card-text span{
+.dashboard-page .card-text span{
     margin-left: 50px;
 }
-.card-img-top{
+.dashboard-page .card-img-top{
     display: inline-block;
     position: absolute;
     top: 0;
@@ -43,7 +43,7 @@
     width: 600px!important;
 }
 
-.svg-container {
+.dashboard-page .svg-container {
     display: inline-block;
     position: relative;
     width: 100%;

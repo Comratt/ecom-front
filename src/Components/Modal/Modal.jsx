@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import ReactDOM from 'react-dom';
 
 const Modal = ({
-    show, toggleModal, submit, onSubmit, loadingForm, children,
+    show, toggleModal, submit, onSubmit, loadingForm, children, className = '',
 }) => {
     const [showModal, setShowModal] = useState(false);
     const modalRoot = useRef(document.createElement('div'));
@@ -27,7 +27,7 @@ const Modal = ({
     return ReactDOM.createPortal((
         <>
             <div
-                className={classNames('modal fade d-block', { show: showModal })}
+                className={classNames('modal fade d-block', className, { show: showModal })}
                 id="staticBackdropLive"
                 data-backdrop="static"
                 data-keyboard="false"

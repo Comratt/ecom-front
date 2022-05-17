@@ -62,7 +62,7 @@ const Dashboard = () => {
 
     return (
         (
-            <>
+            <div className="dashboard-page">
                 <div className="container">
                     <h3 className="dashboardHeader">Панель приладів</h3>
                     <div className="card-total-info-block">
@@ -183,7 +183,7 @@ const Dashboard = () => {
                         </BarChart>
                     </div>
                 </div>
-            </>
+            </div>
         )
     );
 };

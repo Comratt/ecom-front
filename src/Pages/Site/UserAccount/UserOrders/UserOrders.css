@@ -1,0 +1,22 @@
+.lib-user-orders-table-info{
+    display: flex;
+}
+.lib-user-orders-table-info img{
+    width: 100px;
+    height: 140px;
+}
+.lib-user-orders-table-info-product{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+.lib-user-orders-product-color{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+}
+.lib-user-orders-table{
+    border-bottom: 1px solid var(--color-accent-light);
+    padding-bottom: 20px;
+}

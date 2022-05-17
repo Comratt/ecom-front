@@ -1,3 +1,3 @@
-import UserAccount from './UserAccount';
+import AccountSettings from './AccountSettings/AccountSettings';
 
-export default UserAccount;
+export default AccountSettings;

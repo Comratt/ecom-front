@@ -1,0 +1,20 @@
+.lib-account-settings-input {
+    border-radius: var(--size-smaller);
+    border: 1px solid #d9d9d9;
+    margin-top: var(--size-small);
+    padding: var(--size-small);
+    height: var(--size-fourty);
+    box-sizing: border-box;
+    font-size: var(--fz-normal);
+    font-weight: 400;
+    align-items: center;
+    align-content: center;
+    transition: background-color .3s ease,color .3s ease;
+    display: flex;
+    flex-direction: column;
+}
+.lib-account-settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}

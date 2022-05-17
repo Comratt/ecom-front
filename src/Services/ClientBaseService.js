@@ -38,6 +38,29 @@ class ClientBaseService {
         }
     }
 
+    static async modify(id, {
+        firstName,
+        lastName,
+        phone,
+        newPassword,
+        password,
+    }) {
+        try {
+            const body = {
+                firstName,
+                lastName,
+                phone,
+                newPassword,
+                password,
+            };
+            const userResponse = await API.post(`api/auth/modify/${id}`, body);
+
+            return userResponse.data;
+        } catch (e) {
+            throw new ServerException(e.response, 'errors');
+        }
+    }
+
     static async logout() {
         try {
             return await API.get('api/logout');

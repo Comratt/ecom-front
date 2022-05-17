@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAsyncCallback } from 'react-async-hook';
 import { useForm } from 'react-hook-form';
 import moment from 'moment';
@@ -17,11 +17,17 @@ import {
 } from 'Constants';
 import OrderService from 'Services/OrderService';
 import Layout from '../Layout';
+import ReturnModal from './ReturnModal';
 
 import { useFetchOrder } from '../hooks/useFetchOrders';
 import './OrderProduct.css';
+import ReturnService from '../../../Services/ReturnService';
 
 const OrderProduct = () => {
+    const [show, setShow] = useState(false);
+    const [returnProducts, setReturnProducts] = useState({});
+    const [returnComment, setReturnComment] = useState('');
+    const toggleModal = () => setShow((prevState) => !prevState);
     const { register, handleSubmit, errors } = useForm();
     const {
         result,
@@ -35,8 +41,49 @@ const OrderProduct = () => {
         error: errorHistory,
         execute: executeHistory,
     } = useAsyncCallback(OrderService.addHistoryStatus);
+    const {
+        loading: loadingReturn,
+        error: errorReturn,
+        execute: executeReturn,
+    } = useAsyncCallback(ReturnService.store);
+    const handleReturnProducts = (prodId, quantity) => (
+        setReturnProducts((prev) => ({
+            ...prev,
+            [prodId]: quantity,
+        }))
+    );
 
-    console.log(result);
+    console.log(returnProducts);
+
+    const onReturnSubmit = async (e) => {
+        e.preventDefault();
+
+        const params = {
+            comment: returnComment,
+            price: Object.keys(returnProducts)?.reduce((acc, val) => {
+                const findProduct = result?.products?.find(({ color_size_product_id }) => color_size_product_id === +val)?.price;
+
+                return acc + +findProduct;
+            }, 0),
+            products: Object.keys(returnProducts).map((prodId) => ({
+                id: prodId,
+                quantity: returnProducts[prodId],
+            })),
+        };
+
+        await executeReturn(params, orderId);
+    };
+
+    useEffect(() => {
+        if (result?.products?.length) {
+            const productIdQuantity = result.products.reduce((acc, product) => ({
+                ...acc,
+                [product.product_option_id]: 0,
+            }), {});
+
+            setReturnProducts(productIdQuantity);
+        }
+    }, [result]);
 
     const onSubmit = (values) => {
         executeHistory({ ...values, id: orderId })
@@ -68,6 +115,19 @@ const OrderProduct = () => {
 
     return (
         <div className="orderContent">
+            {show && (
+                <ReturnModal
+                    returnComment={returnComment}
+                    setReturnComment={setReturnComment}
+                    handleReturnProducts={handleReturnProducts}
+                    returnProducts={returnProducts}
+                    show={show}
+                    products={result?.products}
+                    toggleModal={toggleModal}
+                    onSubmit={onReturnSubmit}
+                    loading={loadingReturn}
+                />
+            )}
             <div className="orderProductDetailsTable">
                 <table>
                     <thead>
@@ -228,10 +288,13 @@ const OrderProduct = () => {
             </div>
             <div className="orderProductId">
                 <h4 className="orderProductIdHeader">
-                    {' '}
-                    Order (#
-                    {result.id}
-                    )
+                    <span>
+                        {' '}
+                        Order (#
+                        {result.id}
+                        )
+                    </span>
+                    <button onClick={toggleModal}>Return</button>
                 </h4>
                 <table className="orderProductTableAddress">
                     <thead>
@@ -282,6 +345,8 @@ const OrderProduct = () => {
                         <tr>
                             <th>Продукт</th>
                             <th>Модель</th>
+                            <th>Колір</th>
+                            <th>Розмір</th>
                             <th>Кількість</th>
                             <th>Ціна за одиницю</th>
                             <th>Всього</th>
@@ -296,6 +361,12 @@ const OrderProduct = () => {
                                 <td>
                                     {product.model}
                                 </td>
+                                <td>
+                                    {product.color}
+                                </td>
+                                <td>
+                                    {product.size}
+                                </td>
                                 <td className="text-right">
                                     {product.quantity}
                                 </td>
@@ -308,7 +379,7 @@ const OrderProduct = () => {
                             </tr>
                         ))}
                         <tr>
-                            <td className="text-right" colSpan="4">
+                            <td className="text-right" colSpan="6">
                                 Проміжний підсумок
                             </td>
                             <td>
@@ -316,7 +387,7 @@ const OrderProduct = () => {
                             </td>
                         </tr>
                         <tr>
-                            <td className="text-right" colSpan="4">
+                            <td className="text-right" colSpan="6">
                                 Фіксована ставка доставки
                             </td>
                             <td>
@@ -324,7 +395,7 @@ const OrderProduct = () => {
                             </td>
                         </tr>
                         <tr>
-                            <td className="text-right" colSpan="4">
+                            <td className="text-right" colSpan="6">
                                 Всього
                             </td>
                             <td>

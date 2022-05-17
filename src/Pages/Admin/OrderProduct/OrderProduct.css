@@ -1,69 +1,71 @@
-table, thead, tbody, th, td {
+.orderContent table, thead, tbody, th, td {
     border: 1px solid #dcdcdc;
 }
-table {
+.orderContent table {
     margin-top: 10px;
     margin-bottom: 10px;
     width: 30%;
 }
-th {
+.orderContent th {
     background-color: #f6f6f6;
 }
-th, td {
+.orderContent th, td {
     padding: 10px;
 }
-ul {
+.orderContent ul {
     padding: 0;
 }
-li {
+.orderContent li {
     list-style: none;
 }
-select {
+.orderContent select {
     width: 100%;
 }
-textarea {
+.orderContent textarea {
     width: 100%;
 }
-.orderProductDetailsTable{
+.orderContent .orderProductDetailsTable{
     display: flex;
     justify-content: space-between;
 }
-.orderProductId{
+.orderContent .orderProductId{
     border: 1px solid #dcdcdc;
 }
-.orderProductIdHeader{
+.orderContent .orderProductIdHeader{
     padding: 10px;
     border-bottom: 1px solid #dcdcdc;
 }
-.orderProductTableAddress {
+.orderContent .orderProductTableAddress {
     width: 100%;
 }
-.orderProductTablePrice {
+.orderContent .orderProductTablePrice {
     width: 100%;
 }
-.orderProductHistory{
+.orderContent .orderProductHistory{
     margin-top: 30px;
 }
-.orderProductHistoryHeader{
+.orderContent .orderProductHistoryHeader{
     border-bottom: 1px solid #dcdcdc;
 }
-.orderFormContent {
+.orderContent .orderFormContent {
     display: flex;
 }
-.orderLabelContent{
+.orderContent .orderLabelContent{
     width: 20%;
 }
-.orderInputContent{
+.orderContent .orderInputContent{
     width: 80%;
 }
-.orderButtonHistory {
+.orderContent .orderButtonHistory {
     display: flex;
     float: right;
     margin-top: 30px;
     margin-bottom: 30px;
 }
-.orderButtonContent{
+.orderContent .orderButtonContent{
     display: flex;
 }
 
-
+.return-modal .modal-dialog {
+    max-width: 980px;
+}
