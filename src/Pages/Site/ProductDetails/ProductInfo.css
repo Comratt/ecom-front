@@ -8,6 +8,11 @@
     margin: 0 auto;
     padding-top: 40px;
 }
+.lib-product_info_product-normal-price.discount{
+    text-decoration: line-through;
+    color: var(--color-accent-light);
+    font-size: 12px;
+}
 
 .lib-product_info {
     --header-accent-ff: var(--accent-ff);
@@ -172,3 +177,4 @@
         text-align: center;
     }
 }
+

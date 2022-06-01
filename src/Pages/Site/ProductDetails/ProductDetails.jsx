@@ -57,6 +57,7 @@ export const ProductDetails = () => {
         setActiveColor(item);
         setActiveSize({});
     };
+    const discount = `${parseInt(result.price) - 200}₴`;
 
     const handleAddToCart = () => {
         setSizeError(false);
@@ -73,6 +74,7 @@ export const ProductDetails = () => {
             size: activeSize?.name,
             color: activeColor?.name,
             totalCount: activeSize?.product_quantity,
+            discount,
         }));
 
         return alert.show({
@@ -104,6 +106,12 @@ export const ProductDetails = () => {
         return <div>Завантаження...</div>;
     }
 
+    let classNameDiscount = 'lib-product_info_product-normal-price';
+
+    if (discount) {
+        classNameDiscount += ' discount';
+    }
+
     return (
         <>
             <div className="lib-product_info">
@@ -133,9 +141,21 @@ export const ProductDetails = () => {
                             <h1 className="lib-product_info_product-title">
                                 {result.name}
                             </h1>
-                            <p className="lib-product_info_product-normal-price">
-                                <b>{result.price}</b>
-                            </p>
+                            {discount
+                                ? (
+                                    <div>
+                                        <p className={classNameDiscount}>
+                                            <b>{result.price}</b>
+                                        </p>
+                                        <div className="lib-product_info_product-normal-price">
+                                            <b>{discount}</b>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <p className={classNameDiscount}>
+                                        <b>{result.price}</b>
+                                    </p>
+                                )}
                             <p className="lib-product_info_colour">
                                 Колір
                                 <span>

@@ -13,6 +13,11 @@
     padding-bottom: var(--size-fourty);
     width: 100%;
 }
+.discount{
+    text-decoration: line-through;
+    color: var(--color-accent-light);
+    font-size: 12px;
+}
 
 .order__main {
     display: flex;
