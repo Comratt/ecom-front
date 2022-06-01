@@ -100,9 +100,21 @@ export const Cart = () => {
                                                         <li>
                                                             {product.size}
                                                         </li>
-                                                        <li className="cart-product-li-hidden">
-                                                            {product.price}
-                                                        </li>
+                                                        {product.discount
+                                                            ? (
+                                                                <div>
+                                                                    <li className="cart-product-li-hidden discount">
+                                                                        {product.price}
+                                                                    </li>
+                                                                    <li className="cart-product-li-hidden">
+                                                                        {product.discount}
+                                                                    </li>
+                                                                </div>
+                                                            ) : (
+                                                                <li className="cart-product-li-hidden ">
+                                                                    {product.price}
+                                                                </li>
+                                                            )}
                                                         <li className="cart-product-li-hidden">
                                                             <CartQuantity
                                                                 product={product}
@@ -113,7 +125,21 @@ export const Cart = () => {
                                                 </div>
                                             </td>
                                             <td className="cart-product-tbody">
-                                                {product.price}
+                                                {product.discount
+                                                    ? (
+                                                        <div>
+                                                            <li className="cart-product-li discount">
+                                                                {product.price}
+                                                            </li>
+                                                            <li className="cart-product-li">
+                                                                {product.discount}
+                                                            </li>
+                                                        </div>
+                                                    ) : (
+                                                        <li className="cart-product-li">
+                                                            {product.price}
+                                                        </li>
+                                                    )}
                                             </td>
                                             <td className="cart-product-tbody">
                                                 <CartQuantity
