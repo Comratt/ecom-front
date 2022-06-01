@@ -22,6 +22,7 @@ export const adaptProducts = ({ data = [] } = {}) => {
         const sizesF = sizes?.map(
             (item) => ({ ...item, id: item.option_value_id, name: item.name_value }),
         );
+        const discount = discounts?.reduce((acc, item) => acc + +item.discount_price, 0);
 
         return ({
             id: p_id,
@@ -29,11 +30,12 @@ export const adaptProducts = ({ data = [] } = {}) => {
             name,
             image: getImage(image),
             price: getFormattedPrice(price),
+            purePrice: price,
             colors: uniqBy(colorsF, 'id'),
             sizes: uniqBy(sizesF, 'id'),
             description,
             related,
-            discounts,
+            discount,
         });
     });
 };

@@ -1,22 +1,27 @@
-.lib-user-orders-table-info{
+.lib-user-orders-table-info {
     display: flex;
+    border-bottom: 1px solid var(--color-accent-light);
+    padding: 10px 0;
 }
-.lib-user-orders-table-info img{
+
+.lib-user-orders-table-info:last-child {
+    border-bottom: none;
+}
+
+.lib-user-orders-table-info img {
     width: 100px;
     height: 140px;
 }
-.lib-user-orders-table-info-product{
+
+.lib-user-orders-table-info-product {
     display: flex;
     flex-direction: column;
     margin-left: 20px;
 }
-.lib-user-orders-product-color{
+
+.lib-user-orders-product-color {
     width: 20px;
     height: 20px;
     border-radius: 50%;
     background-color: red;
-}
-.lib-user-orders-table{
-    border-bottom: 1px solid var(--color-accent-light);
-    padding-bottom: 20px;
 }

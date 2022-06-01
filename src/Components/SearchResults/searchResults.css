@@ -42,6 +42,7 @@
 }
 
 .product-matches__btn {
+    cursor: pointer;
     height: var(--search-result-btn-heigth);
     font-size: var(--fz-normal);
     background: var(--color-focused-input);

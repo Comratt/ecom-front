@@ -160,12 +160,20 @@ export const Cart = () => {
                                 />
                             </div>
                             <div>
-                                <button onClick={goToCheckoutPage} className="cart-product-btn-checkout">
+                                <button
+                                    type="button"
+                                    onClick={goToCheckoutPage}
+                                    className="cart-product-btn-checkout"
+                                >
                                     Оформити
                                 </button>
                             </div>
                             <div>
-                                <button className="cart-product-btn-continue">
+                                <button
+                                    type="button"
+                                    className="cart-product-btn-continue"
+                                    onClick={() => history.goBack()}
+                                >
                                     Продовжити покупки :)
                                 </button>
                             </div>

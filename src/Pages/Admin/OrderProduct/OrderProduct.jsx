@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useAsyncCallback } from 'react-async-hook';
 import { useForm } from 'react-hook-form';
 import moment from 'moment';
@@ -52,8 +52,13 @@ const OrderProduct = () => {
             [prodId]: quantity,
         }))
     );
+    const returnedProducts = useMemo(() => {
+        if (result?.products?.length) {
+            return result?.products?.filter(({ return_quantity }) => !!return_quantity);
+        }
 
-    console.log(returnProducts);
+        return [];
+    }, [result]);
 
     const onReturnSubmit = async (e) => {
         e.preventDefault();
@@ -287,15 +292,66 @@ const OrderProduct = () => {
                 </table>
             </div>
             <div className="orderProductId">
-                <h4 className="orderProductIdHeader">
+                <h4
+                    className="orderProductIdHeader"
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                    }}
+                >
                     <span>
                         {' '}
                         Order (#
                         {result.id}
                         )
                     </span>
-                    <button onClick={toggleModal}>Return</button>
+                    <button type="button" className="btn btn-danger" onClick={toggleModal}>Повернення</button>
                 </h4>
+                {!!returnedProducts?.length && (
+                    <>
+                        <h4 className="orderProductIdHeader">Історія повернених товарів</h4>
+                        <table className="orderProductTablePrice">
+                            <thead>
+                                <tr>
+                                    <th>Продукт</th>
+                                    <th>Модель</th>
+                                    <th>Колір</th>
+                                    <th>Розмір</th>
+                                    <th>Кількість</th>
+                                    <th>Ціна за одиницю</th>
+                                    <th>Всього</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {returnedProducts?.map((product) => (
+                                    <tr>
+                                        <td>
+                                            {product.name}
+                                        </td>
+                                        <td>
+                                            {product.model}
+                                        </td>
+                                        <td>
+                                            {product.color}
+                                        </td>
+                                        <td>
+                                            {product.size}
+                                        </td>
+                                        <td className="text-right">
+                                            {product.return_quantity}
+                                        </td>
+                                        <td className="text-right">
+                                            {getFormattedPrice(product.price)}
+                                        </td>
+                                        <td className="text-right">
+                                            {getFormattedPrice(product.price * product.return_quantity)}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </>
+                )}
                 <table className="orderProductTableAddress">
                     <thead>
                         <tr>
@@ -355,25 +411,25 @@ const OrderProduct = () => {
                     <tbody>
                         {result.products?.map((product) => (
                             <tr>
-                                <td>
+                                <td style={{ backgroundColor: product?.return_quantity ? 'rgba(255, 0, 0, .3)' : 'transparent' }}>
                                     {product.name}
                                 </td>
-                                <td>
+                                <td style={{ backgroundColor: product?.return_quantity ? 'rgba(255, 0, 0, .3)' : 'transparent' }}>
                                     {product.model}
                                 </td>
-                                <td>
+                                <td style={{ backgroundColor: product?.return_quantity ? 'rgba(255, 0, 0, .3)' : 'transparent' }}>
                                     {product.color}
                                 </td>
-                                <td>
+                                <td style={{ backgroundColor: product?.return_quantity ? 'rgba(255, 0, 0, .3)' : 'transparent' }}>
                                     {product.size}
                                 </td>
-                                <td className="text-right">
+                                <td className="text-right" style={{ backgroundColor: (product?.return_quantity === product?.quantity) ? 'rgba(255, 0, 0, .3)' : 'transparent' }}>
                                     {product.quantity}
                                 </td>
-                                <td className="text-right">
+                                <td className="text-right" style={{ backgroundColor: product?.return_quantity ? 'rgba(255, 0, 0, .3)' : 'transparent' }}>
                                     {getFormattedPrice(product.price)}
                                 </td>
-                                <td className="text-right">
+                                <td className="text-right" style={{ backgroundColor: product?.return_quantity ? 'rgba(255, 0, 0, .3)' : 'transparent' }}>
                                     {getFormattedPrice(product.price * product.quantity)}
                                 </td>
                             </tr>

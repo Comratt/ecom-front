@@ -1,12 +1,14 @@
 import { useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useAsyncCallback } from 'react-async-hook';
 
 import { getAuthToken, getUser } from 'Store/Modules/LocalSettings/selectors';
+import { logout as logoutAction } from 'Store/Modules/LocalSettings/localSettingsActions';
 import ClientBaseService from 'Services/ClientBaseService';
 import { useForm } from 'react-hook-form';
 
 export const useUserAccountData = () => {
+    const dispatch = useDispatch();
     const user = useSelector(getUser);
     const isLoggedIn = useSelector(getAuthToken);
     const { loading, execute } = useAsyncCallback(ClientBaseService.modify);
@@ -23,6 +25,8 @@ export const useUserAccountData = () => {
         },
     });
 
+    const logout = () => dispatch(logoutAction());
+
     const submitHandler = (body) => execute(user.id, body);
     const onSubmit = handleSubmit(submitHandler);
 
@@ -33,6 +37,7 @@ export const useUserAccountData = () => {
         register,
         errors,
         isLoggedIn,
+        logout,
     }), [
         user,
         loading,
@@ -40,5 +45,6 @@ export const useUserAccountData = () => {
         register,
         errors,
         isLoggedIn,
+        logout,
     ]);
 };

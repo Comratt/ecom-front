@@ -1,12 +1,30 @@
-import { useMemo, useState, useEffect } from 'react';
+import {
+    useMemo,
+    useState,
+    useEffect,
+    useRef,
+} from 'react';
+import { useParams } from 'react-router-dom';
 import { useAsync } from 'react-async-hook';
 import { fetchProducts, fetchProduct } from '../api/fetchProducts';
 
-export const useFetchProducts = (filters) => {
+export const useFetchProducts = (filters, setFilters) => {
+    const isMounted = useRef(false);
+    const { id } = useParams();
     const [sdata, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [isLastPage, setLastPage] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+
+    useEffect(() => {
+        if (isMounted.current && id) {
+            setFilters((prevFilters) => ({
+                ...prevFilters,
+                category: [id],
+            }));
+        }
+        isMounted.current = true;
+    }, [id]);
 
     useEffect(() => {
         setLoading(true);

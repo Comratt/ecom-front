@@ -30,6 +30,7 @@ export const useWishlist = () => {
         handlePageCount,
         filters,
         currentPage,
+        productIDs,
     }), [
         result,
         loading,
@@ -37,5 +38,6 @@ export const useWishlist = () => {
         handlePageCount,
         filters,
         currentPage,
+        productIDs,
     ]);
 };

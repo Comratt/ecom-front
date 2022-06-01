@@ -148,3 +148,17 @@
 .lib-view_pad-leftMedium {
     padding-left: var(--size-big);
 }
+
+.lib-view_content-center {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.lib-view_overflow-hidden {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+}

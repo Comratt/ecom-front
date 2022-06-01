@@ -1,6 +1,14 @@
 .lib-product_info_submit{
     margin-top: 10px;
 }
+.lib-product_info_submit.loading {
+    opacity: .7;
+}
+.lib-product_info_submit.loading button:hover {
+    background-color: var(--color-accent-light);
+    cursor: default;
+    user-select: none;
+}
 .lib-product_info_submit button {
     display: flex;
     justify-content: center;

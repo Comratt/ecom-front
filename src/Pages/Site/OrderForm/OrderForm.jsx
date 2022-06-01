@@ -9,11 +9,13 @@ import 'react-autocomplete-input/dist/bundle.css';
 
 import { novaPoshtaAPI } from 'API';
 import { getCartProducts, getCartNotes } from 'Store/Modules/Cart/selectors';
+import { getUser } from 'Store/Modules/LocalSettings/selectors';
 import { clearCart } from 'Store/Modules/Cart/cartActions';
 import OrderService from 'Services/OrderService';
 
 import { Link } from 'Components/Link';
 import LoginBtn from 'Components/Buttons/LoginBtn/LoginBtn';
+import { CommonInput } from 'Components/CommonInput';
 import { Logo, Cart, AccardionArrow } from 'Icons';
 import { getFormattedPrice, emailRegExp } from 'Constants';
 
@@ -22,6 +24,9 @@ import './OrderForm.css';
 export const OrderForm = (className) => {
     const dispatch = useDispatch();
     const alert = useAlert();
+    const user = useSelector(getUser);
+    const products = useSelector(getCartProducts);
+    const orderNotes = useSelector(getCartNotes);
     const [formLoading, setFormLoading] = useState(false);
     const [selectedCity, setSelectedCity] = useState('');
     const [showSideBar, setShowSideBar] = useState(false);
@@ -40,6 +45,23 @@ export const OrderForm = (className) => {
         loading: true,
         error: null,
     });
+    const defaultValues = useMemo(() => {
+        if (Object.keys(user).length) {
+            return ({
+                email: user.email,
+                firstName: user.first_name,
+                lastName: user.last_name,
+                phone: user.phone,
+            });
+        }
+
+        return {
+            email: '',
+            firstName: '',
+            lastName: '',
+            phone: '',
+        };
+    }, [user]);
     const cityNames = useMemo(() => cities.data.map(({ Description }) => Description),
         [cities]);
     const {
@@ -51,15 +73,14 @@ export const OrderForm = (className) => {
         clearErrors,
     } = useForm({
         mode: 'onChange',
+        defaultValues,
     });
     const componentClasses = classNames('lib-order', className);
-    const products = useSelector(getCartProducts);
-    const orderNotes = useSelector(getCartNotes);
     const toggleSidebar = () => setShowSideBar((sideBar) => !sideBar);
 
     const onSubmit = (formInfo) => {
         if (!selectedCity) {
-            return setError('shippingCity', { message: 'Enter city' });
+            return setError('shippingCity', { message: 'Введіть місто' });
         }
         setFormLoading(true);
 
@@ -152,15 +173,17 @@ export const OrderForm = (className) => {
                         <div className="order__contact-info">
                             <div className="order__title">
                                 <h2 className="order__title-name">Контактна інформація</h2>
-                                <div className="order__log-in">
-                                    <span className="order__log-in-text">
-                                        Вже маєте акаунт?
-                                    </span>
-                                    <a href="#">Увійти</a>
-                                </div>
+                                {!user?.email && (
+                                    <div className="order__log-in">
+                                        <span className="order__log-in-text">
+                                            Вже маєте акаунт?
+                                        </span>
+                                        <Link to="/login">Увійти</Link>
+                                    </div>
+                                )}
                             </div>
                             <div className="order__contact-form">
-                                <input
+                                <CommonInput
                                     name="email"
                                     ref={register({ required: true, pattern: emailRegExp })}
                                     className={classNames('input', { 'field-error': errors?.email })}
@@ -176,7 +199,7 @@ export const OrderForm = (className) => {
                             </h2>
                             <div className="order__address-name">
                                 <div className="order__contact-form">
-                                    <input
+                                    <CommonInput
                                         name="firstName"
                                         ref={register({
                                             required: true, maxLength: 20, minLength: 2,
@@ -188,7 +211,7 @@ export const OrderForm = (className) => {
                                     {errors?.firstName && <p className="field-message__error">Не залишайте поле порожнім</p>}
                                 </div>
                                 <div className="order__contact-form">
-                                    <input
+                                    <CommonInput
                                         name="lastName"
                                         ref={register({
                                             required: true, maxLength: 20, minLength: 3,
@@ -221,7 +244,7 @@ export const OrderForm = (className) => {
                                         setValue('shippingCity', str);
                                     }}
                                 />
-                                {errors?.shippingCity && <p className="field-message__error">Enter valid city</p>}
+                                {errors?.shippingCity && <p className="field-message__error">Введіть місто</p>}
                             </div>
                             <div className="order__contact-form">
                                 {!!offices.data.length && (
@@ -231,7 +254,7 @@ export const OrderForm = (className) => {
                                             ref={register({ required: true })}
                                             className={classNames({ 'field-error': errors?.shippingAddress })}
                                         >
-                                            <option disabled selected value="">Виберіть відділення для отримання замовлення</option>
+                                            <option disabled selected value="">Виберіть відділення</option>
                                             {offices.data.map(({ Description }) => (
                                                 <option value={Description}>
                                                     {Description}
@@ -243,7 +266,7 @@ export const OrderForm = (className) => {
                                 )}
                             </div>
                             <div className="order__phone">
-                                <input
+                                <CommonInput
                                     name="phone"
                                     ref={register({ required: true, minLength: 10, maxLength: 13 })}
                                     className={classNames('input order__phone-input', { 'field-error': errors?.phone })}

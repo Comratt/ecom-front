@@ -75,7 +75,16 @@
     color: var(--color-accent-light)!important;
 
 }
-.lib-card__info-price-content{
-    margin-top: 10px ;
-    margin-bottom: 10px;
+.lib-card__info-price-content {
+    margin-top: 4px ;
+    margin-bottom: 4px;
+}
+.lib-card .lib-card__info .lib-swatches .lib-swatches__item button {
+    height: 15px;
+    width: 15px;
+}
+
+.lib-card .lib-card__info .lib-swatches .lib-swatches__item button:after {
+    width: 20px;
+    height: 20px;
 }

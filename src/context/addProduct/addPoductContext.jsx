@@ -38,6 +38,7 @@ export const AddProductProvider = ({ children }) => {
                 const categoryNames = product.categories.map((cat) => ({
                     value: cat.category_id,
                     label: cat.name,
+                    id: cat.product_category_id,
                 }));
 
                 setSelectedCategories(categoryNames);
@@ -46,6 +47,7 @@ export const AddProductProvider = ({ children }) => {
                 const relatedProductNames = product.related.map((prod) => ({
                     value: prod.related_product_id,
                     label: prod.name,
+                    id: prod.products_related_id,
                 }));
 
                 setRelatedProducts(relatedProductNames);
@@ -112,8 +114,8 @@ export const AddProductProvider = ({ children }) => {
     const handleSelectRelatedProducts = (name) => (
         setRelatedProducts((prevState) => [...prevState, name])
     );
-    const removeSelectRelatedProducts = (name) => (
-        setRelatedProducts((prevState) => prevState.filter((n) => n !== name))
+    const removeSelectRelatedProducts = (id) => (
+        setRelatedProducts((prevState) => prevState.filter(({ value }) => value !== id))
     );
 
     const handleAddOption = () => {

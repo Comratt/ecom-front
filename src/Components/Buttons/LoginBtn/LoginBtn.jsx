@@ -6,11 +6,11 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import './LoginBtn.css';
 
 const LoginBtn = ({ loading, text = 'Sign In', className }) => {
-    const componentClassName = classNames('lib-product_info_submit', className);
+    const componentClassName = classNames('lib-product_info_submit', className, { loading });
 
     return (
         <div className={componentClassName}>
-            <button type="submit">
+            <button type={loading ? 'button' : 'submit'}>
                 {loading && (
                     <Loader
                         className="button-loader"

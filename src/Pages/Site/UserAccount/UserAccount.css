@@ -36,3 +36,9 @@
     border-width: 0 0 1px;
     border-style: solid;
 }
+
+@media all and (max-width: 750px) {
+    .lib-user-account .logout-btn {
+        top: 0;
+    }
+}

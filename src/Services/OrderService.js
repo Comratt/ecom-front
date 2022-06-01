@@ -23,6 +23,14 @@ class OrderService {
         }
     }
 
+    static async getByEmail(email) {
+        try {
+            return (await API.post('api/admin/get/orders/email', { email })).data;
+        } catch (e) {
+            throw new ServerException(e.response);
+        }
+    }
+
     static async addHistoryStatus(params) {
         try {
             const orders = await API.post('api/admin/orders-history', params);

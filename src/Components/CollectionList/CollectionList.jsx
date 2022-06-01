@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { StickyContainer } from 'react-sticky';
+import { Link } from '../Link';
 import { Accordion, AccordionItem } from '../Accordion';
 
 import './CollectionList.css';
@@ -10,27 +11,34 @@ const CollectionList = ({
     children,
     data,
     onChange,
+    filtered,
 }) => {
     const componentClassNames = classNames('lib-collection-list', className);
+    const adaptedCatIds = filtered?.map((catId) => +catId);
 
     return (
         <div className={componentClassNames}>
             <aside>
                 <div>
                     <Accordion defaultIndex={0}>
-                        {data.map(({ name, subcategories }, index) => (
+                        {data.map(({ id, name, subcategories }, index) => (
                             <AccordionItem
                                 label={(
-                                    <div className="collection-title">
+                                    <Link to={`/collection/${id}`} className="collection-title">
                                         {name}
-                                    </div>
+                                    </Link>
                                 )}
                                 index={index}
                             >
                                 {subcategories.map((subcategory) => (
                                     <div className="collection-item-checkbox">
                                         <label className="checkbox" htmlFor={subcategory.category_id}>
-                                            <input onChange={onChange} id={subcategory.category_id} type="checkbox" />
+                                            <input
+                                                onChange={onChange}
+                                                checked={adaptedCatIds?.includes(subcategory.category_id)}
+                                                id={subcategory.category_id}
+                                                type="checkbox"
+                                            />
                                             <span>{subcategory.category_name}</span>
                                         </label>
                                     </div>

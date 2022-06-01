@@ -12,6 +12,9 @@ export const useHome = () => {
         result,
         error,
         loading,
+        resultCategories,
+        errorCategories,
+        loadingCategories,
     } = useHomeData();
     const { changeTopNavState } = useLayout();
 
@@ -37,9 +40,15 @@ export const useHome = () => {
         loading,
         result,
         error,
+        resultCategories,
+        errorCategories,
+        loadingCategories,
     }), [
         loading,
         result,
         error,
+        resultCategories,
+        errorCategories,
+        loadingCategories,
     ]);
 };

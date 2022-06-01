@@ -16,6 +16,8 @@ const UserAccount = () => {
         register,
         loading,
         isLoggedIn,
+        user,
+        logout,
     } = useUserAccount();
 
     if (!isLoggedIn) {
@@ -40,7 +42,7 @@ const UserAccount = () => {
             id: 2,
             name: 'Мої Замовлення',
             title: 'Список замовлень',
-            text: <UserOrders />,
+            text: <UserOrders email={user?.email} />,
         },
     ];
 
@@ -50,7 +52,11 @@ const UserAccount = () => {
 
     return (
         <div className={componentClasses}>
-            <button className="logout-btn">
+            <button
+                type="button"
+                className="logout-btn"
+                onClick={logout}
+            >
                 <Logout width={27} height={27} />
                 <span>Вихід</span>
             </button>

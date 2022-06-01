@@ -12,21 +12,36 @@ export const useCollection = () => {
         currentPage,
         setFilters,
         filters,
+        collectionId,
     } = useCollectionData();
     const handleSelectCategory = ({ target: { id } }) => {
         setFilters((prevFilters) => {
-            if (prevFilters.category.includes(id)) {
+            let filteredFilters = prevFilters?.category;
+
+            if (collectionId) {
+                filteredFilters = prevFilters?.category?.filter((cat) => cat !== collectionId);
+            }
+
+            if (filteredFilters.includes(id)) {
+                if (collectionId && filteredFilters?.length === 1) {
+                    return ({
+                        ...prevFilters,
+                        page: 1,
+                        category: [collectionId],
+                    });
+                }
+
                 return ({
                     ...prevFilters,
                     page: 1,
-                    category: prevFilters.category.filter((cat) => cat !== id),
+                    category: filteredFilters.filter((cat) => cat !== id),
                 });
             }
 
             return ({
                 ...prevFilters,
                 page: 1,
-                category: [...prevFilters.category, id],
+                category: [...filteredFilters, id],
             });
         });
     };

@@ -19,10 +19,11 @@
     width: 55%;
     padding-top: var(--size-eigthty);
     justify-content: center;
-    margin: 0px var(--size-content-big) auto;
+    margin: 0 var(--size-content-big) auto;
+    max-width: 585px;
 }
 
-input:checked {
+.lib-order input:checked {
     border-color: var(--color-focused-input);
 }
 
@@ -110,7 +111,7 @@ input:checked {
     margin-right: 0;
 }
 
-select {
+.lib-order select {
     margin-top: var(--size-small);
     border-radius: var(--size-smaller);
     border: 1px solid #d9d9d9;
@@ -120,7 +121,7 @@ select {
     font-weight: 400;
 }
 
-select:focus {
+.lib-order select:focus {
     outline: none;
     border: 1px solid var(--color-focused-input);
 }
@@ -196,7 +197,7 @@ select:focus {
     border-color: var(--color-border-card);
 }
 
-input.input {
+.lib-order input.input {
     border-radius: var(--size-smaller);
     border: 1px solid #d9d9d9;
     margin-top: var(--size-small);
@@ -210,19 +211,24 @@ input.input {
     transition: background-color .3s ease,color .3s ease;
 }
 
-.field-error {
+.lib-order .input::placeholder {
+    color: var(--color-accent-light);
+    opacity: .9;
+}
+
+.lib-order .field-error {
     border-color: var(--color-error) !important;
     border-width: 2px !important;
 }
 
-p.field-message__error {
+.lib-order p.field-message__error {
     font-size: 14px;
     color: var(--color-error);
     margin-top: 7px;
     margin-bottom: 0;
 }
 
-.input.input:focus {
+.lib-order .input.input:focus {
     outline: 0;
     border: 2px solid var(--color-focused-input);
     transition: all .2s ease-out;
@@ -300,7 +306,7 @@ p.field-message__error {
     margin-top: var(--size-small);
 }
 
-.label-btn {
+.lib-order .label-btn {
     padding-left: var(--size-smaller);
 }
 
@@ -336,11 +342,11 @@ p.field-message__error {
     padding-left: var(--size-mid);
 }
 
-a {
+.lib-order a {
     color: var(--color-focused-input);
 }
 
-a:hover {
+.lib-order a:hover {
     color: var(--color-link-card);
     text-decoration: none;
 }
@@ -492,11 +498,11 @@ a:hover {
         display: block;
     }
 
-    .input {
+    .lib-order .input {
         width: 100%;
     }
 
-    select {
+    .lib-order select {
         width: 100%;
         margin-bottom: var(--size-small);
         padding: var(--size-small);

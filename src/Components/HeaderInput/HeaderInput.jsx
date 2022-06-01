@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import AsyncSelect from 'react-select/async';
 import { components } from 'react-select';
 import { fetchProducts } from 'context/api/fetchProducts';
@@ -59,23 +59,25 @@ const DropdownIndicator = () => (
     </label>
 );
 
-const SelectOptionContainer = ({ children, ...props }) => (
-    <components.Menu {...props}>
-        <div className="lib-search-results_info">
-            <div className="product-matches__title">
-                Збіги товару
-            </div>
-            <div className="product-matches__wrapper">
-                <div className="product-matches__items">
-                    {children}
+const SelectOptionContainer = ({ children, ...props }) => {
+    const history = useHistory();
+    const goToCollection = () => history.push('/collection');
+
+    return (
+        <components.Menu {...props}>
+            <div className="lib-search-results_info">
+                <div className="product-matches__title">
+                    Збіги товару
                 </div>
-                <div className="product-matches__btn-block">
-                    <button className="product-matches__btn">Переглянути всі результати</button>
+                <div className="product-matches__wrapper">
+                    <div className="product-matches__items">
+                        {children}
+                    </div>
                 </div>
             </div>
-        </div>
-    </components.Menu>
-);
+        </components.Menu>
+    );
+};
 
 const SelectOption = (props) => {
     const {
@@ -115,10 +117,6 @@ const HeaderInput = () => {
         changeTopNavState,
     } = useLayout();
 
-    useEffect(() => {
-        fetchProducts().then(({ data }) => setFoundProducts(adaptFoundedProducts(data)));
-    }, []);
-
     const filterProducts = async (inputValue) => {
         const products = await fetchProducts({ search: inputValue });
 
@@ -134,8 +132,10 @@ const HeaderInput = () => {
                 menuShouldBlockScroll
                 cacheOptions
                 styles={styles}
-                defaultOptions={foundProducts}
+                defaultOptions={[]}
                 loadOptions={promiseOptions}
+                noOptionsMessage={() => 'Збігів не найдено.'}
+                loadingMessage={() => 'Завантажуєм товари...'}
                 components={{
                     DropdownIndicator,
                     Option: SelectOption,

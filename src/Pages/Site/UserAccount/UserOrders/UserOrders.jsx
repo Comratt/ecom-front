@@ -1,26 +1,54 @@
 import React from 'react';
+import { useAsync } from 'react-async-hook';
 import classNames from 'classnames';
+import OrderService from 'Services/OrderService';
+import { ProductCardHorizontal } from 'Components/SkeletonLoader';
+import { getImage } from 'API';
+import { SHIPPING_CODES, getFormattedPrice } from 'Constants';
+
 import './UserOrders.css';
 
-const UserOrders = () => {
+const UserOrders = ({ email }) => {
     const componentClasses = classNames(
         'lib-user-orders',
     );
+    const { loading, result } = useAsync(OrderService.getByEmail, [email]);
+
+    if (loading) {
+        return <ProductCardHorizontal />;
+    }
 
     return (
         <div className={componentClasses}>
             <div className="lib-user-orders-table">
-                <div className="lib-user-orders-table-info">
-                    <img src="https://image.12storeez.com/images/154x188_90_out/uploads/images/CATALOG/top/112865/62690c84220f6-171952.jpg" alt="img-order" />
-                    <div className="lib-user-orders-table-info-product">
-                        <span className="lib-user-orders-product-model">арт. 114175</span>
-                        <span>XS</span>
-                        <span>Брюки льняные в мужском стиле</span>
-                        <span>Cтатус - в дорозі</span>
-                        <span className="lib-user-orders-product-color" />
-                        <span>До оплати: 2000$</span>
+                {result?.data?.map((product) => (
+                    <div className="lib-user-orders-table-info">
+                        <img src={getImage(product?.image)} alt="img-order" />
+                        <div className="lib-user-orders-table-info-product">
+                            <span className="lib-user-orders-product-model">
+                                {'арт. '}
+                                {product?.product_id}
+                            </span>
+                            <span>{product?.size}</span>
+                            <span>
+                                {product?.model}
+                                {' '}
+                                {product?.name}
+                            </span>
+                            <span>
+                                Cтатус -
+                                {SHIPPING_CODES[product?.status]}
+                            </span>
+                            <span className="lib-user-orders-product-color" />
+                            <span>
+                                Ціна:
+                                {product?.quantity}
+                                {' x '}
+                                {getFormattedPrice(product?.price)}
+                            </span>
+                        </div>
                     </div>
-                </div>
+                ))}
             </div>
         </div>
     );

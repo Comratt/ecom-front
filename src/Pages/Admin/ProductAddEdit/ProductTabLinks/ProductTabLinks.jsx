@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import 'react-autocomplete-input/dist/bundle.css';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
+import { v4 as uuidv4 } from 'uuid';
 // eslint-disable-next-line import/no-cycle
 import { useAddProduct } from 'context/addProduct/useAddProduct';
 import { MinusCircle } from 'Icons';
@@ -27,6 +28,7 @@ const ProductTabLinks = () => {
         categories.map(({ name, id }) => ({
             label: name,
             value: id,
+            id: uuidv4(),
         })).filter(({ value }) => !selectedCategories.map(({ value: v }) => v).includes(value))
 
     ),
@@ -36,6 +38,7 @@ const ProductTabLinks = () => {
             .map(({ name, id }) => ({
                 label: name,
                 value: id,
+                id: uuidv4(),
             }))
             .filter(({ value }) => !relatedProducts.map(({ value: v }) => v).includes(value))
     ),
@@ -59,10 +62,11 @@ const ProductTabLinks = () => {
                             defaultOptions
                             components={animatedComponents}
                             options={categoryNames}
-                            onChange={({ value, label }) => {
+                            onChange={({ value, label, id }) => {
                                 handleSelectCategory({
                                     value,
                                     label,
+                                    id,
                                 });
                             }}
                         />
@@ -95,10 +99,11 @@ const ProductTabLinks = () => {
                             defaultOptions
                             options={productModelsNames}
                             passThroughEnter
-                            onChange={({ value, label }) => {
+                            onChange={({ value, label, id }) => {
                                 handleSelectRelatedProducts({
                                     value,
                                     label,
+                                    id,
                                 });
                             }}
                         />

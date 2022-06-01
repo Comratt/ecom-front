@@ -11,6 +11,7 @@ import isEqual from 'lodash/isEqual';
 import history from 'Services/history';
 import { AdminRoutes, PrivateAdminRoutes } from './AdminRoutes';
 import { Layout } from '../Components/Layout';
+import { ThreeDots } from '../Components/SkeletonLoader';
 
 const NotFoundPage = () => <Redirect to="/" />;
 const Header = lazy(() => import('Components/Header/Header'));
@@ -30,7 +31,7 @@ const AdminLogin = lazy(() => import('Pages/Admin/Login'));
 
 const RouterComponent = () => (
     <Router history={history}>
-        <Suspense fallback={<h1>LOADING...</h1>}>
+        <Suspense fallback={<ThreeDots />}>
             <Switch>
                 <Route exact path="/admin/login" component={() => <AdminLogin />} />
                 <PrivateAdminRoutes path="/admin">
@@ -46,7 +47,7 @@ const RouterComponent = () => (
                     <Route path="/searchResult" component={() => <SearchResults />} />
                     <Route path="/checkboxfilter" component={() => <CheckboxFilter />} />
                     <Route path="/account" component={() => <UserAccount />} />
-                    <Route path="/collection" component={() => <CollectionList />} />
+                    <Route path="/collection/:id?" component={() => <CollectionList />} />
                     <Route path="/wishlist" component={() => <WishList />} />
                 </Layout>
 

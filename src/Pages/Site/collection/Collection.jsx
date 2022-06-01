@@ -4,6 +4,7 @@ import { View } from 'Components/View';
 import CollectionList from 'Components/CollectionList';
 import { CardList } from 'Components/CardList';
 import { CheckboxFilter } from 'Components/CheckboxFilter';
+import { CatalogLoader } from 'Components/SkeletonLoader';
 
 import './Collection.css';
 
@@ -22,9 +23,21 @@ export const Collection = () => {
         filters,
     } = useCollection();
 
+    if (loading) {
+        return (
+            <View className="collection-page__container">
+                <CatalogLoader />
+            </View>
+        );
+    }
+
     return (
         <View className="collection-page__container">
-            <CollectionList onChange={handleSelectCategory} data={categories}>
+            <CollectionList
+                filtered={filters?.category}
+                onChange={handleSelectCategory}
+                data={categories}
+            >
                 <div>
                     <CheckboxFilter
                         filters={filters}

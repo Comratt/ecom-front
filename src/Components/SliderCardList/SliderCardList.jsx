@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Slider from 'react-slick';
 import classNames from 'classnames';
 import { Link } from 'Components/Link';
@@ -9,6 +9,7 @@ import { Title } from 'Components/Title';
 import { useDetectedMobileDevice } from 'hooks/useDetectMobileDevice';
 import { useFetchProducts } from 'context/hooks/useFetchProducts';
 import { adaptProducts } from 'context/adapters';
+import { CatalogLoader } from 'Components/SkeletonLoader';
 
 import { Card } from '../Card';
 
@@ -54,6 +55,13 @@ export const SliderCardList = ({
     });
     const { loading, result, isLastPage } = useFetchProducts(filters);
     const { isTabletSize } = useDetectedMobileDevice();
+    const collectionLink = useMemo(() => {
+        if (category && category?.length) {
+            return `/collection/${category[0]}`;
+        }
+
+        return '/collection';
+    }, [category]);
 
     const handlePage = (prevCount, nextCount) => (
         setTimeout(() => {
@@ -79,9 +87,13 @@ export const SliderCardList = ({
         beforeChange: handlePage,
     };
 
-    // if (loading) {
-    //     return 'Loading...';
-    // }
+    if (!loading && !result?.length) {
+        return null;
+    }
+
+    if (loading) {
+        return <CatalogLoader row={1} column={count} widthPadding={30} />;
+    }
 
     return (
         <div className="lib-slider-card">
@@ -89,7 +101,7 @@ export const SliderCardList = ({
                 <Link to="/collection" className="list-link">
                     <Title type={2}>{title}</Title>
                 </Link>
-                <Link to="/collection" className="list-link">
+                <Link to={collectionLink} className="list-link">
                     Подивитись все
                     <svg
                         width="18"
@@ -116,6 +128,8 @@ export const SliderCardList = ({
                         title={product.name}
                         colors={product.colors}
                         images={product.images}
+                        discount={product.discount}
+                        purePrice={product.purePrice}
                     />
                 ))}
             </Slider>

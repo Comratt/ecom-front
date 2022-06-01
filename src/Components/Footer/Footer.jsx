@@ -4,7 +4,6 @@ import './Footer.css';
 import FooterInput from '../FooterInput/FooterInput';
 import FooterLogo from '../../Icons/FooterLogo';
 import { Accordion, AccordionItem } from '../Accordion';
-import { useProduct } from '../../context/product/hooks/useProduct';
 
 export const Footer = ({
     className,
@@ -13,7 +12,6 @@ export const Footer = ({
         'lib-footer',
         className,
     );
-    const { result, error, loading } = useProduct();
 
     return (
         <div className={componentClasses}>

@@ -1,5 +1,6 @@
 export const MOBILE_VIEWPORT_MAX_WIDTH = 576;
 export const TABLET_VIEWPORT_MAX_WIDTH = 768;
+export const DESKTOP_VIEWPORT_MAX_WIDTH = 1024;
 
 export const VALIDATION_REQUIRED = 'required';
 export const VALIDATION_MAX_LENGTH = 'maxLength';
@@ -54,4 +55,8 @@ export const getValidationMessage = ({ type = '', message } = {}) => {
     return '';
 };
 
-export const getFormattedPrice = (price = '0', prefix = '₴') => `${price} ${prefix}`;
+export const getFormattedPrice = (price = 0, prefix = '₴') => {
+    const priceNumber = Number(price).toFixed(2);
+
+    return `${priceNumber} ${prefix}`;
+};

@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useAsync } from 'react-async-hook';
+import { useParams } from 'react-router-dom';
 
 import { adaptProducts } from 'context/adapters';
 import { useFetchProducts } from '../../hooks/useFetchProducts';
@@ -11,16 +12,18 @@ const adaptCategories = (data = []) => {
     const parentCategories = data.filter(({ parent_id }) => !parent_id);
 
     return parentCategories.map((cat) => ({
+        id: cat.category_id,
         name: cat.category_name,
         subcategories: data.filter((subCat) => cat.category_id === subCat.parent_id),
     }));
 };
 
 export const useCollectionData = () => {
+    const { id } = useParams();
     const [filters, setFilters] = useState({
         page: 1,
         count: 15,
-        category: [],
+        category: id ? [id] : [],
         sortBy: '',
         available: false,
     });
@@ -34,7 +37,7 @@ export const useCollectionData = () => {
         result,
         isLastPage,
         currentPage,
-    } = useFetchProducts(filters);
+    } = useFetchProducts(filters, setFilters);
 
     return useMemo(() => ({
         loading: loading && categoriesLoading,
@@ -44,6 +47,7 @@ export const useCollectionData = () => {
         currentPage,
         setFilters,
         filters,
+        collectionId: id,
     }), [
         loading,
         categoriesLoading,
@@ -53,5 +57,6 @@ export const useCollectionData = () => {
         currentPage,
         setFilters,
         filters,
+        id,
     ]);
 };

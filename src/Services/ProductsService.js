@@ -59,13 +59,11 @@ class ProductsService {
         try {
             const formData = new FormData();
             const settings = { headers: { 'Content-Type': 'multipart/form-data' } };
-            const categories = params.selectedCategories.map(({ value }) => value);
-            const products = params.relatedProducts.map(({ value }) => value);
 
             formData.append('options', JSON.stringify(params.options));
             formData.append('product', JSON.stringify(params.product));
-            formData.append('category', JSON.stringify(categories));
-            formData.append('related', JSON.stringify(products));
+            formData.append('category', JSON.stringify(params.selectedCategories));
+            formData.append('related', JSON.stringify(params.relatedProducts));
             formData.append('discounts', JSON.stringify(params.discounts));
             formData.append('mainImage', params?.mainImage?.image);
             formData.append('imagesIds', JSON.stringify(params?.images?.map(({ id }) => id)));
@@ -83,13 +81,11 @@ class ProductsService {
         try {
             const formData = new FormData();
             const settings = { headers: { 'Content-Type': 'multipart/form-data' } };
-            const categories = params.selectedCategories.map(({ value }) => value);
-            const products = params.relatedProducts.map(({ value }) => value);
 
             formData.append('options', JSON.stringify(params.options));
             formData.append('product', JSON.stringify(params.product));
-            formData.append('category', JSON.stringify(categories));
-            formData.append('related', JSON.stringify(products));
+            formData.append('category', JSON.stringify(params.selectedCategories));
+            formData.append('related', JSON.stringify(params.relatedProducts));
             formData.append('discounts', JSON.stringify(params.discounts));
             formData.append('mainImage', params?.mainImage?.image);
             formData.append('imagesIds', JSON.stringify(params?.images?.map(({ id }) => id)));

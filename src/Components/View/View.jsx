@@ -46,6 +46,8 @@ export const View = ({
     padRightMedium,
     padBottomMedium,
     padLeftMedium,
+    contentCenter,
+    overflowHidden,
     ...rest
 }) => {
     const componentClasses = classNames(
@@ -87,6 +89,7 @@ export const View = ({
             'lib-view_pad-rightMedium': padRightMedium,
             'lib-view_pad-bottomMedium': padBottomMedium,
             'lib-view_pad-leftMedium': padLeftMedium,
+            'lib-view_content-center': contentCenter,
         },
     );
 
@@ -148,6 +151,8 @@ View.propTypes = {
     padRightMedium: PropTypes.bool,
     padBottomMedium: PropTypes.bool,
     padLeftMedium: PropTypes.bool,
+    contentCenter: PropTypes.bool,
+    overflowHidden: PropTypes.bool,
 };
 
 View.defaultProps = {
@@ -192,4 +197,6 @@ View.defaultProps = {
     padRightMedium: false,
     padBottomMedium: false,
     padLeftMedium: false,
+    contentCenter: false,
+    overflowHidden: false,
 };
