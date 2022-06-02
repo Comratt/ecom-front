@@ -32,46 +32,24 @@ export const Accordion = ({ defaultIndex, onItemClick, children }) => {
         if (itemIndex !== bindIndex) setBindIndex(itemIndex);
         if (itemIndex === bindIndex) setBindIndex(null);
     };
-    const items = children.filter((item) => item.type.name === 'AccordionItem');
+    const items = [];
+
+    React.Children.forEach(children, (child) => {
+        items.push((
+            <AccordionItem
+                key={child?.props.index}
+                isCollapsed={bindIndex !== child?.props.index}
+                label={child?.props.label}
+                handleClick={() => changeItem(child?.props.index)}
+            >
+                {child?.props.children}
+            </AccordionItem>
+        ));
+    });
 
     return (
         <>
-            {items.map(({ props }) => (
-                <AccordionItem
-                    isCollapsed={bindIndex !== props.index}
-                    label={props.label}
-                    handleClick={() => changeItem(props.index)}
-                    children={props.children}
-                />
-            ))}
+            {items}
         </>
     );
 };
-const Accardion = () => (
-    <Accordion defaultIndex="0">
-        <AccordionItem label="Description" index="1">
-            07584
-            Джинсові бермуди
-            Середній підйом
-            Застібка на блискавку та гудзики
-            Класичний дизайн з п'ятьма кишенями
-            Контрастне зшивання
-            Сирий поділ
-            Виготовлено в Китаї
-        </AccordionItem>
-        <AccordionItem label="Size & fit" index="2">
-            Dolor sit amet
-        </AccordionItem>
-        <AccordionItem label="Product measurements" index="4">
-            Dolor sit amet
-        </AccordionItem>
-        <AccordionItem label="Care" index="5">
-            Dolor sit amet
-        </AccordionItem>
-        <AccordionItem label="Composition" index="6">
-            Dolor sit amet
-        </AccordionItem>
-    </Accordion>
-);
-
-export default Accardion;

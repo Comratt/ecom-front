@@ -16,6 +16,7 @@ export const initialValues = {
     metaKeywords: '',
     metaTags: '',
     model: '',
+    status: 1,
 };
 
 export const items = [

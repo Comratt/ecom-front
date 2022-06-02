@@ -17,7 +17,7 @@ export const useFetchProducts = (filters, setFilters) => {
     const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
-        if (isMounted.current && id) {
+        if (isMounted.current && id && setFilters) {
             setFilters((prevFilters) => ({
                 ...prevFilters,
                 category: [id],

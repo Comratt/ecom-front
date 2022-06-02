@@ -28,14 +28,17 @@ const CollectionList = ({
                                         {name}
                                     </Link>
                                 )}
+                                key={id}
                                 index={index}
                             >
                                 {subcategories.map((subcategory) => (
-                                    <div className="collection-item-checkbox">
+                                    <div key={subcategory.category_id} className="collection-item-checkbox">
                                         <label className="checkbox" htmlFor={subcategory.category_id}>
                                             <input
                                                 onChange={onChange}
-                                                checked={adaptedCatIds?.includes(subcategory.category_id)}
+                                                checked={(
+                                                    adaptedCatIds?.includes(subcategory.category_id)
+                                                )}
                                                 id={subcategory.category_id}
                                                 type="checkbox"
                                             />

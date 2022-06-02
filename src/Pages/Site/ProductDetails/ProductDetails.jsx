@@ -19,6 +19,7 @@ import { SliderModal } from 'Components/SliderModal';
 import { BigSlider } from 'Components/Slider';
 import SliderMobileDevices from 'Components/SliderMobileDevices/SliderMobileDevices';
 import ProductCarousel from 'Components/PorductCarousel';
+import { ProductDetailsLoader } from 'Components/SkeletonLoader';
 import { useDetectedMobileDevice } from '../../../hooks/useDetectMobileDevice';
 
 import './ProductInfo.css';
@@ -105,7 +106,7 @@ export const ProductDetails = () => {
     }, [result?.colors]);
 
     if (loading) {
-        return <div>Завантаження...</div>;
+        return <ProductDetailsLoader />;
     }
 
     let classNameDiscount = 'lib-product_info_product-normal-price';
