@@ -104,6 +104,13 @@ export const AddProductProvider = ({ children }) => {
         }))
     );
 
+    const handleDescriptionChange = (value) => (
+        setValues((prevState) => ({
+            ...prevState,
+            description: value,
+        }))
+    );
+
     const handleSelectCategory = (params) => (
         setSelectedCategories((prevState) => [...prevState, params])
     );
@@ -235,6 +242,7 @@ export const AddProductProvider = ({ children }) => {
         images,
         mainImage,
         discounts,
+        product,
         onChangeProductImage,
         onAddProductImage,
         onDeleteProductImage,
@@ -243,6 +251,7 @@ export const AddProductProvider = ({ children }) => {
         onDeleteProductDiscount,
         onChangeProductDiscount,
         setProduct,
+        handleDescriptionChange,
     }), [
         selectedCategories,
         setSelectedCategories,
@@ -260,6 +269,7 @@ export const AddProductProvider = ({ children }) => {
         images,
         mainImage,
         discounts,
+        product,
         onChangeProductImage,
         onAddProductImage,
         onDeleteProductImage,
@@ -268,6 +278,7 @@ export const AddProductProvider = ({ children }) => {
         onDeleteProductDiscount,
         onChangeProductDiscount,
         setProduct,
+        handleDescriptionChange,
     ]);
 
     return (

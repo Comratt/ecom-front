@@ -338,7 +338,10 @@ export const OrderForm = (className) => {
                                     <div className="order__item-size">{product.size}</div>
                                 </div>
                             </div>
-                            <div className="order__item-price">{totalPrice(product)}</div>
+                            <div>
+                                <div className="order__item-price discount">{product.price}</div>
+                                <div className="order__item-price">{totalPrice(product)}</div>
+                            </div>
                         </div>
                     ))}
                     <div className="order__discount">

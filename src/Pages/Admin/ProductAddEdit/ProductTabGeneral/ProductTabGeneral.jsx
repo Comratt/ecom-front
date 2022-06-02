@@ -5,24 +5,31 @@ import { draftToMarkdown, markdownToDraft } from 'markdown-draft-js';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 import Input from 'Components/Input';
+
 import { useAddProduct } from 'context/addProduct/useAddProduct';
 
 import './ProductTabGeneral.css';
 
 const ProductTabGeneral = () => {
     const [v, setV] = useState();
-    const { values, handleValuesChange } = useAddProduct();
-    const onEditorStateChange = (editorState) => setV(editorState);
-
-    console.log(v && draftToMarkdown(convertToRaw(v.getCurrentContent())));
+    const {
+        values, handleValuesChange, handleDescriptionChange, product,
+    } = useAddProduct();
+    const onEditorStateChange = (editorState) => {
+        setV(editorState);
+        console.log(convertToRaw(editorState.getCurrentContent()));
+        handleDescriptionChange(draftToMarkdown(convertToRaw(editorState.getCurrentContent())));
+    };
 
     useEffect(() => {
-        const rawData = markdownToDraft(values.description);
-        const contentState = convertFromRaw(rawData);
-        const newEditorState = EditorState.createWithContent(contentState);
+        if (Object.keys(product).length) {
+            const rawData = markdownToDraft(product.description);
+            const contentState = convertFromRaw(rawData);
+            const newEditorState = EditorState.createWithContent(contentState);
 
-        setV(newEditorState);
-    }, [values.description]);
+            setV(newEditorState);
+        }
+    }, [product]);
 
     return (
         <div>
@@ -109,7 +116,7 @@ const ProductTabGeneral = () => {
                             </b>
                         </label>
                     </div>
-                    <div className="productTabInput">
+                    <div className="productTabInput input-description">
                         <Editor
                             editorState={v}
                             onEditorStateChange={onEditorStateChange}

@@ -28,6 +28,10 @@
     width: 80%;
 }
 
+.input-description .DraftEditor-editorContainer {
+
+}
+
 .well {
     margin-top: 3px;
     height: 120px;
