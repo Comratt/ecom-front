@@ -14,6 +14,9 @@
     margin-right: 7px;
     transition: .3s;
     border: none;
+    display: inline;
+    box-sizing: border-box;
+    padding: 1px;
 }
 
 .lib-swatches .lib-swatches__item button:after, .lib-swatches .lib-swatches__item.active button:after {
