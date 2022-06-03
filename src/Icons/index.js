@@ -24,6 +24,7 @@ import MinusCircle from './MinusCircle';
 import FooterLogo from './FooterLogo';
 import Check from './Check';
 import UkraineMap from './UkraineMap';
+import HeaderHeart from './HeaderHeart';
 
 export {
     Remove,
@@ -52,4 +53,5 @@ export {
     FooterLogo,
     Check,
     UkraineMap,
+    HeaderHeart,
 };

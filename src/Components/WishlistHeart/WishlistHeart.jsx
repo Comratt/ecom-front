@@ -29,7 +29,7 @@ const WishlistHeart = ({ cardId }) => {
                     height="23"
                     width="23"
                     fill={isActive ? '#fa4343' : 'var(--color-accent)'}
-                    fillOpacity={isActive ? '0.6' : '0.5'}
+                    fillOpacity={isActive ? '0.8' : '0.7'}
                 />
             </button>
         </div>

@@ -79,3 +79,9 @@
     margin-top: 10px ;
     margin-bottom: 10px;
 }
+@media (max-width: 768px) {
+    .lib-card__heart_wh{
+        right: 3px;
+        top: 5px;
+    }
+}

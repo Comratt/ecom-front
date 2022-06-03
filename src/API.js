@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import store from './Store/createStore';
 
-export const baseURL = 'http://ecom.back/';
+export const baseURL = 'http://ecom.manager-app.xyz/';
 export const novaPoshtaURL = 'https://api.novaposhta.ua/v2.0/json/';
 export const novaPoshtaAPIKEY = '3c34390ca4d3a3b2b97eeb228159beea';
 
