@@ -1,16 +1,16 @@
-.lib-login{
+.lib-sign-up{
     --header-accent-ff: var(--accent-ff);
     --header-color: var(--color-accent);
     font-family: var(--header-accent-ff);
     color: var(--header-color);
 }
-.container {
+lib-sign-up .container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 100px;
 }
-.content-login {
+lib-sign-up .content-login {
     max-width: 500px;
     width: 100%;
     display: flex;
@@ -18,7 +18,7 @@
     align-items: center;
     flex-direction: column;
 }
-.from-login {
+lib-sign-up .from-login {
     display: flex;
     flex-direction: column;
     width: 100%;
