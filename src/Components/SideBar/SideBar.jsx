@@ -97,7 +97,7 @@ export const SideBar = ({ className }) => {
                     <div className="lib-sidebar__item">
                         <div className="lib-sidebar__item-text">
                             <Link to="/account" onClick={handleCloseNavigationModal}>
-                                Вхід в особистий кабінет
+                                Вхід в кабінет
                             </Link>
                         </div>
                     </div>

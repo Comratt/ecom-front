@@ -29,7 +29,7 @@ class BannerService {
             formData.append('title', params.title);
             formData.append('link', params.link);
             formData.append('description', params.description);
-            formData.append('sort_order', '1');
+            formData.append('sort_order', params.sort_order);
             formData.append('image', params.image ? params.image[0] : '');
             const settings = { headers: { 'Content-Type': 'multipart/form-data' } };
 

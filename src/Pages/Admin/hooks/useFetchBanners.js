@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import BannerService from 'Services/BannerService';
+import { sortOrder } from 'Helpers';
 
 const useFetchAllBanners = () => {
     const [loading, setLoading] = useState(false);
@@ -27,7 +28,7 @@ const useFetchAllBanners = () => {
 
     return {
         loading,
-        banners,
+        banners: banners?.sort(sortOrder),
         setBanners,
         error,
     };

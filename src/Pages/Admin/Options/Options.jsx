@@ -15,6 +15,7 @@ import { ADD_METHOD, UPDATE_METHOD } from '../../../Constants';
 
 const Options = () => {
     const [show, setShow] = useState(false);
+    const [optionType, setOptionType] = useState(null);
     const {
         register, handleSubmit, errors,
     } = useForm({ mode: 'onChange' });
@@ -44,12 +45,12 @@ const Options = () => {
     }, [show]);
 
     useEffect(() => {
-        console.log(ovData);
         if (ovData?.values) {
             const modifiedData = ovData?.values?.map((item) => ({
                 id: item.option_value_id,
                 name: item.name_value,
                 image: item.image,
+                color: item.color,
             }));
 
             setOptionValues(modifiedData);
@@ -63,6 +64,7 @@ const Options = () => {
                 id: uuidv4(),
                 name: '',
                 image: '',
+                color: '#cccccc',
             },
         ]));
     };
@@ -84,6 +86,21 @@ const Options = () => {
                     return {
                         ...item,
                         name: target.value,
+                    };
+                }
+
+                return item;
+            },
+        ));
+    };
+
+    const onChangeOptionValueColor = (id) => ({ target }) => {
+        setOptionValues((prevOptions) => prevOptions.map(
+            (item) => {
+                if (item.id === id) {
+                    return {
+                        ...item,
+                        color: target.value,
                     };
                 }
 
@@ -242,12 +259,14 @@ const Options = () => {
                         onSubmit={handleSubmit(onSubmit)}
                     >
                         <OptionForm
+                            showColor={data?.find(({ option_id }) => (option_id === show)).option_type === 1}
                             register={register}
                             errors={errors}
                             optionValues={optionValues}
                             handleAddOptionValue={handleAddOptionValue}
                             handleDeleteOptionValue={handleDeleteOptionValue}
                             onChangeOptionValueName={onChangeOptionValueName}
+                            onChangeOptionValueColor={onChangeOptionValueColor}
                             onChangeOptionValueImage={onChangeOptionValueImage}
                             defaultValue={typeof show === 'number' ? ovData?.name : ''}
                             deleteValueLoading={deleteValueLoading}

@@ -1,11 +1,12 @@
 import {
     VALIDATION_REQUIRED,
-    VALIDATION_MAX_LENGTH,
+    VALIDATION_MAX_LENGTH, VALIDATION_MIN_NUMBER,
 } from 'Constants';
 
 export const TITLE_FIELD = 'title';
 export const DESCRIPTION_FIELD = 'description';
 export const LINK_FIELD = 'link';
+export const SORT_FIELD = 'sort_order';
 export const IMAGE_FIELD = 'image';
 
 export const FIELDS = [
@@ -37,6 +38,15 @@ export const FIELDS = [
         label: 'Ссылка',
     },
     {
+        name: SORT_FIELD,
+        type: 'number',
+        required: true,
+        icon: 'tags',
+        iconPosition: 'left',
+        placeholder: 'Добавити сортування',
+        label: 'Сортування',
+    },
+    {
         name: IMAGE_FIELD,
         type: 'file',
         required: true,
@@ -66,6 +76,12 @@ export const VALIDATION_RULES = {
         [VALIDATION_MAX_LENGTH]: {
             value: 50,
             message: 'Ссылка должна быть меньше 50 символов',
+        },
+    },
+    [SORT_FIELD]: {
+        [VALIDATION_MIN_NUMBER]: {
+            value: 1,
+            message: 'Сортування починається з 1',
         },
     },
     [IMAGE_FIELD]: {},

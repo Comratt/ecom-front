@@ -1,6 +1,7 @@
 import { getImage } from 'API';
+import { sortOrder } from 'Helpers';
 
-export const adaptBanners = (data = []) => data.map(({
+export const adaptBanners = (data = []) => data.sort(sortOrder).map(({
     banner_id,
     description,
     title,

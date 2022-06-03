@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ReactDOM from 'react-dom';
 
+import './Modal.css';
+
 const Modal = ({
     show, toggleModal, submit, onSubmit, loadingForm, children, className = '',
 }) => {

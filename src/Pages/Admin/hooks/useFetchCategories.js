@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import CategoryService from 'Services/CategoryService';
+import { sortOrder } from 'Helpers';
 
 export const adaptCategories = (data = []) => {
     const getParentName = (category) => {
@@ -14,7 +15,7 @@ export const adaptCategories = (data = []) => {
         ...category,
         id: category.category_id,
         name: getParentName(category),
-    }));
+    })).sort(sortOrder);
 };
 
 const useFetchCategories = () => {
@@ -28,7 +29,7 @@ const useFetchCategories = () => {
         try {
             const response = await CategoryService.getAll();
 
-            setCategories(adaptCategories(response));
+            setCategories(response);
         } catch (e) {
             console.warn(e);
             setError(e);
@@ -43,7 +44,7 @@ const useFetchCategories = () => {
 
     return {
         loading,
-        categories,
+        categories: adaptCategories(categories),
         setCategories,
         error,
     };

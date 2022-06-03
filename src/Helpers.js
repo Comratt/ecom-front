@@ -4,6 +4,8 @@ export const getFilteredOptions = (options = [], type) => (
     )
 );
 
+export const sortOrder = (first, second) => first?.sort_order - second?.sort_order;
+
 export const getNameById = (arrData = [], id) => {
     if (!Array.isArray(arrData)) return null;
 

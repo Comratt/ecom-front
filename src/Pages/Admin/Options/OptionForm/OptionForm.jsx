@@ -8,13 +8,16 @@ import {
     OPTION_NAME_FIELD,
     OPTION_VALUE_NAME,
     OPTION_VALUE_IMAGE,
+    OPTION_VALUE_COLOR,
 } from './constants';
 
 const OptionForm = ({
     register,
     errors,
     optionValues,
+    showColor,
     onChangeOptionValueName,
+    onChangeOptionValueColor,
     onChangeOptionValueImage,
     handleDeleteOptionValue,
     handleAddOptionValue,
@@ -40,7 +43,8 @@ const OptionForm = ({
             <thead>
                 <tr>
                     <th scope="col">Значення опції</th>
-                    <th scope="col">Зображення</th>
+                    {showColor && <th scope="col" style={{ width: '30%' }}>Колір</th>}
+                    <th scope="col" style={{ maxWidth: '50px' }}>Зображення</th>
                     <th scope="col" style={{ width: '2%' }} />
                 </tr>
             </thead>
@@ -57,6 +61,18 @@ const OptionForm = ({
                                 error={getValidationMessage(errors[OPTION_VALUE_NAME])}
                             />
                         </td>
+                        {showColor && (
+                            <td>
+                                <Input
+                                    value={optionValue.color}
+                                    onChange={onChangeOptionValueColor(optionValue.id)}
+                                    name={OPTION_VALUE_COLOR}
+                                    type="color"
+                                    placeholder="Колір"
+                                    error={getValidationMessage(errors[OPTION_VALUE_COLOR])}
+                                />
+                            </td>
+                        )}
                         <td>
                             <div className="media d-flex flex-column">
                                 {optionValue.image && (
@@ -97,6 +113,7 @@ const OptionForm = ({
                 <tr>
                     <td />
                     <td />
+                    {showColor && <td />}
                     <td>
                         <button
                             type="button"

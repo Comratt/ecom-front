@@ -1,6 +1,6 @@
 import {
     VALIDATION_REQUIRED,
-    VALIDATION_MAX_LENGTH,
+    VALIDATION_MAX_LENGTH, VALIDATION_MIN_NUMBER,
 } from 'Constants';
 
 export const CATEGORY_NAME_FIELD = 'category_name';
@@ -9,6 +9,7 @@ export const CATEGORY_META_TITLE_FIELD = 'meta_title';
 export const CATEGORY_META_DESCRIPTION_FIELD = 'meta_description';
 export const CATEGORY_META_KEYWORDS_FIELD = 'meta_keywords';
 export const PARENT_ID_FIELD = 'parent_id';
+export const SORT_FIELD = 'sort_order';
 export const IMAGE_FIELD = 'image';
 
 export const FIELDS = [
@@ -39,6 +40,13 @@ export const FIELDS = [
         required: true,
         placeholder: 'Добавить картинку',
         label: 'Картинка',
+    },
+    {
+        name: SORT_FIELD,
+        type: 'number',
+        required: true,
+        placeholder: 'Добавити сортування',
+        label: 'Сортування',
     },
 ];
 
@@ -97,6 +105,12 @@ export const VALIDATION_RULES = {
         [VALIDATION_MAX_LENGTH]: {
             value: 50,
             message: 'SEO ключевые слова',
+        },
+    },
+    [SORT_FIELD]: {
+        [VALIDATION_MIN_NUMBER]: {
+            value: 1,
+            message: 'Сортування починається з 1',
         },
     },
     [PARENT_ID_FIELD]: {},

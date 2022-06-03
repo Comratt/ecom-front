@@ -74,7 +74,7 @@
     cursor: pointer;
 }
 
-a {
+.lib-sidebar a {
     text-decoration: none;
     color: var(--color-accent);
     font-size: var(--fz-mid);

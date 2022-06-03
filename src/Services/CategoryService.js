@@ -32,7 +32,7 @@ class CategoryService {
             formData.append('meta_title', params.meta_title);
             formData.append('meta_keywords', params.meta_keywords);
             formData.append('meta_description', params.meta_description);
-            formData.append('sort_order', '1');
+            formData.append('sort_order', params.sort_order);
             formData.append('image', params.image ? params.image[0] : '');
             const settings = { headers: { 'Content-Type': 'multipart/form-data' } };
 
@@ -54,7 +54,7 @@ class CategoryService {
             formData.append('meta_title', params.meta_title);
             formData.append('meta_keywords', params.meta_keywords);
             formData.append('meta_description', params.meta_description);
-            formData.append('sort_order', '1');
+            formData.append('sort_order', params.sort_order);
             formData.append('image', params.image ? params.image[0] : '');
             const settings = { headers: { 'Content-Type': 'multipart/form-data' } };
 
