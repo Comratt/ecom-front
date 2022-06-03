@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 import {
-    Heart, Logo, Menu,
+    HeaderHeart,
+    Logo,
+    Menu,
 } from 'Icons';
 import Cart from 'Icons/Cart';
 import User from 'Icons/User';
@@ -92,9 +94,9 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
                     </span>
                 </div>
                 <Link to="/wishlist" className="header-links-icon heart">
-                    <Heart
-                        width={24}
-                        height={24}
+                    <HeaderHeart
+                        width={20}
+                        height={20}
                     />
                     {!!wishQuantity && <div className="cart-badge">{wishQuantity}</div>}
                 </Link>
