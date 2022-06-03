@@ -20,7 +20,7 @@
 }
 
 .lib-slider-card .arrow-left {
-    top: 35%;
+    top: 135px;
     transform: none;
     left: -10px;
     width: 32px;
@@ -36,15 +36,17 @@
 }
 
 .lib-slider-card .arrow-right {
-    top: 35%;
+    top: 135px;
     transform: none;
     right: -10px;
+    bottom: 0;
     width: 32px;
     height: 32px;
     border-radius: 50%;
     z-index: 1;
     display: flex;
     background: rgba(0,0,0,.24);
+    position: absolute;
 }
 
 .lib-slider-card .arrow-right:hover, .arrow-left:hover {
