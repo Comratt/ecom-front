@@ -124,7 +124,7 @@ export const BigSlider = memo(({
 
     const startTimer = useCallback(() => {
         if (!hideDots) {
-            timer.current = setTimeout(() => handleNext(), 600000);
+            timer.current = setTimeout(() => handleNext(), 5000);
         }
     }, [timer.current]);
 

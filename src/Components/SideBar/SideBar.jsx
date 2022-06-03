@@ -7,6 +7,7 @@ import { useLayout } from '../../hooks/useLayout';
 
 import './SideBar.css';
 import AccardionArrow from '../../Icons/AccardionArrow';
+import { Link } from '../Link';
 
 export const SideBar = ({ className }) => {
     const {
@@ -22,7 +23,6 @@ export const SideBar = ({ className }) => {
                 <div className="header-search-field">
                     <Search width={25} height={25} />
                     <HeaderInput />
-                    {/* <input placeholder="Search" className="header-search-field__input" type="text" /> */}
                 </div>
                 <button type="button" className="lib-sidebar__header-close">
                     <Close fill="var(--color-accent-light)" width={25} height={25} onClick={handleCloseNavigationModal} />
@@ -96,12 +96,21 @@ export const SideBar = ({ className }) => {
                 <div className="lib-sidebar__content-wrapper">
                     <div className="lib-sidebar__item">
                         <div className="lib-sidebar__item-text">
+                            <Link to="/account" onClick={handleCloseNavigationModal}>
+                                Вхід в особистий кабінет
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+                <div className="lib-sidebar__divide-block">
+                    <div className="lib-sidebar__line" />
+                </div>
+                <div className="lib-sidebar__content-wrapper">
+                    <div className="lib-sidebar__item">
+                        <div className="lib-sidebar__item-text">
                             <a href="#">
                                 EUR
                             </a>
-                        </div>
-                        <div className="lib-sidebar__item-arrow">
-                            <AccardionArrow fill="#887569" />
                         </div>
                     </div>
                 </div>

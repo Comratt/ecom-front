@@ -54,7 +54,11 @@ export const SliderCardList = ({
         count: (count * 2) + 1,
         category: category || [],
     });
-    const { loading, result, isLastPage } = useFetchProducts(filters);
+    const {
+        loading,
+        result,
+        isLastPage,
+    } = useFetchProducts(filters);
     const { isTabletSize } = useDetectedMobileDevice();
     const collectionLink = useMemo(() => {
         if (category && category?.length) {

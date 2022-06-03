@@ -47,10 +47,6 @@
     border-left: 1px solid var(--color-grayish);
 }
 
-.lib-sidebar__content {
-    margin-top: var(--size-mid-low);
-}
-
 .lib-sidebar__content-wrapper {
     display: flex;
     flex-direction: column;
@@ -60,7 +56,7 @@
     display: flex;
     align-items: center;
     width: 100%;
-    padding: var(--size-mid) var(--size-mid) var(--size-normal) var(--size-mid-bigger);
+    padding: var(--size-mid) var(--size-normal);
 }
 
 .lib-sidebar__line {

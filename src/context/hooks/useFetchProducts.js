@@ -13,6 +13,7 @@ export const useFetchProducts = (filters, setFilters) => {
     const { id } = useParams();
     const [sdata, setData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [loadingNext, setLoadingNext] = useState(false);
     const [isLastPage, setLastPage] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -27,7 +28,11 @@ export const useFetchProducts = (filters, setFilters) => {
     }, [id]);
 
     useEffect(() => {
-        setLoading(true);
+        if (!sdata?.length) {
+            setLoading(true);
+        } else {
+            setLoadingNext(true);
+        }
         fetchProducts(filters).then(({ data, last_page, current_page }) => {
             setLastPage(last_page === filters?.page);
             setData((prevData) => {
@@ -38,17 +43,20 @@ export const useFetchProducts = (filters, setFilters) => {
                 return data;
             });
             setLoading(false);
+            setLoadingNext(false);
             setCurrentPage(current_page);
         });
     }, [filters]);
 
     return useMemo(() => ({
         loading,
+        loadingNext,
         result: sdata,
         isLastPage,
         currentPage,
     }), [
         loading,
+        loadingNext,
         sdata,
         isLastPage,
         currentPage,
