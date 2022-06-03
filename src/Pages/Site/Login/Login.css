@@ -19,6 +19,12 @@
     align-items: center;
     flex-direction: column;
 }
+.lib-link.active{
+    width: 100%;
+}
+.lib-guest-btn{
+    width: 100%;
+}
 .lib-login .from-login {
     display: flex;
     flex-direction: column;

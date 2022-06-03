@@ -66,8 +66,9 @@ const Login = ({
                             error={getValidationMessage(errors?.password)}
                         />
                         <LoginBtn loading={isLoading} />
-                        <GuestBtn />
+
                     </form>
+                    <Link to="/"><GuestBtn /></Link>
                     <Link to="/sign" className="lib-login_sign_up">
                         Sign up
                     </Link>
