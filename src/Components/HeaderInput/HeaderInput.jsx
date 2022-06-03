@@ -14,9 +14,10 @@ import { useLayout } from '../../hooks/useLayout';
 const styles = {
     control: (style) => ({
         ...style,
-        borderColor: 'hsl(0, 0%, 70%)!important',
+        border: 'none',
         boxShadow: 'none',
         outline: 'none',
+        backgroundColor: 'rgba(245,243,243,.64)',
     }),
     container: (style) => ({
         ...style,
@@ -39,6 +40,17 @@ const styles = {
         ...style,
         cursor: 'pointer',
         backgroundColor: isFocused ? 'rgba(0, 0, 0, .05)' : 'transparent',
+    }),
+    placeholder: (defaultStyles) => ({
+        ...defaultStyles,
+        padding: '5px 0px 0px 25px',
+        color: '#baafa9',
+    }),
+    input: (style) => ({
+        ...style,
+        color: '#887569',
+        margin: '5px 0px 0px 25px',
+
     }),
 };
 
