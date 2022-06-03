@@ -32,3 +32,9 @@
 .accordion-button:focus{
     outline: none;
 }
+@media (max-width: 768px) {
+.accordion-item.expanded{
+    padding-left: 10px;
+}
+
+}

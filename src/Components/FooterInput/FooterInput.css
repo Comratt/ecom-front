@@ -26,5 +26,5 @@
     color: white;
     display: flex;
     justify-content: center;
-    padding-top: 8px;
+    align-items: center;
 }
