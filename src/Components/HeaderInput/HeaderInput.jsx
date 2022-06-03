@@ -14,7 +14,7 @@ import { useLayout } from '../../hooks/useLayout';
 const styles = {
     control: (style) => ({
         ...style,
-        borderColor: 'hsl(0, 0%, 70%)',
+        borderColor: 'hsl(0, 0%, 70%)!important',
         boxShadow: 'none',
         outline: 'none',
     }),
