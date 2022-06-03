@@ -35,7 +35,7 @@ export const Footer = ({
                     </div>
                     <div className="accordion-info">
                         <Accordion defaultIndex="0">
-                            <AccordionItem label="Покупателям" index="0" isCollapsed>
+                            <AccordionItem label="Покупателям" index="1" isCollapsed>
                                 <ul className="footer-list">
                                     <li>Доставка</li>
                                     <li>Повернення</li>
