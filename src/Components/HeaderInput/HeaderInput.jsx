@@ -145,6 +145,7 @@ const HeaderInput = () => {
                 cacheOptions
                 styles={styles}
                 defaultOptions={[]}
+                placeholder="Пошук"
                 loadOptions={promiseOptions}
                 noOptionsMessage={() => 'Збігів не найдено.'}
                 loadingMessage={() => 'Завантажуєм товари...'}
