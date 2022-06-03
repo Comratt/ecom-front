@@ -88,6 +88,9 @@
     width: 20px;
     height: 20px;
 }
+.lib-card__info{
+    height: 100px;
+}
 @media (max-width: 768px) {
     .lib-card__heart_wh{
         right: 3px;
