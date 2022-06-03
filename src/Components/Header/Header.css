@@ -158,6 +158,9 @@
     visibility: visible;
     opacity: 1;
 }
+.react-select__indicator-separator{
+    display: none;
+}
 
 @media (max-width: 500px) {
     .header-links-icon.user {
