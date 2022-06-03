@@ -49,7 +49,11 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
     return (
         <header className={componentClasses}>
             <div className="header-left-navigation">
-                <button onClick={handleOpenNavigationModal} type="button" className="lib-header__btn menu">
+                <button
+                    onClick={handleOpenNavigationModal}
+                    type="button"
+                    className="lib-header__btn menu header-links-icon"
+                >
                     <Menu
                         width={24}
                         height={24}

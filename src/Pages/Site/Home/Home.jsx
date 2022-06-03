@@ -5,6 +5,7 @@ import { BigSlider } from 'Components/Slider';
 import { SliderCardList } from 'Components/SliderCardList';
 import MetaTags from 'Components/MetaTags';
 import { ThreeDots } from 'Components/SkeletonLoader';
+import { SliderWithDisableVerticalScroll } from 'Components/Slider/SliderWithDisableVerticalScroll';
 
 import { useHome } from 'context/home/hooks/useHome';
 
@@ -31,7 +32,9 @@ export const Home = () => {
                 tags="Tags"
                 keywords="asd, dds, sfdsf"
             />
-            <BigSlider data={result} />
+            <SliderWithDisableVerticalScroll>
+                <BigSlider data={result} />
+            </SliderWithDisableVerticalScroll>
             <View className="main-container">
                 {resultCategories?.map((category, index) => (
                     <SliderCardList

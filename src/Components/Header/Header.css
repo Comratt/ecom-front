@@ -106,6 +106,13 @@
 .lib-header.header_transparent .header-links-icon {
     fill: var(--color-lightest);
 }
+.lib-header.header_transparent .header-links-icon.menu path {
+    stroke: var(--color-lightest);
+}
+
+.lib-header .header-links-icon.menu path {
+    stroke: var(--color-accent);
+}
 .header-links-icon:first-child {
     margin-left: 0;
 }

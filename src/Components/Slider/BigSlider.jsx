@@ -12,16 +12,28 @@ import { Title } from '../Title';
 
 import './BigSlider.css';
 
-const ItemImage = styled.div`
-  background: url('${({ image }) => image}') center center no-repeat;
-  background-size: ${({ clientHeight }) => `${clientHeight}px`};
+const ItemImage = styled.img`
+  background-size: cover;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+`;
+
+const ItemImageDiv = styled.div`
+  background: url("${({ image }) => image}");
+  background-size: cover;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
 `;
 
 const BigSliderItem = memo(({
     link, title, image, active, onHover, onLeave, onClick,
 }) => {
     const componentClasses = classNames('lib-big-slider_item', { active });
-    const { clientHeight } = useDetectedMobileDevice();
+    const { isMobileSize } = useDetectedMobileDevice();
 
     return (
         <div
@@ -39,14 +51,7 @@ const BigSliderItem = memo(({
                 </>
             )}
             <div className="item-overlay" />
-            {link ? (
-                <div
-                    className="item-image"
-                    style={{
-                        background: `url(${image})`, backgroundPosition: 'center', backgroundAttachment: 'fixed', backgroundSize: 'cover', backgroundRepeat: 'no-repeat',
-                    }}
-                />
-            ) : <ItemImage className="item-image" clientHeight={clientHeight} image={image} />}
+            {isMobileSize ? <ItemImage className="item-image" src={image} /> : <ItemImageDiv className="item-image" image={image} />}
         </div>
     );
 });
@@ -108,18 +113,18 @@ export const BigSlider = memo(({
     const handleTouchStart = (e) => setTouchStart(e.targetTouches[0].clientX);
     const handleTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
     const handleTouchEnd = () => {
-        if (touchStart - touchEnd > 150) {
+        if (touchStart - touchEnd > 50) {
             handleNext();
         }
 
-        if (touchStart - touchEnd < -150) {
+        if (touchStart - touchEnd < -50) {
             handlePrev();
         }
     };
 
     const startTimer = useCallback(() => {
         if (!hideDots) {
-            timer.current = setTimeout(() => handleNext(), 6000);
+            timer.current = setTimeout(() => handleNext(), 600000);
         }
     }, [timer.current]);
 

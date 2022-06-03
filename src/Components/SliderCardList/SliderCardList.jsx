@@ -10,6 +10,7 @@ import { useDetectedMobileDevice } from 'hooks/useDetectMobileDevice';
 import { useFetchProducts } from 'context/hooks/useFetchProducts';
 import { adaptProducts } from 'context/adapters';
 import { CatalogLoader } from 'Components/SkeletonLoader';
+import { SliderWithDisableVerticalScroll } from 'Components/Slider/SliderWithDisableVerticalScroll';
 
 import { Card } from '../Card';
 
@@ -117,22 +118,24 @@ export const SliderCardList = ({
                     </svg>
                 </Link>
             </div>
-            <Slider {...settings}>
-                {result && adaptProducts({ data: result }).map((product) => (
-                    <Card
-                        cardId={product.id}
-                        key={product.id}
-                        imagePath={product.image}
-                        detailsPath={product.link}
-                        price={product.price}
-                        title={product.name}
-                        colors={product.colors}
-                        images={product.images}
-                        discount={product.discount}
-                        purePrice={product.purePrice}
-                    />
-                ))}
-            </Slider>
+            <SliderWithDisableVerticalScroll>
+                <Slider {...settings}>
+                    {result && adaptProducts({ data: result }).map((product) => (
+                        <Card
+                            cardId={product.id}
+                            key={product.id}
+                            imagePath={product.image}
+                            detailsPath={product.link}
+                            price={product.price}
+                            title={product.name}
+                            colors={product.colors}
+                            images={product.images}
+                            discount={product.discount}
+                            purePrice={product.purePrice}
+                        />
+                    ))}
+                </Slider>
+            </SliderWithDisableVerticalScroll>
         </div>
     );
 };

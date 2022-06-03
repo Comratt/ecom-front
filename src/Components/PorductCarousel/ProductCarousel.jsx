@@ -3,11 +3,14 @@ import Slider from 'react-slick';
 import classNames from 'classnames';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
+import { useFetchProducts } from 'context/hooks/useFetchProducts';
+import { adaptProducts } from 'context/adapters';
+import { useDetectedMobileDevice } from 'hooks/useDetectMobileDevice';
+import { Card } from 'Components/Card';
+import { SliderWithDisableVerticalScroll } from 'Components/Slider/SliderWithDisableVerticalScroll';
+
 import './ProductCarousel.css';
-import { useFetchProducts } from '../../context/hooks/useFetchProducts';
-import { adaptProducts } from '../../context/adapters';
-import { useDetectedMobileDevice } from '../../hooks/useDetectMobileDevice';
-import { Card } from '../Card';
 
 const CustomArrowRight = (props) => {
     const { className, style, onClick } = props;
@@ -82,19 +85,21 @@ const ProductCarousel = ({
                 {title}
             </div>
             <div className="lib-product_related_slider">
-                <Slider {...settings}>
-                    {result && adaptProducts({ data: result }).map((product) => (
-                        <Card
-                            cardId={product.id}
-                            key={product.id}
-                            imagePath={product.image}
-                            detailsPath={product.link}
-                            price={product.price}
-                            title={product.name}
-                            colors={product.colors}
-                        />
-                    ))}
-                </Slider>
+                <SliderWithDisableVerticalScroll>
+                    <Slider {...settings}>
+                        {result && adaptProducts({ data: result }).map((product) => (
+                            <Card
+                                cardId={product.id}
+                                key={product.id}
+                                imagePath={product.image}
+                                detailsPath={product.link}
+                                price={product.price}
+                                title={product.name}
+                                colors={product.colors}
+                            />
+                        ))}
+                    </Slider>
+                </SliderWithDisableVerticalScroll>
             </div>
         </div>
     );
