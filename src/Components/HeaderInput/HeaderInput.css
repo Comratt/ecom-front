@@ -7,13 +7,23 @@
     font-size: 16px;
     padding: 0 16px 0 40px;
     line-height: normal;
-    background: #F5F3F3;
+    background-color: rgba(245,243,243,.64);
     color: #887569;
     border-radius: 4px;
     border: 0;
 }
 .header-icon-search {
     margin: 5px;
+}
+.svg-icon.icon-search{
+    position: absolute;
+    top: 22px;
+    left: 20px;
+    z-index: 1;
+    color: #baafa9;
+}
+.css-6j8wv5-Input{
+margin-left: 20px;
 }
 
 .dropdown-indicator-label {

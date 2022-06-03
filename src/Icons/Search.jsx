@@ -3,7 +3,6 @@ import React from 'react';
 const Search = (props) => (
     <svg
         className="svg-icon icon-search"
-        viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         {...props}
