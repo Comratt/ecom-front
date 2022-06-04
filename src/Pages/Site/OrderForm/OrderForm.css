@@ -179,6 +179,7 @@
     width: var(--size-sixty);
     height: var(--size-sixty);
     border-radius: 10px;
+    max-width: none;
 }
 .order__log-in{
     text-align: center;
@@ -188,10 +189,13 @@
 .order__log-in-text {
     padding-right: var(--size-mid);
 }
-
+.order__item-price-disc{
+    width: 30%;
+    text-align: end;
+}
 .order__item-section {
+    width: 70%;
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 
@@ -211,6 +215,7 @@
     border-radius: var(--size-smaller);
     border: 1px solid #d9d9d9;
     padding: var(--size-small);
+    margin: var(--size-min-small);
     height: var(--size-fourty);
     box-sizing: border-box;
     font-size: var(--fz-normal);
@@ -446,7 +451,7 @@
         justify-content: space-between;
         max-width: 540px;
         margin: 0 auto;
-        width: 80%;
+        padding: 10px;
     }
     .order__sidebar-toggle__wrap .order__total-amount {
         font-size: 18px;

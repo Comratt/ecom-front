@@ -4,6 +4,7 @@ import { useCart } from 'context/cart/useCart';
 
 import './Cart.css';
 import { useHistory } from 'react-router-dom';
+import { Link } from 'Components/Link';
 import { Title } from '../../../Components/Title';
 
 const CartQuantity = ({ product, handleQuantity }) => (
@@ -92,11 +93,13 @@ export const Cart = () => {
                                         <tr key={`${product.id}-${product.size}-${product.color}`}>
                                             <td>
                                                 <div className="cart-product-description">
-                                                    <img src={product.image} alt="product photo" />
+                                                    <Link to={`/products/${product.id}`}><img src={product.image} alt="product-photo" /></Link>
                                                     <ul>
-                                                        <li>
-                                                            {product.name}
-                                                        </li>
+                                                        <Link to={`/products/${product.id}`}>
+                                                            <li>
+                                                                {product.name}
+                                                            </li>
+                                                        </Link>
                                                         <li>
                                                             {product.size}
                                                         </li>
