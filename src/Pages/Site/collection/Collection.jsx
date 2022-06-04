@@ -46,6 +46,8 @@ export const Collection = () => {
                         handleAvailable={handleAvailable}
                     />
                     <CardList
+                        categories={categories}
+                        filters={filters}
                         isLastPage={isLastPage}
                         currentPage={currentPage}
                         data={result}

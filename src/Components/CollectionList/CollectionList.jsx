@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { StickyContainer } from 'react-sticky';
+import { useParams } from 'react-router-dom';
 import { Link } from '../Link';
 import { Accordion, AccordionItem } from '../Accordion';
 
@@ -13,6 +14,7 @@ const CollectionList = ({
     onChange,
     filtered,
 }) => {
+    const { id: collectionId } = useParams();
     const componentClassNames = classNames('lib-collection-list', className);
     const adaptedCatIds = filtered?.map((catId) => +catId);
 
@@ -20,8 +22,8 @@ const CollectionList = ({
         <div className={componentClassNames}>
             <aside>
                 <div>
-                    <Accordion defaultIndex={0}>
-                        {data.map(({ id, name, subcategories }, index) => (
+                    <Accordion defaultIndex={+collectionId}>
+                        {data.map(({ id, name, subcategories }) => (
                             <AccordionItem
                                 label={(
                                     <Link to={`/collection/${id}`} className="collection-title">
@@ -29,7 +31,7 @@ const CollectionList = ({
                                     </Link>
                                 )}
                                 key={id}
-                                index={index}
+                                index={id}
                             >
                                 {subcategories.map((subcategory) => (
                                     <div key={subcategory.category_id} className="collection-item-checkbox">

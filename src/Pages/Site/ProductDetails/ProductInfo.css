@@ -150,7 +150,7 @@
     .lib-product_info .left-part {
         max-width: 100%;
     }
-    .lib-swatches{
+    .product-details-page .lib-swatches{
         display: flex;
         justify-content: center;
     }

@@ -29,6 +29,7 @@
     "react-helmet": "^6.1.0",
     "react-hook-form": "^6.10.1",
     "react-hook-form-input": "^1.1.10",
+    "react-image-lightbox": "^5.1.4",
     "react-input-mask": "^2.0.4",
     "react-loader-spinner": "^4.0.0",
     "react-markdown": "^8.0.3",

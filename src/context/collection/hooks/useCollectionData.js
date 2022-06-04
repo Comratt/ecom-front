@@ -3,13 +3,14 @@ import { useAsync } from 'react-async-hook';
 import { useParams } from 'react-router-dom';
 
 import { adaptProducts } from 'context/adapters';
+import { sortOrder } from 'Helpers';
 import { useFetchProducts } from '../../hooks/useFetchProducts';
 import { fetchCategories } from '../../api/fetchCategories';
 
 const adaptCategories = (data = []) => {
     if (!Array.isArray(data)) return [];
 
-    const parentCategories = data.filter(({ parent_id }) => !parent_id);
+    const parentCategories = data.filter(({ parent_id }) => !parent_id).sort(sortOrder);
 
     return parentCategories.map((cat) => ({
         id: cat.category_id,
@@ -40,7 +41,7 @@ export const useCollectionData = () => {
     } = useFetchProducts(filters, setFilters);
 
     return useMemo(() => ({
-        loading: loading && categoriesLoading,
+        loading: loading || categoriesLoading,
         result: adaptProducts({ data: result }),
         categories: adaptCategories(categoriesResult),
         isLastPage,

@@ -38,6 +38,7 @@
     min-height: 1px;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .scroll-slider .scroll-slider_thumbnails {

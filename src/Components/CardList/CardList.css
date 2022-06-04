@@ -3,6 +3,17 @@
     grid-template-columns: 1fr 1fr 1fr;
 }
 
+.card-list-page.product-empty {
+    width: 100%;
+    text-align: center;
+    padding: 30px;
+    height: 60vh;
+}
+
+.card-list-page.product-empty .lib-title {
+    font-size: 20px;
+}
+
 @media (max-width: 1023px) {
     .card-list {
         grid-template-columns: 1fr 1fr;

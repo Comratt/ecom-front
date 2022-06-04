@@ -17,5 +17,6 @@ export const useProductData = (id, isUniq) => {
         error,
         result,
         categories,
+        isUniq,
     ]);
 };

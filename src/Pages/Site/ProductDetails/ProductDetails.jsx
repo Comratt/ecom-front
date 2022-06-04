@@ -20,6 +20,7 @@ import { BigSlider } from 'Components/Slider';
 import SliderMobileDevices from 'Components/SliderMobileDevices/SliderMobileDevices';
 import ProductCarousel from 'Components/PorductCarousel';
 import { ProductDetailsLoader } from 'Components/SkeletonLoader';
+import { ImagePreview } from 'Components/ImagePreview';
 import { useDetectedMobileDevice } from '../../../hooks/useDetectMobileDevice';
 
 import './ProductInfo.css';
@@ -34,7 +35,7 @@ export const ProductDetails = () => {
     const {
         result, error, loading, productId,
     } = useProduct();
-    const filteredColorSizes = result.colorSizes
+    const filteredColorSizes = result?.colorSizes
         ?.filter(({ colorValId }) => activeColor.id === colorValId);
     const listWishProducts = useSelector(getWishlistProducts);
     const isActive = useMemo(() => listWishProducts.includes(result?.id), [listWishProducts, result]);
@@ -60,7 +61,7 @@ export const ProductDetails = () => {
         setActiveColor(item);
         setActiveSize({});
     };
-    const discount = `${parseInt(result.price) - 200}₴`;
+    const discount = `${parseInt(result?.price) - 200}₴`;
 
     const handleAddToCart = () => {
         setSizeError(false);
@@ -100,10 +101,10 @@ export const ProductDetails = () => {
     }, [productId]);
 
     useEffect(() => {
-        if (result?.colors && result?.colors?.length) {
+        if (result?.colors && result?.colors?.length && !Object.keys(activeColor).length) {
             setActiveColor(result?.colors[0]);
         }
-    }, [result?.colors]);
+    }, [result]);
 
     if (loading) {
         return <ProductDetailsLoader />;
@@ -121,14 +122,11 @@ export const ProductDetails = () => {
                 <div className="container">
                     <div className="left-part">
                         {modalSrc && (
-                            <SliderModal onClose={() => setModalSrc(null)} className="lib-product-slider">
-                                <BigSlider
-                                    hideDots
-                                    activeImage={result.images.indexOf(modalSrc)}
-                                    data={result.images}
-                                    onClick={() => setModalSrc(null)}
-                                />
-                            </SliderModal>
+                            <ImagePreview
+                                activeIndex={result.images.indexOf(modalSrc)}
+                                onClose={() => setModalSrc(null)}
+                                images={result.images}
+                            />
                         )}
                         {!isMobileSize && !isTabletSize ? (
                             <ScrollSlider setModalOpen={setModalSrc} data={result.images} />
@@ -191,10 +189,10 @@ export const ProductDetails = () => {
                                             className={itemClassNames(size.id)}
                                             disabled={(
                                                 !filteredColorSizes
-                                                    .map(({ sizeValId }) => sizeValId)
+                                                    ?.map(({ sizeValId }) => sizeValId)
                                                     .includes(size.id)
                                                 || !filteredColorSizes
-                                                    .find(({ sizeValId }) => sizeValId === size.id)
+                                                    ?.find(({ sizeValId }) => sizeValId === size.id)
                                                     ?.quantity > 0
                                             )}
                                         >
