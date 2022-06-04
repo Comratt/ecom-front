@@ -18,8 +18,12 @@
     gap: 15px;
     flex-direction: column;
     align-items: center;
-    padding: 70px 0;
+    padding: 70px 10px;
     width: 100%;
+}
+.btn-continue-empty{
+    font-size: var(--size-mid);
+    letter-spacing: 5px;
 }
 
 .wishlist-page__container.wishlist-empty .btn-continue-empty {
