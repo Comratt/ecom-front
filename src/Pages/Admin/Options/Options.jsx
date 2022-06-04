@@ -12,6 +12,7 @@ import { usePostOptions } from '../hooks/usePostOptions';
 import Layout from '../Layout';
 import OptionForm from './OptionForm';
 import { ADD_METHOD, UPDATE_METHOD } from '../../../Constants';
+import './Option.css';
 
 const Options = () => {
     const [show, setShow] = useState(false);

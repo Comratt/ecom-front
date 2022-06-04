@@ -106,8 +106,8 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
                 </Link>
                 <Link to="/cart" className="header-links-icon cart">
                     <Cart
-                        width={24}
-                        height={24}
+                        width={26}
+                        height={26}
                     />
                     {!!cartQuantity && <div className="cart-badge">{cartQuantity}</div>}
                 </Link>

@@ -333,12 +333,12 @@ export const OrderForm = (className) => {
                                         alt=""
                                     />
                                 </div>
-                                <div className="order__item-description">
+                                <span className="order__item-description">
                                     <div className="order__item-title">{product.name}</div>
                                     <div className="order__item-size">{product.size}</div>
-                                </div>
+                                </span>
                             </div>
-                            <div>
+                            <div className="order__item-price-disc">
                                 <div className="order__item-price discount">{product.price}</div>
                                 <div className="order__item-price">{totalPrice(product)}</div>
                             </div>
@@ -360,7 +360,7 @@ export const OrderForm = (className) => {
                     </div>
                     <div className="order__summary">
                         <div className="order__subtotal">
-                            <span className="order__aside-text">до оплати</span>
+                            <span className="order__aside-text">До оплати</span>
                             <span className="order__subtotal-amount">{subtotalPrice(products)}</span>
                         </div>
                         <div className="order__shipping">

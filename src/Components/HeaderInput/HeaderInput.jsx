@@ -43,14 +43,11 @@ const styles = {
     }),
     placeholder: (defaultStyles) => ({
         ...defaultStyles,
-        padding: '5px 0px 0px 25px',
         color: '#baafa9',
     }),
     input: (style) => ({
         ...style,
         color: '#887569',
-        margin: '5px 0px 0px 25px',
-
     }),
 };
 

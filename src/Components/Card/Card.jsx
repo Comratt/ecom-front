@@ -49,7 +49,7 @@ export const Card = ({
                         {discount > 0 ? (
                             <div>
                                 <div style={{ fontSize: '12px' }} className={priceClassNames}>{price}</div>
-                                <div className="lib-card__info-price"><b>{getFormattedPrice(purePrice - discount)}</b></div>
+                                <div className="lib-card__info-price">{getFormattedPrice(purePrice - discount)}</div>
                             </div>
                         ) : <div className={priceClassNames}>{price}</div>}
                     </div>
