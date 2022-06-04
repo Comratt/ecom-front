@@ -214,7 +214,7 @@ export const OrderForm = (className) => {
                                     <CommonInput
                                         name="lastName"
                                         ref={register({
-                                            required: true, maxLength: 20, minLength: 3,
+                                            required: true, maxLength: 20, minLength: 2,
                                         })}
                                         className={classNames('input order__fifty-to-fifty lastName', { 'field-error': errors?.lastName })}
                                         placeholder="Прізвище"
@@ -305,7 +305,7 @@ export const OrderForm = (className) => {
                         <span className="sidebar-toggle__wrap-span">
                             <Cart fill="var(--color-accent)" width={21} height={20} />
                             <span>
-                                {`${showSideBar ? 'Hide' : 'Show'} order summary`}
+                                {`${showSideBar ? 'Сховати' : 'Показати'} підсумок замовлення`}
                             </span>
                             <AccardionArrow
                                 fill="var(--color-accent)"
@@ -360,12 +360,12 @@ export const OrderForm = (className) => {
                     </div>
                     <div className="order__summary">
                         <div className="order__subtotal">
-                            <span className="order__aside-text">Проміжний підсумок</span>
+                            <span className="order__aside-text">до оплати</span>
                             <span className="order__subtotal-amount">{subtotalPrice(products)}</span>
                         </div>
                         <div className="order__shipping">
                             <span className="order__aside-text">Доставка</span>
-                            <span className="order__aside-hint">Розраховано на наступному кроці</span>
+                            <span className="order__aside-hint">45 ₴</span>
                         </div>
                     </div>
                     <div className="order__total">

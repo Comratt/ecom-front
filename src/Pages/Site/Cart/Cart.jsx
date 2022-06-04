@@ -166,7 +166,7 @@ export const Cart = () => {
                         <div className="cart-product-order-submit">
                             <div className="cart-product-price">
                                 <div>
-                                    Проміжний підсумок:
+                                    Всього:
                                 </div>
                                 <div>
                                     {subtotalPrice(products)}
@@ -191,7 +191,7 @@ export const Cart = () => {
                                     onClick={goToCheckoutPage}
                                     className="cart-product-btn-checkout"
                                 >
-                                    Оформити
+                                    Оформити замовлення
                                 </button>
                             </div>
                             <div>

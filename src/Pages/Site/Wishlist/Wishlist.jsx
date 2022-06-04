@@ -25,7 +25,7 @@ const Wishlist = () => {
                 <Title type={1}>
                     Список вподобаних товарів
                 </Title>
-                <Title type={2}>У Вас поки що немає улюблених товарів :(</Title>
+                <Title className="wishlist-page__title" type={2}>У Вас поки що немає улюблених товарів :(</Title>
                 <button
                     type="button"
                     className="btn-continue-empty"
