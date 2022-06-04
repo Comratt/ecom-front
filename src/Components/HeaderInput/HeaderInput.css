@@ -16,11 +16,7 @@
     margin: 5px;
 }
 .svg-icon.icon-search{
-    position: absolute;
-    top: 22px;
-    left: 20px;
-    z-index: 1;
-    color: #baafa9;
+    display: none;
 }
 .css-6j8wv5-Input{
 margin-left: 20px;
