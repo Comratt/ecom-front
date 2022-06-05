@@ -80,7 +80,13 @@
 
 .product-matches__image {
     width: var(--search-result-image-width);
-    height: var(--search-result-image-heigth)
+    height: var(--search-result-image-heigth);
+}
+
+.product-matches__image img {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
 }
 
 .product-matches__name {
