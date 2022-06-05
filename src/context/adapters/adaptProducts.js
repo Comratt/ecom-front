@@ -51,6 +51,7 @@ export const adaptProduct = (data = {}, allCategories, isUniq) => {
     const sizesF = data?.sizes?.map(
         (item) => ({ ...item, id: item.option_value_id, name: item.name_value }),
     );
+    const discounts = data?.discounts?.reduce((acc, item) => acc + +item.discount_price, 0);
     const uniqColors = isUniq ? uniqBy(colorsF, 'id') : colorsF;
     const uniqSizes = isUniq ? uniqBy(sizesF, 'id') : sizesF;
     const colorSizes = data?.colors?.reduce((acc, val) => {
@@ -101,7 +102,7 @@ export const adaptProduct = (data = {}, allCategories, isUniq) => {
             name: allCategories.find((cat) => cat.id === category_id)?.name,
         })),
         related: data.related,
-        discounts: data.discounts,
+        discounts,
         meta_description: data.meta_description,
         meta_keyword: data.meta_keyword,
         meta_title: data.meta_title,

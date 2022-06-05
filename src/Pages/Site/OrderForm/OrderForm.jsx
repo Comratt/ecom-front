@@ -101,10 +101,18 @@ export const OrderForm = (className) => {
             });
     };
 
-    const totalPrice = ({ purePrice, quantity }) => getFormattedPrice(purePrice * quantity);
+    const totalPrice = ({ purePrice, quantity, discount }) => {
+        if (discount) {
+            return getFormattedPrice((purePrice - discount) * quantity);
+        }
+
+        return getFormattedPrice(purePrice * quantity);
+    };
     const subtotalPrice = (p) => (
         getFormattedPrice(
-            p.reduce((acc, { purePrice, quantity }) => acc + (purePrice * quantity), 0),
+            p.reduce((acc, { purePrice, quantity, discount = 0 }) => (
+                acc + ((purePrice - discount) * quantity)
+            ), 0),
         )
     );
 
@@ -186,7 +194,7 @@ export const OrderForm = (className) => {
                                 <CommonInput
                                     name="email"
                                     ref={register({ required: true, pattern: emailRegExp })}
-                                    className={classNames('input', { 'field-error': errors?.email })}
+                                    className={classNames('input input__full-width', { 'field-error': errors?.email })}
                                     type="text"
                                     placeholder="Ваш Email"
                                 />
@@ -324,7 +332,7 @@ export const OrderForm = (className) => {
                     style={{ height: showSideBar ? height : 0 }}
                 >
                     {products.map((product) => (
-                        <div key={`${product.id}-${product.size}-${product.color}`} className="order__item">
+                        <Link to={`/products/${product.id}`} key={`${product.id}-${product.size}-${product.color}`} className="order__item">
                             <div className="order__item-section">
                                 <div className="order__item-image">
                                     <div className="cart-badge">{product.quantity}</div>
@@ -339,10 +347,14 @@ export const OrderForm = (className) => {
                                 </span>
                             </div>
                             <div className="order__item-price-disc">
-                                <div className="order__item-price discount">{product.price}</div>
+                                {!!product.discount && (
+                                    <div className="order__item-price discount">
+                                        {getFormattedPrice(product.purePrice * product.quantity)}
+                                    </div>
+                                )}
                                 <div className="order__item-price">{totalPrice(product)}</div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                     <div className="order__discount">
                         <div className="order__discount-input-block">
@@ -365,7 +377,7 @@ export const OrderForm = (className) => {
                         </div>
                         <div className="order__shipping">
                             <span className="order__aside-text">Доставка</span>
-                            <span className="order__aside-hint">45 ₴</span>
+                            <span className="order__aside-hint">Нова пошта</span>
                         </div>
                     </div>
                     <div className="order__total">

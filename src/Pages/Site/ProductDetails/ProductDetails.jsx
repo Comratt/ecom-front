@@ -9,6 +9,7 @@ import { useProduct } from 'context/product/hooks/useProduct';
 import { addToCart } from 'Store/Modules/Cart/cartActions';
 import { getWishlistProducts } from 'Store/Modules/Wishlist/selectors';
 import LocalStorageService from 'Services/LocalStorageService';
+import { getFormattedPrice } from 'Constants';
 
 import { Swatches } from 'Components/Swatches';
 import AddCartBtn from 'Components/AddCartBtn/AddCartBtn';
@@ -61,7 +62,7 @@ export const ProductDetails = () => {
         setActiveColor(item);
         setActiveSize({});
     };
-    const discount = `${parseInt(result?.price, 10) - 200}₴`;
+    const discount = result?.discounts || 0;
 
     const handleAddToCart = () => {
         setSizeError(false);
@@ -112,12 +113,6 @@ export const ProductDetails = () => {
         return <ProductDetailsLoader />;
     }
 
-    let classNameDiscount = 'lib-product_info_product-normal-price';
-
-    if (discount) {
-        classNameDiscount += ' discount';
-    }
-
     return (
         <>
             <div className="lib-product_info">
@@ -147,15 +142,15 @@ export const ProductDetails = () => {
                             {discount
                                 ? (
                                     <div>
-                                        <p className={classNameDiscount}>
+                                        <p className="lib-product_info_product-normal-price discount">
                                             <b>{result.price}</b>
                                         </p>
                                         <div className="lib-product_info_product-normal-price">
-                                            <b>{discount}</b>
+                                            <b>{getFormattedPrice(result.purePrice - discount)}</b>
                                         </div>
                                     </div>
                                 ) : (
-                                    <p className={classNameDiscount}>
+                                    <p className="lib-product_info_product-normal-price">
                                         <b>{result.price}</b>
                                     </p>
                                 )}

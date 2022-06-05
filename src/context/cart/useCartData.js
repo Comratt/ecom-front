@@ -37,10 +37,18 @@ export const useCartData = () => {
 
     const goToCheckoutPage = () => history.push('/order');
 
-    const totalPrice = ({ purePrice, quantity }) => getFormattedPrice(purePrice * quantity);
+    const totalPrice = ({ purePrice, quantity, discount }) => {
+        if (discount) {
+            return getFormattedPrice((purePrice - discount) * quantity);
+        }
+
+        return getFormattedPrice(purePrice * quantity);
+    };
     const subtotalPrice = (p) => (
         getFormattedPrice(
-            p.reduce((acc, { purePrice, quantity }) => acc + (purePrice * quantity), 0),
+            p.reduce((acc, { purePrice, quantity, discount = 0 }) => (
+                acc + ((purePrice - discount) * quantity)
+            ), 0),
         )
     );
 

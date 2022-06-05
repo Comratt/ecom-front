@@ -6,10 +6,12 @@ import './Cart.css';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'Components/Link';
 import { Title } from '../../../Components/Title';
+import { getFormattedPrice } from '../../../Constants';
 
 const CartQuantity = ({ product, handleQuantity }) => (
     <div className="quantity_inner">
         <button
+            type="button"
             onClick={handleQuantity({
                 id: product.id,
                 size: product.size,
@@ -31,6 +33,7 @@ const CartQuantity = ({ product, handleQuantity }) => (
             min={1}
         />
         <button
+            type="button"
             onClick={handleQuantity({
                 id: product.id,
                 size: product.size,
@@ -110,7 +113,10 @@ export const Cart = () => {
                                                                         {product.price}
                                                                     </li>
                                                                     <li className="cart-product-li-hidden">
-                                                                        {product.discount}
+                                                                        {getFormattedPrice(
+                                                                            product.purePrice
+                                                                            - product.discount,
+                                                                        )}
                                                                     </li>
                                                                 </div>
                                                             ) : (
@@ -135,7 +141,10 @@ export const Cart = () => {
                                                                 {product.price}
                                                             </li>
                                                             <li className="cart-product-li">
-                                                                {product.discount}
+                                                                {getFormattedPrice(
+                                                                    product.purePrice
+                                                                    - product.discount,
+                                                                )}
                                                             </li>
                                                         </div>
                                                     ) : (
