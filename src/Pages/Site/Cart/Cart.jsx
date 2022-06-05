@@ -97,7 +97,7 @@ export const Cart = () => {
                                             <td>
                                                 <div className="cart-product-description">
                                                     <Link to={`/products/${product.id}`}><img src={product.image} alt="product-photo" /></Link>
-                                                    <ul>
+                                                    <ul className="cart-product-description-list">
                                                         <Link to={`/products/${product.id}`}>
                                                             <li>
                                                                 {product.name}
