@@ -22,14 +22,15 @@ const ProductTabGeneral = () => {
     };
 
     useEffect(() => {
-        if (Object.keys(product).length) {
+        if (product.description) {
+            console.log(123);
             const rawData = markdownToDraft(product.description);
             const contentState = convertFromRaw(rawData);
             const newEditorState = EditorState.createWithContent(contentState);
 
             setV(newEditorState);
         }
-    }, [product]);
+    }, [product.description]);
 
     return (
         <div>

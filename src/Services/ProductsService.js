@@ -23,17 +23,21 @@ class ProductsService {
         }
     }
 
-    static async getMinMaxPrice() {
+    static async getMinMaxPrice(categories) {
+        const pageQuery = qs.stringify({ category: categories }, { arrayFormat: 'bracket', skipNull: true });
+
         try {
-            return (await API.get('api/admin/product/price')).data;
+            return (await API.get(`api/admin/product/price?${pageQuery}`)).data;
         } catch (e) {
             throw new ServerException(e.response);
         }
     }
 
-    static async getColors() {
+    static async getColors(categories) {
+        const pageQuery = qs.stringify({ category: categories }, { arrayFormat: 'bracket', skipNull: true });
+
         try {
-            return (await API.get('api/admin/product/colors')).data;
+            return (await API.get(`api/admin/product/colors?${pageQuery}`)).data;
         } catch (e) {
             throw new ServerException(e.response);
         }

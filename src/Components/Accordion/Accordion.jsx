@@ -3,17 +3,19 @@ import './Accordion.css';
 import { AccardionArrow } from '../../Icons';
 
 export const AccordionItem = ({
-    label, isCollapsed, handleClick, children,
+    label, isCollapsed, handleClick, children, hideArrow,
 }) => (
     <>
         <button type="button" className="accordion-button" onClick={handleClick}>
             {label}
-            <div className={`accordion-item ${isCollapsed ? 'position' : 'reverse'}`}>
-                <AccardionArrow
-                    width={20}
-                    fill="var(--color-accent)"
-                />
-            </div>
+            {!hideArrow && (
+                <div className={`accordion-item ${isCollapsed ? 'position' : 'reverse'}`}>
+                    <AccardionArrow
+                        width={20}
+                        fill="var(--color-accent)"
+                    />
+                </div>
+            )}
         </button>
         <div
             className={`accordion-item ${isCollapsed ? 'collapsed' : 'expanded'}`}
@@ -40,6 +42,7 @@ export const Accordion = ({ defaultIndex, onItemClick, children }) => {
                 key={child?.props.index}
                 isCollapsed={bindIndex !== child?.props.index}
                 label={child?.props.label}
+                hideArrow={child?.props.hideArrow}
                 handleClick={() => changeItem(child?.props.index)}
             >
                 {child?.props.children}

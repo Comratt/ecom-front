@@ -32,6 +32,7 @@ const CollectionList = ({
                                 )}
                                 key={id}
                                 index={id}
+                                hideArrow={!subcategories?.length}
                             >
                                 {subcategories.map((subcategory) => (
                                     <div key={subcategory.category_id} className="collection-item-checkbox">

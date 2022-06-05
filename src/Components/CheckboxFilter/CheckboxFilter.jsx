@@ -17,12 +17,15 @@ export const CheckboxFilter = ({
     handleSortBy,
     handleFilterBy,
     handleAvailable,
+    collectionId,
+    categories,
     filters,
 }) => {
     const [isOpen, setOpen] = useState(false);
     const { isTabletSize } = useDetectedMobileDevice();
-    const { result: minMaxPrice, loading: minMaxLoading } = useAsync(ProductsService.getMinMaxPrice, []);
-    const { result: colors, loading: colorsLoading } = useAsync(ProductsService.getColors, []);
+    const { result: minMaxPrice, loading: minMaxLoading } = useAsync(ProductsService.getMinMaxPrice, [filters.category]);
+    const { result: colors, loading: colorsLoading } = useAsync(ProductsService.getColors, [filters.category]);
+    const categoryName = categories?.find(({ id }) => +id === +collectionId)?.name || 'Категорія';
 
     const componentClasses = classNames(
         'lib-checkboxFilter',
@@ -62,7 +65,7 @@ export const CheckboxFilter = ({
                         }}
                         className="checkbox-filter__container"
                     >
-                        <Title type={2}>Coming Soon</Title>
+                        <Title type={2}>{categoryName}</Title>
                         <div className={checkBoxContainerDesktop}>
                             <CheckboxFilterItem
                                 filters={filters}

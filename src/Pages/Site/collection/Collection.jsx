@@ -15,6 +15,7 @@ export const Collection = () => {
         categories,
         isLastPage,
         currentPage,
+        collectionId,
         handleSelectCategory,
         handlePageCount,
         handleSortBy,
@@ -41,6 +42,8 @@ export const Collection = () => {
                 <div>
                     <CheckboxFilter
                         filters={filters}
+                        categories={categories}
+                        collectionId={collectionId}
                         handleSortBy={handleSortBy}
                         handleFilterBy={handleFilterBy}
                         handleAvailable={handleAvailable}

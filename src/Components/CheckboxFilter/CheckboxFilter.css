@@ -16,7 +16,7 @@
     flex-direction: row;
     justify-content: space-between;
     font-family: var(--header-accent-ff);
-    background-color: white;
+    background-color: rgba(255, 255, 255, .96);
     padding: 20px 15px 13px;
     z-index: 3;
 }
@@ -136,9 +136,11 @@
 @media (max-width: 768px) {
     .checkbox-filter__container .lib-title {
         display: block;
+        margin: 0;
     }
     .checkbox-filter__container .checkBoxContainerMobile {
         display: block;
+        height: 16px;
     }
     .lib-checkboxFilter.wrapper {
         position: fixed;
@@ -149,17 +151,13 @@
         right: 0;
         margin: 0;
     }
-    .checkBoxContainerMobile {
-        transform: scale(1.2);
-    }
     .checkbox-filter__container {
         display: flex;
         justify-content: space-between;
         align-items: center;
         flex-direction: row;
-    }
-    .checkbox-filter__container {
         border: none;
+        padding: 13px 15px 13px;
     }
     .lower__filter {
         display: none;

@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import debounce from 'lodash/debounce';
 import { Range, getTrackBackground } from 'react-range';
 import Popup from 'reactjs-popup';
-import { useAsync } from 'react-async-hook';
 import 'reactjs-popup/dist/index.css';
 import classNames from 'classnames';
 import './CheckboxFilterItem.css';
 import PropTypes from 'prop-types';
 import { AccardionArrow } from '../../Icons';
-import ProductsService from '../../Services/ProductsService';
 
 export const PriceRange = ({
     min, max, onFinalChange, current,
@@ -125,6 +122,18 @@ export const PriceRange = ({
         </div>
     );
 };
+const getColorStyles = (color) => ({
+    width: 12,
+    height: 12,
+    marginRight: 10,
+    backgroundColor: color,
+    borderRadius: '50%',
+});
+const colorWrapperStyles = {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '0 8px',
+};
 const CheckboxFilterItem = ({
     className,
     handleSortBy,
@@ -182,10 +191,15 @@ const CheckboxFilterItem = ({
                 if (item.id === 1) {
                     return ({
                         ...item,
-                        text: colors?.map(({ id, name }) => ({
+                        text: colors?.map(({ id, name, color }) => ({
                             value: id,
                             name: 'color',
-                            text: name,
+                            text: (
+                                <div style={colorWrapperStyles}>
+                                    <div style={getColorStyles(color)} />
+                                    {name}
+                                </div>
+                            ),
                         })),
                     });
                 }
@@ -251,15 +265,15 @@ const CheckboxFilterItem = ({
                                 </div>
                             )}
                             position="bottom center"
+                            className="filter-popup"
                         >
                             <ul>
                                 {list.text.map((data) => (data?.value ? (
                                     <li className="filters__item__checkbox_list" key={data.value}>
-                                        <label className="checkbox" htmlFor={data.value}>
+                                        <label className="checkbox">
                                             <input
                                                 onClick={handleInputChange(list.id)}
                                                 name={data.name}
-                                                id={data.value}
                                                 value={data.value}
                                                 checked={isChecked(list.id, data.value)}
                                                 type={list.id === 1 ? 'checkbox' : 'radio'}

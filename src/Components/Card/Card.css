@@ -59,6 +59,10 @@
     font-size: var(--fz-small);
     font-family: var(--accent-ff);
     margin-bottom: 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
 .lib-card .lib-card__info-price {

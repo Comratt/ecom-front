@@ -27,6 +27,7 @@ const ProductEdit = ({ isFromAdd = false }) => {
         selectedCategories,
         relatedProducts,
         discounts,
+        product,
     } = useAddProduct();
     const [active, setActive] = useState(0);
     const [formState, setFormState] = useState('INITIAL');
@@ -121,12 +122,12 @@ const ProductEdit = ({ isFromAdd = false }) => {
     }, [loading, error, handleClick, active, items]);
 
     useEffect(() => {
-        if (isFromAdd) {
+        if (isFromAdd && Object.keys(product).length) {
             setProduct({});
 
             return;
         }
-        if (Object.keys(result).length) {
+        if (Object.keys(result).length && !Object.keys(product).length) {
             setProduct(result);
         }
     }, [result]);
