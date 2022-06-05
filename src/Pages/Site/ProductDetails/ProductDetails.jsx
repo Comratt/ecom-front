@@ -91,6 +91,7 @@ export const ProductDetails = () => {
 
     useEffect(() => {
         setActiveColor({});
+        setActiveSize({});
         const viewedPreviously = LocalStorageService.getItem('viewed') || [];
         const modifiedViewed = viewedPreviously?.includes(productId)
             ? viewedPreviously
