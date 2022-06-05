@@ -41,6 +41,7 @@
 .cart-product-description{
     display: flex;
 }
+
 .cart-product-order-table{
     width: 60%;
 }
@@ -69,6 +70,7 @@
     width: 120px;
     height: 145px;
     border-radius: 5px;
+    max-width: none!important;
 }
 .cart-page th {
     text-align: left;
