@@ -15,13 +15,11 @@ import AddCartBtn from 'Components/AddCartBtn/AddCartBtn';
 import WishlistHeart from 'Components/WishlistHeart/WishlistHeart';
 import { Accordion, AccordionItem } from 'Components/Accordion';
 import { ScrollSlider } from 'Components/ScrollSlider';
-import { SliderModal } from 'Components/SliderModal';
-import { BigSlider } from 'Components/Slider';
 import SliderMobileDevices from 'Components/SliderMobileDevices/SliderMobileDevices';
 import ProductCarousel from 'Components/PorductCarousel';
 import { ProductDetailsLoader } from 'Components/SkeletonLoader';
 import { ImagePreview } from 'Components/ImagePreview';
-import { useDetectedMobileDevice } from '../../../hooks/useDetectMobileDevice';
+import { useDetectedMobileDevice } from 'hooks/useDetectMobileDevice';
 
 import './ProductInfo.css';
 
@@ -33,12 +31,14 @@ export const ProductDetails = () => {
     const [sizeError, setSizeError] = useState(false);
     const [modalSrc, setModalSrc] = useState(false);
     const {
-        result, error, loading, productId,
+        result, loading, productId,
     } = useProduct();
     const filteredColorSizes = result?.colorSizes
         ?.filter(({ colorValId }) => activeColor.id === colorValId);
     const listWishProducts = useSelector(getWishlistProducts);
-    const isActive = useMemo(() => listWishProducts.includes(result?.id), [listWishProducts, result]);
+    const isActive = useMemo(() => (
+        listWishProducts.includes(result?.id)
+    ), [listWishProducts, result]);
 
     const relatedIds = result?.related?.map(({ related_product_id }) => related_product_id);
     const historyViewed = LocalStorageService.getItem('viewed', []);
@@ -61,7 +61,7 @@ export const ProductDetails = () => {
         setActiveColor(item);
         setActiveSize({});
     };
-    const discount = `${parseInt(result?.price) - 200}₴`;
+    const discount = `${parseInt(result?.price, 10) - 200}₴`;
 
     const handleAddToCart = () => {
         setSizeError(false);
@@ -90,6 +90,7 @@ export const ProductDetails = () => {
     };
 
     useEffect(() => {
+        setActiveColor({});
         const viewedPreviously = LocalStorageService.getItem('viewed') || [];
         const modifiedViewed = viewedPreviously?.includes(productId)
             ? viewedPreviously
@@ -218,16 +219,14 @@ export const ProductDetails = () => {
                             <div className="lib-product_info_product_description">
                                 <Accordion defaultIndex="0">
                                     <AccordionItem label="Description" index="0">
-                                        <ReactMarkdown
-                                            children={result.description}
-                                            remarkPlugins={[remarkGfm]}
-                                        />
+                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                                            {result.description}
+                                        </ReactMarkdown>
                                     </AccordionItem>
                                     <AccordionItem label="Description" index="2">
-                                        <ReactMarkdown
-                                            children={result.description}
-                                            remarkPlugins={[remarkGfm]}
-                                        />
+                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                                            {result.description}
+                                        </ReactMarkdown>
                                     </AccordionItem>
                                 </Accordion>
                             </div>

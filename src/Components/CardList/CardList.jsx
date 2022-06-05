@@ -34,7 +34,9 @@ export const CardList = ({
         ]),
         [],
     );
-    const selectedCategories = flattenCategories?.filter(({ id }) => filters?.category?.includes(`${id}`));
+    const selectedCategories = flattenCategories?.filter(({ id }) => (
+        filters?.category?.includes(String(id))
+    ));
     const selectedCategoryNames = selectedCategories?.map(({ name }) => name).toString().replaceAll(',', ', ');
 
     useEffect(() => {
@@ -70,22 +72,22 @@ export const CardList = ({
             );
         }
 
-return (
-    <View className={componentClasses}>
-        {data.map((product) => (
-            <Card
-                            cardId={product.id}
-                            key={product.id}
-                            imagePath={product.image}
-                            detailsPath={product.link}
-                            price={product.price}
-                            title={product.name}
-                            colors={product.colors}
-                            images={images}
-            />
-                    ))}
-    </View>
-            );
+        return (
+            <View className={componentClasses}>
+                {data.map((product) => (
+                    <Card
+                        cardId={product.id}
+                        key={product.id}
+                        imagePath={product.image}
+                        detailsPath={product.link}
+                        price={product.price}
+                        title={product.name}
+                        colors={product.colors}
+                        images={images}
+                    />
+                ))}
+            </View>
+        );
     };
 
     return (
