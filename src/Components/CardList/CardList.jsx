@@ -81,8 +81,10 @@ export const CardList = ({
                         imagePath={product.image}
                         detailsPath={product.link}
                         price={product.price}
+                        purePrice={product.purePrice}
                         title={product.name}
                         colors={product.colors}
+                        discount={product.discount}
                         images={images}
                     />
                 ))}
@@ -105,6 +107,8 @@ CardList.propTypes = {
         price: PropTypes.string,
         name: PropTypes.string,
         link: PropTypes.string,
+        purePrice: PropTypes.string,
+        discount: PropTypes.number,
         colors: PropTypes.arrayOf(PropTypes.shape({})),
     })).isRequired,
     filters: PropTypes.shape({

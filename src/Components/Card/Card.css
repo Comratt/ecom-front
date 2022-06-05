@@ -19,7 +19,6 @@
 }
 
 .lib-card .lib-card__info {
-    padding-top: 2px;
     padding-bottom: 25px;
 }
 
@@ -63,25 +62,24 @@
 }
 
 .lib-card .lib-card__info-price {
-    margin: 3px 0;
     line-height: var(--line-h-normal);
     color: var(--color-accent);
-    font-size: var(--fz-normal);
+    font-size: var(--fz-small);
     font-family: var(--accent-ff);
     margin-right: 10px;
 }
 .lib-card .sale{
     text-decoration: line-through;
     color: var(--color-accent-light)!important;
-
+    font-size: var(--fz-tinier);
+    line-height: 1.4;
 }
 .lib-card__info-price-content {
-    margin-top: 4px ;
-    margin-bottom: 4px;
+    margin-top: 4px;
 }
 .lib-card .lib-card__info .lib-swatches .lib-swatches__item button {
-    height: 15px;
-    width: 15px;
+    height: 14px;
+    width: 14px;
 }
 
 .lib-card .lib-card__info .lib-swatches .lib-swatches__item button:after {
@@ -95,5 +93,10 @@
     .lib-card__heart_wh{
         right: 1px;
         top: 5px;
+    }
+
+    .lib-card .lib-card__info .lib-swatches .lib-swatches__item button {
+        height: 12px;
+        width: 12px;
     }
 }

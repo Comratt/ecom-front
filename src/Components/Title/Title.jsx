@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import './Title.css';
 
 export const Title = ({
-    type, children, className, tabIndex,
+    type, children, className, tabIndex, ...rest
 }) => {
     const H = `h${type}`;
 
@@ -16,7 +16,7 @@ export const Title = ({
     );
 
     return (
-        <H className={componentClasses} tabIndex={tabIndex}>
+        <H {...rest} className={componentClasses} tabIndex={tabIndex}>
             {children}
         </H>
     );

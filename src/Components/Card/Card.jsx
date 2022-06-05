@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -22,6 +22,7 @@ export const Card = ({
     discount,
     hideInfo,
 }) => {
+    const cardRef = useRef();
     const componentClassNames = classNames('lib-card', className);
     let priceClassNames = classNames('lib-card__info-price');
 
@@ -29,8 +30,14 @@ export const Card = ({
         priceClassNames = classNames(priceClassNames, 'sale');
     }
 
+    useEffect(() => {
+        if (cardRef) {
+            console.log(cardRef.current?.getBoundingClientRect()?.width);
+        }
+    }, [cardRef]);
+
     return (
-        <div className={componentClassNames}>
+        <div ref={cardRef} className={componentClassNames}>
             <div className="lib-card__heart_wh">
                 <WishlistHeart cardId={cardId} />
             </div>
@@ -48,7 +55,7 @@ export const Card = ({
                     <div className="lib-card__info-price-content">
                         {discount > 0 ? (
                             <div>
-                                <div style={{ fontSize: '12px' }} className={priceClassNames}>{price}</div>
+                                <div className={priceClassNames}>{price}</div>
                                 <div className="lib-card__info-price">{getFormattedPrice(purePrice - discount)}</div>
                             </div>
                         ) : <div className={priceClassNames}>{price}</div>}
