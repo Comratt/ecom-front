@@ -18,13 +18,15 @@ export const CheckboxFilter = ({
     handleFilterBy,
     handleAvailable,
     collectionId,
+    resetFilters,
+    isFiltered,
     categories,
     filters,
 }) => {
     const [isOpen, setOpen] = useState(false);
     const { isTabletSize } = useDetectedMobileDevice();
-    const { result: minMaxPrice, loading: minMaxLoading } = useAsync(ProductsService.getMinMaxPrice, [filters.category]);
-    const { result: colors, loading: colorsLoading } = useAsync(ProductsService.getColors, [filters.category]);
+    const { result: minMaxPrice, loading: minMaxLoading } = useAsync(ProductsService.getMinMaxPrice, [filters.category, filters.color]);
+    const { result: colors, loading: colorsLoading } = useAsync(ProductsService.getColors, [filters.category, filters.price]);
     const categoryName = categories?.find(({ id }) => +id === +collectionId)?.name || 'Категорія';
 
     const componentClasses = classNames(
@@ -44,18 +46,18 @@ export const CheckboxFilter = ({
 
     return (
         <>
-            {(!minMaxLoading && !colorsLoading) && (
-                <BottomModal
-                    isOpen={isOpen}
-                    setOpen={setOpen}
-                    filters={filters}
-                    handleSortBy={handleSortBy}
-                    handleFilterBy={handleFilterBy}
-                    handleAvailable={handleAvailable}
-                    minMaxPrice={minMaxPrice}
-                    colors={colors}
-                />
-            )}
+            <BottomModal
+                isOpen={isOpen}
+                setOpen={setOpen}
+                filters={filters}
+                handleSortBy={handleSortBy}
+                handleFilterBy={handleFilterBy}
+                handleAvailable={handleAvailable}
+                minMaxPrice={minMaxPrice}
+                colors={colors}
+                resetFilters={resetFilters}
+                isFiltered={isFiltered}
+            />
             <Sticky isSticky={false} topOffset={-50} className={componentClasses}>
                 {({ style }) => (
                     <div
@@ -74,10 +76,20 @@ export const CheckboxFilter = ({
                                 handleAvailable={handleAvailable}
                                 minMaxPrice={minMaxPrice}
                                 colors={colors}
+                                resetFilters={resetFilters}
+                                isFiltered={isFiltered}
                             />
                         </div>
-                        <div className={checkBoxContainerMobile}>
-                            <Filters onClick={() => setOpen(true)} />
+                        <div
+                            className={classNames(
+                                checkBoxContainerMobile,
+                                { filtered: isFiltered },
+                            )}
+                        >
+                            <Filters
+                                onClick={() => setOpen(true)}
+                                className={classNames('filter-icon', { filtered: isFiltered })}
+                            />
                         </div>
                     </div>
                 )}

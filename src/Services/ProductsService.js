@@ -23,8 +23,8 @@ class ProductsService {
         }
     }
 
-    static async getMinMaxPrice(categories) {
-        const pageQuery = qs.stringify({ category: categories }, { arrayFormat: 'bracket', skipNull: true });
+    static async getMinMaxPrice(categories, color) {
+        const pageQuery = qs.stringify({ category: categories, color }, { arrayFormat: 'bracket', skipNull: true });
 
         try {
             return (await API.get(`api/admin/product/price?${pageQuery}`)).data;
@@ -33,8 +33,8 @@ class ProductsService {
         }
     }
 
-    static async getColors(categories) {
-        const pageQuery = qs.stringify({ category: categories }, { arrayFormat: 'bracket', skipNull: true });
+    static async getColors(categories, price) {
+        const pageQuery = qs.stringify({ category: categories, price }, { arrayFormat: 'bracket', skipNull: true });
 
         try {
             return (await API.get(`api/admin/product/colors?${pageQuery}`)).data;

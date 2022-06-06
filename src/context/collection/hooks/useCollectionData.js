@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useAsync } from 'react-async-hook';
 import { useParams } from 'react-router-dom';
+import isEqual from 'lodash/isEqual';
 
 import { adaptProducts } from 'context/adapters';
 import { sortOrder } from 'Helpers';
@@ -21,13 +22,16 @@ const adaptCategories = (data = []) => {
 
 export const useCollectionData = () => {
     const { id } = useParams();
-    const [filters, setFilters] = useState({
+    const defaultFilters = {
         page: 1,
         count: 15,
         category: id ? [id] : [],
         sortBy: '',
+        color: [],
+        price: [],
         available: false,
-    });
+    };
+    const [filters, setFilters] = useState(defaultFilters);
     const {
         loading: categoriesLoading,
         error: categoriesError,
@@ -40,6 +44,9 @@ export const useCollectionData = () => {
         currentPage,
     } = useFetchProducts(filters, setFilters);
 
+    const resetFilters = () => setFilters(defaultFilters);
+    const isFiltered = !isEqual(defaultFilters, filters);
+
     return useMemo(() => ({
         loading: loading || categoriesLoading,
         result: adaptProducts({ data: result }),
@@ -49,11 +56,15 @@ export const useCollectionData = () => {
         setFilters,
         filters,
         collectionId: id,
+        resetFilters,
+        isFiltered,
     }), [
         loading,
         categoriesLoading,
         result,
         categoriesResult,
+        resetFilters,
+        isFiltered,
         isLastPage,
         currentPage,
         setFilters,

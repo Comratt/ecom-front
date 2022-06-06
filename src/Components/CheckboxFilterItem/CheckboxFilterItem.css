@@ -27,13 +27,40 @@
     min-width: 200px;
 }
 
+.popup-price {
+    height: 60px;
+}
+.popup-price > div {
+    margin-top: 10px !important;
+}
+
 .lib-checkboxFilterItem .filters__text {
+    position: relative;
     padding-right: var(--size-smaller);
     border: none;
     background: transparent;
     font-size: 16px;
     line-height: 20px;
     color: #887568;
+}
+.lib-checkboxFilterItem .filters__text.filtered:before {
+    content: '!';
+    position: absolute;
+    right: -3px;
+    bottom: 13px;
+    z-index: 2;
+    background: var(--color-accent);
+    color: var(--color-lightest);
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -1px 1px 0 0 #fff;
+    border-radius: 7px;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
 }
 .lib-checkboxFilterItem .filters__chevron{
     transition: all .3s linear;

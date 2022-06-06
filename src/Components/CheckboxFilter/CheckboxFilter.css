@@ -133,6 +133,29 @@
     margin-right: var(--size-smaller);
 }
 
+.checkBoxContainerMobile {
+    position: relative;
+}
+.checkBoxContainerMobile.filtered:before {
+    content: '!';
+    position: absolute;
+    right: -5px;
+    bottom: 13px;
+    z-index: 2;
+    background: var(--color-accent);
+    color: var(--color-lightest);
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -1px 1px 0 0 #fff;
+    border-radius: 7px;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+}
+
 @media (max-width: 768px) {
     .checkbox-filter__container .lib-title {
         display: block;

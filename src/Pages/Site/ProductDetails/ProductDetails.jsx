@@ -104,6 +104,12 @@ export const ProductDetails = () => {
     }, [productId]);
 
     useEffect(() => {
+        if (!loading) {
+            window.scrollTo(0, 0);
+        }
+    }, [loading]);
+
+    useEffect(() => {
         if (result?.colors && result?.colors?.length && !Object.keys(activeColor).length) {
             setActiveColor(result?.colors[0]);
         }

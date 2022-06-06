@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MultilevelSidebar from 'Components/MultiLevelSidebar';
 import styled from 'styled-components';
 import Sheet from 'react-modal-sheet';
@@ -66,19 +66,30 @@ const CustomSheet = styled(Sheet)`
   .first-back-btn{
     color: #887568;
     background: #F5F3F3;
-    font-size: 14px;
+    font-size: 16px;
     display: flex;
     align-items: center;
     gap: 5px;
-  }
-  .sidebar-body{
-    margin-top: 10px;
+    padding: 8px;
   }
   .sidebar-main g{
     fill: #887568;
   }
   
 `;
+
+const getColorStyles = (color) => ({
+    width: 12,
+    height: 12,
+    marginRight: 10,
+    backgroundColor: color,
+    borderRadius: '50%',
+});
+const colorWrapperStyles = {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '0 8px',
+};
 
 export const BottomModal = ({
     isOpen,
@@ -89,13 +100,15 @@ export const BottomModal = ({
     handleAvailable,
     minMaxPrice = [],
     colors = [],
+    resetFilters,
+    isFiltered,
 }) => {
     const options = [
         {
             content: [
                 {
                     id: 1,
-                    name: 'Sort By',
+                    name: 'Сортування',
                     type: 'sort',
                     children: [
                         {
@@ -104,35 +117,35 @@ export const BottomModal = ({
                                     id: 2,
                                     optionId: 2,
                                     value: 'relevance',
-                                    name: 'Relevance',
+                                    name: 'Актуальні',
                                     optName: 'sortBy',
                                 },
                                 {
                                     id: 3,
                                     optionId: 3,
                                     value: 'dateAsc',
-                                    name: 'Date | New to Old',
+                                    name: 'Дата | Від нових до старіших',
                                     optName: 'sortBy',
                                 },
                                 {
                                     id: 4,
                                     optionId: 4,
                                     value: 'dateDesc',
-                                    name: 'Date | Old to New',
+                                    name: 'Дата | Від старіших до нових',
                                     optName: 'sortBy',
                                 },
                                 {
                                     id: 5,
                                     optionId: 5,
                                     value: 'priceAsc',
-                                    name: 'Price | Low to high',
+                                    name: 'Ціна | Від нижчого до більшого',
                                     optName: 'sortBy',
                                 },
                                 {
                                     id: 6,
                                     optionId: 6,
                                     value: 'priceDesc',
-                                    name: 'Price | High to low',
+                                    name: 'Ціна | Від більшого до нижчого',
                                     optName: 'sortBy',
                                 },
                             ],
@@ -141,13 +154,18 @@ export const BottomModal = ({
                 },
                 {
                     id: 7,
-                    name: 'Colour',
+                    name: 'Колір',
                     type: 'color',
                     children: [
                         {
                             content: colors?.map((color) => ({
                                 id: color.id,
-                                name: color.name,
+                                name: (
+                                    <div style={colorWrapperStyles}>
+                                        <div style={getColorStyles(color.color)} />
+                                        {color.name}
+                                    </div>
+                                ),
                                 optionId: color.id,
                                 optName: 'color',
                             })),
@@ -156,7 +174,7 @@ export const BottomModal = ({
                 },
                 {
                     id: 8,
-                    name: 'Stock',
+                    name: 'Наявність',
                     type: 'stock',
                     children: [
                         {
@@ -165,7 +183,7 @@ export const BottomModal = ({
                                     id: 'stock',
                                     optionId: 'stock',
                                     optName: 'stock',
-                                    name: 'In stock',
+                                    name: 'В наявності',
                                 },
                             ],
                         },
@@ -173,7 +191,7 @@ export const BottomModal = ({
                 },
                 {
                     id: 9,
-                    name: 'Price',
+                    name: 'Ціна від і до',
                     children: [{
                         element: <PriceRange
                             current={filters?.price}
@@ -183,12 +201,122 @@ export const BottomModal = ({
                         />,
                     }],
                 },
+                {
+                    id: 10,
+                    name: '',
+                },
             ],
         },
     ];
     const handleClose = () => setOpen(false);
     const [opt, setOpt] = useState(options);
 
+    useEffect(() => {
+        if (colors?.length) {
+            setOpt((prevOptions) => ([{
+                ...prevOptions,
+                content: prevOptions[0].content?.map((option) => {
+                    if (option.id === 7) {
+                        return ({
+                            id: 7,
+                            name: 'Колір',
+                            type: 'color',
+                            children: [{
+                                content: colors?.map((color) => ({
+                                    id: color.id,
+                                    name: (
+                                        <div style={colorWrapperStyles}>
+                                            <div style={getColorStyles(color.color)} />
+                                            {color.name}
+                                        </div>
+                                    ),
+                                    optionId: color.id,
+                                    optName: 'color',
+                                })),
+                            }],
+                        });
+                    }
+
+                    return option;
+                }),
+            }]));
+        }
+    }, [colors]);
+
+    useEffect(() => {
+        if (minMaxPrice?.length) {
+            setOpt((prevOptions) => ([{
+                ...prevOptions,
+                content: prevOptions[0].content?.map((option) => {
+                    if (option.id === 9) {
+                        return ({
+                            id: 9,
+                            name: 'Ціна від і до',
+                            children: [{
+                                element: <PriceRange
+                                    current={filters?.price}
+                                    min={minMaxPrice[0]}
+                                    max={minMaxPrice[1]}
+                                    onFinalChange={handleFilterBy}
+                                />,
+                            }],
+                        });
+                    }
+
+                    return option;
+                }),
+            }]));
+        }
+    }, [filters.price]);
+
+    useEffect(() => {
+        setOpt((prevOptions) => ([{
+            ...prevOptions,
+            content: prevOptions[0].content?.map((option) => {
+                if (option.id === 10) {
+                    if (isFiltered) {
+                        return {
+                            id: 10,
+                            name: <span onClick={resetFilters}>Обнулити фільтри</span>,
+                        };
+                    }
+
+                    return {
+                        id: 10,
+                        name: '',
+                    };
+                }
+
+                return option;
+            }),
+        }]));
+    }, [isFiltered]);
+
+    useEffect(() => {
+        if (minMaxPrice?.length) {
+            setOpt((prevOptions) => ([{
+                ...prevOptions,
+                content: prevOptions[0].content?.map((option) => {
+                    if (option.id === 9) {
+                        return ({
+                            id: 9,
+                            name: 'Ціна від і до',
+                            children: [{
+                                element: <PriceRange
+                                    current={filters?.price}
+                                    min={minMaxPrice[0]}
+                                    max={minMaxPrice[1]}
+                                    onFinalChange={handleFilterBy}
+                                />,
+                            }],
+                        });
+                    }
+
+                    return option;
+                }),
+            }]));
+        }
+    }, [minMaxPrice]);
     const handleItemClick = (o) => {
         if (o.optName === 'sortBy') {
             handleSortBy(filters.sortBy === o.value ? '' : o.value);

@@ -11,18 +11,30 @@ export const PriceRange = ({
     min, max, onFinalChange, current,
 }) => {
     const STEP = 25;
-    const MIN = parseFloat(min);
-    const MAX = parseFloat(max);
+    let MIN = parseFloat(min) || 0;
+    let MAX = parseFloat(max) || 0;
+
+    if (MIN === MAX) {
+        MIN = 0;
+        MAX += STEP + 100;
+    }
     const [values, setValues] = useState([MIN, MAX]);
 
     useEffect(() => {
         if (current?.length) {
             setValues(current);
         }
-    }, [current]);
+    }, [current, min, max]);
 
     return (
-        <div>
+        <div
+            style={{
+                position: 'relative',
+                maxWidth: '210px',
+                margin: '0 auto',
+                marginTop: 20,
+            }}
+        >
             <Range
                 values={values}
                 step={STEP}
@@ -39,12 +51,14 @@ export const PriceRange = ({
                         onTouchStart={props.onTouchStart}
                         style={{
                             ...props.style,
-                            height: '36px',
-                            marginTop: '30px',
-                            marginBottom: '30px',
+                            height: '10px',
+                            margin: '0 auto',
+                            marginBottom: '15px',
                             display: 'flex',
                             justifyContent: 'center',
-                            width: '210px',
+                            width: '100%',
+                            maxWidth: '210px',
+                            padding: '0 10px',
                         }}
                     >
                         <div
@@ -53,12 +67,7 @@ export const PriceRange = ({
                                 height: '2px',
                                 width: '100%',
                                 borderRadius: '4px',
-                                background: getTrackBackground({
-                                    values,
-                                    colors: ['#e5e5e5', 'rgb(51, 51, 51)', '#e5e5e5'],
-                                    min: MIN,
-                                    max: MAX,
-                                }),
+                                background: 'var(--color-accent)',
                                 alignSelf: 'center',
                             }}
                         >
@@ -71,24 +80,26 @@ export const PriceRange = ({
                         {...props}
                         style={{
                             ...props.style,
-                            height: '24px',
-                            width: '24px',
+                            height: '20px',
+                            width: '20px',
                             border: '1px solid transparent',
                             borderRadius: '50%',
-                            borderColor: 'rgb(51, 51, 51)',
+                            borderColor: 'var(--color-accent)',
+                            background: 'var(--color-accent-light)',
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            boxShadow: '0px 2px 6px #AAA',
+                            boxShadow: '0px 2px 6px var(--color-accent)',
                             overflow: 'hidden',
                         }}
                     >
                         <div
                             style={{
                                 overflow: 'hidden',
-                                height: '24px',
-                                width: '24px',
-                                backgroundColor: isDragged ? '#548BF4' : '#CCC',
+                                background: 'var(--color-accent-light)',
+                                height: '20px',
+                                width: '20px',
+                                backgroundColor: isDragged ? 'var(--color-accent' : 'var(--color-accent-light)',
                             }}
                         />
                     </div>
@@ -98,7 +109,12 @@ export const PriceRange = ({
                 <output
                     type="text"
                     style={{
-                        borderRadius: '4px', border: '1px solid  #e4e4e4', padding: '9px 21px', position: 'absolute', bottom: '75%',
+                        borderRadius: '4px',
+                        border: '1px solid var(--color-accent)',
+                        padding: '7px',
+                        position: 'absolute',
+                        fontSize: '12px',
+                        left: '0',
                     }}
                     id="output"
                 >
@@ -108,11 +124,11 @@ export const PriceRange = ({
                     type="text"
                     style={{
                         borderRadius: '4px',
-                        border: '1px solid  #e4e4e4',
-                        padding: '9px 21px',
+                        border: '1px solid var(--color-accent)',
+                        padding: '7px',
                         position: 'absolute',
-                        bottom: '75%',
-                        left: '65%',
+                        right: '0',
+                        fontSize: '12px',
                     }}
                     id="output"
                 >
@@ -142,20 +158,22 @@ const CheckboxFilterItem = ({
     filters,
     minMaxPrice,
     colors,
+    resetFilters,
+    isFiltered,
 }) => {
     const [staticFilters, setStaticFilters] = useState([
-        { name: 'Color', id: 1, text: [] },
-        { name: 'Size', id: 2, text: [] },
-        { name: 'Price', id: 3, text: [] },
+        { name: 'Колір', id: 1, text: [{ name: 'color' }] },
+        { name: 'Розмір', id: 2, text: [{ name: '', value: 'ad' }] },
+        { name: 'Ціна', id: 3, text: [{ name: 'price' }] },
         {
-            name: 'Stock',
+            name: 'Наявність',
             id: 4,
             text: [
-                { value: 'stock', name: 'stock', text: 'In stock' },
+                { value: 'available', name: 'available', text: 'In stock' },
             ],
         },
         {
-            name: 'Sort by',
+            name: 'Сортування',
             id: 5,
             text: [
                 { value: 'relevance', name: 'sortBy', text: 'Relevance' },
@@ -176,6 +194,7 @@ const CheckboxFilterItem = ({
                         text: [{
                             min: minMaxPrice[0],
                             max: minMaxPrice[1],
+                            name: 'price',
                         }],
                     });
                 }
@@ -245,6 +264,14 @@ const CheckboxFilterItem = ({
         }
     };
 
+    const checkIsFiltered = ({ name }) => {
+        if (filters[name]?.length) {
+            return ' filtered';
+        }
+
+        return '';
+    };
+
     return (
         <>
             <div className={componentClasses}>
@@ -254,7 +281,7 @@ const CheckboxFilterItem = ({
                             arrow={false}
                             trigger={(open) => (
                                 <div className="filters__item" key={list.id}>
-                                    <button className="filters__text">{list.name}</button>
+                                    <button className={`filters__text${ checkIsFiltered(list.text[0])}`}>{list.name}</button>
                                     <AccardionArrow
                                         className={classNames('filters__chevron', {
                                             rotate: open,
@@ -264,8 +291,9 @@ const CheckboxFilterItem = ({
                                     />
                                 </div>
                             )}
-                            position="bottom center"
+                            position="bottom left"
                             className="filter-popup"
+                            repositionOnResize
                         >
                             <ul>
                                 {list.text.map((data) => (data?.value ? (
@@ -282,16 +310,27 @@ const CheckboxFilterItem = ({
                                         </label>
                                     </li>
                                 ) : (
-                                    <PriceRange
-                                        onFinalChange={handleFilterBy}
-                                        min={data.min}
-                                        max={data.max}
-                                        current={filters?.price}
-                                    />
+                                    <div className="popup-price">
+                                        <PriceRange
+                                            onFinalChange={handleFilterBy}
+                                            min={data.min}
+                                            max={data.max}
+                                            current={filters?.price}
+                                        />
+                                    </div>
                                 )))}
                             </ul>
                         </Popup>
                     ))}
+                    {isFiltered && (
+                        <button
+                            className="filters__text"
+                            type="button"
+                            onClick={resetFilters}
+                        >
+                            Обнулити
+                        </button>
+                    )}
                 </div>
             </div>
         </>
