@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import isEqual from 'lodash/isEqual';
 
 import { adaptProducts } from 'context/adapters';
-import { sortOrder } from 'Helpers';
+import { getObjectDiff, sortOrder } from 'Helpers';
 import { useFetchProducts } from '../../hooks/useFetchProducts';
 import { fetchCategories } from '../../api/fetchCategories';
 
@@ -45,7 +45,10 @@ export const useCollectionData = () => {
     } = useFetchProducts(filters, setFilters);
 
     const resetFilters = () => setFilters(defaultFilters);
-    const isFiltered = !isEqual(defaultFilters, filters);
+    const { page: dfPage, ...defaultFiltersWithoutPage } = defaultFilters;
+    const { page, ...filtersWithoutPage } = filters;
+    const isFiltered = !isEqual(defaultFiltersWithoutPage, filtersWithoutPage);
+    const filtersDiff = getObjectDiff(defaultFiltersWithoutPage, filtersWithoutPage);
 
     return useMemo(() => ({
         loading: loading || categoriesLoading,
@@ -58,6 +61,7 @@ export const useCollectionData = () => {
         collectionId: id,
         resetFilters,
         isFiltered,
+        filtersDiff,
     }), [
         loading,
         categoriesLoading,
@@ -65,6 +69,7 @@ export const useCollectionData = () => {
         categoriesResult,
         resetFilters,
         isFiltered,
+        filtersDiff,
         isLastPage,
         currentPage,
         setFilters,

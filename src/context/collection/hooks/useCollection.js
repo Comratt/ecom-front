@@ -15,6 +15,7 @@ export const useCollection = () => {
         collectionId,
         resetFilters,
         isFiltered,
+        filtersDiff,
     } = useCollectionData();
     const handleSelectCategory = ({ target: { id } }) => {
         setFilters((prevFilters) => {
@@ -87,6 +88,7 @@ export const useCollection = () => {
         handleAvailable,
         resetFilters,
         isFiltered,
+        filtersDiff,
         filters,
     }), [
         loading,
@@ -102,6 +104,7 @@ export const useCollection = () => {
         handleAvailable,
         resetFilters,
         isFiltered,
+        filtersDiff,
         filters,
     ]);
 };

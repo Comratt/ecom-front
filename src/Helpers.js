@@ -1,3 +1,5 @@
+import isEqual from 'lodash/isEqual';
+
 export const getFilteredOptions = (options = [], type) => (
     options.filter(({ option_type }) => option_type === type)?.map(
         (item) => ({ ...item, id: item.option_value_id, name: item.name_value }),
@@ -13,6 +15,18 @@ export const getNameById = (arrData = [], id) => {
 
     return findItem?.name;
 };
+
+export const getObjectDiff = (obj1, obj2) => Object.keys(obj1).reduce((result, key) => {
+    if (!obj2.hasOwnProperty(key)) {
+        result.push(key);
+    } else if (isEqual(obj1[key], obj2[key])) {
+        const resultKeyIndex = result.indexOf(key);
+
+        result.splice(resultKeyIndex, 1);
+    }
+
+    return result;
+}, Object.keys(obj2));
 
 const getRelativePos = (elm) => {
     const pPos = elm.parentNode.getBoundingClientRect(); // parent pos

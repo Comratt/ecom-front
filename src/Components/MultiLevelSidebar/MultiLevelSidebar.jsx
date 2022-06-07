@@ -259,7 +259,12 @@ const SidebarContent = (props) => {
                                                     onClick={() => handleTabClick(list)}
                                                 >
                                                     <span className="flex-align-center">
-                                                        <span>{list.name}</span>
+                                                        <span className={classNames({
+                                                            'item-filtered': list?.filtered,
+                                                        })}
+                                                        >
+                                                            {list.name}
+                                                        </span>
                                                         {list.icon && list.icon}
                                                     </span>
                                                     {children && list.children && <AngleRight />}

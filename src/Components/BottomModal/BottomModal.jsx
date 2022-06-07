@@ -75,6 +75,28 @@ const CustomSheet = styled(Sheet)`
   .sidebar-main g{
     fill: #887568;
   }
+  .sidebar-main-content .item-filtered {
+    position: relative;
+  }
+  .sidebar-main-content .item-filtered:before {
+    content: '!';
+    position: absolute;
+    right: -25px;
+    bottom: 3px;
+    z-index: 2;
+    background: var(--color-accent);
+    color: var(--color-lightest);
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -1px 1px 0 0 #fff;
+    border-radius: 7px;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+  }
   
 `;
 
@@ -102,6 +124,7 @@ export const BottomModal = ({
     colors = [],
     resetFilters,
     isFiltered,
+    filtersDiff,
 }) => {
     const options = [
         {
@@ -110,6 +133,7 @@ export const BottomModal = ({
                     id: 1,
                     name: 'Сортування',
                     type: 'sort',
+                    filterType: 'sortBy',
                     children: [
                         {
                             content: [
@@ -176,6 +200,7 @@ export const BottomModal = ({
                     id: 8,
                     name: 'Наявність',
                     type: 'stock',
+                    filterType: 'available',
                     children: [
                         {
                             content: [
@@ -214,13 +239,13 @@ export const BottomModal = ({
     useEffect(() => {
         if (colors?.length) {
             setOpt((prevOptions) => ([{
-                ...prevOptions,
                 content: prevOptions[0].content?.map((option) => {
                     if (option.id === 7) {
                         return ({
                             id: 7,
                             name: 'Колір',
                             type: 'color',
+                            filterType: 'color',
                             children: [{
                                 content: colors?.map((color) => ({
                                     id: color.id,
@@ -232,6 +257,7 @@ export const BottomModal = ({
                                     ),
                                     optionId: color.id,
                                     optName: 'color',
+                                    icon: !filters?.color?.includes(color.id) ? null : <Check />,
                                 })),
                             }],
                         });
@@ -242,16 +268,46 @@ export const BottomModal = ({
             }]));
         }
     }, [colors]);
+    useEffect(() => {
+        setOpt((prevOptions) => ([{
+            content: prevOptions[0].content?.map((option) => {
+                if (option.id === 1) {
+                    return ({
+                        ...option,
+                        children: [{
+                            content: option.children[0].content.map((childOption) => ({
+                                ...childOption,
+                                icon: filters?.sortBy !== childOption.value ? null : <Check />,
+                            })),
+                        }],
+                    });
+                }
+                if (option.id === 8) {
+                    return ({
+                        ...option,
+                        children: [{
+                            content: option.children[0].content.map((childOption) => ({
+                                ...childOption,
+                                icon: !filters?.available ? null : <Check />,
+                            })),
+                        }],
+                    });
+                }
+
+                return option;
+            }),
+        }]));
+    }, [filters]);
 
     useEffect(() => {
         if (minMaxPrice?.length) {
             setOpt((prevOptions) => ([{
-                ...prevOptions,
                 content: prevOptions[0].content?.map((option) => {
                     if (option.id === 9) {
                         return ({
                             id: 9,
                             name: 'Ціна від і до',
+                            filterType: 'price',
                             children: [{
                                 element: <PriceRange
                                     current={filters?.price}
@@ -271,7 +327,6 @@ export const BottomModal = ({
 
     useEffect(() => {
         setOpt((prevOptions) => ([{
-            ...prevOptions,
             content: prevOptions[0].content?.map((option) => {
                 if (option.id === 10) {
                     if (isFiltered) {
@@ -295,12 +350,12 @@ export const BottomModal = ({
     useEffect(() => {
         if (minMaxPrice?.length) {
             setOpt((prevOptions) => ([{
-                ...prevOptions,
                 content: prevOptions[0].content?.map((option) => {
                     if (option.id === 9) {
                         return ({
                             id: 9,
                             name: 'Ціна від і до',
+                            filterType: 'price',
                             children: [{
                                 element: <PriceRange
                                     current={filters?.price}
@@ -317,6 +372,16 @@ export const BottomModal = ({
             }]));
         }
     }, [minMaxPrice]);
+
+    useEffect(() => {
+        setOpt((prevOptions) => ([{
+            content: prevOptions[0].content?.map((option) => ({
+                ...option,
+                filtered: filtersDiff?.includes(option.filterType),
+            })),
+        }]));
+    }, [filtersDiff]);
+
     const handleItemClick = (o) => {
         if (o.optName === 'sortBy') {
             handleSortBy(filters.sortBy === o.value ? '' : o.value);

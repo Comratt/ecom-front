@@ -24,6 +24,7 @@ export const Collection = () => {
         filters,
         resetFilters,
         isFiltered,
+        filtersDiff,
     } = useCollection();
 
     if (loading) {
@@ -43,6 +44,7 @@ export const Collection = () => {
             >
                 <div>
                     <CheckboxFilter
+                        filtersDiff={filtersDiff}
                         resetFilters={resetFilters}
                         isFiltered={isFiltered}
                         filters={filters}
