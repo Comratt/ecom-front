@@ -284,6 +284,30 @@ export const BottomModal = ({
             }]));
         }
     }, [colors]);
+
+    useEffect(() => {
+        if (subcategories?.length) {
+            setOpt((prevOptions) => ([{
+                content: prevOptions[0].content?.map((option) => {
+                    if (option.id === 11) {
+                        return ({
+                            ...option,
+                            children: [{
+                                content: subcategories?.map((subcategory) => ({
+                                    id: subcategory.category_id,
+                                    optionId: subcategory.category_id,
+                                    name: subcategory.category_name,
+                                    optName: 'category',
+                                })),
+                            }],
+                        });
+                    }
+
+                    return option;
+                }),
+            }]));
+        }
+    }, [collectionId]);
     useEffect(() => {
         setOpt((prevOptions) => ([{
             content: prevOptions[0].content?.map((option) => {
@@ -339,29 +363,7 @@ export const BottomModal = ({
                 }),
             }]));
         }
-    }, [filters.price]);
-
-    useEffect(() => {
-        setOpt((prevOptions) => ([{
-            content: prevOptions[0].content?.map((option) => {
-                if (option.id === 10) {
-                    if (isFiltered) {
-                        return {
-                            id: 10,
-                            name: <span onClick={resetFilters}>Обнулити фільтри</span>,
-                        };
-                    }
-
-                    return {
-                        id: 10,
-                        name: '',
-                    };
-                }
-
-                return option;
-            }),
-        }]));
-    }, [isFiltered]);
+    }, [minMaxPrice]);
 
     useEffect(() => {
         if (minMaxPrice?.length) {
@@ -387,7 +389,29 @@ export const BottomModal = ({
                 }),
             }]));
         }
-    }, [minMaxPrice]);
+    }, [filters.price]);
+
+    useEffect(() => {
+        setOpt((prevOptions) => ([{
+            content: prevOptions[0].content?.map((option) => {
+                if (option.id === 10) {
+                    if (isFiltered) {
+                        return {
+                            id: 10,
+                            name: <span onClick={resetFilters}>Обнулити фільтри</span>,
+                        };
+                    }
+
+                    return {
+                        id: 10,
+                        name: '',
+                    };
+                }
+
+                return option;
+            }),
+        }]));
+    }, [isFiltered]);
 
     useEffect(() => {
         setOpt((prevOptions) => ([{

@@ -20,10 +20,10 @@
     flex-direction: column;
     padding: 15px;
 }
-.lib-link.active{
+.lib-login .lib-link.active{
     width: 100%;
 }
-.lib-guest-btn{
+.lib-login .lib-guest-btn{
     width: 100%;
 }
 .lib-login .from-login {

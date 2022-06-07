@@ -43,6 +43,23 @@
     line-height: 20px;
     color: #887568;
 }
+.lib-checkboxFilterItem .filters__text.filter-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border: 1px solid var(--color-accent);
+    border-radius: 25px;
+    white-space: nowrap;
+    transition: .3s;
+}
+.lib-checkboxFilterItem .filters__text.filter-wrapper:hover {
+    border: 1px solid var(--color-accent);
+    background-color: rgb(136 117 105 / 10%);
+}
+.lib-checkboxFilterItem .filters__text.filter-wrapper .cls-1 {
+    stroke-width: 5px;
+}
 .lib-checkboxFilterItem .filters__text.filtered:before {
     content: '!';
     position: absolute;
