@@ -48,6 +48,7 @@ export const SliderCardList = ({
     count = 4,
     title,
     category,
+    hideColors,
 }) => {
     const [filters, setFilters] = useState({
         page: 1,
@@ -136,6 +137,7 @@ export const SliderCardList = ({
                             images={product.images}
                             discount={product.discount}
                             purePrice={product.purePrice}
+                            hideColors={hideColors}
                         />
                     ))}
                 </Slider>

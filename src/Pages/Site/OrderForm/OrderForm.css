@@ -125,7 +125,7 @@
 }
 
 .lib-order select {
-    margin-top: var(--size-small);
+    margin: 3px 0 3px 3px;
     border-radius: var(--size-smaller);
     border: 1px solid #d9d9d9;
     padding: 11px;
@@ -247,8 +247,9 @@
 .lib-order p.field-message__error {
     font-size: 14px;
     color: var(--color-error);
-    margin-top: 7px;
+    margin-top: 0;
     margin-bottom: 0;
+    margin-left: 5px;
 }
 
 .lib-order .input.input:focus {
@@ -294,9 +295,13 @@
     padding: 0 var(--size-mid-bigger);
 }
 
-
 .order__item-title {
     font-weight: 600;
+    margin-bottom: 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
 .order__item-price {

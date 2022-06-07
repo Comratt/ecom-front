@@ -5,6 +5,7 @@
     font-family: var(--footer-accent-ff);
     color: var(--footer-color);
     width: 100%;
+    padding-bottom: max(80px, calc(env(safe-area-inset-bottom) + 80px));
 }
 
 .lib-footer .container-footer {
@@ -78,7 +79,9 @@
     .lib-footer .content-footer{
         display: flex;
         flex-direction: column-reverse;
-        margin-left: 30px;
+    }
+    .lib-footer .container-footer {
+        padding: 0 20px;
     }
     .lib-footer .footer-list-company{
         display: none;

@@ -313,7 +313,7 @@ export const OrderForm = (className) => {
                         <span className="sidebar-toggle__wrap-span">
                             <Cart fill="var(--color-accent)" width={21} height={20} />
                             <span>
-                                {`${showSideBar ? 'Сховати' : 'Показати'} підсумок замовлення`}
+                                {`${showSideBar ? 'Сховати' : 'Показати'} підсумок`}
                             </span>
                             <AccardionArrow
                                 fill="var(--color-accent)"
@@ -343,7 +343,14 @@ export const OrderForm = (className) => {
                                 </div>
                                 <span className="order__item-description">
                                     <div className="order__item-title">{product.name}</div>
-                                    <div className="order__item-size">{product.size}</div>
+                                    <div className="order__item-size">
+                                        {'Розмір: '}
+                                        {product.size}
+                                    </div>
+                                    <div className="order__item-size">
+                                        {'Колір: '}
+                                        {product.color}
+                                    </div>
                                 </span>
                             </div>
                             <div className="order__item-price-disc">

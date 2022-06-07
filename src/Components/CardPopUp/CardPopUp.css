@@ -42,6 +42,16 @@
     color: var(--color-accent);
 }
 
+.card-pop-up__price .sale{
+    color: var(--color-accent-light)!important;
+    font-size: var(--fz-tiny);
+    text-decoration: line-through;
+    line-height: 1.4;
+    margin-right: 0;
+    position: relative;
+    white-space: nowrap;
+}
+
 
 .card-pop-up__price {
     color: var(--price-popup-color);

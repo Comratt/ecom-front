@@ -9,6 +9,10 @@
     margin-right: 0;
     margin-left: 0;
 }
+.lib-product_related_slider .lib-card .lib-card__info {
+    padding-bottom: 0;
+    height: 60px;
+}
 .lib-product_related_title{
     font-size: var(--fz-normal-bigger);
     margin-bottom: 10px;

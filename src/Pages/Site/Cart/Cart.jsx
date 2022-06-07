@@ -99,12 +99,15 @@ export const Cart = () => {
                                                     <Link to={`/products/${product.id}`}><img src={product.image} alt="product-photo" /></Link>
                                                     <ul className="cart-product-description-list">
                                                         <Link to={`/products/${product.id}`}>
-                                                            <li>
+                                                            <li className="card-item-title">
                                                                 {product.name}
                                                             </li>
                                                         </Link>
                                                         <li>
                                                             {product.size}
+                                                        </li>
+                                                        <li>
+                                                            {product.color}
                                                         </li>
                                                         {product.discount
                                                             ? (

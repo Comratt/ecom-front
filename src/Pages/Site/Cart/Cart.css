@@ -92,6 +92,14 @@
     list-style: none;
     padding: 0px 0px 0px 10px;
 }
+.cart-product-description-list {
+    color: var(--color-accent);
+    font-size: var(--fz-small);
+    font-family: var(--accent-ff);
+}
+.cart-product-description-list .card-item-title {
+    font-size: var(--fz-mid);
+}
 .cart-product-order-submit {
     margin-right: 30px;
     width: 30%;
@@ -230,5 +238,11 @@
     }
     .cart-page ul{
         margin: 0;
+    }
+    .cart-page li {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
     }
 }

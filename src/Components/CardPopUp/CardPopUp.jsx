@@ -5,6 +5,7 @@ import SuccessIcon from './icons/SuccessIcon';
 import ErrorIcon from './icons/ErrorIcon';
 
 import './CardPopUp.css';
+import { getFormattedPrice } from '../../Constants';
 
 const alertStyle = {
     padding: '20px',
@@ -19,7 +20,7 @@ const alertStyle = {
 
 export const CardPopUp = ({
     message: {
-        size, price, image, name,
+        size, price, image, name, discount, purePrice,
     },
     style,
     options: { type } = { type: '' },
@@ -54,7 +55,12 @@ export const CardPopUp = ({
                         <span>{size}</span>
                     </div>
                     <div className="card-pop-up__price">
-                        <span>{price}</span>
+                        {discount > 0 ? (
+                            <>
+                                <div className="price">{getFormattedPrice(purePrice - discount)}</div>
+                                <div className="sale">{price}</div>
+                            </>
+                        ) : <div className="price">{price}</div>}
                     </div>
                 </div>
             </div>
@@ -66,7 +72,9 @@ CardPopUp.propTypes = {
     message: PropTypes.shape({
         size: PropTypes.string,
         price: PropTypes.string,
+        purePrice: PropTypes.string,
         image: PropTypes.string,
         name: PropTypes.string,
+        discount: PropTypes.number,
     }).isRequired,
 };

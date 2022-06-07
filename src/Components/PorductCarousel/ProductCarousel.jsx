@@ -38,6 +38,7 @@ const CustomArrowLeft = (props) => {
 };
 const ProductCarousel = ({
     className,
+    hideColors,
     title,
     count = 4,
     id = null,
@@ -96,6 +97,7 @@ const ProductCarousel = ({
                                 price={product.price}
                                 title={product.name}
                                 colors={product.colors}
+                                hideColors={hideColors}
                             />
                         ))}
                     </Slider>

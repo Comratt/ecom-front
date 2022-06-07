@@ -68,18 +68,31 @@
 .lib-card .lib-card__info-price {
     line-height: var(--line-h-normal);
     color: var(--color-accent);
-    font-size: var(--fz-small);
+    font-size: var(--fz-mid);
     font-family: var(--accent-ff);
     margin-right: 10px;
+    white-space: nowrap;
 }
 .lib-card .sale{
-    text-decoration: line-through;
     color: var(--color-accent-light)!important;
-    font-size: var(--fz-tinier);
+    font-size: var(--fz-tiny);
     line-height: 1.4;
+    margin-right: 0;
+    position: relative;
+    white-space: nowrap;
+}
+.lib-card .sale::before{
+    border-top: 1px solid var(--color-accent-light);
+    position: absolute;
+    content: "";
+    right: 0;
+    top: 40%;
+    left: 0;
 }
 .lib-card__info-price-content {
     margin-top: 4px;
+    display: flex;
+    align-items: center;
 }
 .lib-card .lib-card__info .lib-swatches .lib-swatches__item button {
     height: 14px;

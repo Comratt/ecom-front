@@ -1,4 +1,9 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, {
+    useState,
+    useEffect,
+    useMemo,
+    useRef,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import { useAlert } from 'react-alert';
@@ -25,6 +30,7 @@ import { useDetectedMobileDevice } from 'hooks/useDetectMobileDevice';
 import './ProductInfo.css';
 
 export const ProductDetails = () => {
+    const sizesRef = useRef();
     const alert = useAlert();
     const dispatch = useDispatch();
     const [activeColor, setActiveColor] = useState({});
@@ -53,7 +59,17 @@ export const ProductDetails = () => {
         )
     );
 
+    const isSizeDisabled = (sizeId) => (
+        !filteredColorSizes
+            ?.map(({ sizeValId }) => sizeValId)
+            .includes(sizeId)
+        || !filteredColorSizes
+            ?.find(({ sizeValId }) => sizeValId === sizeId)
+            ?.quantity > 0
+    );
+
     const handleSizeChange = (id) => () => {
+        if (isSizeDisabled(id)) return;
         setActiveSize(result?.sizes.find(({ id: sizeId }) => sizeId === id));
         setSizeError(false);
     };
@@ -66,7 +82,11 @@ export const ProductDetails = () => {
 
     const handleAddToCart = () => {
         setSizeError(false);
-        if (!activeSize?.id) return setSizeError(true);
+        if (!activeSize?.id) {
+            sizesRef?.current?.scrollIntoView({ block: 'center' });
+
+            return setSizeError(true);
+        }
 
         dispatch(addToCart({
             id: result?.id,
@@ -85,8 +105,10 @@ export const ProductDetails = () => {
         return alert.show({
             name: result?.name,
             price: result?.price,
+            purePrice: result?.purePrice,
             size: activeSize?.name,
             image: result?.image,
+            discount,
         });
     };
 
@@ -104,10 +126,8 @@ export const ProductDetails = () => {
     }, [productId]);
 
     useEffect(() => {
-        if (!loading) {
-            window.scrollTo(0, 0);
-        }
-    }, [loading]);
+        window.scrollTo(0, 0);
+    }, []);
 
     useEffect(() => {
         if (result?.colors && result?.colors?.length && !Object.keys(activeColor).length) {
@@ -145,6 +165,10 @@ export const ProductDetails = () => {
                             <h1 className="lib-product_info_product-title">
                                 {result.name}
                             </h1>
+                            <h3 className="lib-product_info_product-subtitle">
+                                {'Артикул: '}
+                                {result.model}
+                            </h3>
                             {discount
                                 ? (
                                     <div>
@@ -183,21 +207,14 @@ export const ProductDetails = () => {
                                     </b>
                                 )}
                             </p>
-                            <ul className="lib-product_info_size_list">
+                            <ul ref={sizesRef} className="lib-product_info_size_list">
                                 {result.sizes.map((size) => (
                                     <li key={size.option_value_id}>
                                         <button
                                             type="button"
                                             onClick={handleSizeChange(size.id)}
                                             className={itemClassNames(size.id)}
-                                            disabled={(
-                                                !filteredColorSizes
-                                                    ?.map(({ sizeValId }) => sizeValId)
-                                                    .includes(size.id)
-                                                || !filteredColorSizes
-                                                    ?.find(({ sizeValId }) => sizeValId === size.id)
-                                                    ?.quantity > 0
-                                            )}
+                                            disabled={isSizeDisabled(size.id)}
                                         >
                                             {size.name_value}
                                         </button>
@@ -241,6 +258,7 @@ export const ProductDetails = () => {
                     id={relatedIds}
                     title="Related Products"
                     data={result.images}
+                    hideColors
                 />
             </div>
             <div>
@@ -248,6 +266,7 @@ export const ProductDetails = () => {
                     id={historyViewed}
                     title="Viewed Products"
                     data={result.images}
+                    hideColors
                 />
             </div>
         </>

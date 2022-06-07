@@ -42,6 +42,7 @@ export const Home = () => {
                         key={category?.id}
                         category={[category?.id]}
                         title={category?.name}
+                        hideColors
                     />
                 ))}
             </View>

@@ -188,10 +188,6 @@
         display: none;
         user-select: none;
     }
-    .header-icon-search {
-        display: none;
-        user-select: none;
-    }
 }
 
 @media (max-width: 1094px) {

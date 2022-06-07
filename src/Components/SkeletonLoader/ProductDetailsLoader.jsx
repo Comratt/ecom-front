@@ -11,9 +11,9 @@ const ProductDetailsLoader = (props) => {
         return (
             <ContentLoader viewBox={`0 0 ${maxWidth} 90vh`} height="90vh" width={maxWidth} {...props}>
                 <rect x="0" y="0" rx="0" ry="0" width={maxWidth} height="70vh" />
-                <rect x="30%" y="calc(70vh + 50px)" rx="2" ry="2" width="300" height="25" />
-                <rect x="34%" y="calc(70vh + 90px)" rx="2" ry="2" width="250" height="20" />
-                <rect x="38%" y="calc(70vh + 130px)" rx="2" ry="2" width="200" height="20" />
+                <rect x="15%" y="calc(70vh + 50px)" rx="2" ry="2" width="320" height="25" />
+                <rect x="19%" y="calc(70vh + 90px)" rx="2" ry="2" width="270" height="20" />
+                <rect x="23%" y="calc(70vh + 130px)" rx="2" ry="2" width="220" height="20" />
             </ContentLoader>
         );
     }

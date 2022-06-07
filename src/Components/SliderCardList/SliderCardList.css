@@ -2,6 +2,11 @@
     max-height: 680px;
 }
 
+.lib-slider-card .lib-card .lib-card__info.hidden-colors {
+    padding-bottom: 0;
+    height: 60px;
+}
+
 /*.slick-list .slick-track {
     display: flex;
 }*/
@@ -80,5 +85,11 @@
     }
     .lib-slider-card .arrow-left{
         top: 30%;
+    }
+    .lib-slider-card .slider-card-list-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 5px 20px;
     }
 }

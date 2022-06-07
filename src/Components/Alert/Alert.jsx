@@ -9,12 +9,12 @@ const TYPE_SUCCESS = 'success';
 
 const getAlertType = (type) => {
     switch (type) {
-        case TYPE_SUCCESS:
-            return 'alert-success';
-        case TYPE_WARNING:
-            return 'alert-danger';
-        default:
-            return 'alert-secondary';
+    case TYPE_SUCCESS:
+        return 'alert-success';
+    case TYPE_WARNING:
+        return 'alert-danger';
+    default:
+        return 'alert-secondary';
     }
 };
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import AsyncSelect from 'react-select/async';
 import { components } from 'react-select';
@@ -53,7 +53,7 @@ const styles = {
 
 const adaptFoundedProducts = (data = []) => data?.map((product) => ({
     id: product.product_id,
-    name: product.model + product.name,
+    name: product.name,
     price: getFormattedPrice(product.price),
     image: getImage(product.image),
 }));
@@ -66,6 +66,13 @@ const DropdownIndicator = () => (
             height={24}
         />
     </label>
+);
+
+const Control = ({ children, ...props }) => (
+    <components.Control {...props}>
+        <DropdownIndicator />
+        {children}
+    </components.Control>
 );
 
 const SelectOptionContainer = ({ children, ...props }) => {
@@ -120,7 +127,6 @@ const SelectOption = (props) => {
 };
 
 const HeaderInput = () => {
-    const [foundProducts, setFoundProducts] = useState([]);
     const {
         handleCloseNavigationModal,
         changeTopNavState,
@@ -137,6 +143,8 @@ const HeaderInput = () => {
     return (
         <form action="#" className="header-input-form">
             <AsyncSelect
+                value={null}
+                escapeClearsValue
                 menuPortalTarget={document.body}
                 menuShouldBlockScroll
                 cacheOptions
@@ -147,9 +155,10 @@ const HeaderInput = () => {
                 noOptionsMessage={() => 'Збігів не найдено.'}
                 loadingMessage={() => 'Завантажуєм товари...'}
                 components={{
-                    DropdownIndicator,
+                    DropdownIndicator: () => null,
                     Option: SelectOption,
                     Menu: SelectOptionContainer,
+                    Control,
                 }}
                 onChange={handleCloseNavigationModal}
                 onFocus={() => changeTopNavState({ transparent: false })}

@@ -22,6 +22,7 @@ export const Card = ({
     cardId,
     discount,
     hideInfo,
+    hideColors,
 }) => {
     const componentClassNames = classNames('lib-card', className);
     let priceClassNames = classNames('lib-card__info-price');
@@ -42,7 +43,7 @@ export const Card = ({
                 />
             </NavLink>
             {!hideInfo && (
-                <div className="lib-card__info">
+                <div className={classNames('lib-card__info', { 'hidden-colors': hideColors })}>
                     <NavLink to={detailsPath} className="lib-card__info-content">
                         <Title
                             type={4}
@@ -53,13 +54,13 @@ export const Card = ({
                     </NavLink>
                     <div className="lib-card__info-price-content">
                         {discount > 0 ? (
-                            <div>
-                                <div className={priceClassNames}>{price}</div>
+                            <>
                                 <div className="lib-card__info-price">{getFormattedPrice(purePrice - discount)}</div>
-                            </div>
+                                <div className={priceClassNames}>{price}</div>
+                            </>
                         ) : <div className={priceClassNames}>{price}</div>}
                     </div>
-                    <Swatches data={colors} />
+                    {!hideColors && <Swatches data={colors} />}
                 </div>
             )}
         </div>
@@ -76,6 +77,7 @@ Card.propTypes = {
     ]),
     currency: PropTypes.string,
     hideInfo: PropTypes.bool,
+    hideColors: PropTypes.bool,
 };
 
 Card.defaultProps = {
@@ -86,4 +88,5 @@ Card.defaultProps = {
     title: '',
     price: 0,
     hideInfo: false,
+    hideColors: false,
 };
