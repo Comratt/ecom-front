@@ -125,6 +125,8 @@ export const BottomModal = ({
     resetFilters,
     isFiltered,
     filtersDiff,
+    subcategories,
+    collectionId,
 }) => {
     const options = [
         {
@@ -213,6 +215,20 @@ export const BottomModal = ({
                             ],
                         },
                     ],
+                },
+                {
+                    id: 11,
+                    name: 'Підкатегорія',
+                    type: 'category',
+                    filterType: 'category',
+                    children: [{
+                        content: subcategories?.map((subcategory) => ({
+                            id: subcategory.category_id,
+                            optionId: subcategory.category_id,
+                            name: subcategory.category_name,
+                            optName: 'category',
+                        })),
+                    }],
                 },
                 {
                     id: 9,
@@ -397,11 +413,23 @@ export const BottomModal = ({
 
             handleFilterBy('color', modColors);
         }
+        if (o.optName === 'category') {
+            const filterCat = filters?.category?.filter((cat) => cat !== collectionId) || [];
+            const modCat = filterCat?.includes(o.optionId)
+                ? filterCat?.filter((s) => s !== o.optionId)
+                : [...filterCat, o.optionId];
+
+            if (!modCat?.length) {
+                modCat.push(collectionId);
+            }
+
+            handleFilterBy('category', modCat);
+        }
         if (o.optionId) {
             setOpt((prevOptions) => ([{
                 ...prevOptions,
                 content: prevOptions[0].content?.map((option) => {
-                    if (['color', 'sort', 'stock'].includes(option.type)) {
+                    if (['color', 'sort', 'stock', 'category'].includes(option.type)) {
                         return ({
                             ...option,
                             children: [{
@@ -415,7 +443,7 @@ export const BottomModal = ({
 
                                     return ({
                                         ...childOption,
-                                        icon: ['color', 'size'].includes(option.type) ? childOption.icon : null,
+                                        icon: ['color', 'size', 'category'].includes(option.type) ? childOption.icon : null,
                                     });
                                 }),
                             }],
