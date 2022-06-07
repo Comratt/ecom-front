@@ -188,7 +188,7 @@ export const Cart = () => {
                                 </div>
                             </div>
                             <div className="info">
-                                Без урахування податків та доставки
+                                Без урахування доставки
                             </div>
                             <div className="orders">
                                 <label htmlFor="orders">Примітки до замовлення</label>
