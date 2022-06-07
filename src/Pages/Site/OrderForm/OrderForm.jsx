@@ -379,7 +379,7 @@ export const OrderForm = (className) => {
                     </div>
                     <div className="order__summary">
                         <div className="order__subtotal">
-                            <span className="order__aside-text">До оплати</span>
+                            <span className="order__aside-text">Всього</span>
                             <span className="order__subtotal-amount">{subtotalPrice(products)}</span>
                         </div>
                         <div className="order__shipping">
@@ -388,7 +388,7 @@ export const OrderForm = (className) => {
                         </div>
                     </div>
                     <div className="order__total">
-                        <span>Всього</span>
+                        <span>До оплати</span>
                         <span className="order__total-amount">{subtotalPrice(products)}</span>
                     </div>
                 </div>

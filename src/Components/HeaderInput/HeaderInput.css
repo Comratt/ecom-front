@@ -16,7 +16,9 @@
     margin: 5px;
 }
 .svg-icon.icon-search{
-    display: none;
+    display: block;
+    margin-right: 10px;
+    color: var(--color-accent);
 }
 .css-6j8wv5-Input{
 margin-left: 20px;
