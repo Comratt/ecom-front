@@ -7,6 +7,7 @@ import { CardList } from 'Components/CardList';
 import { CatalogLoader } from 'Components/SkeletonLoader';
 
 import './Wishlist.css';
+import Button from 'Components/Button/Button';
 
 const Wishlist = () => {
     const {
@@ -26,13 +27,11 @@ const Wishlist = () => {
                     Список вподобаних товарів
                 </Title>
                 <Title className="wishlist-page__title" type={2}>У Вас поки що немає улюблених товарів :(</Title>
-                <button
-                    type="button"
-                    className="btn-continue-empty"
-                    onClick={() => history.goBack()}
-                >
-                    Обрати товари
-                </button>
+                <div className="wishlist-page-btn">
+                    <Button variant="primary" onClick={() => history.goBack()}>
+                        Обрати товари
+                    </Button>
+                </div>
             </View>
         );
     }

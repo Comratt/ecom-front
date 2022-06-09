@@ -1,0 +1,64 @@
+.lib-custom-button{
+    width: 100%;
+    border-radius: 8px;
+    height: 50px;
+    background-color: #c4a996;
+    color: white;
+    border: none;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lib-custom-button_button-loader{
+    margin-right: 10px;
+    color: white;
+    margin-top: 3px;
+}
+
+.lib-custom-button:hover {
+    background-color: #887569;
+}
+
+.lib-custom-button.primary {
+    background: var(--color-lightest);
+    border: 1px solid var(--color-accent-light);
+    color: var(--color-accent-light);
+}
+.lib-custom-button.primary:hover {
+    background-color: #887569;
+    color: white;
+}
+.lib-custom-button.dark{
+    background-color: #a89583;
+}
+.lib-custom-button.logout{
+    background-color: inherit;
+    width: 60px;
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    color: var(--color-accent);
+    position: absolute;
+    right: 20px;
+    top: 35px;
+    font-size: 14px;
+    transition: .2s;
+}
+.lib-custom-button.logout:hover > span:after {
+    content: '';
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    border-width: 0 0 1px;
+    border-style: solid;
+}
+@media all and (max-width: 750px) {
+    .lib-custom-button.logout {
+        top: 0;
+    }
+}

@@ -5,6 +5,7 @@ import { useCart } from 'context/cart/useCart';
 import './Cart.css';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'Components/Link';
+import Button from 'Components/Button/Button';
 import { Title } from '../../../Components/Title';
 import { getFormattedPrice } from '../../../Constants';
 
@@ -200,23 +201,15 @@ export const Cart = () => {
                                     onChange={changeCartNotes}
                                 />
                             </div>
-                            <div>
-                                <button
-                                    type="button"
-                                    onClick={goToCheckoutPage}
-                                    className="cart-product-btn-checkout"
-                                >
+                            <div className="cart-product-order-submit-btn">
+                                <Button variant="dark" onClick={goToCheckoutPage}>
                                     Оформити замовлення
-                                </button>
+                                </Button>
                             </div>
-                            <div>
-                                <button
-                                    type="button"
-                                    className="cart-product-btn-continue"
-                                    onClick={() => history.goBack()}
-                                >
+                            <div className="cart-product-order-submit-btn">
+                                <Button variant="primary" onClick={() => history.goBack()}>
                                     Продовжити покупки :)
-                                </button>
+                                </Button>
                             </div>
                         </div>
                     </div>
@@ -226,13 +219,11 @@ export const Cart = () => {
                     <div className="cart-empty">
                         <Title type={1}>Кошик</Title>
                         <Title type={3}>У Вашому кошику, поки що, порожньо :(</Title>
-                        <button
-                            type="button"
-                            className="btn-continue-empty"
-                            onClick={() => history.goBack()}
-                        >
-                            Продовжити покупки
-                        </button>
+                        <div className="cart-product-order-back">
+                            <Button variant="primary" onClick={() => history.goBack()}>
+                                Продовжити покупки :)
+                            </Button>
+                        </div>
                     </div>
                 </div>
             )}

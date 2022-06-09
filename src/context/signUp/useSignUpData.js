@@ -18,9 +18,7 @@ export const useSignUpData = () => {
         handleSubmit,
         errors,
         watch,
-    } = useForm({
-        mode: 'onChange',
-    });
+    } = useForm();
 
     const onSubmit = (params) => {
         dispatch(signIn(params));
