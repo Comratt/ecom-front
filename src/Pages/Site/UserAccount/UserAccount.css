@@ -10,32 +10,6 @@
     margin: 30px 0;
 }
 
-.lib-user-account .logout-btn {
-    background-color: inherit;
-    border: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 2px;
-    color: var(--color-accent);
-    position: absolute;
-    right: 20px;
-    top: 50px;
-    font-size: 14px;
-    transition: .2s;
-}
-
-.lib-user-account .logout-btn:hover > span:after {
-    content: '';
-    width: 100%;
-    position: absolute;
-    left: 0;
-    bottom: -3px;
-
-    border-width: 0 0 1px;
-    border-style: solid;
-}
 
 @media all and (max-width: 750px) {
     .lib-user-account .logout-btn {

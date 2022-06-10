@@ -17,7 +17,7 @@ import LocalStorageService from 'Services/LocalStorageService';
 import { getFormattedPrice } from 'Constants';
 
 import { Swatches } from 'Components/Swatches';
-import AddCartBtn from 'Components/AddCartBtn/AddCartBtn';
+import Button from 'Components/Button/Button';
 import WishlistHeart from 'Components/WishlistHeart/WishlistHeart';
 import { Accordion, AccordionItem } from 'Components/Accordion';
 import { ScrollSlider } from 'Components/ScrollSlider';
@@ -226,7 +226,11 @@ export const ProductDetails = () => {
                             </span>
                         </div>
                         <div className="cart-container">
-                            <AddCartBtn onClick={handleAddToCart} />
+                            <div className="lib-product_cart_btn">
+                                <Button variant="solid" onClick={handleAddToCart}>
+                                    Додати в кошик
+                                </Button>
+                            </div>
                             <div className="lib-product_info_wishlist">
                                 <WishlistHeart cardId={result.id} />
                                 <span>
@@ -237,7 +241,7 @@ export const ProductDetails = () => {
                         <div className="lib-product_info_product_description_block">
                             <div className="lib-product_info_product_description">
                                 <Accordion defaultIndex="0">
-                                    <AccordionItem label="Description" index="0">
+                                    <AccordionItem label="Детальніше про товар" index="0">
                                         <ReactMarkdown remarkPlugins={[remarkGfm]}>
                                             {result.description}
                                         </ReactMarkdown>

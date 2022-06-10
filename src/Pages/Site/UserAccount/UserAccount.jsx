@@ -8,6 +8,7 @@ import AccountSettings from './AccountSettings/AccountSettings';
 import UserOrders from './UserOrders/UserOrders';
 
 import './UserAccount.css';
+import Button from 'Components/Button/Button';
 
 const UserAccount = () => {
     const {
@@ -52,14 +53,10 @@ const UserAccount = () => {
 
     return (
         <div className={componentClasses}>
-            <button
-                type="button"
-                className="logout-btn"
-                onClick={logout}
-            >
+            <Button variant="logout" onClick={logout}>
                 <Logout width={27} height={27} />
                 <span>Вихід</span>
-            </button>
+            </Button>
             <Tabs tabs={tabs} />
         </div>
     );

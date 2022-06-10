@@ -186,6 +186,12 @@
     font-size: var(--size-mid);
     letter-spacing: 2px;
 }
+.cart-product-order-back{
+    width: 250px;
+}
+.cart-product-order-submit-btn{
+    margin-top: 10px;
+}
 .discount{
     text-decoration: line-through;
     color: var(--color-accent-light);

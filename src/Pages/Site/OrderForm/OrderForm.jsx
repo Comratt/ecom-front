@@ -20,6 +20,7 @@ import { Logo, Cart, AccardionArrow } from 'Icons';
 import { getFormattedPrice, emailRegExp } from 'Constants';
 
 import './OrderForm.css';
+import Button from '../../../Components/Button/Button';
 
 export const OrderForm = (className) => {
     const dispatch = useDispatch();
@@ -168,7 +169,7 @@ export const OrderForm = (className) => {
         }
     }, [selectedCity]);
 
-    const height = 244 + (products.length * 100);
+    const height = 300 + (products.length * 100);
 
     return (
         <div className={componentClasses}>
@@ -284,11 +285,9 @@ export const OrderForm = (className) => {
                                 {errors?.phone && <p className="field-message__error">Введіть коректний номер</p>}
                             </div>
                             <div className="order__order-button">
-                                <LoginBtn
-                                    className="order__btn-submit"
-                                    text="Оформити замовлення"
-                                    loading={formLoading}
-                                />
+                                <Button variant="solid" loading={formLoading}>
+                                    Оформити замовлення
+                                </Button>
                                 <div className="order__btn-return">
                                     <Link className="order__btn-return-link" to="/cart">
                                         Назад у кошик

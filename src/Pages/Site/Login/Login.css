@@ -20,7 +20,12 @@
     flex-direction: column;
     padding: 15px;
 }
-.lib-login .lib-link.active{
+
+.lib-login_sign_up-btn{
+    margin-top: 10px;
+    width: 100%;
+}
+.lib-link.active{
     width: 100%;
 }
 .lib-login .lib-guest-btn{
