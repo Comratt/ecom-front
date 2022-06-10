@@ -242,11 +242,6 @@ export const ProductDetails = () => {
                                             {result.description}
                                         </ReactMarkdown>
                                     </AccordionItem>
-                                    <AccordionItem label="Description" index="2">
-                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                                            {result.description}
-                                        </ReactMarkdown>
-                                    </AccordionItem>
                                 </Accordion>
                             </div>
                         </div>
@@ -256,7 +251,7 @@ export const ProductDetails = () => {
             <div>
                 <ProductCarousel
                     id={relatedIds}
-                    title="Related Products"
+                    title="Можуть вам сподобатись"
                     data={result.images}
                     hideColors
                 />
@@ -264,7 +259,7 @@ export const ProductDetails = () => {
             <div>
                 <ProductCarousel
                     id={historyViewed}
-                    title="Viewed Products"
+                    title="Переглянуті товари"
                     data={result.images}
                     hideColors
                 />

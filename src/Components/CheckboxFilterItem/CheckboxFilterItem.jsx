@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import { AccardionArrow, Close } from '../../Icons';
 
 export const PriceRange = ({
-    min, max, onFinalChange, current,
+    min, max, onFinalChange, current, maxWidth = 210,
 }) => {
     const STEP = 25;
     let MIN = parseFloat(min) || 0;
@@ -22,8 +22,11 @@ export const PriceRange = ({
 
     useEffect(() => {
         if (current?.length) {
-            if (current[0] < MIN || current[1] > MAX) {
-                setValues([MIN, MAX]);
+            if (current[0] === MIN && current[1] === MAX) {
+                onFinalChange('price', []);
+            }
+            if ((current[0] >= MIN || current[0] < MAX) && (current[1] >= MIN || current[1] <= MAX)) {
+                setValues(current);
             }
         } else {
             setValues([MIN, MAX]);
@@ -34,7 +37,7 @@ export const PriceRange = ({
         <div
             style={{
                 position: 'relative',
-                maxWidth: '210px',
+                maxWidth: `${maxWidth}px`,
                 margin: '0 auto',
                 marginTop: 20,
             }}
@@ -61,7 +64,7 @@ export const PriceRange = ({
                             display: 'flex',
                             justifyContent: 'center',
                             width: '100%',
-                            maxWidth: '210px',
+                            maxWidth: `${maxWidth}px`,
                             padding: '0 10px',
                         }}
                     >
@@ -90,6 +93,7 @@ export const PriceRange = ({
                             borderRadius: '50%',
                             borderColor: 'var(--color-accent)',
                             background: 'var(--color-accent-light)',
+                            color: 'var(--color-accent)',
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
@@ -115,6 +119,7 @@ export const PriceRange = ({
                     style={{
                         borderRadius: '4px',
                         border: '1px solid var(--color-accent)',
+                        color: 'var(--color-accent)',
                         padding: '7px',
                         position: 'absolute',
                         fontSize: '12px',
@@ -129,6 +134,7 @@ export const PriceRange = ({
                     style={{
                         borderRadius: '4px',
                         border: '1px solid var(--color-accent)',
+                        color: 'var(--color-accent)',
                         padding: '7px',
                         position: 'absolute',
                         right: '0',
@@ -173,14 +179,14 @@ const CheckboxFilterItem = ({
             name: 'Наявність',
             id: 4,
             text: [
-                { value: 'available', name: 'available', text: 'In stock' },
+                { value: 'available', name: 'available', text: 'В наявності' },
             ],
         },
         {
             name: 'Сортування',
             id: 5,
             text: [
-                { value: 'relevance', name: 'sortBy', text: 'Relevance' },
+                { value: 'relevance', name: 'sortBy', text: 'Найпопулярніші' },
                 { value: 'dateAsc', name: 'sortBy', text: 'Дата | Від нового до старого' },
                 { value: 'dateDesc', name: 'sortBy', text: 'Дата | Від старого до нового' },
                 { value: 'priceAsc', name: 'sortBy', text: 'Ціна | Від низького до високого' },
@@ -242,12 +248,12 @@ const CheckboxFilterItem = ({
             handleAvailable();
         }
         if (filterId === 1) {
-            if (filters?.color?.includes(target.value)) {
-                handleFilterBy('color', filters?.color?.filter((colorId) => colorId !== target.value));
+            if (filters?.color?.includes(+target.value)) {
+                handleFilterBy('color', filters?.color?.filter((colorId) => colorId != target.value));
             } else {
                 const colores = filters?.color || [];
 
-                handleFilterBy('color', [...colores, target.value]);
+                handleFilterBy('color', [...colores, +target.value]);
             }
         }
         if (filterId === 5) {
@@ -264,12 +270,12 @@ const CheckboxFilterItem = ({
         } if (filterId === 4) {
             return filters.available;
         } if (filterId === 1) {
-            return filters?.color?.includes(value?.toString());
+            return filters?.color?.includes(+value);
         }
     };
 
     const checkIsFiltered = ({ name }) => {
-        if (filters[name]?.length) {
+        if (filters[name]?.length || filters[name] === true) {
             return ' filtered';
         }
 
@@ -304,7 +310,7 @@ const CheckboxFilterItem = ({
                                     <li className="filters__item__checkbox_list" key={data.value}>
                                         <label className="checkbox">
                                             <input
-                                                onClick={handleInputChange(list.id)}
+                                                onClick={handleInputChange(+list.id)}
                                                 name={data.name}
                                                 value={data.value}
                                                 checked={isChecked(list.id, data.value)}

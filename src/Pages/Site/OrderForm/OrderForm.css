@@ -185,7 +185,7 @@
 
 .order__item-image img {
     width: var(--size-sixty);
-    height: var(--size-sixty);
+    height: 70px;
     border-radius: 10px;
     max-width: none;
 }
@@ -469,7 +469,7 @@
     }
     .order__sidebar-toggle__wrap .order__total-amount {
         font-size: 18px;
-        color: var(--color-dark-light);
+        color: var(--color-accent);
     }
     .order__sidebar-content {
         border: none;

@@ -12,7 +12,6 @@ import history from 'Services/history';
 import { AdminRoutes, PrivateAdminRoutes } from './AdminRoutes';
 import { Layout } from '../Components/Layout';
 import { ThreeDots } from '../Components/SkeletonLoader';
-import { ScrollToTop } from '../Components/ScrollToTop';
 
 const NotFoundPage = () => <Redirect to="/" />;
 const Header = lazy(() => import('Components/Header/Header'));
@@ -33,33 +32,31 @@ const AdminLogin = lazy(() => import('Pages/Admin/Login'));
 const RouterComponent = () => (
     <Router history={history}>
         <Suspense fallback={<ThreeDots />}>
-            <ScrollToTop>
-                <Switch>
-                    <Route exact path="/admin/login" component={() => <AdminLogin />} />
-                    <PrivateAdminRoutes path="/admin">
-                        <AdminRoutes />
-                    </PrivateAdminRoutes>
-                    <Layout>
-                        <Route exact path="/" component={SiteHome} />
-                        <Route path="/products/:id" component={SiteProductDetails} />
-                        <Route path="/cart" component={() => <Cart />} />
-                        <Route path="/order" component={() => <OrderForm />} />
-                        <Route path="/sign" component={() => <SignUp />} />
-                        <Route path="/login" component={() => <Login />} />
-                        <Route path="/searchResult" component={() => <SearchResults />} />
-                        <Route path="/checkboxfilter" component={() => <CheckboxFilter />} />
-                        <Route path="/account" component={() => <UserAccount />} />
-                        <Route path="/collection/:id?" component={() => <CollectionList />} />
-                        <Route path="/wishlist" component={() => <WishList />} />
-                    </Layout>
+            <Switch>
+                <Route exact path="/admin/login" component={() => <AdminLogin />} />
+                <PrivateAdminRoutes path="/admin">
+                    <AdminRoutes />
+                </PrivateAdminRoutes>
+                <Layout>
+                    <Route exact path="/" component={SiteHome} />
+                    <Route path="/products/:id" component={SiteProductDetails} />
+                    <Route path="/collection/:id?" component={() => <CollectionList />} />
+                    <Route path="/cart" component={() => <Cart />} />
+                    <Route path="/order" component={() => <OrderForm />} />
+                    <Route path="/sign" component={() => <SignUp />} />
+                    <Route path="/login" component={() => <Login />} />
+                    <Route path="/searchResult" component={() => <SearchResults />} />
+                    <Route path="/checkboxfilter" component={() => <CheckboxFilter />} />
+                    <Route path="/account" component={() => <UserAccount />} />
+                    <Route path="/wishlist" component={() => <WishList />} />
+                </Layout>
 
-                    <Route exact path="/orderForm" component={() => <OrderForm />} />
-                    <Route exact path="/" component={() => <Header />} />
-                    <Route exact path="/cardPopUp" component={() => <CardPopUp />} />
+                <Route exact path="/orderForm" component={() => <OrderForm />} />
+                <Route exact path="/" component={() => <Header />} />
+                <Route exact path="/cardPopUp" component={() => <CardPopUp />} />
 
-                    <Route path="*" component={NotFoundPage} />
-                </Switch>
-            </ScrollToTop>
+                <Route path="*" component={NotFoundPage} />
+            </Switch>
         </Suspense>
     </Router>
 );

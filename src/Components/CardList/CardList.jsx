@@ -20,6 +20,7 @@ export const CardList = ({
     currentPage,
     handlePageCount,
 }) => {
+    const scrollYRef = useRef(0);
     const containerRef = useRef();
     const [isBottom, setIsBottom] = useState(false);
     const componentClasses = classNames('card-list', className);
@@ -52,6 +53,32 @@ export const CardList = ({
             setIsBottom(offsetY < 1000);
         }
     }, [], containerRef, false, 250);
+
+    useEffect(() => {
+        const scrollYPosition = +localStorage.getItem('scrollYPosition');
+
+        if (!scrollYPosition) {
+            window.scrollTo(0, 0);
+        }
+
+        if (scrollYPosition && !loading) {
+            window.scrollTo(0, scrollYPosition);
+            localStorage.setItem('scrollYPosition', '0');
+        }
+    }, [loading]);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            scrollYRef.current = window.scrollY;
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            localStorage.setItem('scrollYPosition', scrollYRef.current);
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     if (loading) {
         return (

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 
 import { useCollectionLayout } from './useCollectionLayout';
 import { useCollectionData } from './useCollectionData';
@@ -22,10 +22,10 @@ export const useCollection = () => {
             let filteredFilters = prevFilters?.category;
 
             if (collectionId) {
-                filteredFilters = prevFilters?.category?.filter((cat) => cat !== collectionId);
+                filteredFilters = prevFilters?.category?.filter((cat) => cat != collectionId);
             }
 
-            if (filteredFilters.includes(id)) {
+            if (filteredFilters.includes(+id)) {
                 if (collectionId && filteredFilters?.length === 1) {
                     return ({
                         ...prevFilters,

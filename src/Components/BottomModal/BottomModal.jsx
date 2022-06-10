@@ -143,7 +143,7 @@ export const BottomModal = ({
                                     id: 2,
                                     optionId: 2,
                                     value: 'relevance',
-                                    name: 'Актуальні',
+                                    name: 'Найпопулярніші',
                                     optName: 'sortBy',
                                 },
                                 {
@@ -182,6 +182,7 @@ export const BottomModal = ({
                     id: 7,
                     name: 'Колір',
                     type: 'color',
+                    filterType: 'color',
                     children: [
                         {
                             content: colors?.map((color) => ({
@@ -194,6 +195,7 @@ export const BottomModal = ({
                                 ),
                                 optionId: color.id,
                                 optName: 'color',
+                                icon: !filters?.color?.includes(color.id) ? null : <Check />,
                             })),
                         },
                     ],
@@ -223,18 +225,21 @@ export const BottomModal = ({
                     filterType: 'category',
                     children: [{
                         content: subcategories?.map((subcategory) => ({
-                            id: subcategory.category_id,
-                            optionId: subcategory.category_id,
+                            id: +subcategory.category_id,
+                            optionId: +subcategory.category_id,
                             name: subcategory.category_name,
                             optName: 'category',
+                            icon: !filters?.category?.includes(+subcategory.category_id) ? null : <Check />,
                         })),
                     }],
                 },
                 {
                     id: 9,
                     name: 'Ціна від і до',
+                    filterType: 'price',
                     children: [{
                         element: <PriceRange
+                            maxWidth={280}
                             current={filters?.price}
                             min={minMaxPrice[0]}
                             max={minMaxPrice[1]}
@@ -258,10 +263,7 @@ export const BottomModal = ({
                 content: prevOptions[0].content?.map((option) => {
                     if (option.id === 7) {
                         return ({
-                            id: 7,
-                            name: 'Колір',
-                            type: 'color',
-                            filterType: 'color',
+                            ...option,
                             children: [{
                                 content: colors?.map((color) => ({
                                     id: color.id,
@@ -273,7 +275,12 @@ export const BottomModal = ({
                                     ),
                                     optionId: color.id,
                                     optName: 'color',
-                                    icon: !filters?.color?.includes(color.id) ? null : <Check />,
+                                    icon: (
+                                        !filters
+                                            ?.color
+                                            ?.map((v) => +v)
+                                            ?.includes(color.id) ? null : <Check />
+                                    ),
                                 })),
                             }],
                         });
@@ -294,8 +301,8 @@ export const BottomModal = ({
                             ...option,
                             children: [{
                                 content: subcategories?.map((subcategory) => ({
-                                    id: subcategory.category_id,
-                                    optionId: subcategory.category_id,
+                                    id: +subcategory.category_id,
+                                    optionId: +subcategory.category_id,
                                     name: subcategory.category_name,
                                     optName: 'category',
                                 })),
@@ -317,7 +324,18 @@ export const BottomModal = ({
                         children: [{
                             content: option.children[0].content.map((childOption) => ({
                                 ...childOption,
-                                icon: filters?.sortBy !== childOption.value ? null : <Check />,
+                                icon: filters?.sortBy != childOption.value ? null : <Check />,
+                            })),
+                        }],
+                    });
+                }
+                if (option.id === 11) {
+                    return ({
+                        ...option,
+                        children: [{
+                            content: option.children[0].content.map((childOption) => ({
+                                ...childOption,
+                                icon: !filters?.category?.includes(+childOption.optionId) ? null : <Check />,
                             })),
                         }],
                     });
@@ -345,11 +363,10 @@ export const BottomModal = ({
                 content: prevOptions[0].content?.map((option) => {
                     if (option.id === 9) {
                         return ({
-                            id: 9,
-                            name: 'Ціна від і до',
-                            filterType: 'price',
+                            ...option,
                             children: [{
                                 element: <PriceRange
+                                    maxWidth={280}
                                     current={filters?.price}
                                     min={minMaxPrice[0]}
                                     max={minMaxPrice[1]}
@@ -371,11 +388,10 @@ export const BottomModal = ({
                 content: prevOptions[0].content?.map((option) => {
                     if (option.id === 9) {
                         return ({
-                            id: 9,
-                            name: 'Ціна від і до',
-                            filterType: 'price',
+                            ...option,
                             children: [{
                                 element: <PriceRange
+                                    maxWidth={280}
                                     current={filters?.price}
                                     min={minMaxPrice[0]}
                                     max={minMaxPrice[1]}
@@ -431,17 +447,17 @@ export const BottomModal = ({
         }
         if (o.optName === 'color') {
             const filterColors = filters?.color || [];
-            const modColors = filterColors?.includes(o.optionId)
-                ? filterColors?.filter((s) => s !== o.optionId)
-                : [...filterColors, o.optionId];
+            const modColors = filterColors?.includes(+o.optionId)
+                ? filterColors?.filter((s) => s != o.optionId)
+                : [...filterColors, +o.optionId];
 
             handleFilterBy('color', modColors);
         }
         if (o.optName === 'category') {
-            const filterCat = filters?.category?.filter((cat) => cat !== collectionId) || [];
-            const modCat = filterCat?.includes(o.optionId)
-                ? filterCat?.filter((s) => s !== o.optionId)
-                : [...filterCat, o.optionId];
+            const filterCat = filters?.category?.filter((cat) => cat != collectionId) || [];
+            const modCat = filterCat?.includes(+o.optionId)
+                ? filterCat?.filter((s) => s != o.optionId)
+                : [...filterCat, +o.optionId];
 
             if (!modCat?.length) {
                 modCat.push(collectionId);
@@ -458,7 +474,7 @@ export const BottomModal = ({
                             ...option,
                             children: [{
                                 content: option.children[0].content.map((childOption) => {
-                                    if (childOption.optionId === o.optionId) {
+                                    if (childOption.optionId == o.optionId) {
                                         return ({
                                             ...childOption,
                                             icon: childOption?.icon ? null : <Check />,

@@ -1,7 +1,8 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useAsync } from 'react-async-hook';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation, useHistory } from 'react-router-dom';
 import isEqual from 'lodash/isEqual';
+import qs from 'query-string';
 
 import { adaptProducts } from 'context/adapters';
 import { getObjectDiff, sortOrder } from 'Helpers';
@@ -22,16 +23,19 @@ const adaptCategories = (data = []) => {
 
 export const useCollectionData = () => {
     const { id } = useParams();
+    const history = useHistory();
+    const { search, pathname } = useLocation();
+    const urlFilters = qs.parse(search, { arrayFormat: 'bracket', parseBooleans: true, parseNumbers: true });
     const defaultFilters = {
         page: 1,
         count: 15,
-        category: id ? [id] : [],
+        category: id ? [+id] : [],
         sortBy: '',
         color: [],
         price: [],
         available: false,
     };
-    const [filters, setFilters] = useState(defaultFilters);
+    const [filters, setFilters] = useState({ ...defaultFilters, ...urlFilters });
     const {
         loading: categoriesLoading,
         error: categoriesError,
@@ -45,10 +49,24 @@ export const useCollectionData = () => {
     } = useFetchProducts(filters, setFilters);
 
     const resetFilters = () => setFilters(defaultFilters);
-    const { page: dfPage, ...defaultFiltersWithoutPage } = defaultFilters;
-    const { page, ...filtersWithoutPage } = filters;
+    const { page: dfPage, count: dfCount, ...defaultFiltersWithoutPage } = defaultFilters;
+    const { page, count, ...filtersWithoutPage } = filters;
     const isFiltered = !isEqual(defaultFiltersWithoutPage, filtersWithoutPage);
     const filtersDiff = getObjectDiff(defaultFiltersWithoutPage, filtersWithoutPage);
+
+    useEffect(() => {
+        const { page: pageFilter } = filters;
+        const modFilters = {
+            ...filters,
+            page: 1,
+            count: pageFilter * defaultFilters.count,
+        };
+
+        history.push({
+            pathname,
+            search: `?${qs.stringify(modFilters, { arrayFormat: 'bracket', skipNull: true })}`,
+        });
+    }, [filters]);
 
     return useMemo(() => ({
         loading: loading || categoriesLoading,
@@ -58,7 +76,7 @@ export const useCollectionData = () => {
         currentPage,
         setFilters,
         filters,
-        collectionId: id,
+        collectionId: +id,
         resetFilters,
         isFiltered,
         filtersDiff,

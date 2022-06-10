@@ -33,7 +33,7 @@ const BigSliderItem = memo(({
     link, title, image, active, onHover, onLeave, onClick,
 }) => {
     const componentClasses = classNames('lib-big-slider_item', { active });
-    const { isMobileSize } = useDetectedMobileDevice();
+    const { clientWidth } = useDetectedMobileDevice();
 
     return (
         <div
@@ -51,7 +51,7 @@ const BigSliderItem = memo(({
                 </>
             )}
             <div className="item-overlay" />
-            {isMobileSize ? <ItemImage className="item-image" src={image} /> : <ItemImageDiv className="item-image" image={image} />}
+            {clientWidth <= 900 ? <ItemImage className="item-image" src={image} /> : <ItemImageDiv className="item-image" image={image} />}
         </div>
     );
 });

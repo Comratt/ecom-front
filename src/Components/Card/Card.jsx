@@ -1,9 +1,8 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useMemo } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getFormattedPrice } from 'Constants';
-import { useDetectedMobileDevice } from 'hooks/useDetectMobileDevice';
 import { Swatches } from '../Swatches';
 import { Title } from '../Title';
 import WishlistHeart from '../WishlistHeart/WishlistHeart';
@@ -26,6 +25,13 @@ export const Card = ({
 }) => {
     const componentClassNames = classNames('lib-card', className);
     let priceClassNames = classNames('lib-card__info-price');
+    const discountPercent = useMemo(() => {
+        if (discount && discount > 0) {
+            return Math.floor((((purePrice - discount) - purePrice) / purePrice) * 100);
+        }
+
+        return null;
+    }, [purePrice, discount]);
 
     if (discount > 0) {
         priceClassNames = classNames(priceClassNames, 'sale');
@@ -41,6 +47,9 @@ export const Card = ({
                     className="lib-card__picture"
                     style={{ backgroundImage: `url(${imagePath})` }}
                 />
+                {!!discountPercent && (
+                    <div className="discount-label">{`${discountPercent}%`}</div>
+                )}
             </NavLink>
             {!hideInfo && (
                 <div className={classNames('lib-card__info', { 'hidden-colors': hideColors })}>

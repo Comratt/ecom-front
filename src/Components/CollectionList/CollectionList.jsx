@@ -40,7 +40,7 @@ const CollectionList = ({
                                             <input
                                                 onChange={onChange}
                                                 checked={(
-                                                    adaptedCatIds?.includes(subcategory.category_id)
+                                                    adaptedCatIds?.includes(+subcategory.category_id)
                                                 )}
                                                 id={subcategory.category_id}
                                                 type="checkbox"

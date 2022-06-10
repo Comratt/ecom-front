@@ -95,8 +95,10 @@ const ProductCarousel = ({
                                 imagePath={product.image}
                                 detailsPath={product.link}
                                 price={product.price}
+                                purePrice={product.purePrice}
                                 title={product.name}
                                 colors={product.colors}
+                                discount={product.discount}
                                 hideColors={hideColors}
                             />
                         ))}

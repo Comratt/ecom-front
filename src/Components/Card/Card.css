@@ -18,6 +18,21 @@
     position: relative;
 }
 
+.lib-card .discount-label {
+    position: absolute;
+    top: 0;
+    left: 4px;
+    width: 70px;
+    padding: 2px 0;
+    text-align: center;
+    font-size: var(--size-normal-small);
+    color: var(--color-dark-light);
+    background: rgba(196, 169, 150, .7);
+    border-top-left-radius: 4px;
+    font-family: var(--accent-ff-bold);
+    border-bottom-right-radius: 4px;
+}
+
 .lib-card .lib-card__info {
     padding-bottom: 25px;
 }
@@ -110,6 +125,10 @@
     .lib-card__heart_wh{
         right: 1px;
         top: 5px;
+    }
+    .lib-card .discount-label {
+        font-size: var(--fz-normal);
+        width: 60px;
     }
 
     .lib-card .lib-card__info .lib-swatches .lib-swatches__item button {

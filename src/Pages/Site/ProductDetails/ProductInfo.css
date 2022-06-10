@@ -42,7 +42,8 @@
     font-size: var(--fz-normal-bigger);
 }
 .lib-product_info_product-subtitle {
-    font-size: var(--fz-mid);
+    font-size: var(--fz-normal);
+    font-weight: normal;
     margin: 0;
 }
 .lib-product_info_product-normal-price{
@@ -145,6 +146,8 @@
     }
     .product-details-page .cart-container .lib-product_info_wishlist button {
         padding: 0;
+        height: 23px;
+        width: 23px;
     }
     .product-details-page .cart-container .lib-product_info_wishlist > div {
         height: 23px;
