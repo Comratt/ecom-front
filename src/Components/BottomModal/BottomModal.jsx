@@ -125,6 +125,8 @@ export const BottomModal = ({
     resetFilters,
     isFiltered,
     filtersDiff,
+    subcategories,
+    collectionId,
 }) => {
     const options = [
         {
@@ -215,6 +217,20 @@ export const BottomModal = ({
                     ],
                 },
                 {
+                    id: 11,
+                    name: 'Підкатегорія',
+                    type: 'category',
+                    filterType: 'category',
+                    children: [{
+                        content: subcategories?.map((subcategory) => ({
+                            id: subcategory.category_id,
+                            optionId: subcategory.category_id,
+                            name: subcategory.category_name,
+                            optName: 'category',
+                        })),
+                    }],
+                },
+                {
                     id: 9,
                     name: 'Ціна від і до',
                     children: [{
@@ -268,6 +284,30 @@ export const BottomModal = ({
             }]));
         }
     }, [colors]);
+
+    useEffect(() => {
+        if (subcategories?.length) {
+            setOpt((prevOptions) => ([{
+                content: prevOptions[0].content?.map((option) => {
+                    if (option.id === 11) {
+                        return ({
+                            ...option,
+                            children: [{
+                                content: subcategories?.map((subcategory) => ({
+                                    id: subcategory.category_id,
+                                    optionId: subcategory.category_id,
+                                    name: subcategory.category_name,
+                                    optName: 'category',
+                                })),
+                            }],
+                        });
+                    }
+
+                    return option;
+                }),
+            }]));
+        }
+    }, [collectionId]);
     useEffect(() => {
         setOpt((prevOptions) => ([{
             content: prevOptions[0].content?.map((option) => {
@@ -323,29 +363,7 @@ export const BottomModal = ({
                 }),
             }]));
         }
-    }, [filters.price]);
-
-    useEffect(() => {
-        setOpt((prevOptions) => ([{
-            content: prevOptions[0].content?.map((option) => {
-                if (option.id === 10) {
-                    if (isFiltered) {
-                        return {
-                            id: 10,
-                            name: <span onClick={resetFilters}>Обнулити фільтри</span>,
-                        };
-                    }
-
-                    return {
-                        id: 10,
-                        name: '',
-                    };
-                }
-
-                return option;
-            }),
-        }]));
-    }, [isFiltered]);
+    }, [minMaxPrice]);
 
     useEffect(() => {
         if (minMaxPrice?.length) {
@@ -371,7 +389,29 @@ export const BottomModal = ({
                 }),
             }]));
         }
-    }, [minMaxPrice]);
+    }, [filters.price]);
+
+    useEffect(() => {
+        setOpt((prevOptions) => ([{
+            content: prevOptions[0].content?.map((option) => {
+                if (option.id === 10) {
+                    if (isFiltered) {
+                        return {
+                            id: 10,
+                            name: <span onClick={resetFilters}>Обнулити фільтри</span>,
+                        };
+                    }
+
+                    return {
+                        id: 10,
+                        name: '',
+                    };
+                }
+
+                return option;
+            }),
+        }]));
+    }, [isFiltered]);
 
     useEffect(() => {
         setOpt((prevOptions) => ([{
@@ -397,11 +437,23 @@ export const BottomModal = ({
 
             handleFilterBy('color', modColors);
         }
+        if (o.optName === 'category') {
+            const filterCat = filters?.category?.filter((cat) => cat !== collectionId) || [];
+            const modCat = filterCat?.includes(o.optionId)
+                ? filterCat?.filter((s) => s !== o.optionId)
+                : [...filterCat, o.optionId];
+
+            if (!modCat?.length) {
+                modCat.push(collectionId);
+            }
+
+            handleFilterBy('category', modCat);
+        }
         if (o.optionId) {
             setOpt((prevOptions) => ([{
                 ...prevOptions,
                 content: prevOptions[0].content?.map((option) => {
-                    if (['color', 'sort', 'stock'].includes(option.type)) {
+                    if (['color', 'sort', 'stock', 'category'].includes(option.type)) {
                         return ({
                             ...option,
                             children: [{
@@ -415,7 +467,7 @@ export const BottomModal = ({
 
                                     return ({
                                         ...childOption,
-                                        icon: ['color', 'size'].includes(option.type) ? childOption.icon : null,
+                                        icon: ['color', 'size', 'category'].includes(option.type) ? childOption.icon : null,
                                     });
                                 }),
                             }],

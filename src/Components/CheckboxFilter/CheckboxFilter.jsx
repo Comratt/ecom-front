@@ -59,6 +59,8 @@ export const CheckboxFilter = ({
                 resetFilters={resetFilters}
                 isFiltered={isFiltered}
                 filtersDiff={filtersDiff}
+                collectionId={collectionId}
+                subcategories={categories?.find(({ id }) => +id === +collectionId)?.subcategories}
             />
             <Sticky isSticky={false} topOffset={-50} className={componentClasses}>
                 {({ style }) => (

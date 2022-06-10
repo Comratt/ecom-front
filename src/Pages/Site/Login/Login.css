@@ -20,6 +20,7 @@
     flex-direction: column;
     padding: 15px;
 }
+
 .lib-login_sign_up-btn{
     margin-top: 10px;
     width: 100%;
@@ -27,7 +28,7 @@
 .lib-link.active{
     width: 100%;
 }
-.lib-guest-btn{
+.lib-login .lib-guest-btn{
     width: 100%;
 }
 .lib-login .from-login {

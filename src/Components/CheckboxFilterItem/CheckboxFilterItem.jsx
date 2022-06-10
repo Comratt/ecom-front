@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Range, getTrackBackground } from 'react-range';
+import { Range } from 'react-range';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import classNames from 'classnames';
 import './CheckboxFilterItem.css';
 import PropTypes from 'prop-types';
-import { AccardionArrow } from '../../Icons';
+import { AccardionArrow, Close } from '../../Icons';
 
 export const PriceRange = ({
     min, max, onFinalChange, current,
@@ -22,7 +22,11 @@ export const PriceRange = ({
 
     useEffect(() => {
         if (current?.length) {
-            setValues(current);
+            if (current[0] < MIN || current[1] > MAX) {
+                setValues([MIN, MAX]);
+            }
+        } else {
+            setValues([MIN, MAX]);
         }
     }, [current, min, max]);
 
@@ -324,11 +328,12 @@ const CheckboxFilterItem = ({
                     ))}
                     {isFiltered && (
                         <button
-                            className="filters__text"
+                            className="filters__text filter-wrapper"
                             type="button"
                             onClick={resetFilters}
                         >
-                            Обнулити
+                            Скинути
+                            <Close width={12} height={12} />
                         </button>
                     )}
                 </div>

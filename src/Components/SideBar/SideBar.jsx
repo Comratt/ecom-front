@@ -21,7 +21,6 @@ export const SideBar = ({ className }) => {
         <div className={componentClasses}>
             <div className="lib-sidebar__header">
                 <div className="header-search-field">
-                    <Search width={25} height={25} />
                     <HeaderInput />
                 </div>
                 <button type="button" className="lib-sidebar__header-close">
