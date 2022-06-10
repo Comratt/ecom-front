@@ -68,6 +68,10 @@
     font-size: var(--fz-normal);
     cursor: pointer;
 }
+.lib-product_cart_btn{
+    margin-top: 10px;
+    width: 100%;
+}
 .size-title{
     margin-top: var(--size-bigger);
     font-size: var(--fz-normal);
@@ -114,6 +118,9 @@
     margin-top: 60px;
 }
 @media (max-width: 762px) {
+    .lib-product_cart_btn{
+        margin-top: 0;
+    }
     .product-details-page .cart-container {
         position: fixed;
         z-index: 2;

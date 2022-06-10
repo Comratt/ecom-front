@@ -5,6 +5,7 @@ import LoginBtn from 'Components/Buttons/LoginBtn';
 import { getValidationMessage } from 'Constants';
 
 import './AccountSettings.css';
+import Button from 'Components/Button/Button';
 
 const AccountSettings = ({
     onSubmit, errors, register, loading,
@@ -60,7 +61,9 @@ const AccountSettings = ({
                     })}
                     error={getValidationMessage(errors?.password)}
                 />
-                <LoginBtn loading={loading} text="Оновити" />
+                <Button loading={loading} variant="solid">
+                    Оновити
+                </Button>
             </form>
         </div>
     );

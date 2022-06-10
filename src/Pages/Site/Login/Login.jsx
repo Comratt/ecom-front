@@ -9,6 +9,7 @@ import { useLogin } from 'context/login/useLogin';
 import './Login.css';
 import LoginBtn from 'Components/Buttons/LoginBtn/LoginBtn';
 import GuestBtn from 'Components/Buttons/GuestBtn/GuestBtn';
+import Button from '../../../Components/Button/Button';
 
 const Login = ({
     className,
@@ -65,10 +66,15 @@ const Login = ({
                             })}
                             error={getValidationMessage(errors?.password)}
                         />
-                        <LoginBtn loading={isLoading} />
-
+                        <Button variant="solid" loading={isLoading}>
+                            Увійти в аккаунт
+                        </Button>
                     </form>
-                    <Link to="/"><GuestBtn /></Link>
+                    <div className="lib-login_sign_up-btn">
+                        <Button variant="primary" onClick={() => history.push('/')}>
+                            Продовжити як гість
+                        </Button>
+                    </div>
                     <Link to="/sign" className="lib-login_sign_up">
                         Sign up
                     </Link>
