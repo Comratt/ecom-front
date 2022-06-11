@@ -2,8 +2,8 @@ import { useMemo } from 'react';
 import { useAsync } from 'react-async-hook';
 
 import { fetchBanners } from 'context/api/fetchBanners';
-import { fetchCategories } from 'context/api/fetchCategories';
 import { adaptBanners } from 'context/adapters';
+import { useCategories } from 'context/CategoriesWrapper/useCategories';
 import { sortOrder } from 'Helpers';
 
 const adaptCategories = (data = []) => data
@@ -17,24 +17,24 @@ const adaptCategories = (data = []) => data
 export const useHomeData = () => {
     const { loading, error, result } = useAsync(fetchBanners, []);
     const {
-        loading: loadingCategories,
-        error: errorCategories,
-        result: resultCategories,
-    } = useAsync(fetchCategories, []);
+        categoriesLoading,
+        categoriesError,
+        categories,
+    } = useCategories();
 
     return useMemo(() => ({
         loading,
-        loadingCategories,
+        loadingCategories: categoriesLoading,
         result: adaptBanners(result),
-        resultCategories: adaptCategories(resultCategories),
+        resultCategories: adaptCategories(categories),
         error,
-        errorCategories,
+        errorCategories: categoriesError,
     }), [
         loading,
-        loadingCategories,
+        categoriesLoading,
         result,
-        resultCategories,
+        categories,
         error,
-        errorCategories,
+        categoriesError,
     ]);
 };

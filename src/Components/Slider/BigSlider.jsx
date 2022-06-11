@@ -154,8 +154,6 @@ export const BigSlider = memo(({
             />
             {typeof data[0] === 'object' ? data.map(({ title, link, image }, index) => (
                 <BigSliderItem
-                    onHover={clearTimer}
-                    onLeave={startTimer}
                     key={title}
                     active={(activeSlide === index)}
                     title={title}
@@ -165,8 +163,6 @@ export const BigSlider = memo(({
                 />
             )) : data.map((image, index) => (
                 <BigSliderItem
-                    onHover={clearTimer}
-                    onLeave={startTimer}
                     key={image}
                     active={(activeSlide === index)}
                     title=""

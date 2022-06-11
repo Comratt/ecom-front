@@ -6,6 +6,7 @@ import { useCollectionData } from './useCollectionData';
 export const useCollection = () => {
     const {
         loading,
+        loadingNext,
         result,
         categories,
         isLastPage,
@@ -76,6 +77,7 @@ export const useCollection = () => {
 
     return useMemo(() => ({
         loading,
+        loadingNext,
         result,
         categories,
         isLastPage,
@@ -92,6 +94,7 @@ export const useCollection = () => {
         filters,
     }), [
         loading,
+        loadingNext,
         result,
         categories,
         isLastPage,

@@ -10,7 +10,16 @@
 
     --width-arrow: 23px;
     --heigth-arrow: 23px;
+}
 
+.lib-sidebar .accordion-button {
+    margin: 0;
+    padding: 0;
+}
+
+.lib-sidebar .lib-sidebar__content {
+    height: 80vh;
+    overflow-y: auto;
 }
 
 .lib-sidebar.open {
@@ -50,13 +59,17 @@
 .lib-sidebar__content-wrapper {
     display: flex;
     flex-direction: column;
+    padding: 0 10px;
 }
 
 .lib-sidebar__item {
     display: flex;
     align-items: center;
     width: 100%;
+    font-family: var(--accent-ff);
     padding: var(--size-mid) var(--size-normal);
+    font-size: var(--fz-mid);
+    color: var(--color-accent);
 }
 
 .lib-sidebar__line {

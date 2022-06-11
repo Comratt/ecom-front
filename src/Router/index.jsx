@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import isEqual from 'lodash/isEqual';
 import history from 'Services/history';
+import { CategoriesWrapperProvider } from 'context/CategoriesWrapper/categoriesWrapperContext';
 import { AdminRoutes, PrivateAdminRoutes } from './AdminRoutes';
 import { Layout } from '../Components/Layout';
 import { ThreeDots } from '../Components/SkeletonLoader';
@@ -37,24 +38,21 @@ const RouterComponent = () => (
                 <PrivateAdminRoutes path="/admin">
                     <AdminRoutes />
                 </PrivateAdminRoutes>
-                <Layout>
-                    <Route exact path="/" component={SiteHome} />
-                    <Route path="/products/:id" component={SiteProductDetails} />
-                    <Route path="/collection/:id?" component={() => <CollectionList />} />
-                    <Route path="/cart" component={() => <Cart />} />
-                    <Route path="/order" component={() => <OrderForm />} />
-                    <Route path="/sign" component={() => <SignUp />} />
-                    <Route path="/login" component={() => <Login />} />
-                    <Route path="/searchResult" component={() => <SearchResults />} />
-                    <Route path="/checkboxfilter" component={() => <CheckboxFilter />} />
-                    <Route path="/account" component={() => <UserAccount />} />
-                    <Route path="/wishlist" component={() => <WishList />} />
-                </Layout>
-
-                <Route exact path="/orderForm" component={() => <OrderForm />} />
-                <Route exact path="/" component={() => <Header />} />
-                <Route exact path="/cardPopUp" component={() => <CardPopUp />} />
-
+                <CategoriesWrapperProvider>
+                    <Layout>
+                        <Route exact path="/" component={SiteHome} />
+                        <Route path="/products/:id" component={SiteProductDetails} />
+                        <Route path="/collection/:id?" component={() => <CollectionList />} />
+                        <Route path="/cart" component={() => <Cart />} />
+                        <Route path="/order" component={() => <OrderForm />} />
+                        <Route path="/sign" component={() => <SignUp />} />
+                        <Route path="/login" component={() => <Login />} />
+                        <Route path="/searchResult" component={() => <SearchResults />} />
+                        <Route path="/checkboxfilter" component={() => <CheckboxFilter />} />
+                        <Route path="/account" component={() => <UserAccount />} />
+                        <Route path="/wishlist" component={() => <WishList />} />
+                    </Layout>
+                </CategoriesWrapperProvider>
                 <Route path="*" component={NotFoundPage} />
             </Switch>
         </Suspense>

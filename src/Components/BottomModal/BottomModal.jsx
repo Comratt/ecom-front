@@ -333,7 +333,7 @@ export const BottomModal = ({
                     return ({
                         ...option,
                         children: [{
-                            content: option.children[0].content.map((childOption) => ({
+                            content: option?.children[0]?.content?.map((childOption) => ({
                                 ...childOption,
                                 icon: !filters?.category?.includes(+childOption.optionId) ? null : <Check />,
                             })),

@@ -16,6 +16,7 @@ export const CardList = ({
     categories,
     images,
     loading,
+    loadingNext,
     isLastPage,
     currentPage,
     handlePageCount,
@@ -23,7 +24,7 @@ export const CardList = ({
     const scrollYRef = useRef(0);
     const containerRef = useRef();
     const [isBottom, setIsBottom] = useState(false);
-    const componentClasses = classNames('card-list', className);
+    const componentClasses = classNames('card-list', { loading: loadingNext }, className);
     const flattenCategories = categories?.reduce(
         (result, { subcategories, ...restCategory }) => ([
             ...result.concat(subcategories?.map((cat) => ({

@@ -1,25 +1,12 @@
 import { useMemo, useState, useEffect } from 'react';
-import { useAsync } from 'react-async-hook';
 import { useParams, useLocation, useHistory } from 'react-router-dom';
 import isEqual from 'lodash/isEqual';
 import qs from 'query-string';
 
-import { adaptProducts } from 'context/adapters';
-import { getObjectDiff, sortOrder } from 'Helpers';
+import { adaptProducts, adaptCategories } from 'context/adapters';
+import { useCategories } from 'context/CategoriesWrapper/useCategories';
+import { getObjectDiff } from 'Helpers';
 import { useFetchProducts } from '../../hooks/useFetchProducts';
-import { fetchCategories } from '../../api/fetchCategories';
-
-const adaptCategories = (data = []) => {
-    if (!Array.isArray(data)) return [];
-
-    const parentCategories = data.filter(({ parent_id }) => !parent_id).sort(sortOrder);
-
-    return parentCategories.map((cat) => ({
-        id: cat.category_id,
-        name: cat.category_name,
-        subcategories: data.filter((subCat) => cat.category_id === subCat.parent_id),
-    }));
-};
 
 export const useCollectionData = () => {
     const { id } = useParams();
@@ -37,12 +24,12 @@ export const useCollectionData = () => {
     };
     const [filters, setFilters] = useState({ ...defaultFilters, ...urlFilters });
     const {
-        loading: categoriesLoading,
-        error: categoriesError,
-        result: categoriesResult,
-    } = useAsync(fetchCategories, []);
+        categories,
+        categoriesLoading,
+    } = useCategories();
     const {
         loading,
+        loadingNext,
         result,
         isLastPage,
         currentPage,
@@ -68,10 +55,25 @@ export const useCollectionData = () => {
         });
     }, [filters]);
 
+    useEffect(() => {
+        if (urlFilters?.category?.length) {
+            if (filters.category.includes(+id)) {
+                return;
+            }
+            if (!isEqual(urlFilters.category, filters.category)) {
+                setFilters((prevF) => ({
+                    ...prevF,
+                    category: urlFilters.category,
+                }));
+            }
+        }
+    }, [urlFilters?.category, filters.category]);
+
     return useMemo(() => ({
         loading: loading || categoriesLoading,
+        loadingNext,
         result: adaptProducts({ data: result }),
-        categories: adaptCategories(categoriesResult),
+        categories: adaptCategories(categories),
         isLastPage,
         currentPage,
         setFilters,
@@ -82,9 +84,10 @@ export const useCollectionData = () => {
         filtersDiff,
     }), [
         loading,
+        loadingNext,
         categoriesLoading,
         result,
-        categoriesResult,
+        categories,
         resetFilters,
         isFiltered,
         filtersDiff,

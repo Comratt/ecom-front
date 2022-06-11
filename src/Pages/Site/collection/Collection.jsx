@@ -11,6 +11,7 @@ import './Collection.css';
 export const Collection = () => {
     const {
         loading,
+        loadingNext,
         result,
         categories,
         isLastPage,
@@ -61,6 +62,7 @@ export const Collection = () => {
                         currentPage={currentPage}
                         data={result}
                         loading={loading}
+                        loadingNext={loadingNext}
                         handlePageCount={handlePageCount}
                     />
                 </div>
