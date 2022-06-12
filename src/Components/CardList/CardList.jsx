@@ -28,7 +28,7 @@ export const CardList = ({
     const flattenCategories = categories?.reduce(
         (result, { subcategories, ...restCategory }) => ([
             ...result.concat(subcategories?.map((cat) => ({
-                id: cat.category_id,
+                id: +cat.category_id,
                 name: cat.category_name,
                 ...cat,
             }))),
@@ -37,7 +37,7 @@ export const CardList = ({
         [],
     );
     const selectedCategories = flattenCategories?.filter(({ id }) => (
-        filters?.category?.includes(String(id))
+        filters?.category?.includes(id)
     ));
     const selectedCategoryNames = selectedCategories?.map(({ name }) => name).toString().replaceAll(',', ', ');
 

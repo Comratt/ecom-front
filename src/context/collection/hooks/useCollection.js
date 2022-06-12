@@ -1,4 +1,4 @@
-import { useMemo, useEffect } from 'react';
+import { useMemo } from 'react';
 
 import { useCollectionLayout } from './useCollectionLayout';
 import { useCollectionData } from './useCollectionData';
@@ -31,21 +31,21 @@ export const useCollection = () => {
                     return ({
                         ...prevFilters,
                         page: 1,
-                        category: [collectionId],
+                        category: [+collectionId],
                     });
                 }
 
                 return ({
                     ...prevFilters,
                     page: 1,
-                    category: filteredFilters.filter((cat) => cat !== id),
+                    category: filteredFilters.filter((cat) => cat != id),
                 });
             }
 
             return ({
                 ...prevFilters,
                 page: 1,
-                category: [...filteredFilters, id],
+                category: [...filteredFilters, +id],
             });
         });
     };

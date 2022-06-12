@@ -56,7 +56,7 @@ export const SideBar = ({ className }) => {
                             >
                                 {subcategories.map((subcategory) => (
                                     <Link
-                                        to={`/collection/${id}?category[]=${subcategory.category_id}`}
+                                        to={`/collection/${id}?category[]=${subcategory.category_id}&from_sidebar=1`}
                                         key={subcategory.category_id}
                                         className="lib-sidebar__item"
                                         onClick={handleCloseNavigationModal}

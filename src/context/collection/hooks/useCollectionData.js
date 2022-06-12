@@ -59,18 +59,17 @@ export const useCollectionData = () => {
     }, [filters]);
 
     useEffect(() => {
-        if (urlFilters?.category?.length) {
-            if (filters.category.includes(+id)) {
-                return;
-            }
-            if (!isEqual(urlFilters.category, filters.category)) {
-                setFilters((prevF) => ({
-                    ...prevF,
-                    category: urlFilters.category,
-                }));
-            }
+        if (urlFilters?.category?.length && urlFilters?.from_sidebar) {
+            setFilters((prevF) => ({
+                ...prevF,
+                category: urlFilters.category,
+            }));
+            history.replace({
+                pathname,
+                search: '',
+            });
         }
-    }, [urlFilters?.category, filters.category]);
+    }, [urlFilters.category]);
 
     return useMemo(() => ({
         loading: loading || categoriesLoading,

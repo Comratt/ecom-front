@@ -87,7 +87,10 @@ export const OrderForm = (className) => {
 
         OrderService.store({
             ...formInfo,
-            products,
+            products: products?.map((product) => ({
+                ...product,
+                purePrice: product?.purePrice - (product?.discount || 0),
+            })),
             comment: orderNotes,
             status_id: 1,
         })
