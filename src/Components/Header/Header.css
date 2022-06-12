@@ -5,7 +5,7 @@
 
     display: flex;
     justify-content: space-between;
-    background-color: rgba(255, 255, 255, .96);
+    background-color: var(--bg-color);
     z-index: 3;
     font-family: var(--header-accent-ff);
     color: var(--header-color);
@@ -97,10 +97,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: -1px 1px 0 0 #fff;
+    box-shadow: -1px 1px 0 0 var(--color-lightest);
     border-radius: 7px;
-    font-size: 10px;
-    line-height: 12px;
+    font-size: var(--fz-tinier);
+    line-height: var(--line-h-smaller);
     text-align: center;
 }
 .lib-header.header_transparent .header-links-icon {
@@ -135,11 +135,11 @@
 }
 .header-input-search {
     height: 36px;
-    font-size: 16px;
+    font-size: var(--fz-normal);
     padding: 0 16px 0 40px;
     line-height: normal;
-    background: #F5F3F3;
-    color: #887569;
+    background: var(--color-grayish);
+    color: var(--color-accent);
     border-radius: 4px;
     border: 0;
 }

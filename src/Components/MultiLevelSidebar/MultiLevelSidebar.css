@@ -24,7 +24,7 @@
 #react-sidebar .sidebar-main {
     width: 285px;
     height: 100vh;
-    background-color: #fff;
+    background-color: var(--color-lightest);
     z-index: 1012;
     position: fixed;
     top: 0;
@@ -107,7 +107,7 @@
     color: #3c3b37;
 }
 .sidebar-main-content ul li span {
-    font-size: 16px;
+    font-size: var(--fz-normal);
 }
 .sidebar-main-content ul li:hover {
     cursor: pointer;
@@ -151,7 +151,7 @@
 }
 
 .second-back-btn {
-    background-color: #fff;
+    background-color: var(--color-lightest);
     border-bottom: 1px solid #dcdacb;
     margin-bottom: 0.8rem;
     color: #767c87;

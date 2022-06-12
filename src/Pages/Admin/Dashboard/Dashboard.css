@@ -18,7 +18,7 @@
 }
 .dashboard-page .card-text sub{
     margin-left: 5px;
-    font-size: 10px;
+    font-size: var(--fz-tinier);
 }
 .dashboard-page .card{
     display: flex;

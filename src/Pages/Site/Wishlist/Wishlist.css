@@ -6,7 +6,7 @@
 .wishlist-page__container .wishlist-header {
     text-align: center;
     margin-bottom: 30px;
-    font-size: 20px;
+    font-size: var(--fz-normal-bigger);
     font-family: var(--accent-ff);
     font-weight: 400;
     font-style: normal;
@@ -30,19 +30,19 @@
     background-color: var(--color-accent-light);
     border: 1px solid transparent;
     border-radius: 4px;
-    color: #fff;
+    color: var(--color-lightest);
     cursor: pointer;
     display: inline-block;
     font-family: var(--title-ff);
     font-weight: 400;
-    line-height: 20px;
+    line-height: var(--line-h-normal);
     margin: auto;
     padding: 12px 30px;
     position: relative;
     text-align: center!important;
     text-decoration: none!important;
     text-transform: none;
-    font-size: 16px;
+    font-size: var(--fz-normal);
 }
 
 .wishlist-page__container .lib-card .lib-card__info {

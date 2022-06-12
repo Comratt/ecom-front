@@ -40,13 +40,13 @@
 }
 
 .lib-input__common .field-message__error {
-    font-size: 14px;
+    font-size: var(--fz-smaller);
     color: var(--color-error);
     margin-top: 5px;
     margin-bottom: 0;
 }
 
 .lib-input__common .lib-input__common-label {
-    font-size: 16px;
+    font-size: var(--fz-normal);
     color: var(--color-accent);
 }

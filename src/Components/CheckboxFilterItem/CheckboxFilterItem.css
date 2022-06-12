@@ -39,9 +39,9 @@
     padding-right: var(--size-smaller);
     border: none;
     background: transparent;
-    font-size: 16px;
-    line-height: 20px;
-    color: #887568;
+    font-size: var(--fz-normal);
+    line-height: var(--line-h-normal);
+    color: var(--color-accent);
 }
 .lib-checkboxFilterItem .filters__text.filter-wrapper {
     display: flex;
@@ -73,10 +73,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: -1px 1px 0 0 #fff;
+    box-shadow: -1px 1px 0 0 var(--color-lightest);
     border-radius: 7px;
-    font-size: 10px;
-    line-height: 12px;
+    font-size: var(--fz-tinier);
+    line-height: var(--line-h-small);
     text-align: center;
 }
 .lib-checkboxFilterItem .filters__chevron{
@@ -100,7 +100,7 @@
 .lib-checkboxFilterItem .checkbox > span {
     color: #a89583;
     padding: 0.5rem 0.25rem;
-    font-size: 14px;
+    font-size: var(--fz-smaller);
     text-transform: capitalize;
 }
 
@@ -114,13 +114,13 @@
     border-radius: 4px;
     outline: none;
     transition-duration: 0.3s;
-    background-color: #fff;
+    background-color: var(--color-lightest);
     cursor: pointer;
 }
 
 .checkbox > input:checked {
-    border: 1px solid #887569;
-    background-color: #ffffff;
+    border: 1px solid var(--color-accent);
+    background-color: var(--color-lightest);
 }
 
 .lib-checkboxFilterItem .arrow {
@@ -142,7 +142,7 @@
     content: '\2713';
     display: block;
     text-align: center;
-    color: #887569;
+    color: var(--color-accent);
     position: absolute;
 }
 

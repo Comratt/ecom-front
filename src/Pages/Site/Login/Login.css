@@ -44,13 +44,13 @@
 }
 
 .lib-login p.field-message__error {
-    font-size: 14px;
+    font-size: var(--fz-smaller);
     color: var(--color-error);
     margin-bottom: 7px;
     margin-top: 0;
 }
 
 .lib-login .lib-login_sign_up {
-    font-size: 16px;
+    font-size: var(--fz-normal);
     margin: 8px 0;
 }

@@ -32,6 +32,7 @@
     --color-arrow-black: #000000;
     --color-error: #8d0624;
     --color-accent-brown: #dbd7d2;
+    --bg-color: var(--color-lightest);
 
     /*Card additional colors*/
     --color-focused-input: #c5a995;

@@ -16,7 +16,7 @@
 .discount{
     text-decoration: line-through;
     color: var(--color-accent-light);
-    font-size: 12px;
+    font-size: var(--fz-tiny);
 }
 
 .order__main {
@@ -82,7 +82,7 @@
     margin-right: 0;
 }
 .order__contact-form ul.react-autocomplete-input {
-    background-color: #fafafa;
+    background-color: var(--color-card-aside-background);
     border-color: var(--color-accent-light);
     border-width: 1px;
     border-radius: 3px;
@@ -130,7 +130,7 @@
     border: 1px solid #d9d9d9;
     padding: 11px;
     color: var(--color-accent);
-    font-size: 14px;
+    font-size: var(--fz-smaller);
     font-weight: 400;
 }
 
@@ -245,7 +245,7 @@
 }
 
 .lib-order p.field-message__error {
-    font-size: 14px;
+    font-size: var(--fz-smaller);
     color: var(--color-error);
     margin-top: 0;
     margin-bottom: 0;
@@ -422,8 +422,8 @@
     justify-content: center;
     box-shadow: 0 0 0 0 var(--color-dark-light);
     border-radius: 50%;
-    font-size: 12px;
-    line-height: 12px;
+    font-size: var(--fz-tiny);
+    line-height: var(--line-h-smaller);
     text-align: center;
 }
 
@@ -439,7 +439,7 @@
     .sidebar-toggle__wrap-span {
         display: flex;
         align-items: center;
-        font-size: 15px;
+        font-size: var(--fz-mid);
         color: var(--color-accent);
     }
     .sidebar-toggle__wrap-span svg:first-child {
@@ -451,7 +451,7 @@
     .order__sidebar-toggle {
         display: block;
         width: 100%;
-        background: #fafafa;
+        background: var(--color-card-aside-background);
         border: none;
         border-top: 1px solid var(--color-border-card);
         border-bottom: 1px solid var(--color-border-card);

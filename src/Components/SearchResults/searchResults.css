@@ -47,7 +47,7 @@
     font-size: var(--fz-normal);
     background: var(--color-focused-input);
     border-radius: 4px;
-    color: #fff;
+    color: var(--color-lightest);
     border: none;
     outline: none;
 
@@ -90,7 +90,7 @@
 }
 
 .product-matches__name {
-    font-family: "Cera Pro Regular", sans-serif;
+    font-family: var(--accent-ff);
     font-weight: 400;
     font-style: normal;
     color: var(--color-accent);

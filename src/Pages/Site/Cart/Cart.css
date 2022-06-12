@@ -1,11 +1,11 @@
 .cart-product-header{
     text-align: center;
     margin-bottom: 30px;
-    font-size: 20px;
-    font-family: "Cera Pro Regular",sans-serif;
+    font-size: var(--fz-normal-bigger);
+    font-family: var(--accent-ff);
     font-weight: 400;
     font-style: normal;
-    color: #887569;
+    color: var(--color-accent);
 }
 .cart-product-order {
     display: flex;
@@ -24,19 +24,19 @@
     background-color: var(--color-accent-light);
     border: 1px solid transparent;
     border-radius: 4px;
-    color: #fff;
+    color: var(--color-lightest);
     cursor: pointer;
     display: inline-block;
     font-family: var(--title-ff);
     font-weight: 400;
-    line-height: 20px;
+    line-height: var(--line-h-normal);
     margin: auto;
     padding: 12px 30px;
     position: relative;
     text-align: center!important;
     text-decoration: none!important;
     text-transform: none;
-    font-size: 16px;
+    font-size: var(--fz-normal);
 }
 .cart-product-description{
     display: flex;
@@ -49,7 +49,7 @@
     display: none;
 }
 .cart-page table {
-    font-size: 16px;
+    font-size: var(--fz-normal);
     width: 100%;
 }
 .cart-page table {
@@ -58,7 +58,7 @@
     border-spacing: 0 5px;
 }
 .cart-page tbody {
-    font-size: 16px;
+    font-size: var(--fz-normal);
 }
 
 .cart-page thead tr th {
@@ -82,7 +82,7 @@
     margin-top: 10px;
     margin-bottom: 10px;
     padding-bottom: 15px;
-    color: #887569;
+    color: var(--color-accent);
     border-bottom: 1px solid var(--color-border-lightest);
 }
 .cart-page ul {
@@ -108,12 +108,12 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-    color: #887569;
+    color: var(--color-accent);
     font-size: 18px;
 }
 .info {
     margin: 0 0 27px;
-    font-size: 10px;
+    font-size: var(--fz-tinier);
     color: rgba(136,117,105,.7);
     letter-spacing: .05em;
 }
@@ -123,8 +123,8 @@
     margin-top: 10px;
 }
 .orders label {
-    color: #887569;
-    font-size: 15px;
+    color: var(--color-accent);
+    font-size: var(--fz-mid);
     line-height: 1.5;
     margin-bottom: 5px;
 }
@@ -154,9 +154,9 @@
 .quantity_inner .quantity {
     width: 50px;
     text-align: center;
-    font-size: 15px;
+    font-size: var(--fz-mid);
     font-weight: bold;
-    color: #887569;
+    color: var(--color-accent);
 }
 .quantity::-webkit-outer-spin-button,
 .quantity::-webkit-inner-spin-button {
@@ -165,7 +165,7 @@
 }
 .quantity_inner .bt_minus svg,
 .quantity_inner .bt_plus svg {
-    stroke: #887569;
+    stroke: var(--color-accent);
     stroke-width: 3;
     transition: 0.5s;
     margin: 10px;
@@ -179,7 +179,7 @@
     height: 56px;
     text-transform: unset;
     background-color: #a89583;
-    color: #fff;
+    color: var(--color-lightest);
     border: none;
     width: 100%;
     margin-top: 10px;
@@ -195,15 +195,15 @@
 .discount{
     text-decoration: line-through;
     color: var(--color-accent-light);
-    font-size: 12px;
+    font-size: var(--fz-tiny);
 }
 .cart-product-btn-continue{
     border-radius: 8px !important;
     height: 56px;
     text-transform: unset;
-    color: #c5a995;
-    border: 1px solid #c5a995;
-    background-color: #fff;
+    color: var(--color-focused-input);
+    border: 1px solid var(--color-focused-input);
+    background-color: var(--color-lightest);
     letter-spacing: 2px;
     width: 100%;
     margin-top: 10px;
@@ -211,7 +211,7 @@
 }
 .cart-product-btn-continue:hover{
     background-color: #a89583;
-    color: #fff;
+    color: var(--color-lightest);
 }
 .cart-product-btn-remove{
     border: none;

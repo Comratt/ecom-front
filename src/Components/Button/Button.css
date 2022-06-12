@@ -6,7 +6,7 @@
     background-color: var(--color-accent-light);
     color: white;
     border: none;
-    font-size: 16px;
+    font-size: var(--fz-normal);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,7 +46,7 @@
     position: absolute;
     right: 20px;
     top: 35px;
-    font-size: 14px;
+    font-size: var(--fz-smaller);
     transition: .2s;
 }
 .lib-custom-button.logout:hover > span:after {

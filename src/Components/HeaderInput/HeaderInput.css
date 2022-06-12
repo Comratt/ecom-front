@@ -4,11 +4,11 @@
 
 .header-input-search {
     height: 36px;
-    font-size: 16px;
+    font-size: var(--fz-normal);
     padding: 0 16px 0 40px;
     line-height: normal;
     background-color: rgba(245,243,243,.64);
-    color: #887569;
+    color: var(--color-accent);
     border-radius: 4px;
     border: 0;
 }

@@ -169,7 +169,7 @@ export const Cart = () => {
                                             <td>
                                                 <button onClick={removeProduct(product)} className="cart-product-btn-remove">
                                                     <Remove
-                                                        fill="#C5A995"
+                                                        fill="var(--color-focused-input)"
                                                         width={15}
                                                     />
                                                 </button>

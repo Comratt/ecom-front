@@ -3,7 +3,7 @@ import React from 'react';
 const FooterLogo = (props) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        fill="#887569"
+        fill="var(--color-accent)"
         height="40"
         width="134"
         viewBox="0 0 134 40"

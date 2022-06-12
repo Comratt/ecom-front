@@ -47,7 +47,7 @@ const styles = {
     }),
     input: (style) => ({
         ...style,
-        color: '#887569',
+        color: 'var(--color-accent)',
     }),
 };
 

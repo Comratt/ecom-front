@@ -6,7 +6,7 @@
 }
 .header-list-collection-woman{
     margin: 0;
-    font-size: 16px;
+    font-size: var(--fz-normal);
     line-height: 24px;
 }
 .header-list-collection-woman li{

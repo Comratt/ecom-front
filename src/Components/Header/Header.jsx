@@ -89,7 +89,7 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
                 <div
                     className="header-links-icon dollar"
                     style={{
-                        fontSize: '16px',
+                        fontSize: 'var(--fz-normal)',
                         textDecoration: 'none',
                     }}
                 >

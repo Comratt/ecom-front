@@ -17,11 +17,11 @@ const CustomSheet = styled(Sheet)`
 
   .react-modal-sheet-header {
     justify-content: center;
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid var(--color-grayish);
     height: 51px;
     padding: 15px;
     text-align: left;
-    background: #fff;
+    background: var(--color-lightest);
     position: relative;
     border-bottom: 1px solid #eee;
     display: flex;
@@ -59,14 +59,14 @@ const CustomSheet = styled(Sheet)`
   }
   
   .sidebar-main li{
-    color: #887568;
-    border-top: 1px solid #e5e5e5;
-    font-size: 14px;
+    color: var(--color-accent);
+    border-top: 1px solid var(--color-grayish);
+    font-size: var(--fz-smaller);
   }
   .first-back-btn{
-    color: #887568;
+    color: var(--color-accent);
     background: #F5F3F3;
-    font-size: 16px;
+    font-size: var(--fz-normal);
     display: flex;
     align-items: center;
     gap: 5px;
@@ -91,10 +91,10 @@ const CustomSheet = styled(Sheet)`
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: -1px 1px 0 0 #fff;
+    box-shadow: -1px 1px 0 0 var(--color-lightest);
     border-radius: 7px;
-    font-size: 10px;
-    line-height: 12px;
+    font-size: var(--fz-tinier);
+    line-height: var(--line-h-smaller);
     text-align: center;
   }
   

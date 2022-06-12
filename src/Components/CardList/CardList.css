@@ -33,7 +33,7 @@
 }
 
 .card-list-page.product-empty .lib-title {
-    font-size: 20px;
+    font-size: var(--fz-normal-bigger);
 }
 
 @media (max-width: 1023px) {

@@ -2,7 +2,7 @@
     color: var(--color-accent);
     font-family: inherit;
     font-weight: 400;
-    font-size: 16px;
+    font-size: var(--fz-normal);
     line-height: 1.4;
     background: var(--white);
 }
@@ -31,7 +31,7 @@
     outline: none;
     border: none;
     cursor: pointer;
-    font-size: 20px;
+    font-size: var(--fz-normal-bigger);
     display: block;
     position: relative;
     font-family: inherit;

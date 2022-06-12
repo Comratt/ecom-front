@@ -122,7 +122,7 @@ export const PriceRange = ({
                         color: 'var(--color-accent)',
                         padding: '7px',
                         position: 'absolute',
-                        fontSize: '12px',
+                        fontSize: 'var(--fz-tiny)',
                         left: '0',
                     }}
                     id="output"
@@ -138,7 +138,7 @@ export const PriceRange = ({
                         padding: '7px',
                         position: 'absolute',
                         right: '0',
-                        fontSize: '12px',
+                        fontSize: 'var(--fz-tiny)',
                     }}
                     id="output"
                 >

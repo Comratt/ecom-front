@@ -161,7 +161,7 @@ const OrderProduct = () => {
                                 <Calendar
                                     width={18}
                                     style={{ marginRight: '10px' }}
-                                    fill="#887569"
+                                    fill="var(--color-accent)"
                                 />
                                 {result.dateAdd}
                             </td>
@@ -171,7 +171,7 @@ const OrderProduct = () => {
                                 <CardIcon
                                     style={{ marginRight: '10px' }}
                                     width={18}
-                                    fill="#887569"
+                                    fill="var(--color-accent)"
                                 />
                                 Наложений платіж
                             </td>
@@ -180,7 +180,7 @@ const OrderProduct = () => {
                             <td>
                                 <Truck
                                     style={{ marginRight: '10px' }}
-                                    fill="#887569"
+                                    fill="var(--color-accent)"
                                     width={18}
                                 />
                                 Фіксована ставка доставки
@@ -194,7 +194,7 @@ const OrderProduct = () => {
                             <th>
                                 <User
                                     style={{ marginRight: '10px' }}
-                                    fill="#887569"
+                                    fill="var(--color-accent)"
                                     width={18}
                                 />
                                 Інформація про клієнта
@@ -206,7 +206,7 @@ const OrderProduct = () => {
                             <td>
                                 <User
                                     style={{ marginRight: '10px' }}
-                                    fill="#887569"
+                                    fill="var(--color-accent)"
                                     width={18}
                                 />
                                 {result.customer}
@@ -216,7 +216,7 @@ const OrderProduct = () => {
                             <td>
                                 <User
                                     style={{ marginRight: '10px' }}
-                                    fill="#887569"
+                                    fill="var(--color-accent)"
                                     width={18}
                                 />
                                 За замовчуванням
@@ -226,7 +226,7 @@ const OrderProduct = () => {
                             <td>
                                 <Mail
                                     style={{ marginRight: '10px' }}
-                                    fill="#887569"
+                                    fill="var(--color-accent)"
                                     width={18}
                                 />
                                 {result.email}
@@ -236,7 +236,7 @@ const OrderProduct = () => {
                             <td>
                                 <Phone
                                     style={{ marginRight: '10px' }}
-                                    fill="#887569"
+                                    fill="var(--color-accent)"
                                     width={18}
                                 />
                                 {result.phone}
@@ -250,7 +250,7 @@ const OrderProduct = () => {
                             <th>
                                 <Edit
                                     style={{ marginRight: '10px' }}
-                                    fill="#887569"
+                                    fill="var(--color-accent)"
                                     width={18}
                                 />
                                 Параметри
@@ -263,7 +263,7 @@ const OrderProduct = () => {
                                 Рахунок-фактура
                                 <Edit
                                     style={{ float: 'right' }}
-                                    fill="#887569"
+                                    fill="var(--color-accent)"
                                     width={18}
                                 />
                             </td>
@@ -273,7 +273,7 @@ const OrderProduct = () => {
                                 Бонусні бали
                                 <PlusIcon
                                     style={{ float: 'right' }}
-                                    fill="#887569"
+                                    fill="var(--color-accent)"
                                     width={18}
                                 />
                             </td>
@@ -283,7 +283,7 @@ const OrderProduct = () => {
                                 Наложений платіж
                                 <PlusIcon
                                     style={{ float: 'right' }}
-                                    fill="#887569"
+                                    fill="var(--color-accent)"
                                     width={18}
                                 />
                             </td>

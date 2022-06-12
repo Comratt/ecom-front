@@ -1,7 +1,7 @@
 .img-thumbnail {
     padding: 4px;
     line-height: 1.42857;
-    background-color: #fff;
+    background-color: var(--color-lightest);
     border: 1px solid #ddd;
     border-radius: 3px;
     -webkit-transition: all .2s ease-in-out;
@@ -13,7 +13,7 @@
 }
 
 .product-quantity {
-    font-size: 12px;
+    font-size: var(--fz-tiny);
     color: white;
 }
 

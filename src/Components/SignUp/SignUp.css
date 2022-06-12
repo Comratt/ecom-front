@@ -31,7 +31,7 @@ lib-sign-up .from-login {
 }
 
 p.field-message__error {
-    font-size: 14px;
+    font-size: var(--fz-smaller);
     color: var(--color-error);
     margin-bottom: 7px;
     margin-top: 0;
