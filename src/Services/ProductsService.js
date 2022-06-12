@@ -43,6 +43,16 @@ class ProductsService {
         }
     }
 
+    static async getSizes(categories, price) {
+        const pageQuery = qs.stringify({ category: categories, price }, { arrayFormat: 'bracket', skipNull: true });
+
+        try {
+            return (await API.get(`api/admin/product/sizes?${pageQuery}`)).data;
+        } catch (e) {
+            throw new ServerException(e.response);
+        }
+    }
+
     static async getById(id) {
         try {
             return (await API.get(`api/admin/products/${id}`)).data;

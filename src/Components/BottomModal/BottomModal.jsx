@@ -122,6 +122,7 @@ export const BottomModal = ({
     handleAvailable,
     minMaxPrice = [],
     colors = [],
+    sizes = [],
     resetFilters,
     isFiltered,
     filtersDiff,
@@ -196,6 +197,23 @@ export const BottomModal = ({
                                 optionId: color.id,
                                 optName: 'color',
                                 icon: !filters?.color?.includes(color.id) ? null : <Check />,
+                            })),
+                        },
+                    ],
+                },
+                {
+                    id: 6,
+                    name: 'Розмір',
+                    type: 'size',
+                    filterType: 'size',
+                    children: [
+                        {
+                            content: sizes?.map((size) => ({
+                                id: size.id,
+                                name: size.name,
+                                optionId: size.id,
+                                optName: 'color',
+                                icon: !filters?.size?.includes(size.id) ? null : <Check />,
                             })),
                         },
                     ],
@@ -291,6 +309,36 @@ export const BottomModal = ({
             }]));
         }
     }, [colors]);
+
+    useEffect(() => {
+        if (sizes?.length) {
+            setOpt((prevOptions) => ([{
+                content: prevOptions[0].content?.map((option) => {
+                    if (option.id === 6) {
+                        return ({
+                            ...option,
+                            children: [{
+                                content: sizes?.map((size) => ({
+                                    id: size.id,
+                                    name: size.name,
+                                    optionId: size.id,
+                                    optName: 'size',
+                                    icon: (
+                                        !filters
+                                            ?.size
+                                            ?.map((v) => +v)
+                                            ?.includes(size.id) ? null : <Check />
+                                    ),
+                                })),
+                            }],
+                        });
+                    }
+
+                    return option;
+                }),
+            }]));
+        }
+    }, [sizes]);
 
     useEffect(() => {
         if (subcategories?.length) {
@@ -453,6 +501,14 @@ export const BottomModal = ({
 
             handleFilterBy('color', modColors);
         }
+        if (o.optName === 'size') {
+            const filterSizes = filters?.size || [];
+            const modSizes = filterSizes?.includes(+o.optionId)
+                ? filterSizes?.filter((s) => s != o.optionId)
+                : [...filterSizes, +o.optionId];
+
+            handleFilterBy('size', modSizes);
+        }
         if (o.optName === 'category') {
             const filterCat = filters?.category?.filter((cat) => cat != collectionId) || [];
             const modCat = filterCat?.includes(+o.optionId)
@@ -469,7 +525,7 @@ export const BottomModal = ({
             setOpt((prevOptions) => ([{
                 ...prevOptions,
                 content: prevOptions[0].content?.map((option) => {
-                    if (['color', 'sort', 'stock', 'category'].includes(option.type)) {
+                    if (['color', 'size', 'sort', 'stock', 'category'].includes(option.type)) {
                         return ({
                             ...option,
                             children: [{

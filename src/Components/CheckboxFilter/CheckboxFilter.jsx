@@ -28,6 +28,7 @@ export const CheckboxFilter = ({
     const { isTabletSize } = useDetectedMobileDevice();
     const { result: minMaxPrice, loading: minMaxLoading } = useAsync(ProductsService.getMinMaxPrice, [filters.category, filters.color]);
     const { result: colors, loading: colorsLoading } = useAsync(ProductsService.getColors, [filters.category, filters.price]);
+    const { result: sizes, loading: sizesLoading } = useAsync(ProductsService.getSizes, [filters.category, filters.price]);
     const categoryName = categories?.find(({ id }) => +id === +collectionId)?.name || 'Категорія';
 
     const componentClasses = classNames(
@@ -56,6 +57,7 @@ export const CheckboxFilter = ({
                 handleAvailable={handleAvailable}
                 minMaxPrice={minMaxPrice}
                 colors={colors}
+                sizes={sizes}
                 resetFilters={resetFilters}
                 isFiltered={isFiltered}
                 filtersDiff={filtersDiff}
@@ -80,6 +82,7 @@ export const CheckboxFilter = ({
                                 handleAvailable={handleAvailable}
                                 minMaxPrice={minMaxPrice}
                                 colors={colors}
+                                sizes={sizes}
                                 resetFilters={resetFilters}
                                 isFiltered={isFiltered}
                             />

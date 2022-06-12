@@ -168,12 +168,13 @@ const CheckboxFilterItem = ({
     filters,
     minMaxPrice,
     colors,
+    sizes,
     resetFilters,
     isFiltered,
 }) => {
     const [staticFilters, setStaticFilters] = useState([
         { name: 'Колір', id: 1, text: [{ name: 'color' }] },
-        { name: 'Розмір', id: 2, text: [{ name: '', value: 'ad' }] },
+        { name: 'Розмір', id: 2, text: [{ name: 'size' }] },
         { name: 'Ціна', id: 3, text: [{ name: 'price' }] },
         {
             name: 'Наявність',
@@ -238,6 +239,27 @@ const CheckboxFilterItem = ({
         }
     }, [colors]);
 
+    useEffect(() => {
+        if (sizes?.length) {
+            setStaticFilters((prev) => prev.map((item) => {
+                if (item.id === 2) {
+                    return ({
+                        ...item,
+                        text: sizes?.map(({ id, name }) => ({
+                            value: id,
+                            name: 'size',
+                            text: (
+                                <span>{name}</span>
+                            ),
+                        })),
+                    });
+                }
+
+                return item;
+            }));
+        }
+    }, [sizes]);
+
     const componentClasses = classNames(
         'lib-checkboxFilterItem',
         className,
@@ -256,6 +278,15 @@ const CheckboxFilterItem = ({
                 handleFilterBy('color', [...colores, +target.value]);
             }
         }
+        if (filterId === 2) {
+            if (filters?.size?.includes(+target.value)) {
+                handleFilterBy('size', filters?.size?.filter((sizeId) => sizeId != target.value));
+            } else {
+                const sizess = filters?.size || [];
+
+                handleFilterBy('size', [...sizess, +target.value]);
+            }
+        }
         if (filterId === 5) {
             if (filters.sortBy === target.value) {
                 return handleSortBy('');
@@ -271,6 +302,8 @@ const CheckboxFilterItem = ({
             return filters.available;
         } if (filterId === 1) {
             return filters?.color?.includes(+value);
+        } if (filterId === 2) {
+            return filters?.size?.includes(+value);
         }
     };
 
@@ -314,7 +347,7 @@ const CheckboxFilterItem = ({
                                                 name={data.name}
                                                 value={data.value}
                                                 checked={isChecked(list.id, data.value)}
-                                                type={list.id === 1 ? 'checkbox' : 'radio'}
+                                                type={(list.id === 1 || list.id === 2) ? 'checkbox' : 'radio'}
                                             />
                                             <span>{data.text}</span>
                                         </label>

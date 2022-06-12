@@ -19,6 +19,7 @@ export const useCollectionData = () => {
         category: id ? [+id] : [],
         sortBy: '',
         color: [],
+        size: [],
         price: [],
         available: false,
     };
@@ -40,6 +41,8 @@ export const useCollectionData = () => {
     const { page, count, ...filtersWithoutPage } = filters;
     const isFiltered = !isEqual(defaultFiltersWithoutPage, filtersWithoutPage);
     const filtersDiff = getObjectDiff(defaultFiltersWithoutPage, filtersWithoutPage);
+
+    console.log(filtersDiff);
 
     useEffect(() => {
         const { page: pageFilter } = filters;
