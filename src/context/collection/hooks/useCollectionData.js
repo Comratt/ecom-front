@@ -49,7 +49,7 @@ export const useCollectionData = () => {
             count: pageFilter * defaultFilters.count,
         };
 
-        history.push({
+        history.replace({
             pathname,
             search: `?${qs.stringify(modFilters, { arrayFormat: 'bracket', skipNull: true })}`,
         });

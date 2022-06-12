@@ -1,6 +1,6 @@
 {
-  "short_name": "Manager App",
-  "name": "Manager App - программа для учета товара",
+  "short_name": "Demo Store",
+  "name": "Demo Store - Ваш інтернет магазин",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,9 +8,9 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "logo128.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "128x128"
     },
     {
       "src": "logo512.png",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#fff",
-  "background_color": "#efedea85"
+  "theme_color": "#c4a996",
+  "background_color": "#c4a996"
 }

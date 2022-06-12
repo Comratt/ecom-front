@@ -27,6 +27,7 @@ export const useHome = () => {
 
     useEffect(() => {
         document.addEventListener('scroll', handleScroll);
+        localStorage.setItem('scrollYPosition', '0');
     }, []);
 
     useEffect(() => {
