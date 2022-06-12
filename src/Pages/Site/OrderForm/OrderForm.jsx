@@ -242,7 +242,7 @@ export const OrderForm = (className) => {
                                     type="text"
                                     options={cityNames}
                                     trigger=""
-                                    regex="^[А-Яа-яєі-]+$"
+                                    regex="^[А-Яа-яєіІїЇЄщЩ-]+$"
                                     spacer=""
                                     disabled={cities.loading}
                                     passThroughEnter
