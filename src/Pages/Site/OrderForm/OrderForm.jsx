@@ -124,6 +124,8 @@ export const OrderForm = (className) => {
 
     useEffect(() => {
         register('shippingCity', { required: true });
+
+        window.scrollTo(0, 0);
     }, []);
 
     useEffect(() => {

@@ -14,5 +14,7 @@ export const useWishlistLayout = () => {
         initLayoutState({
             className: 'wishlist-page',
         });
+
+        window.scrollTo(0, 0);
     }, []);
 };

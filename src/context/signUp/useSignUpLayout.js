@@ -14,5 +14,7 @@ export const useSignUpLayout = () => {
         initLayoutState({
             className: 'signUp-page',
         });
+
+        window.scrollTo(0, 0);
     }, []);
 };

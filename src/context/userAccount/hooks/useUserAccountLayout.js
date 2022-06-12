@@ -14,5 +14,7 @@ export const useUserAccountLayout = () => {
         initLayoutState({
             className: 'userAccount-page',
         });
+
+        window.scrollTo(0, 0);
     }, []);
 };

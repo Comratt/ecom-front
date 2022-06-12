@@ -14,5 +14,7 @@ export const useLoginLayout = () => {
         initLayoutState({
             className: 'login-page',
         });
+
+        window.scrollTo(0, 0);
     }, []);
 };

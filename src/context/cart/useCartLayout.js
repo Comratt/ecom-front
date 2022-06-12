@@ -14,5 +14,7 @@ export const useCartLayout = () => {
         initLayoutState({
             className: 'login-page',
         });
+
+        window.scrollTo(0, 0);
     }, []);
 };
