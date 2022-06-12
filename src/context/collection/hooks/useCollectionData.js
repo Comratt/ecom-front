@@ -58,18 +58,18 @@ export const useCollectionData = () => {
         });
     }, [filters]);
 
-    useEffect(() => {
-        if (urlFilters?.category?.length && urlFilters?.from_sidebar) {
-            setFilters((prevF) => ({
-                ...prevF,
-                category: urlFilters.category,
-            }));
-            history.replace({
-                pathname,
-                search: '',
-            });
-        }
-    }, [urlFilters.category]);
+    // useEffect(() => {
+    //     if (urlFilters?.category?.length && urlFilters?.from_sidebar) {
+    //         setFilters((prevF) => ({
+    //             ...prevF,
+    //             category: urlFilters.category,
+    //         }));
+    //         history.replace({
+    //             pathname,
+    //             search: '',
+    //         });
+    //     }
+    // }, [urlFilters.category]);
 
     return useMemo(() => ({
         loading: loading || categoriesLoading,
