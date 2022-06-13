@@ -35,13 +35,9 @@ export const SideBar = ({ className }) => {
             <div className="lib-sidebar__content">
                 <div className="lib-sidebar__content-wrapper">
                     <Accordion>
-                        {adaptCategories(categories).map(({ id, name, subcategories }) => (
+                        {adaptCategories(categories).map(({ id, name }) => (
                             <AccordionItem
-                                label={subcategories?.length ? (
-                                    <span className="lib-sidebar__item">
-                                        {name}
-                                    </span>
-                                ) : (
+                                label={(
                                     <Link
                                         to={`/collection/${id}`}
                                         className="lib-sidebar__item"
@@ -52,19 +48,8 @@ export const SideBar = ({ className }) => {
                                 )}
                                 key={id}
                                 index={id}
-                                hideArrow={!subcategories?.length}
-                            >
-                                {subcategories.map((subcategory) => (
-                                    <Link
-                                        to={`/collection/${id}?category[]=${subcategory.category_id}&from_sidebar=1`}
-                                        key={subcategory.category_id}
-                                        className="lib-sidebar__item"
-                                        onClick={handleCloseNavigationModal}
-                                    >
-                                        <span>{subcategory.category_name}</span>
-                                    </Link>
-                                ))}
-                            </AccordionItem>
+                                hideArrow
+                            />
                         ))}
                     </Accordion>
                 </div>

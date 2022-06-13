@@ -14,7 +14,6 @@ import { clearCart } from 'Store/Modules/Cart/cartActions';
 import OrderService from 'Services/OrderService';
 
 import { Link } from 'Components/Link';
-import LoginBtn from 'Components/Buttons/LoginBtn/LoginBtn';
 import { CommonInput } from 'Components/CommonInput';
 import { Logo, Cart, AccardionArrow } from 'Icons';
 import { getFormattedPrice, emailRegExp } from 'Constants';
@@ -72,15 +71,18 @@ export const OrderForm = (className) => {
         setValue,
         setError,
         clearErrors,
+        watch,
     } = useForm({
         mode: 'onChange',
         defaultValues,
     });
+    const shippingCity = watch('shippingCity');
+    const areaName = useMemo(() => cities.data.find(({ Description }) => shippingCity === Description)?.AreaDescription, [cities, shippingCity]);
     const componentClasses = classNames('lib-order', className);
     const toggleSidebar = () => setShowSideBar((sideBar) => !sideBar);
 
     const onSubmit = (formInfo) => {
-        if (!selectedCity) {
+        if (!selectedCity || !areaName) {
             return setError('shippingCity', { message: 'Введіть місто' });
         }
         setFormLoading(true);
@@ -92,6 +94,7 @@ export const OrderForm = (className) => {
                 purePrice: product?.purePrice - (product?.discount || 0),
             })),
             comment: orderNotes,
+            areaName,
             status_id: 1,
         })
             .then((response) => {

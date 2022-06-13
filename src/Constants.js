@@ -1,3 +1,5 @@
+import currency from 'currency.js';
+
 export const MOBILE_VIEWPORT_MAX_WIDTH = 576;
 export const TABLET_VIEWPORT_MAX_WIDTH = 768;
 export const DESKTOP_VIEWPORT_MAX_WIDTH = 1024;
@@ -55,8 +57,4 @@ export const getValidationMessage = ({ type = '', message } = {}) => {
     return '';
 };
 
-export const getFormattedPrice = (price = 0, prefix = '₴') => {
-    const priceNumber = Number(price).toFixed(2);
-
-    return `${priceNumber} ${prefix}`;
-};
+export const getFormattedPrice = (price = 0, prefix = '₴') => currency(price, { pattern: '# !', precision: 1 }).format({ symbol: prefix });

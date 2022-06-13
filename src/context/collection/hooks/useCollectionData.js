@@ -1,4 +1,6 @@
-import { useMemo, useState, useEffect } from 'react';
+import {
+    useMemo, useState, useEffect, useRef,
+} from 'react';
 import { useParams, useLocation, useHistory } from 'react-router-dom';
 import isEqual from 'lodash/isEqual';
 import qs from 'query-string';
@@ -9,6 +11,7 @@ import { getObjectDiff } from 'Helpers';
 import { useFetchProducts } from '../../hooks/useFetchProducts';
 
 export const useCollectionData = () => {
+    const isMounted = useRef(false);
     const { id } = useParams();
     const history = useHistory();
     const { search, pathname } = useLocation();
@@ -43,6 +46,10 @@ export const useCollectionData = () => {
     const filtersDiff = getObjectDiff(defaultFiltersWithoutPage, filtersWithoutPage);
 
     console.log(filtersDiff);
+
+    useEffect(() => {
+        setFilters(defaultFilters);
+    }, [id]);
 
     useEffect(() => {
         const { page: pageFilter } = filters;

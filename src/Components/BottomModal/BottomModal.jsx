@@ -361,6 +361,21 @@ export const BottomModal = ({
                     return option;
                 }),
             }]));
+        } else {
+            setOpt((prevOptions) => ([{
+                content: prevOptions[0].content?.map((option) => {
+                    if (option.id === 11) {
+                        return ({
+                            ...option,
+                            children: [{
+                                content: [],
+                            }],
+                        });
+                    }
+
+                    return option;
+                }),
+            }]));
         }
     }, [collectionId]);
     useEffect(() => {

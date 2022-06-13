@@ -7,6 +7,10 @@
     justify-content: space-around;
 }
 
+.dashboard-page .ukraine-map > path:hover {
+    opacity: .7;
+}
+
 .dashboard-page .bg-primary{
     background-color:#545f6b;
 }
@@ -31,24 +35,5 @@
 }
 .dashboard-page .card-text span{
     margin-left: 50px;
-}
-.dashboard-page .card-img-top{
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 10%;
-    height: 350px;
-    transform: scale(0.5);
-    width: 600px!important;
-}
-
-.dashboard-page .svg-container {
-    display: inline-block;
-    position: relative;
-    width: 100%;
-    padding-bottom: 100%;
-    vertical-align: middle;
-    height: auto;
 }
 

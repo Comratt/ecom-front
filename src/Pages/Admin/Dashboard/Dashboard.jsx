@@ -13,6 +13,39 @@ import { useAnalytics } from '../hooks/useAnalytics';
 import Loader from '../../../Components/Loader';
 import Card from '../../../Icons/Card';
 
+const CardItem = ({
+    percent, loading, total, to, title,
+}) => (
+    <div className="card text-white bg-secondary  mb-3" style={{ width: '18rem' }}>
+        <div className="card-header">
+            <span>{title}</span>
+            <div>
+                <AccardionArrow
+                    style={{ transform: percent > 0 ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                    width={24}
+                    fill="white"
+                />
+                <span>{`${percent}%`}</span>
+            </div>
+        </div>
+        <div className="card-body">
+            {loading ? <Loader size={2} />
+                : (
+                    <span className="card-text">
+                        <Truck width={24} />
+                        <span>
+                            {total}
+                            <sub>штук</sub>
+                        </span>
+                    </span>
+                )}
+        </div>
+        <Link to={to}>
+            <div className="card-header">Детальніше...</div>
+        </Link>
+    </div>
+);
+
 const Dashboard = () => {
     const { result, loading, error } = useAnalytics();
 
@@ -21,6 +54,7 @@ const Dashboard = () => {
         totalOrders: result?.orders || {},
         totalSales: result?.completed || {},
         totalUsers: result?.users || {},
+        ordersMap: result?.ordersMap || {},
     };
     const data = [
         {
@@ -66,109 +100,43 @@ const Dashboard = () => {
                 <div className="container">
                     <h3 className="dashboardHeader">Панель приладів</h3>
                     <div className="card-total-info-block">
-                        <div className="card text-white bg-secondary  mb-3" style={{ width: '18rem' }}>
-                            <div className="card-header">
-                                <span>TOTAL ORDERS </span>
-                                <div>
-                                    <AccardionArrow
-                                        width={24}
-                                        fill="white"
-                                    />
-                                    <span>{`${productTotal?.totalOrders?.percent}%`}</span>
-                                </div>
-                            </div>
-                            <div className="card-body">
-                                {loading ? <Loader size={2} />
-                                    : (
-                                        <span className="card-text">
-                                            <Truck width={24} />
-                                            <span>
-                                                {productTotal?.totalOrders?.total}
-                                                <sub>штук</sub>
-                                            </span>
-                                        </span>
-                                    )}
-                            </div>
-                            <div className="card-header">Детальніше...</div>
-                        </div>
-                        <div className="card text-white bg-secondary mb-3" style={{ width: '18rem' }}>
-                            <div className="card-header">
-                                <span>TOTAL SALES</span>
-                                <div>
-                                    <AccardionArrow
-                                        width={24}
-                                        fill="white"
-                                    />
-                                    <span>{`${productTotal?.totalSales?.percent}%`}</span>
-                                </div>
-                            </div>
-                            <div className="card-body">
-                                {loading ? <Loader size={2} />
-                                    : (
-                                        <p className="card-text">
-                                            <Card width={24} />
-                                            <span>
-                                                {productTotal?.totalSales?.total}
-                                                <sub>грн</sub>
-                                            </span>
-                                        </p>
-                                    )}
-                            </div>
-                            <div className="card-header">view more...</div>
-                        </div>
-                        <div className="card text-white bg-secondary  mb-3" style={{ width: '18rem' }}>
-                            <div className="card-header">
-                                TOTAL CUSTOMERS
-                                <div>
-                                    <AccardionArrow
-                                        width={24}
-                                        fill="white"
-                                    />
-                                    <span>{`${productTotal?.totalUsers?.percent}%`}</span>
-                                </div>
-                            </div>
-                            <div className="card-body">
-                                {loading ? <Loader size={2} />
-                                    : (
-                                        <p className="card-text">
-                                            <User width={24} />
-                                            <span>
-                                                {productTotal?.totalUsers?.total}
-                                                <sub>штук</sub>
-                                            </span>
-                                        </p>
-                                    )}
-                            </div>
-                            <div className="card-header">Детальніше...</div>
-                        </div>
-                        <div className="card text-white bg-secondary  mb-3" style={{ width: '18rem' }}>
-                            <div className="card-header">
-                                TOTAL PRODUCTS
-                            </div>
-                            <div className="card-body">
-                                {loading ? <Loader size={2} />
-                                    : (
-                                        <p className="card-text">
-                                            <Cart width={24} />
-                                            <span>
-                                                {productTotal.totalProducts?.total}
-                                                <sub>штук</sub>
-                                            </span>
-                                        </p>
-                                    )}
-                            </div>
-                            <Link to="/admin/products">
-                                <div className="card-header">Детальніше...</div>
-                            </Link>
-                        </div>
-
+                        <CardItem
+                            percent={productTotal?.totalOrders?.percent}
+                            loading={loading}
+                            title="TOTAL ORDERS"
+                            total={productTotal?.totalOrders?.total}
+                            to="/admin/orders"
+                        />
+                        <CardItem
+                            percent={productTotal?.totalSales?.percent}
+                            loading={loading}
+                            title="TOTAL SALES"
+                            total={productTotal?.totalSales?.total}
+                            to="/admin/orders"
+                        />
+                        <CardItem
+                            percent={productTotal?.totalUsers?.percent}
+                            loading={loading}
+                            title="TOTAL CUSTOMERS"
+                            total={productTotal?.totalUsers?.total}
+                            to="/admin/orders"
+                        />
+                        <CardItem
+                            percent={productTotal?.totalProducts?.percent}
+                            loading={loading}
+                            title="TOTAL PRODUCTS"
+                            total={productTotal?.totalProducts?.total}
+                            to="/admin/products"
+                        />
                     </div>
 
                     <div className="dashboard-map">
                         <h3 style={{ textAlign: 'center' }}>Order Map</h3>
                     </div>
-                    <div className="svg-container">
-                        <UkraineMap className="card-img-top" />
+                    <div>
+                        {!loading && (
+                            <UkraineMap className="ukraine-map" data={productTotal.ordersMap} />
+                        )}
                     </div>
                     <div>
                         <h3 style={{ textAlign: 'center' }}>Graphic Orders</h3>
