@@ -5,16 +5,16 @@
 .orderListContent{
     border: 1px solid #dcdcdc;
 }
-table {
+.table-bordered table {
     width: 100%;
 }
-th{
+.table-bordered th{
     padding:10px
 }
-td{
+. table-borderedtd{
     padding: 10px;
 }
-table, thead, tbody, th,td {
+.table-bordered table, thead, tbody, th,td {
     border: 1px solid #dcdcdc;
 }
 .orderButtonDetails{

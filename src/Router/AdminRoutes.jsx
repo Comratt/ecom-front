@@ -18,6 +18,7 @@ const AdminCategories = lazy(() => import('Pages/Admin/Categories'));
 const AdminOptions = lazy(() => import('Pages/Admin/Options'));
 const AdminOrder = lazy(() => import('Pages/Admin/Order'));
 const AdminOrderProduct = lazy(() => import('Pages/Admin/OrderProduct'));
+const AdminViewProducts = lazy(() => import('Pages/Admin/ViewProducts'));
 
 export const AdminRoutes = () => {
     const { path } = useRouteMatch();
@@ -33,6 +34,7 @@ export const AdminRoutes = () => {
             <Route path={`${path}/option`} component={AdminOptions} />
             <Route exact path={`${path}/order`} component={AdminOrder} />
             <Route path={`${path}/order/:id`} component={AdminOrderProduct} />
+            <Route path={`${path}/viewproducts`} component={AdminViewProducts} />
             <Route
                 path="*"
                 component={() => (
