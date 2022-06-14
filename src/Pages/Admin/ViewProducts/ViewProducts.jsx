@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from '../Layout';
 import './ViewProducts.css';
 import { useFetchProducts } from '../hooks/useFetchProducts';
 import Loader from '../../../Components/Loader';
+import { AdminPagination } from '../../../Components/AdminPagination';
 
 const ViewProducts = () => {
     const {
@@ -17,6 +18,10 @@ const ViewProducts = () => {
         resetFilters,
     } = useFetchProducts();
 
+    useEffect(() => {
+        handleFilter('sortBy', 'relevance');
+    }, []);
+
     const allViewed = result.reduce((acc, product) => acc + product.viewed, 0);
 
     return (
@@ -24,6 +29,12 @@ const ViewProducts = () => {
             <div className="panel">
                 <div className="panel-header">
                     <h3 className="title">Cтатистика переглядів по товарам</h3>
+                    <AdminPagination
+                        loading={loading}
+                        current={page}
+                        onChange={(pageNumber) => setPage(pageNumber)}
+                        total={totalPages}
+                    />
                 </div>
 
                 <div className="panel-body">
@@ -45,7 +56,7 @@ const ViewProducts = () => {
                     <div className="chart">
 
                         {loading ? <Loader size={7} center /> : (
-                            <table className="table-active view-products_table-body">
+                            <table className="table view-products_table-body">
                                 <thead>
                                     <tr>
                                         <td>Назва</td>
