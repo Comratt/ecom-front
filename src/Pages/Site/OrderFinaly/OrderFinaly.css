@@ -1,0 +1,14 @@
+.orderFinal-page__container{
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.orderFinal-page__title{
+    padding: 15px;
+}
+.orderFinal-page-btn{
+    width: 150px;
+}

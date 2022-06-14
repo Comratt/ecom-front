@@ -19,12 +19,15 @@ import { Logo, Cart, AccardionArrow } from 'Icons';
 import { getFormattedPrice, emailRegExp } from 'Constants';
 
 import './OrderForm.css';
+import { useHistory } from 'react-router-dom';
 import Button from '../../../Components/Button/Button';
 
 export const OrderForm = (className) => {
     const dispatch = useDispatch();
     const alert = useAlert();
     const user = useSelector(getUser);
+    const history = useHistory();
+
     const products = useSelector(getCartProducts);
     const orderNotes = useSelector(getCartNotes);
     const [formLoading, setFormLoading] = useState(false);
@@ -81,6 +84,10 @@ export const OrderForm = (className) => {
     const componentClasses = classNames('lib-order', className);
     const toggleSidebar = () => setShowSideBar((sideBar) => !sideBar);
 
+    const handleGoNextPage = () => {
+        history.push('/orderfinaly');
+    };
+
     const onSubmit = (formInfo) => {
         if (!selectedCity || !areaName) {
             return setError('shippingCity', { message: 'Введіть місто' });
@@ -101,6 +108,7 @@ export const OrderForm = (className) => {
                 setFormLoading(false);
                 dispatch(clearCart());
                 alert.success({ name: 'Дякуємо! Замовлення успішно оформлене.' });
+                handleGoNextPage();
             })
             .catch((error) => {
                 setFormLoading(false);
@@ -293,6 +301,7 @@ export const OrderForm = (className) => {
                                 {errors?.phone && <p className="field-message__error">Введіть коректний номер</p>}
                             </div>
                             <div className="order__order-button">
+
                                 <Button variant="solid" loading={formLoading}>
                                     Оформити замовлення
                                 </Button>
