@@ -34,4 +34,9 @@ export const menuItems = [
         name: 'Продукты',
         link: '/admin/productlist',
     },
+    {
+        key: 'productview',
+        name: 'Cтатистика переглядів',
+        link: '/admin/viewproducts',
+    },
 ];
