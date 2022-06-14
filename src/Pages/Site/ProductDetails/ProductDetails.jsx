@@ -7,12 +7,14 @@ import React, {
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import { useAlert } from 'react-alert';
+import { useHistory } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 import { useProduct } from 'context/product/hooks/useProduct';
 import { addToCart } from 'Store/Modules/Cart/cartActions';
 import { getWishlistProducts } from 'Store/Modules/Wishlist/selectors';
+import { getCartProducts } from 'Store/Modules/Cart/selectors';
 import LocalStorageService from 'Services/LocalStorageService';
 import { getFormattedPrice } from 'Constants';
 
@@ -26,17 +28,19 @@ import ProductCarousel from 'Components/PorductCarousel';
 import { ProductDetailsLoader } from 'Components/SkeletonLoader';
 import { ImagePreview } from 'Components/ImagePreview';
 import { useDetectedMobileDevice } from 'hooks/useDetectMobileDevice';
-
 import './ProductInfo.css';
 
 export const ProductDetails = () => {
     const sizesRef = useRef();
     const alert = useAlert();
+    const history = useHistory();
     const dispatch = useDispatch();
+    const products = useSelector(getCartProducts);
     const [activeColor, setActiveColor] = useState({});
     const [activeSize, setActiveSize] = useState({});
     const [sizeError, setSizeError] = useState(false);
     const [modalSrc, setModalSrc] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
     const {
         result, loading, productId,
     } = useProduct();
@@ -80,6 +84,15 @@ export const ProductDetails = () => {
     };
     const discount = result?.discounts || 0;
 
+    const isSelectedProduct = useMemo(() => {
+        const selectedItems = products.map(({ id, color, size }) => [id, color, size]);
+
+        return selectedItems.some((item) => item
+            .includes(activeColor?.name) && item
+            .includes(activeSize?.name) && item
+            .includes(result.id));
+    }, [products, activeSize, activeColor]);
+
     const handleAddToCart = () => {
         setSizeError(false);
         if (!activeSize?.id) {
@@ -101,15 +114,7 @@ export const ProductDetails = () => {
             totalCount: activeSize?.product_quantity,
             discount,
         }));
-
-        return alert.show({
-            name: result?.name,
-            price: result?.price,
-            purePrice: result?.purePrice,
-            size: activeSize?.name,
-            image: result?.image,
-            discount,
-        });
+        setShowAlert(true);
     };
 
     useEffect(() => {
@@ -126,6 +131,22 @@ export const ProductDetails = () => {
     }, [productId]);
 
     useEffect(() => {
+        if (showAlert) {
+            setTimeout(() => {
+                alert.show({
+                    name: result?.name,
+                    price: result?.price,
+                    purePrice: result?.purePrice,
+                    size: activeSize?.name,
+                    image: result?.image,
+                    discount,
+                });
+                setShowAlert(false);
+            });
+        }
+    }, [showAlert, alert]);
+
+    useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
@@ -138,6 +159,9 @@ export const ProductDetails = () => {
     if (loading) {
         return <ProductDetailsLoader />;
     }
+    const handleClick = () => {
+        history.push('/cart');
+    };
 
     return (
         <>
@@ -227,8 +251,8 @@ export const ProductDetails = () => {
                         </div>
                         <div className="cart-container">
                             <div className="lib-product_cart_btn">
-                                <Button variant="solid" onClick={handleAddToCart}>
-                                    Додати в кошик
+                                <Button variant="solid" onClick={isSelectedProduct ? handleClick : handleAddToCart}>
+                                    {isSelectedProduct ? 'Перейти в кошик' : 'Додати в кошик'}
                                 </Button>
                             </div>
                             <div className="lib-product_info_wishlist">

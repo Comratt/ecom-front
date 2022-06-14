@@ -6,6 +6,7 @@ import ErrorIcon from './icons/ErrorIcon';
 
 import './CardPopUp.css';
 import { getFormattedPrice } from '../../Constants';
+import { Link } from '../Link';
 
 const alertStyle = {
     padding: '20px',
@@ -38,7 +39,7 @@ export const CardPopUp = ({
     }
 
     return (
-        <div className={componentClassNames} style={style}>
+        <Link to="/cart" className={componentClassNames} style={style}>
             <div className="card-pop-up__title">
                 Товар додано до вашого кошика
             </div>
@@ -64,7 +65,7 @@ export const CardPopUp = ({
                     </div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };
 
