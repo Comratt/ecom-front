@@ -56,17 +56,9 @@ const Order = () => {
                 <tbody>
                     {result.map((order) => (
                         <tr key={order.id}>
-                            <td>
-                                <div className="custom-control custom-checkbox">
-                                    <input
-                                        type="checkbox"
-                                        className="custom-control-input"
-                                        id="customCheck"
-                                    />
-                                    <label
-                                        className="custom-control-label"
-                                        htmlFor="customCheck "
-                                    />
+                            <td className="table-cell-badge">
+                                <div>
+                                    {order.viewed ? '' : <span className="badge rounded-pill text-bg-success">New</span>}
                                 </div>
                             </td>
                             <td className="table-cell__img">
