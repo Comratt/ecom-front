@@ -25,6 +25,7 @@ import FooterLogo from './FooterLogo';
 import Check from './Check';
 import UkraineMap from './UkraineMap';
 import HeaderHeart from './HeaderHeart';
+import UkraineIcon from './UkraineIcon';
 
 export {
     Remove,
@@ -54,4 +55,5 @@ export {
     Check,
     UkraineMap,
     HeaderHeart,
+    UkraineIcon,
 };

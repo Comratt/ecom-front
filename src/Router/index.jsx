@@ -29,6 +29,7 @@ const Cart = lazy(() => import('Pages/Site/Cart'));
 const UserAccount = lazy(() => import('Pages/Site/UserAccount/UserAccount'));
 const CollectionList = lazy(() => import('Pages/Site/collection'));
 const WishList = lazy(() => import('Pages/Site/Wishlist'));
+const OrderFinaly = lazy(() => import('Pages/Site/OrderFinaly'));
 const AdminLogin = lazy(() => import('Pages/Admin/Login'));
 
 const options = {
@@ -64,6 +65,7 @@ const RouterComponent = () => (
                             <Route path="/checkboxfilter" component={() => <CheckboxFilter />} />
                             <Route path="/account" component={() => <UserAccount />} />
                             <Route path="/wishlist" component={() => <WishList />} />
+                            <Route path="/orderfinaly" component={() => <OrderFinaly />} />
                         </Layout>
                     </CategoriesWrapperProvider>
                     <Route path="*" component={NotFoundPage} />
