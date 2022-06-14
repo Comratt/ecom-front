@@ -1,3 +1,4 @@
+
 .dashboard-page .dashboardHeader{
     border-bottom: 1px solid #dcdcdc;
     margin: 15px;
@@ -5,6 +6,10 @@
 .dashboard-page .card-total-info-block{
     display: flex;
     justify-content: space-around;
+}
+.dashboard-page .card-body{
+    background-color: #5b6467;
+    background-image: linear-gradient(315deg, #5b6467 0%, #8b939a 74%);
 }
 
 .dashboard-page .ukraine-map > path:hover {
@@ -15,7 +20,8 @@
     background-color:#545f6b;
 }
 .dashboard-page .card-header {
-    background-color: rgba(0,0,0,0.10);
+    background-color: #5b6467;
+    background-image: linear-gradient(315deg, #5b6467 0%, #8b939a 74%);
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -35,5 +41,56 @@
 }
 .dashboard-page .card-text span{
     margin-left: 50px;
+}
+
+
+.dashboard_last-orders{
+    background-color: #2d3436;
+    background-image: linear-gradient(315deg, #2d3436 0%, #d3d3d3 125%);
+    border-radius: 10px;
+    display: flex;
+}
+.dashboard_table-order{
+    width:100%;
+    table-layout: fixed;
+}
+.dashboard-page .tbl-header{
+    background-color: rgba(255,255,255,0.3);
+}
+.dashboard-page .tbl-content{
+    height:300px;
+    overflow-x:auto;
+    margin-top: 0px;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+.dashboard_table-order th{
+    padding: 20px 15px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 12px;
+    color: #fff;
+    text-transform: uppercase;
+}
+.dashboard_table-order td{
+    padding: 10px;
+    text-align: left;
+    vertical-align:middle;
+    font-weight: 300;
+    font-size: 12px;
+    color: #fff;
+    border-bottom: solid 1px rgba(255,255,255,0.1);
+}
+.dashboard_last-orders-container{
+    padding: 15px;
+    width: 50%;
+}
+.dashboard_table-order-title{
+    color: white;
+    text-align: center;
+}
+.dashboard-page .badge{
+    background-color: #198753;
+    color: white;
+    padding: 6px 8px;
 }
 

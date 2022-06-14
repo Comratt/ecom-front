@@ -12,11 +12,12 @@ import Cart from '../../../Icons/Cart';
 import { useAnalytics } from '../hooks/useAnalytics';
 import Loader from '../../../Components/Loader';
 import Card from '../../../Icons/Card';
+import { useFetchOrders } from '../hooks/useFetchOrders';
 
 const CardItem = ({
     percent, loading, total, to, title,
 }) => (
-    <div className="card text-white bg-secondary  mb-3" style={{ width: '18rem' }}>
+    <div className="card text-white  mb-3" style={{ width: '18rem' }}>
         <div className="card-header">
             <span>{title}</span>
             <div>
@@ -45,6 +46,96 @@ const CardItem = ({
         </Link>
     </div>
 );
+
+const LastOrderList = () => {
+    const { result, loading } = useFetchOrders();
+
+    const orderLists = result?.filter((item) => item.viewed === 0).filter((product, index) => index < 5);
+
+    return (
+        <div className="dashboard_last-orders">
+            <section className="dashboard_last-orders-container">
+                <h3 className="dashboard_table-order-title">Список останніх замовлень</h3>
+                <div className="tbl-header">
+                    <table className="dashboard_table-order" cellPadding="0" cellSpacing="0" border="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Номер
+                                    <br />
+                                </th>
+                                <th>Замовник</th>
+                                <th scope="col">Статус</th>
+                                <th scope="col">Всього</th>
+                                <th scope="col">дату додано</th>
+                                <th scope="col">Дата зміни</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div className="tbl-content">
+                    <table className="dashboard_table-order" cellPadding="0" cellSpacing="0" border="0">
+                        <tbody>
+                            {orderLists?.map((order) => (
+                                <tr>
+                                    <td>
+                                        {order.id}
+                                        {' '}
+                                        <span className="badge rounded-pill text-bg-success">New</span>
+                                    </td>
+                                    <td>{order.customer}</td>
+                                    <td>{order.status}</td>
+                                    <td>{order.totalPrice}</td>
+                                    <td>{order.dateAdd}</td>
+                                    <td>{order.dateUpdate}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section className="dashboard_last-orders-container">
+                <h3 className="dashboard_table-order-title">Очікують на новій почті</h3>
+                <div className="tbl-header">
+                    <table className="dashboard_table-order" cellPadding="0" cellSpacing="0" border="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Номер
+                                    <br />
+                                </th>
+                                <th>Замовник</th>
+                                <th scope="col">Статус</th>
+                                <th scope="col">Всього</th>
+                                <th scope="col">дату додано</th>
+                                <th scope="col">Дата зміни</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div className="tbl-content">
+                    <table className="dashboard_table-order" cellPadding="0" cellSpacing="0" border="0">
+                        <tbody>
+                            {result?.filter((order) => order.status_id === 5).map((item) => (
+                                <tr>
+                                    <td>
+                                        {item.id}
+                                        {' '}
+                                    </td>
+                                    <td>{item.customer}</td>
+                                    <td>{item.status}</td>
+                                    <td>{item.totalPrice}</td>
+                                    <td>{item.dateAdd}</td>
+                                    <td>{item.dateUpdate}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    );
+};
 
 const Dashboard = () => {
     const { result, loading, error } = useAnalytics();
@@ -129,7 +220,6 @@ const Dashboard = () => {
                             to="/admin/products"
                         />
                     </div>
-
                     <div className="dashboard-map">
                         <h3 style={{ textAlign: 'center' }}>Order Map</h3>
                     </div>
@@ -139,6 +229,7 @@ const Dashboard = () => {
                         )}
                     </div>
                     <div>
+                        <LastOrderList />
                         <h3 style={{ textAlign: 'center' }}>Graphic Orders</h3>
                         <BarChart width={1000} height={250} data={data}>
                             <CartesianGrid strokeDasharray="3 3" />
