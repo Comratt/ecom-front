@@ -37,7 +37,6 @@ class LocalStorageService {
                 ...state,
             };
 
-            console.log(modifiedObject);
             const stringifyObject = JSON.stringify(modifiedObject);
 
             window.localStorage.setItem(this.localStorageKey, stringifyObject);
