@@ -1,17 +1,13 @@
 import React from 'react';
 import './Dashboard.css';
 import Link from 'react-router-dom/es/Link';
-import {
-    BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar,
-} from 'recharts';
 import Layout from '../Layout';
 import {
-    AccardionArrow, Truck, UkraineMap, User,
+    AccardionArrow, Truck, UkraineMap,
 } from '../../../Icons';
-import Cart from '../../../Icons/Cart';
-import { useAnalytics } from '../hooks/useAnalytics';
+import { useAnalytics, useOrdersAnalytics } from '../hooks/useAnalytics';
 import Loader from '../../../Components/Loader';
-import Card from '../../../Icons/Card';
+import { ChartWithFilters } from '../../../Components/ChartWithFilters/ChartWithFilters';
 
 const CardItem = ({
     percent, loading, total, to, title,
@@ -48,6 +44,12 @@ const CardItem = ({
 
 const Dashboard = () => {
     const { result, loading, error } = useAnalytics();
+    const {
+        result: orders,
+        loading: ordersLoading,
+        onFiltersChange,
+        filters,
+    } = useOrdersAnalytics();
 
     const productTotal = {
         totalProducts: result?.products || {},
@@ -56,43 +58,10 @@ const Dashboard = () => {
         totalUsers: result?.users || {},
         ordersMap: result?.ordersMap || {},
     };
-    const data = [
-        {
-            name: 'Page A',
-            uv: 4000,
-            pv: 2400,
-        },
-        {
-            name: 'Page B',
-            uv: 3000,
-            pv: 1398,
-        },
-        {
-            name: 'Page C',
-            uv: 2000,
-            pv: 9800,
-        },
-        {
-            name: 'Page D',
-            uv: 2780,
-            pv: 3908,
-        },
-        {
-            name: 'Page E',
-            uv: 1890,
-            pv: 4800,
-        },
-        {
-            name: 'Page F',
-            uv: 2390,
-            pv: 3800,
-        },
-        {
-            name: 'Page G',
-            uv: 3490,
-            pv: 4300,
-        },
-    ];
+
+    const handleFilters = ({ target }) => {
+        onFiltersChange(target.value);
+    };
 
     return (
         (
@@ -139,16 +108,14 @@ const Dashboard = () => {
                         )}
                     </div>
                     <div>
-                        <h3 style={{ textAlign: 'center' }}>Graphic Orders</h3>
-                        <BarChart width={1000} height={250} data={data}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" />
-                            <YAxis />
-                            <Tooltip />
-                            <Legend />
-                            <Bar dataKey="pv" fill="#8884d8" />
-                            <Bar dataKey="uv" fill="#82ca9d" />
-                        </BarChart>
+                        <ChartWithFilters
+                            title="Графік замовлень"
+                            filterBy={filters.filterBy}
+                            data={orders}
+                            loading={ordersLoading}
+                            type="bar"
+                            onChange={handleFilters}
+                        />
                     </div>
                 </div>
             </div>

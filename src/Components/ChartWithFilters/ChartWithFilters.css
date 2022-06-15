@@ -1,0 +1,12 @@
+.charts-wrapper .custom-tooltip {
+    background-color: rgba(0,0,0, .5);
+    padding: 10px;
+    font-size: 12px;
+    color: #bcc9e8;
+    border-radius: 5px;
+}
+
+.charts-wrapper .custom-tooltip .label {
+    padding: 5px;
+    margin: 0;
+}
