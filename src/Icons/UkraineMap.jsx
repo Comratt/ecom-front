@@ -198,9 +198,15 @@ const UkraineMap = ({ data, ...props }) => {
             {...props}
         />
     ));
+    const stylez = {
+        width: '690px',
+        boxShadow: 'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px',
+        borderRadius: '10px',
+        background: '#eef2f3',
+    };
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div style={stylez}>
             <svg
                 style={{ pointerEvents: 'visible', cursor: 'pointer', maxWidth: 650 }}
                 xmlns="http://www.w3.org/2000/svg"
