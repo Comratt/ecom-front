@@ -2,6 +2,11 @@
 .dashboard-page .dashboardHeader{
     border-bottom: 1px solid #dcdcdc;
     margin: 15px;
+    padding-bottom: 10px;
+    color: #67748e;
+}
+.dashboard-map{
+    color: #344767;
 }
 .status-card{
     border: none;
@@ -93,7 +98,7 @@
     border-radius: 10px;
 }
 .dashboard_table-order-title{
-    color: #434343;
+    color: #344767;
     text-align: center;
 }
 .dashboard-page .badge{

@@ -12,9 +12,10 @@ const SideBar = ({ isSidebarOpen }) => {
             <div className="sidebar-sticky pt-3">
                 <ul className="nav flex-column">
                     {menuItems.map((menuItem) => (
-                        <li key={menuItem.key} className="nav-item">
+                        <li style={{ padding: '5px' }} key={menuItem.key} className="nav-item">
                             <NavLink activeClassName="active" to={menuItem.link} className="nav-link">
-                                <span data-feather="home" />
+                                {menuItem.icon}
+                                <span style={{ marginLeft: '5px' }} data-feather="home" />
                                 {menuItem.name}
                                 {' '}
                                 <span className="sr-only">(current)</span>

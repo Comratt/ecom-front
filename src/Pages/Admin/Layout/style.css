@@ -28,6 +28,7 @@ body {
     z-index: 100; /* Behind the navbar */
     padding: 48px 0 0; /* Height of navbar */
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    background-color: #f8f9fa;
 }
 
 @keyframes sidebarOpenAnimation {
@@ -89,9 +90,20 @@ body {
     margin-right: 4px;
     color: #999;
 }
-
+.sidebar .nav-item{
+    transition: 0.4s;
+}
+.sidebar .nav-item:hover {
+    color: #344767;
+    background-color: #fff;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    border-radius: 10px;
+}
 .sidebar .nav-link.active {
-    color: #007bff;
+    color: #344767;
+    background-color: #fff;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    border-radius: 10px;
 }
 
 .sidebar .nav-link:hover .feather,
