@@ -39,4 +39,9 @@ export const menuItems = [
         name: 'Cтатистика переглядів',
         link: '/admin/viewproducts',
     },
+    {
+        key: 'promocode',
+        name: 'Створити промокод',
+        link: '/admin/promocode',
+    },
 ];

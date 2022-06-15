@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 import { getIsAdmin, getUserExpireDate } from 'Store/Modules/LocalSettings/selectors';
 import { logout } from 'Store/Modules/LocalSettings/localSettingsActions';
+import PromoCode from '../Pages/Admin/PromoCode';
 
 const AdminDashboard = lazy(() => import('Pages/Admin/Dashboard'));
 const AdminBanners = lazy(() => import('Pages/Admin/Banners'));
@@ -19,6 +20,7 @@ const AdminOptions = lazy(() => import('Pages/Admin/Options'));
 const AdminOrder = lazy(() => import('Pages/Admin/Order'));
 const AdminOrderProduct = lazy(() => import('Pages/Admin/OrderProduct'));
 const AdminViewProducts = lazy(() => import('Pages/Admin/ViewProducts'));
+const AdminPromoCode = lazy(() => import('Pages/Admin/PromoCode'));
 
 export const AdminRoutes = () => {
     const { path } = useRouteMatch();
@@ -35,6 +37,7 @@ export const AdminRoutes = () => {
             <Route exact path={`${path}/order`} component={AdminOrder} />
             <Route path={`${path}/order/:id`} component={AdminOrderProduct} />
             <Route path={`${path}/viewproducts`} component={AdminViewProducts} />
+            <Route path={`${path}/promocode`} component={AdminPromoCode} />
             <Route
                 path="*"
                 component={() => (
