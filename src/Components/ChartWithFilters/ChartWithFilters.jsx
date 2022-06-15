@@ -19,7 +19,7 @@ export const ChartWithFilters = ({
     <div className="w-100 charts-wrapper">
         <div className="d-flex justify-content-between px-lg-3 mb-3">
             <h3 style={{ textAlign: 'center' }}>{title}</h3>
-            <select value={filterBy} onChange={onChange} className="form-control w-25" name="filterBy">
+            <select value={filterBy} onChange={onChange} className="form-control chart-option w-25" name="filterBy">
                 <option selected disabled value="0">Фільтри</option>
                 <option value="year">Рік</option>
                 <option value="month">Місяць</option>

@@ -23,6 +23,10 @@
 .dashboard-page .ukraine-map > path:hover {
     opacity: .7;
 }
+.dashboard-page_chart{
+    margin-top: 20px;
+    width: 80%;
+}
 
 .dashboard-page .bg-primary{
     background-color:#545f6b;
@@ -92,6 +96,14 @@
     background-color: #eef2f3;
     border-radius: 10px;
 }
+.dashboard-page_chart_info{
+    margin-left: 10px;
+}
+.dashboard-page_chart_container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .dashboard_table-order-title{
     color: #434343;
     text-align: center;
@@ -100,5 +112,30 @@
     background-color: #82d616;
     color: white;
     padding: 6px 8px;
+}
+.dashboard-page-content{
+    display: flex;
+    justify-content: space-between;
+}
+@media  (max-width:1351px) {
+    .card-total-info-block{
+        flex-direction: column;
+        align-items: center;
+    }
+    .dashboard-page-content{
+        flex-direction: column;
+        align-items: center;
+    }
+    .dashboard_last-orders-container{
+        width: 100%;
+    }
+    .dashboard_last-orders{
+        flex-direction: column;
+        align-items: center;
+    }
+    .dashboard-page_chart_container{
+        flex-direction: column;
+        align-items: center;
+    }
 }
 

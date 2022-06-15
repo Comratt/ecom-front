@@ -52,9 +52,9 @@ export const BarChart = ({ data, loading, filterBy }) => {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="value" />
                     <YAxis />
-                    <Tooltip content={<CustomTooltip text={getTooltipLabel} />} />
+                    <Tooltip cursor={{ stroke: 'grey', strokeWidth: 2 }} content={<CustomTooltip text={getTooltipLabel} />} />
                     <Legend />
-                    <Bar dataKey="total" fill="#82ca9d" />
+                    <Bar dataKey="total" fill="#344767" />
                 </BarRecharts>
             )}
         </ResponsiveContainer>

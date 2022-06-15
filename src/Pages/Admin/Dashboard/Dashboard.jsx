@@ -205,7 +205,7 @@ const Dashboard = () => {
                                 <UkraineIcon />
                             </h3>
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <div className="dashboard-page-content">
                             {!loading && (
                                 <UkraineMap className="ukraine-map" data={productTotal.ordersMap} />
                             )}
@@ -247,14 +247,46 @@ const Dashboard = () => {
                     </div>
                     <div>
                         <LastOrderList />
-                        <ChartWithFilters
-                            title="Графік замовлень"
-                            filterBy={filters.filterBy}
-                            data={orders}
-                            loading={ordersLoading}
-                            type="bar"
-                            onChange={handleFilters}
-                        />
+                        <div className="dashboard-page_chart_container">
+                            <div className="dashboard-page_chart">
+                                <ChartWithFilters
+                                    title="Графік Дохідності"
+                                    filterBy={filters.filterBy}
+                                    data={orders}
+                                    loading={ordersLoading}
+                                    type="bar"
+                                    onChange={handleFilters}
+                                />
+                            </div>
+                            <div className="dashboard-page_chart_info">
+                                <CardItem
+                                    percent={productTotal?.totalSales?.percent}
+                                    loading={loading}
+                                    title="Загальна сума за обраний період"
+                                    total={orders.reduce((acc, curr) => acc + parseInt(curr.total), 0)}
+                                />
+                            </div>
+                        </div>
+                        <div className="dashboard-page_chart_container">
+                            <div className="dashboard-page_chart_info">
+                                <CardItem
+                                    percent={productTotal?.totalSales?.percent}
+                                    loading={loading}
+                                    title="Загальна сума за обраний період"
+                                    total={orders.reduce((acc, curr) => acc + parseInt(curr.total), 0)}
+                                />
+                            </div>
+                            <div className="dashboard-page_chart">
+                                <ChartWithFilters
+                                    title="Графік Дохідності"
+                                    filterBy={filters.filterBy}
+                                    data={orders}
+                                    loading={ordersLoading}
+                                    type="bar"
+                                    onChange={handleFilters}
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
