@@ -5,7 +5,8 @@ import AnalyticService from 'Services/AnalyticService';
 
 const getPercent = (yesterday, today) => {
     const prefix = ((today - yesterday) < 0) ? '-' : '+';
-    const percent = Math.floor((((today - yesterday) / (yesterday || 1)) * 100));
+    // const percent = Math.floor((((today - yesterday) / (yesterday || 1)) * 100));
+    const percent = Math.floor((today * 100) / yesterday || 0);
 
     return prefix === '-' ? 0 - percent : percent;
 };
