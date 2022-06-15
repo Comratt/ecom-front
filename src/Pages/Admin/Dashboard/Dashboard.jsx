@@ -1,9 +1,10 @@
 import React from 'react';
 import './Dashboard.css';
-import Link from 'react-router-dom/es/Link';
+import { Link } from 'react-router-dom';
+import Example from 'Components/ChartWithFilters/PieChart';
 import Layout from '../Layout';
 import {
-    Box, Customers, Heart, PlusIcon, Sales, UkraineIcon, UkraineMap,
+    Box, Customers, PlusIcon, Sales, UkraineIcon, UkraineMap,
 } from '../../../Icons';
 import { useAnalytics, useOrdersAnalytics } from '../hooks/useAnalytics';
 import Loader from '../../../Components/Loader';
@@ -14,7 +15,7 @@ const CardItem = ({
     percent, loading, total, to, title, icon,
 }) => {
     const value = {
-        color: percent > 10 ? '#82d616' : '#fc424a',
+        color: percent > 0 ? '#82d616' : '#fc424a',
     };
 
     return (
@@ -78,9 +79,17 @@ const LastOrderList = () => {
                         <tbody>
                             {orderLists?.map((order) => (
                                 <tr>
-                                    <td>
+                                    <td style={{
+                                        display: 'flex',
+                                        flexDirection: 'column-reverse',
+                                        gap: '5px',
+                                        alignItems: 'center',
+                                    }}
+                                    >
+                                        {/* <Link to={`/admin/order/` + order.id}> */}
+                                        {/*    {order.id} */}
+                                        {/* </Link> */}
                                         {order.id}
-                                        {' '}
                                         <span className="badge rounded-pill text-bg-success">New</span>
                                     </td>
                                     <td>{order.customer}</td>
@@ -157,6 +166,12 @@ const Dashboard = () => {
     const handleFilters = ({ target }) => {
         onFiltersChange(target.value);
     };
+    const data = [
+        { name: 'Group A', value: 400 },
+        { name: 'Group B', value: 300 },
+        { name: 'Group C', value: 300 },
+        { name: 'Group D', value: 200 },
+    ];
 
     return (
         (
@@ -277,14 +292,7 @@ const Dashboard = () => {
                                 />
                             </div>
                             <div className="dashboard-page_chart">
-                                <ChartWithFilters
-                                    title="Графік Дохідності"
-                                    filterBy={filters.filterBy}
-                                    data={orders}
-                                    loading={ordersLoading}
-                                    type="bar"
-                                    onChange={handleFilters}
-                                />
+                                <Example />
                             </div>
                         </div>
                     </div>
