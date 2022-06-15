@@ -6,46 +6,48 @@ import {
 } from 'recharts';
 import Layout from '../Layout';
 import {
-    AccardionArrow, Truck, UkraineMap, User,
+    Box, Customers, Heart, PlusIcon, Sales, UkraineIcon, UkraineMap,
 } from '../../../Icons';
-import Cart from '../../../Icons/Cart';
 import { useAnalytics } from '../hooks/useAnalytics';
 import Loader from '../../../Components/Loader';
-import Card from '../../../Icons/Card';
 import { useFetchOrders } from '../hooks/useFetchOrders';
 
 const CardItem = ({
-    percent, loading, total, to, title,
-}) => (
-    <div className="card text-white  mb-3" style={{ width: '18rem' }}>
-        <div className="card-header">
-            <span>{title}</span>
-            <div>
-                <AccardionArrow
-                    style={{ transform: percent > 0 ? 'rotate(180deg)' : 'rotate(0deg)' }}
-                    width={24}
-                    fill="white"
-                />
-                <span>{`${percent}%`}</span>
+    percent, loading, total, to, title, icon,
+}) => {
+    const value = {
+        color: percent > 10 ? '#82d616' : '#fc424a',
+    };
+
+    return (
+        <div className="status-card   mb-3" style={{ width: '18rem' }}>
+            <div className="card-body">
+                <div>
+                    <span className="card-body-title">{title}</span>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <h5 className="card-body-percent">
+                            {loading ? <Loader size={2} />
+                                : (
+                                    <span className="card-text-about">
+                                        <span>
+                                            <b>{total}</b>
+                                        </span>
+                                    </span>
+                                )}
+                        </h5>
+                        <span style={value} className="card-text-about-percent value"><b>{`${percent}%`}</b></span>
+                    </div>
+                </div>
+                <div>
+                    {icon}
+                </div>
+                <Link to={to}>
+                    <PlusIcon width={20} fill="#5b6467" />
+                </Link>
             </div>
         </div>
-        <div className="card-body">
-            {loading ? <Loader size={2} />
-                : (
-                    <span className="card-text">
-                        <Truck width={24} />
-                        <span>
-                            {total}
-                            <sub>штук</sub>
-                        </span>
-                    </span>
-                )}
-        </div>
-        <Link to={to}>
-            <div className="card-header">Детальніше...</div>
-        </Link>
-    </div>
-);
+    );
+};
 
 const LastOrderList = () => {
     const { result, loading } = useFetchOrders();
@@ -94,7 +96,7 @@ const LastOrderList = () => {
                     </table>
                 </div>
             </section>
-            <section className="dashboard_last-orders-container">
+            <section className="dashboard_last-orders-container second">
                 <h3 className="dashboard_table-order-title">Очікують на новій почті</h3>
                 <div className="tbl-header">
                     <table className="dashboard_table-order" cellPadding="0" cellSpacing="0" border="0">
@@ -145,8 +147,9 @@ const Dashboard = () => {
         totalOrders: result?.orders || {},
         totalSales: result?.completed || {},
         totalUsers: result?.users || {},
-        ordersMap: result?.ordersMap || {},
+        ordersMap: result?.ordersMap || [],
     };
+
     const data = [
         {
             name: 'Page A',
@@ -197,6 +200,7 @@ const Dashboard = () => {
                             title="TOTAL ORDERS"
                             total={productTotal?.totalOrders?.total}
                             to="/admin/orders"
+                            icon={<Box />}
                         />
                         <CardItem
                             percent={productTotal?.totalSales?.percent}
@@ -204,6 +208,7 @@ const Dashboard = () => {
                             title="TOTAL SALES"
                             total={productTotal?.totalSales?.total}
                             to="/admin/orders"
+                            icon={<Sales />}
                         />
                         <CardItem
                             percent={productTotal?.totalUsers?.percent}
@@ -211,6 +216,7 @@ const Dashboard = () => {
                             title="TOTAL CUSTOMERS"
                             total={productTotal?.totalUsers?.total}
                             to="/admin/orders"
+                            icon={<Customers />}
                         />
                         <CardItem
                             percent={productTotal?.totalProducts?.percent}
@@ -218,15 +224,56 @@ const Dashboard = () => {
                             title="TOTAL PRODUCTS"
                             total={productTotal?.totalProducts?.total}
                             to="/admin/products"
+                            icon={<Box />}
                         />
                     </div>
-                    <div className="dashboard-map">
-                        <h3 style={{ textAlign: 'center' }}>Order Map</h3>
-                    </div>
-                    <div>
-                        {!loading && (
-                            <UkraineMap className="ukraine-map" data={productTotal.ordersMap} />
-                        )}
+
+                    <div className="dashboard-page-map-container">
+                        <div className="dashboard-map">
+                            <h3 style={{ textAlign: 'center' }}>
+                                Ukraine
+                                <UkraineIcon />
+                            </h3>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            {!loading && (
+                                <UkraineMap className="ukraine-map" data={productTotal.ordersMap} />
+                            )}
+                            <section className="dashboard_last-orders-container">
+                                <h3 className="dashboard_table-order-title">Найкращі міста</h3>
+                                <div className="tbl-header">
+                                    <table className="dashboard_table-order" cellPadding="0" cellSpacing="0" border="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Область</th>
+                                                <th scope="col">Кількість</th>
+                                                <th scope="col">Сума</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <div className="tbl-content">
+                                    <table className="dashboard_table-order" cellPadding="0" cellSpacing="0" border="0">
+                                        <tbody>
+                                            {productTotal.ordersMap
+                                                ?.sort((a, b) => b.total - a.total)
+                                                .slice(0, 4)
+                                                ?.map((city) => (
+                                                    <tr>
+
+                                                        <td>{city.shipping_area}</td>
+                                                        <td>{city.counted}</td>
+                                                        <td>
+                                                            {city.total}
+                                                            ₴
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                        </div>
                     </div>
                     <div>
                         <LastOrderList />
