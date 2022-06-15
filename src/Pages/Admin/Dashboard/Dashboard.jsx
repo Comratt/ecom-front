@@ -17,6 +17,9 @@ const CardItem = ({
     const value = {
         color: percent > 0 ? '#82d616' : '#fc424a',
     };
+    const progressRadio = {
+        justifyContent: percent < 0 ? 'flex-end' : '',
+    };
 
     return (
         <div className="status-card   mb-3" style={{ width: '18rem' }}>
@@ -43,6 +46,15 @@ const CardItem = ({
                 <Link to={to}>
                     <PlusIcon width={20} fill="#5b6467" />
                 </Link>
+            </div>
+            <div style={progressRadio} className="progress">
+                <div
+                    style={{ width: `${Math.abs(percent)}%` }}
+                    className={`progress-bar-striped ${percent > 0 ? 'bg-success' : 'bg-danger'}`}
+                    role="progressbar"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                />
             </div>
         </div>
     );
