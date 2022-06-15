@@ -25,6 +25,10 @@ import FooterLogo from './FooterLogo';
 import Check from './Check';
 import UkraineMap from './UkraineMap';
 import HeaderHeart from './HeaderHeart';
+import UkraineIcon from './UkraineIcon';
+import Box from './Box';
+import Sales from './Sales';
+import Customers from './Customers';
 
 export {
     Remove,
@@ -54,4 +58,8 @@ export {
     Check,
     UkraineMap,
     HeaderHeart,
+    UkraineIcon,
+    Box,
+    Sales,
+    Customers,
 };
