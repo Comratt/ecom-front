@@ -29,6 +29,12 @@ import UkraineIcon from './UkraineIcon';
 import Box from './Box';
 import Sales from './Sales';
 import Customers from './Customers';
+import Dashboard from './Dashboard';
+import Order from './Order';
+import AddImg from './AddImg';
+import Category from './Category';
+import Eyes from './Eyes';
+import PromoCode from './PromoCode';
 
 export {
     Remove,
@@ -62,4 +68,10 @@ export {
     Box,
     Sales,
     Customers,
+    Dashboard,
+    Order,
+    AddImg,
+    Category,
+    Eyes,
+    PromoCode,
 };

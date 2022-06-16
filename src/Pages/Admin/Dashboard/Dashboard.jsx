@@ -160,6 +160,8 @@ const LastOrderList = () => {
 
 const Dashboard = () => {
     const { result, loading, error } = useAnalytics();
+
+    console.log(result);
     const {
         result: orders,
         loading: ordersLoading,

@@ -15,20 +15,10 @@ body {
     height: 16px;
     vertical-align: text-bottom;
 }
-
 /*
  * Sidebar
  */
 
-.sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: -768px;
-    z-index: 100; /* Behind the navbar */
-    padding: 48px 0 0; /* Height of navbar */
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-}
 
 @keyframes sidebarOpenAnimation {
     0% {
@@ -80,34 +70,16 @@ body {
     }
 }
 
-.sidebar .nav-link {
-    font-weight: 500;
-    color: #333;
-}
-
-.sidebar .nav-link .feather {
-    margin-right: 4px;
-    color: #999;
-}
-
-.sidebar .nav-link.active {
-    color: #007bff;
-}
-
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
-    color: inherit;
-}
-
-.sidebar-heading {
-    font-size: .75rem;
-    text-transform: uppercase;
-}
-
 /*
  * Navbar
  */
-
+.nav {
+    list-style-type: none;
+    color: white;
+}
+.nav:first-child {
+    padding-top: 1.5rem;
+}
 .navbar-brand {
     padding-top: .75rem;
     padding-bottom: .75rem;
@@ -137,3 +109,85 @@ body {
     border-color: transparent;
     box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
+.nav__cont {
+    position: fixed;
+    width: 60px;
+    top: 0;
+    height: 100vh;
+    z-index: 100;
+    background-color: #202020;
+    overflow: hidden;
+    transition: width 0.3s ease;
+    cursor: pointer;
+    box-shadow: 4px 7px 10px rgba(0, 0, 0, 0.4);
+}
+.nav__cont:hover {
+    width: 240px;
+}
+@media screen and (min-width: 600px) {
+    .nav__cont {
+        width: 80px;
+    }
+}
+.nav {
+    list-style-type: none;
+    color: white;
+    margin-top: 50px;
+    margin-left: 35px;
+}
+.nav:first-child {
+    padding-top: 1.5rem;
+}
+.nav__items {
+    padding: 0;
+    letter-spacing: 2px;
+}
+.nav__items a {
+    position: relative;
+    display: block;
+    top: -30px;
+    padding-left: 25px;
+    padding-right: 15px;
+    transition: all 0.3s ease;
+    margin-left: 25px;
+    margin-right: 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: 100;
+    font-size: 16px;
+}
+.nav__items a:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 2px;
+    background: radial-gradient(circle at 94.02% 88.03%, #374957, transparent 100%);
+    opacity: 0;
+    transition: all 0.5s ease;
+    z-index: -10;
+}
+.nav__items:hover a:after {
+    opacity: 1;
+}
+.nav__items svg {
+    width: 26px;
+    height: 26px;
+    position: relative;
+    left: -25px;
+    cursor: pointer;
+    fill: rgba(189, 195, 199, 0.7)
+}
+.nav__items svg:hover{
+    fill: #374957;
+}
+@media screen and (min-width: 600px) {
+    .nav__items svg {
+        width: 32px;
+        height: 32px;
+        left: -15px;
+    }
+}
+
