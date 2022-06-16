@@ -9,7 +9,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 import { getIsAdmin, getUserExpireDate } from 'Store/Modules/LocalSettings/selectors';
 import { logout } from 'Store/Modules/LocalSettings/localSettingsActions';
-import PromoCode from '../Pages/Admin/PromoCode';
 
 const AdminDashboard = lazy(() => import('Pages/Admin/Dashboard'));
 const AdminBanners = lazy(() => import('Pages/Admin/Banners'));

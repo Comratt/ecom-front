@@ -42,7 +42,7 @@ const adaptOrders = (data = [], filterBy) => {
             if (findHour) {
                 return ({
                     value: hour,
-                    total: findHour.total,
+                    total: parseFloat(findHour.total),
                 });
             }
 
@@ -62,7 +62,7 @@ const adaptOrders = (data = [], filterBy) => {
             if (findDay) {
                 return ({
                     value: day,
-                    total: findDay.total,
+                    total: parseFloat(findDay.total),
                 });
             }
 
@@ -81,7 +81,7 @@ const adaptOrders = (data = [], filterBy) => {
             if (findMonth) {
                 return ({
                     value: month,
-                    total: findMonth.total,
+                    total: parseFloat(findMonth.total),
                 });
             }
 
@@ -93,6 +93,12 @@ const adaptOrders = (data = [], filterBy) => {
     }
     }
 };
+
+const adaptCategories = (data = []) => data?.map(({ name, value }) => ({
+    name,
+    label: name,
+    value: parseInt(value, 10),
+})).sort((a, b) => b.value - a.value);
 
 export const useAnalytics = () => {
     const { result, loading, error } = useAsync(AnalyticService.getAll, []);
@@ -114,6 +120,48 @@ export const useOrdersAnalytics = () => {
 
     return useMemo(() => ({
         result: adaptOrders(result, filters.filterBy),
+        onFiltersChange,
+        loading,
+        filters,
+        error,
+    }), [
+        result,
+        loading,
+        filters,
+        error,
+        onFiltersChange,
+    ]);
+};
+
+export const useCategoriesAnalytics = () => {
+    const [filters, setFilters] = useState({ filterBy: 'month' });
+    const { result, loading, error } = useAsync(AnalyticService.getCategoriesGraph, [filters]);
+
+    const onFiltersChange = (filterBy) => setFilters({ filterBy });
+
+    return useMemo(() => ({
+        result: adaptCategories(result),
+        onFiltersChange,
+        loading,
+        filters,
+        error,
+    }), [
+        result,
+        loading,
+        filters,
+        error,
+        onFiltersChange,
+    ]);
+};
+
+export const useProductsAnalytics = () => {
+    const [filters, setFilters] = useState({ filterBy: 'month' });
+    const { result, loading, error } = useAsync(AnalyticService.getProductsGraph, [filters]);
+
+    const onFiltersChange = (filterBy) => setFilters({ filterBy });
+
+    return useMemo(() => ({
+        result: result?.sort((a, b) => b.value - a.value),
         onFiltersChange,
         loading,
         filters,

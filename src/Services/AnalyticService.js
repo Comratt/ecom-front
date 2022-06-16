@@ -25,6 +25,28 @@ class AnalyticsService {
             throw new ServerException(e.response);
         }
     }
+
+    static async getCategoriesGraph(filters) {
+        try {
+            const pageQuery = qs.stringify(filters);
+            const analytics = await API.get(`api/admin/analytics/categories?${pageQuery}`);
+
+            return analytics.data;
+        } catch (e) {
+            throw new ServerException(e.response);
+        }
+    }
+
+    static async getProductsGraph(filters) {
+        try {
+            const pageQuery = qs.stringify(filters);
+            const analytics = await API.get(`api/admin/analytics/products?${pageQuery}`);
+
+            return analytics.data;
+        } catch (e) {
+            throw new ServerException(e.response);
+        }
+    }
 }
 
 export default AnalyticsService;

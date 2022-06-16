@@ -1,5 +1,7 @@
 import React from 'react';
 import { BarChart } from './BarChart';
+import { PieChart } from './PieChart';
+import { AreaChart } from './AreaChart';
 import './ChartWithFilters.css';
 
 const Chart = ({
@@ -8,6 +10,10 @@ const Chart = ({
     switch (type) {
     case 'bar':
         return <BarChart filterBy={filterBy} data={data} loading={loading} />;
+    case 'area':
+        return <AreaChart filterBy={filterBy} data={data} loading={loading} />;
+    case 'pie':
+        return <PieChart data={data} loading={loading} />;
     default:
         return <BarChart filterBy={filterBy} data={data} loading={loading} />;
     }

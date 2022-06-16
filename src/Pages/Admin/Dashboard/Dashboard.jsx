@@ -1,12 +1,16 @@
 import React from 'react';
 import './Dashboard.css';
 import { Link } from 'react-router-dom';
-import Example from 'Components/ChartWithFilters/PieChart';
 import Layout from '../Layout';
 import {
     Box, Customers, PlusIcon, Sales, UkraineIcon, UkraineMap,
 } from '../../../Icons';
-import { useAnalytics, useOrdersAnalytics } from '../hooks/useAnalytics';
+import {
+    useAnalytics,
+    useCategoriesAnalytics,
+    useOrdersAnalytics,
+    useProductsAnalytics,
+} from '../hooks/useAnalytics';
 import Loader from '../../../Components/Loader';
 import { ChartWithFilters } from '../../../Components/ChartWithFilters/ChartWithFilters';
 import { useFetchOrders } from '../hooks/useFetchOrders';
@@ -168,6 +172,18 @@ const Dashboard = () => {
         onFiltersChange,
         filters,
     } = useOrdersAnalytics();
+    const {
+        result: categories,
+        loading: categoriesLoading,
+        onFiltersChange: onFiltersCategoriesChange,
+        filters: filtersCategories,
+    } = useCategoriesAnalytics();
+    const {
+        result: products,
+        loading: productsLoading,
+        onFiltersChange: onFiltersProductsChange,
+        filters: filtersProducts,
+    } = useProductsAnalytics();
 
     const productTotal = {
         totalProducts: result?.products || {},
@@ -177,15 +193,15 @@ const Dashboard = () => {
         ordersMap: result?.ordersMap || [],
     };
 
-    const handleFilters = ({ target }) => {
-        onFiltersChange(target.value);
+    const handleFilters = (type) => ({ target }) => {
+        if (type === 'bar') {
+            onFiltersChange(target.value);
+        } else if (type === 'pie') {
+            onFiltersCategoriesChange(target.value);
+        } else if (type === 'area') {
+            onFiltersProductsChange(target.value);
+        }
     };
-    const data = [
-        { name: 'Group A', value: 400 },
-        { name: 'Group B', value: 300 },
-        { name: 'Group C', value: 300 },
-        { name: 'Group D', value: 200 },
-    ];
 
     return (
         (
@@ -283,8 +299,8 @@ const Dashboard = () => {
                                     filterBy={filters.filterBy}
                                     data={orders}
                                     loading={ordersLoading}
-                                    type="bar"
-                                    onChange={handleFilters}
+                                    type="area"
+                                    onChange={handleFilters('area')}
                                 />
                             </div>
                             <div className="dashboard-page_chart_info">
@@ -297,6 +313,16 @@ const Dashboard = () => {
                             </div>
                         </div>
                         <div className="dashboard-page_chart_container">
+                            <div className="dashboard-page_chart">
+                                <ChartWithFilters
+                                    title="Графік Категорій"
+                                    filterBy={filtersCategories.filterBy}
+                                    data={categories}
+                                    loading={categoriesLoading}
+                                    type="pie"
+                                    onChange={handleFilters('pie')}
+                                />
+                            </div>
                             <div className="dashboard-page_chart_info">
                                 <CardItem
                                     percent={productTotal?.totalSales?.percent}
@@ -305,8 +331,25 @@ const Dashboard = () => {
                                     total={orders.reduce((acc, curr) => acc + parseInt(curr.total), 0)}
                                 />
                             </div>
+                        </div>
+                        <div className="dashboard-page_chart_container">
                             <div className="dashboard-page_chart">
-                                <Example />
+                                <ChartWithFilters
+                                    title="Графік Товарів"
+                                    filterBy={filtersProducts.filterBy}
+                                    data={products}
+                                    loading={productsLoading}
+                                    type="bar"
+                                    onChange={handleFilters('bar')}
+                                />
+                            </div>
+                            <div className="dashboard-page_chart_info">
+                                <CardItem
+                                    percent={productTotal?.totalSales?.percent}
+                                    loading={loading}
+                                    title="Загальна сума за обраний період"
+                                    total={orders.reduce((acc, curr) => acc + parseInt(curr.total), 0)}
+                                />
                             </div>
                         </div>
                     </div>

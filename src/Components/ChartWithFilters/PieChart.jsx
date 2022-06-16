@@ -1,28 +1,72 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import {
-    ResponsiveContainer, PieChart, Pie, Legend, Tooltip,
+    ResponsiveContainer, PieChart as PieRechart, Pie, Legend, Tooltip,
 } from 'recharts';
+import Loader from '../Loader';
+import { getFormattedPrice } from '../../Constants';
 
-const data = [
-    { name: 'Group A', value: 400 },
-    { name: 'Group B', value: 300 },
-    { name: 'Group C', value: 300 },
-    { name: 'Group D', value: 200 },
-];
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    percent,
+    name,
+}) => {
+    console.log({ name });
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
-export default class Example extends PureComponent {
-    static demoUrl = 'https://codesandbox.io/s/pie-chart-in-responsive-container-qyv6t';
+    return (
+        <text
+            style={{ fontSize: 14 }}
+            x={x}
+            y={y}
+            fill="white"
+            textAnchor={x > cx ? 'start' : 'end'}
+            dominantBaseline="central"
+        >
+            {`${(percent * 100).toFixed(0)}%`}
+        </text>
+    );
+};
 
-    render() {
+const CustomTooltip = ({
+    active, payload, name, label, text, ...props
+}) => {
+    if (active && payload && payload.length) {
         return (
-            <div style={{ width: '100%', height: 300 }}>
-                <ResponsiveContainer>
-                    <PieChart>
-                        <Tooltip />
-                        <Pie dataKey="value" data={data} fill="#8884d8" label />
-                    </PieChart>
-                </ResponsiveContainer>
+            <div className="custom-tooltip">
+                <p className="label lead">{payload[0].name}</p>
+                <p className="label lead">{getFormattedPrice(payload[0].value)}</p>
             </div>
         );
     }
-}
+
+    return null;
+};
+
+export const PieChart = ({ data, loading }) => (
+    <div style={{ width: '100%', height: 400 }}>
+        <ResponsiveContainer className="d-flex justify-content-center align-items-center">
+            {loading ? (
+                <Loader size={5} center />
+            ) : (
+                <PieRechart>
+                    <Tooltip content={<CustomTooltip />} />
+                    <Pie
+                        isAnimationActive={false}
+                        dataKey="value"
+                        data={data}
+                        fill="#344767"
+                        label={renderCustomizedLabel}
+                        labelLine={false}
+                    />
+                </PieRechart>
+            )}
+        </ResponsiveContainer>
+    </div>
+);
