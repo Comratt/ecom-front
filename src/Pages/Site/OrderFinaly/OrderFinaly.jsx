@@ -1,10 +1,12 @@
 import React from 'react';
-import { View } from '../../../Components/View';
-import { Title } from '../../../Components/Title';
-import Button from '../../../Components/Button/Button';
-import './OrderFinaly.css';
 import { useHistory } from 'react-router-dom';
-import { UkraineIcon } from '../../../Icons';
+
+import { View } from 'Components/View';
+import { Title } from 'Components/Title';
+import { UkraineIcon } from 'Icons';
+import Button from 'Components/Button/Button';
+
+import './OrderFinaly.css';
 
 const OrderFinaly = () => {
     const history = useHistory();

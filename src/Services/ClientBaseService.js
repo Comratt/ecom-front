@@ -22,6 +22,7 @@ class ClientBaseService {
         password,
         firstName,
         lastName,
+        phone,
     }) {
         try {
             const body = {
@@ -29,6 +30,7 @@ class ClientBaseService {
                 password,
                 firstName,
                 lastName,
+                phone,
             };
             const responseUser = await API.post('api/auth/signup', body);
 
@@ -42,6 +44,7 @@ class ClientBaseService {
         firstName,
         lastName,
         phone,
+        email,
         newPassword,
         password,
     }) {
@@ -50,14 +53,26 @@ class ClientBaseService {
                 firstName,
                 lastName,
                 phone,
+                email,
                 newPassword,
                 password,
+                id,
             };
-            const userResponse = await API.post(`api/auth/modify/${id}`, body);
+            const userResponse = await API.post('api/admin/customers/update', body);
 
             return userResponse.data;
         } catch (e) {
             throw new ServerException(e.response, 'errors');
+        }
+    }
+
+    static async getAll() {
+        try {
+            const customers = await API.get('api/admin/customers');
+
+            return customers.data;
+        } catch (e) {
+            throw new ServerException(e.response);
         }
     }
 

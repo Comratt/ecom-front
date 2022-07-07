@@ -5,6 +5,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 70px 0;
+    width: 100%;
 }
 .orderFinal-page__title{
     padding: 15px;

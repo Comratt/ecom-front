@@ -185,8 +185,6 @@ body {
 }
 @media screen and (min-width: 600px) {
     .nav__items svg {
-        width: 32px;
-        height: 32px;
         left: -15px;
     }
 }

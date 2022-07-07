@@ -13,6 +13,12 @@
     list-style: none;
     padding-bottom: 10px;
 }
+.header-list-collection-woman li a:hover {
+    color: var(--color-accent-light);
+}
+.header-list-collection-woman li.main a{
+    font-family: var(--accent-ff-bold);
+}
 .header-list-collection-item img {
     padding-bottom: 20px;
     border-radius: 4px;

@@ -47,6 +47,12 @@ export const menuItems = [
         icon: <Order />,
     },
     {
+        key: 'order',
+        name: 'Користувачі',
+        link: '/admin/customers',
+        icon: <Order />,
+    },
+    {
         key: 'productview',
         name: 'Cтатистика переглядів',
         link: '/admin/viewproducts',

@@ -44,7 +44,7 @@ const Order = () => {
                     <tr>
                         {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
                         <th scope="col" style={{ width: '3%' }} />
-                        <th scope="col" style={{ width: '9%' }}>Ідентифікатор замовлення</th>
+                        <th scope="col" style={{ width: '9%' }}>ID</th>
                         <th scope="col">Замовник</th>
                         <th scope="col">Статус</th>
                         <th scope="col">Всього</th>
