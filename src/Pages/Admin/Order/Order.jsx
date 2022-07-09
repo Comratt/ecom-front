@@ -6,7 +6,7 @@ import Alert from 'Components/Alert';
 import {
     Eye,
 } from 'Icons';
-import { SHIPPING_CODES } from 'Constants';
+import { SHIPPING_CODES, getFormattedPrice } from 'Constants';
 import { useFetchOrders } from '../hooks/useFetchOrders';
 import Layout from '../Layout';
 
@@ -71,7 +71,9 @@ const Order = () => {
                                 {order.status}
                             </td>
                             <td>
-                                {order.totalPrice}
+                                {order.promoName ? (
+                                    <b>{getFormattedPrice(order.totalPrice - order.discount)}</b>
+                                ) : getFormattedPrice(order.totalPrice)}
                             </td>
                             <td>
                                 {order.dateAdd}

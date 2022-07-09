@@ -12,6 +12,8 @@ import { useParams } from 'react-router-dom';
 
 const adapt = (order = {}) => ({
     ...order,
+    promoName: order?.promocode_name || null,
+    discount: order?.promocode_discount || 0,
     customer: `${order.first_name} ${order.last_name}`,
     totalPrice: order.order_total_sum,
     id: order.order_id,

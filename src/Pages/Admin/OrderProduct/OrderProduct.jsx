@@ -450,12 +450,26 @@ const OrderProduct = () => {
                                 {getFormattedPrice(SHIPPING_RATE)}
                             </td>
                         </tr>
+                        {result.promoName && (
+                            <tr>
+                                <td className="text-right" colSpan="6">
+                                    Знижка по промокоду:
+                                    {' '}
+                                    <b>{result.promoName}</b>
+                                </td>
+                                <td>
+                                    -
+                                    {getFormattedPrice(result.discount)}
+                                </td>
+                            </tr>
+                        )}
                         <tr>
                             <td className="text-right" colSpan="6">
                                 Всього
                             </td>
                             <td>
-                                {getFormattedPrice(+result.order_total_sum + SHIPPING_RATE)}
+                                {/* eslint-disable-next-line max-len */}
+                                {getFormattedPrice(+result.order_total_sum + SHIPPING_RATE - (result.discount))}
                             </td>
                         </tr>
                     </tbody>

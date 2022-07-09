@@ -209,10 +209,24 @@
 
 .order__discount {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     padding: var(--size-normal) 0;
     border-bottom: 1px solid var(--color-border-card);
     border-top: 1px solid var(--color-border-card);
+}
+
+.order__discount-with_promo {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.order__discount-with_promo button {
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    color: var(--color-accent-light)
 }
 
 .order__discount-input-block {
@@ -283,7 +297,8 @@
     padding: var(--size-small) var(--size-normal-mid);
     border-radius: var(--size-smaller);
     transition: .2s ease;
-    height: 40px;
+    height: 40px !important;
+    margin-top: var(--size-min-small);
     font-size: var(--size-mid);
 }
 .order__discount-bnt:hover {

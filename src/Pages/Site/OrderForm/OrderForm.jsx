@@ -5,22 +5,30 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useAlert } from 'react-alert';
 import TextInput from 'react-autocomplete-input';
+import { useAsyncCallback } from 'react-async-hook';
 import 'react-autocomplete-input/dist/bundle.css';
 
 import { novaPoshtaAPI } from 'API';
-import { getCartProducts, getCartNotes } from 'Store/Modules/Cart/selectors';
+import { getCartProducts, getCartNotes, getCartDiscount } from 'Store/Modules/Cart/selectors';
 import { getUser } from 'Store/Modules/LocalSettings/selectors';
-import { clearCart } from 'Store/Modules/Cart/cartActions';
+import { clearCart, addDiscount, removeDiscount } from 'Store/Modules/Cart/cartActions';
 import OrderService from 'Services/OrderService';
+import PromoCodeService from 'Services/PromoCodeService';
 
 import { Link } from 'Components/Link';
 import { CommonInput } from 'Components/CommonInput';
-import { Logo, Cart, AccardionArrow } from 'Icons';
+import {
+    Logo,
+    Cart,
+    AccardionArrow,
+    Close,
+} from 'Icons';
 import { getFormattedPrice, emailRegExp } from 'Constants';
 
 import './OrderForm.css';
 import { useHistory } from 'react-router-dom';
 import Button from '../../../Components/Button/Button';
+import { Title } from '../../../Components/Title';
 
 export const OrderForm = (className) => {
     const dispatch = useDispatch();
@@ -28,16 +36,19 @@ export const OrderForm = (className) => {
     const user = useSelector(getUser);
     const history = useHistory();
 
+    const {
+        execute: discountExecute,
+        loading: discountLoading,
+        error: discountError,
+    } = useAsyncCallback(PromoCodeService.getByName, []);
+
     const products = useSelector(getCartProducts);
     const orderNotes = useSelector(getCartNotes);
+    const discountPromo = useSelector(getCartDiscount);
     const [formLoading, setFormLoading] = useState(false);
     const [selectedCity, setSelectedCity] = useState('');
     const [showSideBar, setShowSideBar] = useState(false);
-    const [discount, setDiscount] = useState({
-        data: 0,
-        loading: false,
-        error: null,
-    });
+    const [discountValue, setDiscount] = useState('');
     const [cities, setCities] = useState({
         data: [],
         loading: true,
@@ -88,6 +99,22 @@ export const OrderForm = (className) => {
         history.push('/orderfinaly');
     };
 
+    const onDiscountSubmit = () => (
+        discountExecute(discountValue)
+            .then(({ data }) => dispatch(addDiscount({
+                id: data.promocodes_id,
+                name: data.promocode_name,
+                price: data.promocode_price,
+                prefix: data.promocode_prefix,
+            })))
+    );
+
+    const subtotalPrice = (p) => (
+        p.reduce((acc, { purePrice, quantity, discount = 0 }) => (
+            acc + ((purePrice - discount) * quantity)
+        ), 0)
+    );
+
     const onSubmit = (formInfo) => {
         if (!selectedCity || !areaName) {
             return setError('shippingCity', { message: 'Введіть місто' });
@@ -103,6 +130,16 @@ export const OrderForm = (className) => {
             comment: orderNotes,
             areaName,
             status_id: 1,
+            discount: discountPromo?.name
+                ? {
+                    ...discountPromo,
+                    // eslint-disable-next-line no-nested-ternary
+                    total: !discountPromo?.name
+                        ? 0
+                        // eslint-disable-next-line max-len
+                        : discountPromo?.prefix ? (subtotalPrice(products) / 100) * discountPromo?.price : discountPromo?.price,
+                }
+                : null,
         })
             .then((response) => {
                 setFormLoading(false);
@@ -123,13 +160,12 @@ export const OrderForm = (className) => {
 
         return getFormattedPrice(purePrice * quantity);
     };
-    const subtotalPrice = (p) => (
-        getFormattedPrice(
-            p.reduce((acc, { purePrice, quantity, discount = 0 }) => (
-                acc + ((purePrice - discount) * quantity)
-            ), 0),
-        )
-    );
+    const subtotalWithDiscountPrice = (price) => {
+        // eslint-disable-next-line
+        const discountFromPromo = !discountPromo?.name ? 0 : discountPromo?.prefix ? (price / 100) * discountPromo?.price : discountPromo?.price;
+
+        return getFormattedPrice(price - discountFromPromo);
+    };
 
     const handleCitySelect = (city) => {
         setSelectedCity(city);
@@ -339,7 +375,7 @@ export const OrderForm = (className) => {
                             />
                         </span>
                         <span className="order__total-amount">
-                            {subtotalPrice(products)}
+                            {getFormattedPrice(subtotalPrice(products))}
                         </span>
                     </div>
                 </button>
@@ -380,24 +416,58 @@ export const OrderForm = (className) => {
                         </Link>
                     ))}
                     <div className="order__discount">
-                        <div className="order__discount-input-block">
-                            <input
-                                name="discount"
-                                className={classNames('input order__discount-input', { 'field-error': discount.error })}
-                                placeholder="Промокод"
-                                type="text"
-                            />
-                            {discount.error && <p className="field-message__error">Невірний промокод</p>}
-                        </div>
-                        <div className="order__discount-btn-block">
-                            <button className="order__discount-bnt">Застосувати</button>
-                        </div>
+                        {discountPromo?.name ? (
+                            <div className="order__discount-with_promo">
+                                <Title type={3}>
+                                    Промокод застосований:
+                                    {' '}
+                                    {discountPromo?.price}
+                                    {discountPromo?.prefix ? '%' : '₴'}
+                                </Title>
+                                <button onClick={() => dispatch(removeDiscount())} type="button">
+                                    <Close width={20} height={20} />
+                                </button>
+                            </div>
+                        ) : (
+                            <>
+                                <div className="order__discount-input-block">
+                                    <input
+                                        value={discountValue}
+                                        onChange={({ target: { value } }) => setDiscount(value)}
+                                        name="discount"
+                                        className={classNames('input order__discount-input', { 'field-error': discountError })}
+                                        placeholder="Промокод"
+                                        type="text"
+                                    />
+                                    {discountError && <p className="field-message__error">Невірний промокод</p>}
+                                </div>
+                                <div className="order__discount-btn-block">
+                                    <Button
+                                        loading={discountLoading}
+                                        className="order__discount-bnt"
+                                        onClick={onDiscountSubmit}
+                                    >
+                                        Застосувати
+                                    </Button>
+                                </div>
+                            </>
+                        )}
                     </div>
                     <div className="order__summary">
                         <div className="order__subtotal">
                             <span className="order__aside-text">Всього</span>
-                            <span className="order__subtotal-amount">{subtotalPrice(products)}</span>
+                            <span className="order__subtotal-amount">{getFormattedPrice(subtotalPrice(products))}</span>
                         </div>
+                        {discountPromo?.name && (
+                            <div className="order__subtotal">
+                                <span className="order__aside-text">Знижка</span>
+                                <span className="order__subtotal-amount">
+                                    -
+                                    {discountPromo?.price}
+                                    {discountPromo?.prefix ? '%' : '₴'}
+                                </span>
+                            </div>
+                        )}
                         <div className="order__shipping">
                             <span className="order__aside-text">Доставка</span>
                             <span className="order__aside-hint">Нова пошта</span>
@@ -405,7 +475,7 @@ export const OrderForm = (className) => {
                     </div>
                     <div className="order__total">
                         <span>До оплати</span>
-                        <span className="order__total-amount">{subtotalPrice(products)}</span>
+                        <span className="order__total-amount">{subtotalWithDiscountPrice(subtotalPrice(products))}</span>
                     </div>
                 </div>
             </div>
