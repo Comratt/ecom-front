@@ -147,11 +147,8 @@ export const ProductDetails = () => {
     }, [showAlert, alert]);
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [result]);
-
-    useEffect(() => {
         if (result?.colors && result?.colors?.length && !Object.keys(activeColor).length) {
+            window.scrollTo(0, 0);
             setActiveColor(result?.colors[0]);
         }
     }, [result]);
