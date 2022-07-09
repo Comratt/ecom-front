@@ -1,17 +1,21 @@
 import {
-    useMemo, useState, useEffect, useRef,
+    useMemo, useState, useEffect,
 } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useLocation, useHistory } from 'react-router-dom';
 import isEqual from 'lodash/isEqual';
 import qs from 'query-string';
 
 import { adaptProducts, adaptCategories } from 'context/adapters';
 import { useCategories } from 'context/CategoriesWrapper/useCategories';
+import { addFilters } from 'Store/Modules/Filters/filtersActions';
+import { getAllFilters } from 'Store/Modules/Filters/selectors';
 import { getObjectDiff } from 'Helpers';
 import { useFetchProducts } from '../../hooks/useFetchProducts';
 
 export const useCollectionData = () => {
-    const isMounted = useRef(false);
+    const dispatch = useDispatch();
+    const reduxFilters = useSelector(getAllFilters);
     const { id } = useParams();
     const history = useHistory();
     const { search, pathname } = useLocation();
@@ -26,7 +30,18 @@ export const useCollectionData = () => {
         price: [],
         available: false,
     };
-    const [filters, setFilters] = useState({ ...defaultFilters, ...urlFilters });
+    const defaultReduxFilters = {
+        page: reduxFilters.page || 1,
+        count: reduxFilters.count || 15,
+        // eslint-disable-next-line
+        category: reduxFilters.category?.length ? reduxFilters.category?.map((v) => +v) : id ? [+id] : [],
+        sortBy: reduxFilters.sortBy || '',
+        color: reduxFilters.color || [],
+        size: reduxFilters.size || [],
+        price: reduxFilters.price || [],
+        available: reduxFilters.available || false,
+    };
+    const [filters, setFilters] = useState({ ...defaultReduxFilters, ...urlFilters });
     const {
         categories,
         categoriesLoading,
@@ -42,19 +57,20 @@ export const useCollectionData = () => {
     const resetFilters = () => setFilters(defaultFilters);
     const { page: dfPage, count: dfCount, ...defaultFiltersWithoutPage } = defaultFilters;
     const { page, count, ...filtersWithoutPage } = filters;
-    const isFiltered = !isEqual(defaultFiltersWithoutPage, filtersWithoutPage);
-    const filtersDiff = getObjectDiff(defaultFiltersWithoutPage, filtersWithoutPage);
-
-    console.log(filtersDiff);
-
-    useEffect(() => {
-        setFilters(defaultFilters);
-    }, [id]);
+    const isFiltered = !isEqual(defaultFiltersWithoutPage, {
+        ...filtersWithoutPage,
+        category: filtersWithoutPage?.category?.map((v) => +v),
+    });
+    const filtersDiff = getObjectDiff(defaultFiltersWithoutPage, {
+        ...filtersWithoutPage,
+        category: filtersWithoutPage?.category?.map((v) => +v),
+    });
 
     useEffect(() => {
         const { page: pageFilter } = filters;
         const modFilters = {
             ...filters,
+            category: filters?.category?.map((v) => +v),
             page: 1,
             count: pageFilter * defaultFilters.count,
         };
@@ -63,7 +79,11 @@ export const useCollectionData = () => {
             pathname,
             search: `?${qs.stringify(modFilters, { arrayFormat: 'bracket', skipNull: true })}`,
         });
-    }, [filters]);
+        dispatch(addFilters({
+            ...filters,
+            category: filters?.category?.map((v) => +v),
+        }));
+    }, [filters, id]);
 
     // useEffect(() => {
     //     if (urlFilters?.category?.length && urlFilters?.from_sidebar) {
