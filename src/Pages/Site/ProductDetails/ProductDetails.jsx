@@ -148,7 +148,7 @@ export const ProductDetails = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, []);
+    }, [result]);
 
     useEffect(() => {
         if (result?.colors && result?.colors?.length && !Object.keys(activeColor).length) {
