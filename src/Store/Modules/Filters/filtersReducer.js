@@ -1,5 +1,6 @@
 import {
     ADD_FILTERS,
+    CLEAR_FILTERS,
 } from './types';
 
 export const initialState = {
@@ -20,6 +21,8 @@ const filtersReducer = (state = initialState, { type, payload }) => {
             ...state,
             ...payload,
         });
+    case CLEAR_FILTERS:
+        return initialState;
     default:
         return state;
     }

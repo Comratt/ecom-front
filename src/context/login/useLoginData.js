@@ -10,9 +10,7 @@ export const useLoginData = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
     const history = useHistory();
-    const { register, handleSubmit, errors } = useForm({
-        mode: 'onChange',
-    });
+    const { register, handleSubmit, errors } = useForm();
     const {
         isLoading, isError, errorMessage,
     } = useSelector(getLocalSettingsState);

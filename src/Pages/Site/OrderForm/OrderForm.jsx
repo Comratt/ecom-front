@@ -375,7 +375,7 @@ export const OrderForm = (className) => {
                             />
                         </span>
                         <span className="order__total-amount">
-                            {getFormattedPrice(subtotalPrice(products))}
+                            {subtotalWithDiscountPrice(subtotalPrice(products))}
                         </span>
                     </div>
                 </button>
@@ -418,10 +418,10 @@ export const OrderForm = (className) => {
                     <div className="order__discount">
                         {discountPromo?.name ? (
                             <div className="order__discount-with_promo">
-                                <Title type={3}>
+                                <Title type={4}>
                                     Промокод застосований:
                                     {' '}
-                                    {discountPromo?.price}
+                                    {parseInt(discountPromo?.price, 10)}
                                     {discountPromo?.prefix ? '%' : '₴'}
                                 </Title>
                                 <button onClick={() => dispatch(removeDiscount())} type="button">
@@ -463,7 +463,7 @@ export const OrderForm = (className) => {
                                 <span className="order__aside-text">Знижка</span>
                                 <span className="order__subtotal-amount">
                                     -
-                                    {discountPromo?.price}
+                                    {parseInt(discountPromo?.price, 10)}
                                     {discountPromo?.prefix ? '%' : '₴'}
                                 </span>
                             </div>

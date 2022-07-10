@@ -490,7 +490,7 @@ export const BottomModal = ({
                 return option;
             }),
         }]));
-    }, [isFiltered]);
+    }, [isFiltered, resetFilters]);
 
     useEffect(() => {
         setOpt((prevOptions) => ([{
@@ -531,7 +531,7 @@ export const BottomModal = ({
                 : [...filterCat, +o.optionId];
 
             if (!modCat?.length) {
-                modCat.push(collectionId);
+                modCat.push(+collectionId);
             }
 
             handleFilterBy('category', modCat);

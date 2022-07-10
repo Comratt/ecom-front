@@ -21,11 +21,11 @@
     padding: 15px;
 }
 
-.lib-login_sign_up-btn{
+.lib-login .lib-login_sign_up-btn{
     margin-top: 10px;
     width: 100%;
 }
-.lib-link.active{
+.lib-login .lib-link.active{
     width: 100%;
 }
 .lib-login .lib-guest-btn{

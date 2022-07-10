@@ -215,7 +215,7 @@
 }
 .cart-product-btn-remove{
     border: none;
-    background-color: white;
+    background-color: transparent;
 }
 @media (max-width: 814px){
     .cart-product-order{

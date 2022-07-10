@@ -41,7 +41,7 @@ const CardItem = ({
                                     </span>
                                 )}
                         </h5>
-                        <span style={value} className="card-text-about-percent value"><b>{`${percent}%`}</b></span>
+                        <span style={value} className="card-text-about-percent value"><b>{percent ? `${(percent || 0)}%` : ''}</b></span>
                     </div>
                 </div>
                 <div>
@@ -194,11 +194,11 @@ const Dashboard = () => {
     };
 
     const handleFilters = (type) => ({ target }) => {
-        if (type === 'bar') {
+        if (type === 'area') {
             onFiltersChange(target.value);
         } else if (type === 'pie') {
             onFiltersCategoriesChange(target.value);
-        } else if (type === 'area') {
+        } else if (type === 'bar') {
             onFiltersProductsChange(target.value);
         }
     };
@@ -305,7 +305,6 @@ const Dashboard = () => {
                             </div>
                             <div className="dashboard-page_chart_info">
                                 <CardItem
-                                    percent={productTotal?.totalSales?.percent}
                                     loading={loading}
                                     title="Загальна сума за обраний період"
                                     total={orders.reduce((acc, curr) => acc + parseInt(curr.total), 0)}
@@ -325,10 +324,9 @@ const Dashboard = () => {
                             </div>
                             <div className="dashboard-page_chart_info">
                                 <CardItem
-                                    percent={productTotal?.totalSales?.percent}
-                                    loading={loading}
+                                    loading={categoriesLoading}
                                     title="Загальна сума за обраний період"
-                                    total={orders.reduce((acc, curr) => acc + parseInt(curr.total), 0)}
+                                    total={categories.reduce((acc, curr) => acc + parseInt(curr.value), 0)}
                                 />
                             </div>
                         </div>
@@ -345,10 +343,9 @@ const Dashboard = () => {
                             </div>
                             <div className="dashboard-page_chart_info">
                                 <CardItem
-                                    percent={productTotal?.totalSales?.percent}
-                                    loading={loading}
-                                    title="Загальна сума за обраний період"
-                                    total={orders.reduce((acc, curr) => acc + parseInt(curr.total), 0)}
+                                    loading={productsLoading}
+                                    title="Загальна кількість за обраний період"
+                                    total={products?.reduce((acc, curr) => acc + parseInt(curr.value), 0)}
                                 />
                             </div>
                         </div>

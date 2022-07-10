@@ -54,8 +54,20 @@ export const useCollectionData = () => {
         currentPage,
     } = useFetchProducts(filters, setFilters);
 
-    const resetFilters = () => setFilters(defaultFilters);
-    const { page: dfPage, count: dfCount, ...defaultFiltersWithoutPage } = defaultFilters;
+    const resetFilters = () => {
+        setFilters({
+            ...defaultFilters,
+            category: id ? [+id] : [],
+        });
+        dispatch(addFilters({
+            ...defaultFilters,
+            category: id ? [+id] : [],
+        }));
+    };
+    const { page: dfPage, count: dfCount, ...defaultFiltersWithoutPage } = {
+        ...defaultFilters,
+        category: id ? [+id] : [],
+    };
     const { page, count, ...filtersWithoutPage } = filters;
     const isFiltered = !isEqual(defaultFiltersWithoutPage, {
         ...filtersWithoutPage,
@@ -67,10 +79,10 @@ export const useCollectionData = () => {
     });
 
     useEffect(() => {
-        const { page: pageFilter } = filters;
+        const { page: pageFilter, category } = filters;
         const modFilters = {
             ...filters,
-            category: filters?.category?.map((v) => +v),
+            category: category?.map((v) => +v),
             page: 1,
             count: pageFilter * defaultFilters.count,
         };
@@ -83,7 +95,7 @@ export const useCollectionData = () => {
             ...filters,
             category: filters?.category?.map((v) => +v),
         }));
-    }, [filters, id]);
+    }, [filters]);
 
     // useEffect(() => {
     //     if (urlFilters?.category?.length && urlFilters?.from_sidebar) {

@@ -21,11 +21,11 @@ export const useFetchProducts = (filters, setFilters) => {
         if (isMounted.current && id && setFilters) {
             setFilters((prevFilters) => ({
                 ...prevFilters,
-                category: [id],
+                category: [+id],
             }));
         }
         isMounted.current = true;
-    }, [id]);
+    }, [id, setFilters]);
 
     useEffect(() => {
         if (!sdata?.length) {

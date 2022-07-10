@@ -11,7 +11,7 @@
 .table-bordered th{
     padding:10px
 }
-. table-borderedtd{
+.table-borderedtd{
     padding: 10px;
 }
 .table-bordered table, thead, tbody, th,td {
@@ -32,13 +32,4 @@
     border: none;
     padding: 10px;
     background-color: #1e91cf;
-}
-.badge{
-    background-color: #198753;
-    color: white;
-    padding: 6px 8px;
-}
-.table-badge{
-    padding: 2px;
-    border: 1px solid green;
 }

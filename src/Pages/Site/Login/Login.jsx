@@ -4,12 +4,10 @@ import { emailRegExp, getValidationMessage } from 'Constants';
 import { CommonInput } from 'Components/CommonInput';
 import { Link } from 'Components/Link';
 import { Title } from 'Components/Title';
+import Button from 'Components/Button/Button';
 import { useLogin } from 'context/login/useLogin';
 
 import './Login.css';
-import LoginBtn from 'Components/Buttons/LoginBtn/LoginBtn';
-import GuestBtn from 'Components/Buttons/GuestBtn/GuestBtn';
-import Button from '../../../Components/Button/Button';
 
 const Login = ({
     className,
@@ -32,7 +30,7 @@ const Login = ({
 
     useEffect(() => {
         if (Object.keys(user).length) {
-            alert.success({ name: `Добро пожаловать ${user?.first_name}!` });
+            alert.success({ name: `Раді бачити Вас на нашому сайті ${user?.first_name}!` });
             setTimeout(() => history.push('/'), 200);
         }
     }, [user]);
@@ -48,21 +46,21 @@ const Login = ({
                         <CommonInput
                             name="email"
                             label="Email"
-                            placeholder="Enter email"
+                            placeholder="Введіть ваш email"
                             ref={register({
-                                required: 'Enter valid email',
-                                pattern: { message: 'Enter valid email', value: emailRegExp },
+                                required: 'Це поле обов\'язкове',
+                                pattern: { message: 'Некоректно введений email', value: emailRegExp },
                             })}
                             error={getValidationMessage(errors?.email)}
                         />
                         <CommonInput
                             name="password"
-                            label="Password"
-                            placeholder="Enter password"
+                            label="Пароль"
+                            placeholder="Введіть ваш пароль"
                             ref={register({
-                                required: 'Enter password',
-                                maxLength: { message: 'Enter valid password', value: 20 },
-                                minLength: { message: 'password', value: 6 },
+                                required: 'Це поле обов\'язкове',
+                                maxLength: { message: 'Не більше ніж 20 символів', value: 20 },
+                                minLength: { message: 'Не менше ніж 6 символів', value: 6 },
                             })}
                             error={getValidationMessage(errors?.password)}
                         />
@@ -76,10 +74,10 @@ const Login = ({
                         </Button>
                     </div>
                     <Link to="/sign" className="lib-login_sign_up">
-                        Sign up
+                        Зареєструватись
                     </Link>
                     <Link to="/sign" className="lib-login_sign_up">
-                        Recover password
+                        Відновити пароль
                     </Link>
                 </div>
             </div>

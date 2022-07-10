@@ -56,7 +56,7 @@ const RouterComponent = () => (
                         <Layout>
                             <Route exact path="/" component={SiteHome} />
                             <Route path="/products/:id" component={SiteProductDetails} />
-                            <Route path="/collection/:id?" component={() => <CollectionList />} />
+                            <Route exact path="/collection/:id?" component={() => <CollectionList />} />
                             <Route path="/cart" component={() => <Cart />} />
                             <Route path="/order" component={() => <OrderForm />} />
                             <Route path="/sign" component={() => <SignUp />} />

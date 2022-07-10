@@ -38,14 +38,14 @@ export const useCollection = () => {
                 return ({
                     ...prevFilters,
                     page: 1,
-                    category: filteredFilters.filter((cat) => cat != id),
+                    category: filteredFilters.filter((cat) => cat != id)?.map((v) => +v),
                 });
             }
 
             return ({
                 ...prevFilters,
                 page: 1,
-                category: [...filteredFilters, +id],
+                category: [...filteredFilters.map((v) => +v), +id],
             });
         });
     };

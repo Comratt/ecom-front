@@ -39,52 +39,52 @@ const SignUp = ({
         <div className={componentClasses}>
             <div className="container">
                 <div className="content-login">
-                    <Title type={2}>Sign Up</Title>
+                    <Title type={2}>Реєстрація</Title>
                     {isError && Object.values(errorMessage).map((error) => (
                         <p className="field-message__error">{error[0]}</p>
                     ))}
                     <form onSubmit={onSubmit} className="from-login">
                         <CommonInput
                             name="firstName"
-                            label="First Name"
-                            placeholder="Enter first name"
+                            label="Ім'я"
+                            placeholder="Введіть ваше Ім'я"
                             ref={register({
-                                required: 'Enter first name',
-                                maxLength: { message: 'Enter valid first name', value: 20 },
-                                minLength: { message: 'Enter valid first name', value: 3 },
+                                required: 'Це поле обов\'язкове',
+                                maxLength: { message: 'Не більше ніж 20 символів', value: 20 },
+                                minLength: { message: 'Не менше ніж 2 символів', value: 2 },
                             })}
                             error={getValidationMessage(errors?.firstName)}
                         />
                         <CommonInput
                             name="lastName"
-                            label="Last Name"
-                            placeholder="Enter last name"
+                            label="Прізвище"
+                            placeholder="Введіть ваше Прізвище"
                             ref={register({
-                                required: 'Enter last name',
-                                maxLength: { message: 'Enter valid last name', value: 20 },
-                                minLength: { message: 'Enter valid last name', value: 3 },
+                                required: 'Це поле обов\'язкове',
+                                maxLength: { message: 'Не більше ніж 20 символів', value: 20 },
+                                minLength: { message: 'Не менше ніж 2 символів', value: 2 },
                             })}
                             error={getValidationMessage(errors?.lastName)}
                         />
                         <CommonInput
                             name="email"
                             label="Email"
-                            placeholder="Enter email"
+                            placeholder="Введіть ваш Email"
                             ref={register({
-                                required: 'Enter valid email',
-                                pattern: { message: 'Enter valid email', value: emailRegExp },
+                                required: 'Це поле обов\'язкове',
+                                pattern: { message: 'Некоректно введений email', value: emailRegExp },
                             })}
                             error={getValidationMessage(errors?.email)}
                         />
                         <CommonInput
                             name="password"
-                            label="Password"
-                            placeholder="Enter password"
+                            label="Пароль"
+                            placeholder="Введіть ваш пароль"
                             type="password"
                             ref={register({
-                                required: 'Enter password',
-                                maxLength: { message: 'Enter valid password', value: 20 },
-                                minLength: { message: 'password', value: 6 },
+                                required: 'Це поле обов\'язкове',
+                                maxLength: { message: 'Не більше ніж 20 символів', value: 20 },
+                                minLength: { message: 'Не менше ніж 6 символів', value: 6 },
                             })}
                             error={getValidationMessage(errors?.password)}
                         />
@@ -98,7 +98,7 @@ const SignUp = ({
                         </Button>
                     </div>
                     <Link to="/login" className="lib-login_sign_up">
-                        Log in
+                        Акаунт вже інснує?
                     </Link>
                 </div>
             </div>
