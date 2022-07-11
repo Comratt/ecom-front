@@ -15,7 +15,6 @@ import { useProduct } from 'context/product/hooks/useProduct';
 import { addToCart } from 'Store/Modules/Cart/cartActions';
 import { getWishlistProducts } from 'Store/Modules/Wishlist/selectors';
 import { getCartProducts } from 'Store/Modules/Cart/selectors';
-import LocalStorageService from 'Services/LocalStorageService';
 import { getFormattedPrice } from 'Constants';
 
 import { Swatches } from 'Components/Swatches';
@@ -31,6 +30,10 @@ import { useDetectedMobileDevice } from 'hooks/useDetectMobileDevice';
 import './ProductInfo.css';
 
 export const ProductDetails = () => {
+    const localStorageKey = process.env.REACT_APP_REDUX_STORAGE_NAME;
+    const storage = window.localStorage.getItem(localStorageKey);
+    const parsedStorage = JSON.parse(storage);
+
     const sizesRef = useRef();
     const alert = useAlert();
     const history = useHistory();
@@ -52,7 +55,7 @@ export const ProductDetails = () => {
     ), [listWishProducts, result]);
 
     const relatedIds = result?.related?.map(({ related_product_id }) => related_product_id);
-    const historyViewed = LocalStorageService.getItem('viewed', []);
+    const historyViewed = parsedStorage?.viewed || [];
     const { isMobileSize, isTabletSize } = useDetectedMobileDevice();
 
     const itemClassNames = (id) => (
@@ -120,15 +123,19 @@ export const ProductDetails = () => {
     useEffect(() => {
         setActiveColor({});
         setActiveSize({});
-        const viewedPreviously = LocalStorageService.getItem('viewed') || [];
+        const viewedPreviously = parsedStorage?.viewed?.length ? parsedStorage?.viewed : [];
         const modifiedViewed = viewedPreviously?.includes(productId)
             ? viewedPreviously
             : [...viewedPreviously, productId];
 
-        LocalStorageService.setItem({
-            viewed: modifiedViewed,
-        });
-    }, [productId]);
+        window.localStorage.setItem(
+            localStorageKey,
+            JSON.stringify({
+                ...parsedStorage,
+                viewed: modifiedViewed,
+            }),
+        );
+    }, [productId, window]);
 
     useEffect(() => {
         if (showAlert) {
