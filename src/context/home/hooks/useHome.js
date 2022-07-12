@@ -1,13 +1,16 @@
 import {
     useCallback, useEffect, useState, useMemo, useRef,
 } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { useLayout } from 'hooks/useLayout';
 import { useHomeLayout } from './useHomeLayout';
 import { useHomeData } from './useHomeData';
+import { clearFilters } from '../../../Store/Modules/Filters/filtersActions';
 
 export const useHome = () => {
     const scrollYRef = useRef(0);
+    const dispatch = useDispatch();
     const [isTransparent, setTransparent] = useState(true);
     const {
         result,
@@ -25,6 +28,8 @@ export const useHome = () => {
         if (!scrollYPosition) {
             window.scrollTo(0, 0);
         }
+
+        dispatch(clearFilters());
 
         setTimeout(() => {
             if (scrollYPosition) {

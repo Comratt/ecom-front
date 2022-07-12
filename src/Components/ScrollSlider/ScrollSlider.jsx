@@ -59,6 +59,7 @@ export const ScrollSlider = ({ data, setModalOpen }) => {
                 >
                     {data.map((imageSrc) => (
                         <div
+                            key={imageSrc}
                             ref={(imgRef) => imagesRef.current[imageSrc] = imgRef}
                             className="image-wrapper"
                         >

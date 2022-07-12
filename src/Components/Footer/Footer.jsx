@@ -4,6 +4,10 @@ import './Footer.css';
 import FooterInput from '../FooterInput/FooterInput';
 import FooterLogo from '../../Icons/FooterLogo';
 import { Accordion, AccordionItem } from '../Accordion';
+import { Title } from '../Title';
+import {
+    Facebook, Instagram, Telegram, Viber,
+} from '../../Icons';
 
 export const Footer = ({
     className,
@@ -97,9 +101,28 @@ export const Footer = ({
                             <FooterInput />
                         </div>
                         <div className="footer-links">
-                            <div className="items">Instagram</div>
-                            <div className="items">Facebook</div>
-                            <div className="items">Youtube</div>
+                            <ul className="sidebar-social">
+                                <li>
+                                    <a className="sidebar-social__facebook" href="#">
+                                        <Facebook height="18" width="18" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a className="sidebar-social__instagram" href="#">
+                                        <Instagram height="18" width="18" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a className="sidebar-social__telegram" href="#">
+                                        <Telegram height="18" width="18" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a className="sidebar-social__viber" href="#">
+                                        <Viber height="18" width="18" />
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
@@ -7,6 +7,7 @@ import {
     toggleQuantity,
 } from 'Store/Modules/Cart/cartActions';
 import { getCartNotes, getCartProducts } from 'Store/Modules/Cart/selectors';
+import { clearFilters } from 'Store/Modules/Filters/filtersActions';
 import { getFormattedPrice } from '../../Constants';
 
 export const useCartData = () => {
@@ -14,6 +15,10 @@ export const useCartData = () => {
     const notes = useSelector(getCartNotes);
     const dispatch = useDispatch();
     const history = useHistory();
+
+    useEffect(() => {
+        dispatch(clearFilters());
+    });
 
     const toggleCartQuantity = ({
         id,

@@ -201,15 +201,17 @@ export const Cart = () => {
                                     onChange={changeCartNotes}
                                 />
                             </div>
-                            <div className="cart-product-order-submit-btn">
-                                <Button variant="dark" onClick={goToCheckoutPage}>
-                                    Оформити замовлення
-                                </Button>
-                            </div>
-                            <div className="cart-product-order-submit-btn">
-                                <Button variant="primary" onClick={() => history.goBack()}>
-                                    Продовжити покупки :)
-                                </Button>
+                            <div className="cart-buttons-block">
+                                <div className="cart-product-order-submit-btn">
+                                    <Button variant="dark" onClick={goToCheckoutPage}>
+                                        Оформити замовлення
+                                    </Button>
+                                </div>
+                                <div className="cart-product-order-submit-btn">
+                                    <Button variant="primary" onClick={() => history.goBack()}>
+                                        Продовжити покупки :)
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -218,7 +220,7 @@ export const Cart = () => {
                 <div className="cart-product-order">
                     <div className="cart-empty">
                         <Title type={1}>Кошик</Title>
-                        <Title type={3}>У Вашому кошику, поки що, порожньо :(</Title>
+                        <Title type={2}>У Вашому кошику, поки що, порожньо :(</Title>
                         <div className="cart-product-order-back">
                             <Button variant="primary" onClick={() => history.goBack()}>
                                 Продовжити покупки :)

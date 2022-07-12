@@ -1,11 +1,12 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useAsyncCallback } from 'react-async-hook';
+import { useForm } from 'react-hook-form';
 
 import { getAuthToken, getUser } from 'Store/Modules/LocalSettings/selectors';
 import { logout as logoutAction } from 'Store/Modules/LocalSettings/localSettingsActions';
 import ClientBaseService from 'Services/ClientBaseService';
-import { useForm } from 'react-hook-form';
+import { clearFilters } from 'Store/Modules/Filters/filtersActions';
 
 export const useUserAccountData = () => {
     const dispatch = useDispatch();
@@ -24,6 +25,10 @@ export const useUserAccountData = () => {
             phone: user.phone,
         },
     });
+
+    useEffect(() => {
+        dispatch(clearFilters());
+    }, []);
 
     const logout = () => dispatch(logoutAction());
 

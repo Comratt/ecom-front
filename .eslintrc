@@ -69,7 +69,7 @@
     ],
     "jsx-a11y/label-has-associated-control": "off",
     "jsx-a11y/label-has-for":"off",
-    "template-curly-spacing": "off",
+    "template-curly-spacing": "off"
   },
   "globals": {
     "window": true,

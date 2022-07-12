@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Sticky } from 'react-sticky';
 import { useAsync } from 'react-async-hook';
 import classNames from 'classnames';
+import { numberify } from 'apparel-sorter';
 import { Title } from 'Components/Title';
 import { BottomModal } from 'Components/BottomModal';
 import ProductsService from 'Services/ProductsService';
@@ -30,6 +31,7 @@ export const CheckboxFilter = ({
     const { result: colors, loading: colorsLoading } = useAsync(ProductsService.getColors, [filters.category, filters.price]);
     const { result: sizes, loading: sizesLoading } = useAsync(ProductsService.getSizes, [filters.category, filters.price]);
     const categoryName = categories?.find(({ id }) => +id === +collectionId)?.name || 'Категорія';
+    const sortedSizes = sizes?.sort(({ name: size1 }, { name: size2 }) => numberify(size1) - numberify(size2));
 
     const componentClasses = classNames(
         'lib-checkboxFilter',
@@ -57,7 +59,7 @@ export const CheckboxFilter = ({
                 handleAvailable={handleAvailable}
                 minMaxPrice={minMaxPrice}
                 colors={colors}
-                sizes={sizes}
+                sizes={sortedSizes}
                 resetFilters={resetFilters}
                 isFiltered={isFiltered}
                 filtersDiff={filtersDiff}
@@ -82,7 +84,7 @@ export const CheckboxFilter = ({
                                 handleAvailable={handleAvailable}
                                 minMaxPrice={minMaxPrice}
                                 colors={colors}
-                                sizes={sizes}
+                                sizes={sortedSizes}
                                 resetFilters={resetFilters}
                                 isFiltered={isFiltered}
                             />

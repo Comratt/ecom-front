@@ -7,9 +7,13 @@
     align-items: center;
     padding: 70px 0;
     width: 100%;
+    text-align: center;
 }
 .orderFinal-page__title{
     padding: 15px;
+}
+h1.orderFinal-page__title{
+    font-size: var(--fz-normal-bigger);
 }
 .orderFinal-page-btn{
     width: 150px;

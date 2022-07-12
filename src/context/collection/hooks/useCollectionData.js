@@ -115,6 +115,7 @@ export const useCollectionData = () => {
         loadingNext,
         result: adaptProducts({ data: result }),
         categories: adaptCategories(categories),
+        pureCategories: categories,
         isLastPage,
         currentPage,
         setFilters,

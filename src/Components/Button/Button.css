@@ -58,6 +58,11 @@
     border-width: 0 0 1px;
     border-style: solid;
 }
+.lib-custom-button:disabled, .lib-custom-button:disabled:hover {
+    background-color: var(--color-grayish);
+    cursor: default;
+    user-select: none;
+}
 @media all and (max-width: 750px) {
     .lib-custom-button.logout {
         top: 0;

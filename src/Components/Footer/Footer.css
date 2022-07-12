@@ -69,6 +69,46 @@
     display: none;
     margin-top: 20px;
 }
+
+.lib-footer .footer-links {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.lib-footer .sidebar-social {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.lib-footer .sidebar-social .sidebar-social__facebook {
+    background-color: #506098;
+}
+.lib-footer .sidebar-social .sidebar-social__viber {
+    background-color: #7d3daf;
+}
+.lib-footer .sidebar-social .sidebar-social__telegram {
+    background-color: #08c;
+}
+.lib-footer .sidebar-social .sidebar-social__instagram {
+    background: linear-gradient(45deg,#ffb700 14.65%,#ff6800 31.68%,#cb217d 54.72%,#7e00aa 85.35%);
+}
+
+.lib-footer .sidebar-social a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50px;
+    opacity: .85;
+    transition: all .2s ease;
+}
 @media (max-width: 1024px) {
     .footer-logo-content{
         display: none;

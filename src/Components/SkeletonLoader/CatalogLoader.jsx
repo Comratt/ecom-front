@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ContentLoader from 'react-content-loader';
+import { v4 as uuidv4 } from 'uuid';
 import { useDetectedMobileDevice } from 'hooks/useDetectMobileDevice';
 import { View } from '../View';
 
@@ -39,7 +40,7 @@ const CatalogLoader = ({
             const y3 = y2 + padding / 2 + height2;
 
             list.push(
-                <>
+                <Fragment key={uuidv4()}>
                     <rect
                         x={x}
                         y={y1}
@@ -57,7 +58,7 @@ const CatalogLoader = ({
                         width={itemWidth * 0.6}
                         height={height3}
                     />
-                </>,
+                </Fragment>,
             );
 
             if (i === row) {

@@ -133,6 +133,21 @@ export const BottomModal = ({
         {
             content: [
                 {
+                    id: 11,
+                    name: 'Підкатегорія',
+                    type: 'category',
+                    filterType: 'category',
+                    children: [{
+                        content: subcategories?.map((subcategory) => ({
+                            id: +subcategory.category_id,
+                            optionId: +subcategory.category_id,
+                            name: subcategory.category_name,
+                            optName: 'category',
+                            icon: !filters?.category?.includes(+subcategory.category_id) ? null : <Check />,
+                        })),
+                    }],
+                },
+                {
                     id: 1,
                     name: 'Сортування',
                     type: 'sort',
@@ -165,14 +180,14 @@ export const BottomModal = ({
                                     id: 5,
                                     optionId: 5,
                                     value: 'priceAsc',
-                                    name: 'Ціна | Від нижчого до більшого',
+                                    name: 'Ціна | Від дешевих до дорогих',
                                     optName: 'sortBy',
                                 },
                                 {
                                     id: 6,
                                     optionId: 6,
                                     value: 'priceDesc',
-                                    name: 'Ціна | Від більшого до нижчого',
+                                    name: 'Ціна | Від дорогих до дешевих',
                                     optName: 'sortBy',
                                 },
                             ],
@@ -235,21 +250,6 @@ export const BottomModal = ({
                             ],
                         },
                     ],
-                },
-                {
-                    id: 11,
-                    name: 'Підкатегорія',
-                    type: 'category',
-                    filterType: 'category',
-                    children: [{
-                        content: subcategories?.map((subcategory) => ({
-                            id: +subcategory.category_id,
-                            optionId: +subcategory.category_id,
-                            name: subcategory.category_name,
-                            optName: 'category',
-                            icon: !filters?.category?.includes(+subcategory.category_id) ? null : <Check />,
-                        })),
-                    }],
                 },
                 {
                     id: 9,

@@ -11,7 +11,6 @@ import isEqual from 'lodash/isEqual';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert';
 
 import CardPopUp from 'Components/CardPopUp';
-import history from 'Services/history';
 import { CategoriesWrapperProvider } from 'context/CategoriesWrapper/categoriesWrapperContext';
 import { AdminRoutes, PrivateAdminRoutes } from './AdminRoutes';
 import { Layout } from '../Components/Layout';
@@ -44,7 +43,7 @@ const containerStyle = {
 };
 
 const RouterComponent = () => (
-    <Router history={history}>
+    <Router>
         <AlertProvider template={CardPopUp} {...options} containerStyle={containerStyle}>
             <Suspense fallback={<ThreeDots />}>
                 <Switch>

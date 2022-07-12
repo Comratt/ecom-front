@@ -4,7 +4,7 @@ import './Button.css';
 import Loader from 'react-loader-spinner';
 
 const Button = ({
-    loading, className, variant, ...props
+    loading, className, variant, disabled, ...props
 }) => {
     const componentClassName = classNames(
         'lib-custom-button',
@@ -18,7 +18,7 @@ const Button = ({
     const colorStyle = variant === 'solid' ? 'white' : 'var(--color-accent)';
 
     return (
-        <button type={loading ? 'button' : 'submit'} className={componentClassName} {...props}>
+        <button disabled={disabled} type={loading ? 'button' : 'submit'} className={componentClassName} {...props}>
             {loading && (
                 <Loader
                     className="lib-custom-button_button-loader"

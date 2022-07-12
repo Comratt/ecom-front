@@ -25,7 +25,11 @@ export const Link = ({
 };
 
 Link.propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.oneOfType([
+        PropTypes.node,
+        PropTypes.string,
+        PropTypes.number,
+    ]),
     to: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.shape({}),
@@ -35,4 +39,5 @@ Link.propTypes = {
 
 Link.defaultProps = {
     className: '',
+    children: <></>,
 };

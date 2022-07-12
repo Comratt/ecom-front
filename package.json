@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@n8tb1t/use-scroll-position": "^2.0.3",
+    "apparel-sorter": "^0.3.1",
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
     "context": "^1.1.4",

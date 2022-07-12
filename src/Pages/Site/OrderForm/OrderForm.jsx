@@ -29,6 +29,7 @@ import './OrderForm.css';
 import { useHistory } from 'react-router-dom';
 import Button from '../../../Components/Button/Button';
 import { Title } from '../../../Components/Title';
+import { clearFilters } from '../../../Store/Modules/Filters/filtersActions';
 
 export const OrderForm = (className) => {
     const dispatch = useDispatch();
@@ -174,6 +175,7 @@ export const OrderForm = (className) => {
 
     useEffect(() => {
         register('shippingCity', { required: true });
+        dispatch(clearFilters());
 
         window.scrollTo(0, 0);
     }, []);

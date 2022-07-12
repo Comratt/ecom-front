@@ -9,6 +9,7 @@ export const useCollection = () => {
         loadingNext,
         result,
         categories,
+        pureCategories,
         isLastPage,
         currentPage,
         setFilters,
@@ -72,6 +73,37 @@ export const useCollection = () => {
             available: !prevFilters.available,
         }));
     };
+    const meta = useMemo(() => {
+        if (collectionId) {
+            const category = pureCategories?.find((cat) => +cat?.category_id === +collectionId);
+
+            if (category) {
+                return {
+                    title: category?.category_name,
+                    metaTitle: category?.meta_title,
+                    metaDescription: category?.meta_description,
+                    metaKeywords: category?.meta_keywords,
+                    metaTags: category?.tag,
+                };
+            }
+
+            return {
+                title: '',
+                metaTitle: '',
+                metaDescription: '',
+                metaKeywords: '',
+                metaTags: '',
+            };
+        }
+
+        return {
+            title: '',
+            metaTitle: '',
+            metaDescription: '',
+            metaKeywords: '',
+            metaTags: '',
+        };
+    }, [pureCategories, collectionId]);
 
     useCollectionLayout();
 
@@ -80,6 +112,7 @@ export const useCollection = () => {
         loadingNext,
         result,
         categories,
+        pureCategories,
         isLastPage,
         currentPage,
         collectionId,
@@ -92,11 +125,13 @@ export const useCollection = () => {
         isFiltered,
         filtersDiff,
         filters,
+        meta,
     }), [
         loading,
         loadingNext,
         result,
         categories,
+        pureCategories,
         isLastPage,
         currentPage,
         collectionId,
@@ -109,5 +144,6 @@ export const useCollection = () => {
         isFiltered,
         filtersDiff,
         filters,
+        meta,
     ]);
 };

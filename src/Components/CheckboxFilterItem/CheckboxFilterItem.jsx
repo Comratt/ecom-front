@@ -188,10 +188,10 @@ const CheckboxFilterItem = ({
             id: 5,
             text: [
                 { value: 'relevance', name: 'sortBy', text: 'Найпопулярніші' },
-                { value: 'dateAsc', name: 'sortBy', text: 'Дата | Від нового до старого' },
-                { value: 'dateDesc', name: 'sortBy', text: 'Дата | Від старого до нового' },
-                { value: 'priceAsc', name: 'sortBy', text: 'Ціна | Від низького до високого' },
-                { value: 'priceDesc', name: 'sortBy', text: 'Ціна | Від високого до низького' },
+                { value: 'dateAsc', name: 'sortBy', text: 'Дата | Від нових до старіших' },
+                { value: 'dateDesc', name: 'sortBy', text: 'Дата | Від старіших до нових' },
+                { value: 'priceAsc', name: 'sortBy', text: 'Ціна | Від дешевих до дорогих' },
+                { value: 'priceDesc', name: 'sortBy', text: 'Ціна | Від дорогих до дешевих' },
             ],
         },
     ]);
@@ -321,6 +321,7 @@ const CheckboxFilterItem = ({
                 <div className="filters__items">
                     {staticFilters.map((list) => (
                         <Popup
+                            key={list.id}
                             arrow={false}
                             trigger={(open) => (
                                 <div className="filters__item" key={list.id}>

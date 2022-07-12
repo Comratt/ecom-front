@@ -26,6 +26,7 @@ import SliderMobileDevices from 'Components/SliderMobileDevices/SliderMobileDevi
 import ProductCarousel from 'Components/PorductCarousel';
 import { ProductDetailsLoader } from 'Components/SkeletonLoader';
 import { ImagePreview } from 'Components/ImagePreview';
+import MetaTags from 'Components/MetaTags';
 import { useDetectedMobileDevice } from 'hooks/useDetectMobileDevice';
 import './ProductInfo.css';
 
@@ -57,6 +58,12 @@ export const ProductDetails = () => {
     const relatedIds = result?.related?.map(({ related_product_id }) => related_product_id);
     const historyViewed = parsedStorage?.viewed || [];
     const { isMobileSize, isTabletSize } = useDetectedMobileDevice();
+    const getQuantity = () => {
+        const colorQuantity = result?.colors?.reduce((acc, val) => acc + val?.product_quantity, 0);
+        const sizeQuantity = result?.sizes?.reduce((acc, val) => acc + val?.product_quantity, 0);
+
+        return colorQuantity + sizeQuantity;
+    };
 
     const itemClassNames = (id) => (
         classNames(
@@ -123,6 +130,7 @@ export const ProductDetails = () => {
     useEffect(() => {
         setActiveColor({});
         setActiveSize({});
+        setSizeError(false);
         const viewedPreviously = parsedStorage?.viewed?.length ? parsedStorage?.viewed : [];
         const modifiedViewed = viewedPreviously?.includes(productId)
             ? viewedPreviously
@@ -169,6 +177,13 @@ export const ProductDetails = () => {
 
     return (
         <>
+            <MetaTags
+                description={result.meta_description}
+                keywords={result.meta_keyword}
+                tags={result.meta_tag}
+                metaTitle={result.meta_title}
+                title={result.name}
+            />
             <div className="lib-product_info">
                 <div className="container">
                     <div className="left-part">
@@ -235,6 +250,7 @@ export const ProductDetails = () => {
                                     </b>
                                 )}
                             </p>
+                            {sizeError && <p className="size-error">Виберіть розмір!</p>}
                             <ul ref={sizesRef} className="lib-product_info_size_list">
                                 {result.sizes.map((size) => (
                                     <li key={size.option_value_id}>
@@ -255,7 +271,11 @@ export const ProductDetails = () => {
                         </div>
                         <div className="cart-container">
                             <div className="lib-product_cart_btn">
-                                <Button variant="solid" onClick={isSelectedProduct ? handleClick : handleAddToCart}>
+                                <Button
+                                    variant="solid"
+                                    disabled={!getQuantity()}
+                                    onClick={isSelectedProduct ? handleClick : handleAddToCart}
+                                >
                                     {isSelectedProduct ? 'Перейти в кошик' : 'Додати в кошик'}
                                 </Button>
                             </div>

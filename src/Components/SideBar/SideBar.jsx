@@ -1,7 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
-import { Close } from 'Icons';
+import {
+    Close, Facebook, Instagram, Telegram, Viber,
+} from 'Icons';
 import { useCategories } from 'context/CategoriesWrapper/useCategories';
 import { adaptCategories } from 'context/adapters';
 import { clearFilters } from 'Store/Modules/Filters/filtersActions';
@@ -12,6 +14,7 @@ import { useLayout } from '../../hooks/useLayout';
 import './SideBar.css';
 import { Link } from '../Link';
 import { Accordion, AccordionItem } from '../Accordion';
+import { Title } from '../Title';
 
 export const SideBar = ({ className }) => {
     const dispatch = useDispatch();
@@ -52,6 +55,7 @@ export const SideBar = ({ className }) => {
                                     <span>Всі товари</span>
                                 </Link>
                             )}
+                            index={1}
                             hideArrow
                         />
                         {adaptCategories(categories).map(({ id, name }) => (
@@ -126,6 +130,33 @@ export const SideBar = ({ className }) => {
                                 UAH
                             </a>
                         </div>
+                    </div>
+                </div>
+                <div className="lib-sidebar__content-wrapper">
+                    <div className="lib-sidebar__item sidebar-social__wrapper">
+                        <Title type={3}>Ми в соціальних мережах</Title>
+                        <ul className="sidebar-social">
+                            <li>
+                                <a className="sidebar-social__facebook" href="#">
+                                    <Facebook height="18" width="18" />
+                                </a>
+                            </li>
+                            <li>
+                                <a className="sidebar-social__instagram" href="#">
+                                    <Instagram height="18" width="18" />
+                                </a>
+                            </li>
+                            <li>
+                                <a className="sidebar-social__telegram" href="#">
+                                    <Telegram height="18" width="18" />
+                                </a>
+                            </li>
+                            <li>
+                                <a className="sidebar-social__viber" href="#">
+                                    <Viber height="18" width="18" />
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

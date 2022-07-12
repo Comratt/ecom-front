@@ -2,13 +2,13 @@ import React from 'react';
 import classNames from 'classnames';
 import { Redirect } from 'react-router-dom';
 import { Tabs } from 'Components/Tab/Tabs';
+import Button from 'Components/Button/Button';
 import { Logout } from 'Icons/Logout';
 import { useUserAccount } from 'context/userAccount/hooks/useUserAccount';
 import AccountSettings from './AccountSettings/AccountSettings';
 import UserOrders from './UserOrders/UserOrders';
 
 import './UserAccount.css';
-import Button from 'Components/Button/Button';
 
 const UserAccount = () => {
     const {

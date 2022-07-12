@@ -2,16 +2,17 @@ import { useMemo } from 'react';
 
 import { adaptProduct } from 'context/adapters/adaptProducts';
 import { useFetchProduct } from 'context/hooks/useFetchProducts';
-import { useFetchCategories } from 'Pages/Admin/hooks/useFetchCategories';
+import { useCategories } from '../../CategoriesWrapper/useCategories';
+import { adaptCategories } from '../../../Pages/Admin/hooks/useFetchCategories';
 
 export const useProductData = (id, isUniq) => {
     const { loading, error, result } = useFetchProduct(id);
-    const { categories } = useFetchCategories();
+    const { categories } = useCategories();
 
     return useMemo(() => ({
         loading,
         error,
-        result: adaptProduct(result, categories, isUniq),
+        result: adaptProduct(result, adaptCategories(categories), isUniq),
     }), [
         loading,
         error,

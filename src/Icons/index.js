@@ -35,6 +35,10 @@ import AddImg from './AddImg';
 import Category from './Category';
 import Eyes from './Eyes';
 import PromoCode from './PromoCode';
+import Facebook from './Facebook';
+import Viber from './Viber';
+import Instagram from './Instagram';
+import Telegram from './Telegram';
 
 export {
     Remove,
@@ -74,4 +78,8 @@ export {
     Category,
     Eyes,
     PromoCode,
+    Facebook,
+    Viber,
+    Instagram,
+    Telegram,
 };

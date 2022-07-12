@@ -1,10 +1,11 @@
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAlert } from 'react-alert';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { getLocalSettingsState, getUser } from 'Store/Modules/LocalSettings/selectors';
 import { login } from 'Store/Modules/LocalSettings/localSettingsActions';
+import { clearFilters } from 'Store/Modules/Filters/filtersActions';
 
 export const useLoginData = () => {
     const dispatch = useDispatch();
@@ -19,6 +20,10 @@ export const useLoginData = () => {
     const onSubmit = ({ email, password }) => {
         dispatch(login(email, password));
     };
+
+    useEffect(() => {
+        dispatch(clearFilters());
+    }, []);
 
     const submitForm = handleSubmit(onSubmit);
 
