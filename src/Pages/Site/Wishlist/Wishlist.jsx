@@ -5,9 +5,10 @@ import { View } from 'Components/View';
 import { Title } from 'Components/Title';
 import { CardList } from 'Components/CardList';
 import { CatalogLoader } from 'Components/SkeletonLoader';
+import Button from 'Components/Button/Button';
+import MetaTags from 'Components/MetaTags';
 
 import './Wishlist.css';
-import Button from 'Components/Button/Button';
 
 const Wishlist = () => {
     const {
@@ -48,18 +49,27 @@ const Wishlist = () => {
     }
 
     return (
-        <View className="wishlist-page__container">
-            <h4 className="wishlist-header">
-                Список вподобаних товарів
-            </h4>
-            <CardList
-                isLastPage={isLastPage}
-                currentPage={currentPage}
-                data={result}
-                loading={loading}
-                handlePageCount={handlePageCount}
+        <>
+            <MetaTags
+                title="Інтернет магазин - 13"
+                metaTitle="Інтернет магазин - 12"
+                description="Description"
+                tags="Tags"
+                keywords="asd, dds, sfdsf"
             />
-        </View>
+            <View className="wishlist-page__container">
+                <h4 className="wishlist-header">
+                    Список вподобаних товарів
+                </h4>
+                <CardList
+                    isLastPage={isLastPage}
+                    currentPage={currentPage}
+                    data={result}
+                    loading={loading}
+                    handlePageCount={handlePageCount}
+                />
+            </View>
+        </>
     );
 };
 

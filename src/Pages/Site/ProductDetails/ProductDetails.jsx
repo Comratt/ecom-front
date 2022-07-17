@@ -44,6 +44,7 @@ export const ProductDetails = () => {
     const [activeSize, setActiveSize] = useState({});
     const [sizeError, setSizeError] = useState(false);
     const [modalSrc, setModalSrc] = useState(false);
+    const [modalTableSizeSrc, setModalTableSizeSrc] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
     const {
         result, loading, productId,
@@ -194,6 +195,13 @@ export const ProductDetails = () => {
                                 images={result.images}
                             />
                         )}
+                        {modalTableSizeSrc && (
+                            <ImagePreview
+                                activeIndex={0}
+                                onClose={() => setModalTableSizeSrc(null)}
+                                images={result.tableSize}
+                            />
+                        )}
                         {!isMobileSize && !isTabletSize ? (
                             <ScrollSlider setModalOpen={setModalSrc} data={result.images} />
                         ) : (
@@ -265,9 +273,11 @@ export const ProductDetails = () => {
                                     </li>
                                 ))}
                             </ul>
-                            <span>
-                                Таблиця розмірів
-                            </span>
+                            {result?.tableSize && (
+                                <button type="button" className="table-size" onClick={() => setModalTableSizeSrc(true)}>
+                                    Таблиця розмірів
+                                </button>
+                            )}
                         </div>
                         <div className="cart-container">
                             <div className="lib-product_cart_btn">

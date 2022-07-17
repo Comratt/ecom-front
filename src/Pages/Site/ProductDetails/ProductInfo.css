@@ -63,10 +63,12 @@
 .lib-product_info_size_list{
     padding-left: 0;
 }
-.lib-product_info_size span{
+.lib-product_info_size button.table-size{
     text-decoration: underline;
     color: var(--color-accent-light);
     font-size: var(--fz-normal);
+    background: transparent;
+    border: none;
     cursor: pointer;
 }
 .lib-product_cart_btn{

@@ -90,6 +90,7 @@ export const adaptProduct = (data = {}, allCategories, isUniq) => {
             )),
         ],
         image: getImage(data.image),
+        tableSize: data.table_size ? getImage(data.table_size) : null,
         price: getFormattedPrice(data.price),
         purePrice: data.price,
         colors: uniqColors,

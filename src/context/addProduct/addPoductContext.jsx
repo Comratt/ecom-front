@@ -18,6 +18,10 @@ export const AddProductProvider = ({ children }) => {
         image: undefined,
         imagePreview: undefined,
     });
+    const [tableSizeImage, setTableSizeImage] = useState({
+        image: undefined,
+        imagePreview: undefined,
+    });
     const [values, setValues] = useState(initialValues);
 
     useEffect(() => {
@@ -83,6 +87,12 @@ export const AddProductProvider = ({ children }) => {
                 setMainImage({
                     image: product.image,
                     imagePreview: product.image,
+                });
+            }
+            if (product.tableSize) {
+                setTableSizeImage({
+                    image: product.tableSize,
+                    imagePreview: product.tableSize,
                 });
             }
             if (product.imagesOrig && product.imagesOrig.length) {
@@ -225,6 +235,19 @@ export const AddProductProvider = ({ children }) => {
         })
     );
 
+    const onChangeTableSizeImage = ({ target }) => (
+        setTableSizeImage({
+            image: target.files[0],
+            imagePreview: URL.createObjectURL(target.files[0]),
+        })
+    );
+    const onDeleteTableSizeImage = () => (
+        setTableSizeImage({
+            image: undefined,
+            imagePreview: undefined,
+        })
+    );
+
     const contextValue = useMemo(() => ({
         selectedCategories,
         setSelectedCategories,
@@ -241,12 +264,15 @@ export const AddProductProvider = ({ children }) => {
         options,
         images,
         mainImage,
+        tableSizeImage,
         discounts,
         product,
         onChangeProductImage,
         onAddProductImage,
         onDeleteProductImage,
         onChangeMainImage,
+        onChangeTableSizeImage,
+        onDeleteTableSizeImage,
         onAddProductDiscount,
         onDeleteProductDiscount,
         onChangeProductDiscount,
@@ -268,12 +294,15 @@ export const AddProductProvider = ({ children }) => {
         options,
         images,
         mainImage,
+        tableSizeImage,
         discounts,
         product,
         onChangeProductImage,
         onAddProductImage,
         onDeleteProductImage,
         onChangeMainImage,
+        onChangeTableSizeImage,
+        onDeleteTableSizeImage,
         onAddProductDiscount,
         onDeleteProductDiscount,
         onChangeProductDiscount,

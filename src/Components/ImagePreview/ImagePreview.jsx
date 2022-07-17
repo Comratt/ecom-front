@@ -5,15 +5,28 @@ import 'react-image-lightbox/style.css'; // This only needs to be imported once 
 
 export const ImagePreview = ({ images, onClose, activeIndex }) => {
     const [photoIndex, setPhotoIndex] = useState(activeIndex);
+    const isImageArray = Array.isArray(images);
 
-    const movePrev = () => setPhotoIndex((photoIndex + images.length - 1) % images.length);
-    const moveNext = () => setPhotoIndex((photoIndex + 1) % images.length);
+    const movePrev = () => {
+        if (isImageArray) {
+            setPhotoIndex((photoIndex + images.length - 1) % images.length);
+        }
+    };
+    const moveNext = () => {
+        if (isImageArray) {
+            setPhotoIndex((photoIndex + 1) % images.length);
+        }
+    };
+
+    const mainSrc = isImageArray ? images[photoIndex] : images;
+    const nextSrc = isImageArray ? images[(photoIndex + 1) % images.length] : null;
+    const prevSrc = isImageArray ? images[(photoIndex + images.length - 1) % images.length] : null;
 
     return (
         <Lightbox
-            mainSrc={images[photoIndex]}
-            nextSrc={images[(photoIndex + 1) % images.length]}
-            prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+            mainSrc={mainSrc}
+            nextSrc={nextSrc}
+            prevSrc={prevSrc}
             onCloseRequest={onClose}
             onMovePrevRequest={movePrev}
             onMoveNextRequest={moveNext}

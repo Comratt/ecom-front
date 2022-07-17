@@ -9,21 +9,27 @@ import Input from 'Components/Input';
 import { useAddProduct } from 'context/addProduct/useAddProduct';
 
 import './ProductTabGeneral.css';
+import { getImage } from '../../../../API';
+import { Remove } from '../../../../Icons';
 
 const ProductTabGeneral = () => {
     const [v, setV] = useState();
     const {
-        values, handleValuesChange, handleDescriptionChange, product,
+        values,
+        handleValuesChange,
+        handleDescriptionChange,
+        product,
+        tableSizeImage,
+        onChangeTableSizeImage,
+        onDeleteTableSizeImage,
     } = useAddProduct();
     const onEditorStateChange = (editorState) => {
         setV(editorState);
-        console.log(convertToRaw(editorState.getCurrentContent()));
         handleDescriptionChange(draftToMarkdown(convertToRaw(editorState.getCurrentContent())));
     };
 
     useEffect(() => {
         if (product.description) {
-            console.log(123);
             const rawData = markdownToDraft(product.description);
             const contentState = convertFromRaw(rawData);
             const newEditorState = EditorState.createWithContent(contentState);
@@ -107,6 +113,46 @@ const ProductTabGeneral = () => {
                             id="price"
                             type="number"
                         />
+                    </div>
+                </div>
+                <div className="from-section">
+                    <div className="productTabLabel">
+                        <label htmlFor="price">
+                            <b>
+                                Таблиця розмірів
+                            </b>
+                        </label>
+                    </div>
+                    <div className="productTabInput">
+                        <img
+                            className="img-thumbnail"
+                            style={{ width: '100px' }}
+                            src={(
+                                tableSizeImage.imagePreview || getImage(tableSizeImage.image)
+                            )}
+                            alt="product"
+                        />
+                        <div className="custom-file">
+                            <input
+                                type="file"
+                                onChange={onChangeTableSizeImage}
+                                className="custom-file-input"
+                                id="customFileLang"
+                                lang="es"
+                            />
+                            <label className="custom-file-label" htmlFor="customFileLang" />
+                            <button
+                                type="button"
+                                className="btn btn-outline-danger"
+                                onClick={onDeleteTableSizeImage}
+                            >
+                                <Remove
+                                    fill="red"
+                                    width={14}
+                                    height={14}
+                                />
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div className="from-section">

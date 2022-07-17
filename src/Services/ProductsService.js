@@ -80,6 +80,7 @@ class ProductsService {
             formData.append('related', JSON.stringify(params.relatedProducts));
             formData.append('discounts', JSON.stringify(params.discounts));
             formData.append('mainImage', params?.mainImage?.image);
+            formData.append('tableSize', params?.tableSizeImage?.image);
             formData.append('imagesIds', JSON.stringify(params?.images?.map(({ id }) => id)));
             params.images.forEach(({ image, id: imgId }) => {
                 formData.append(`image_${imgId}`, image || '');
@@ -102,6 +103,7 @@ class ProductsService {
             formData.append('related', JSON.stringify(params.relatedProducts));
             formData.append('discounts', JSON.stringify(params.discounts));
             formData.append('mainImage', params?.mainImage?.image);
+            formData.append('tableSize', params?.tableSizeImage?.image);
             formData.append('imagesIds', JSON.stringify(params?.images?.map(({ id }) => id)));
             params.images.forEach(({ image, id: imgId }) => {
                 formData.append(`image_${imgId}`, image || '');

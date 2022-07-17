@@ -141,7 +141,7 @@ CardList.propTypes = {
     })).isRequired,
     filters: PropTypes.shape({
         category: PropTypes.arrayOf(PropTypes.string),
-    }).isRequired,
+    }),
     categories: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number,
         name: PropTypes.string,
@@ -154,4 +154,5 @@ CardList.propTypes = {
 
 CardList.defaultProps = {
     className: '',
+    filters: {},
 };
