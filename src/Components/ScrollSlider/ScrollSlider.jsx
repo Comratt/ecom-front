@@ -64,6 +64,7 @@ export const ScrollSlider = ({ data, setModalOpen }) => {
                             className="image-wrapper"
                         >
                             <img
+                                alt="Галерея колекцій"
                                 className="image-inner"
                                 src={imageSrc}
                                 onClick={() => setModalOpen(imageSrc)}

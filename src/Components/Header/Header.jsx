@@ -50,6 +50,7 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
         <header className={componentClasses}>
             <div className="header-left-navigation">
                 <button
+                    aria-label="Відкрити меню"
                     onClick={handleOpenNavigationModal}
                     type="button"
                     className="lib-header__btn menu header-links-icon"
@@ -65,7 +66,9 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
                         onMouseEnter={() => setHoverItem(true)}
                         onMouseLeave={() => setHoverItem(false)}
                     >
-                        Одяг та взуття
+                        <Link to="/">
+                            Одяг та взуття
+                        </Link>
                         <HeaderListCollectionNews className="header-list-collection" />
                     </li>
                     <li className="list-group">
@@ -77,7 +80,7 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
                 </ul>
             </div>
             {showLogo && (
-                <Link to="/" className="header-main-logo">
+                <Link title="До головної сторінки" to="/" className="header-main-logo">
                     <Logo isTransparent={transparent} />
                 </Link>
             )}
@@ -94,21 +97,36 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
                         UAH
                     </span>
                 </div>
-                <Link to="/wishlist" className="header-links-icon heart">
+                <Link
+                    title="Вподобані товари"
+                    aria-label="Вподобані товари"
+                    to="/wishlist"
+                    className="header-links-icon heart"
+                >
                     <HeaderHeart
                         width={20}
                         height={20}
                     />
-                    {!!wishQuantity && <div className="cart-badge">{wishQuantity}</div>}
+                    {!!wishQuantity && <span className="cart-badge" aria-label={`Вподобаних товарів - ${wishQuantity}`}>{wishQuantity}</span>}
                 </Link>
-                <Link to="/cart" className="header-links-icon cart">
+                <Link
+                    title="Перейти в кошик"
+                    aria-label="Перейти в кошик"
+                    to="/cart"
+                    className="header-links-icon cart"
+                >
                     <Cart
                         width={26}
                         height={26}
                     />
-                    {!!cartQuantity && <div className="cart-badge">{cartQuantity}</div>}
+                    {!!cartQuantity && <span className="cart-badge" aria-label={`Доданих в кошик товарів - ${cartQuantity}`}>{cartQuantity}</span>}
                 </Link>
-                <Link to="/account" className="header-links-icon user">
+                <Link
+                    title="Особистий кабінет"
+                    aria-label="Особистий кабінет"
+                    to="/account"
+                    className="header-links-icon user"
+                >
                     <User
                         width={24}
                         height={24}

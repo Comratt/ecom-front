@@ -1,5 +1,10 @@
 import currency from 'currency.js';
 
+export const MARKET_NAME = '12 storeez';
+export const MARKET_DESCRIPTION = `Інтернет-магазин ${MARKET_NAME}: якісний одяг і взуття саме в нас. Купуйте в ${MARKET_NAME}! | Офіційна гарантія | Доставка по всій Україні | Характеристики товарів $ Вигідні ціни та знижки %`;
+export const MARKET_TITLE = `Інтернет-магазин ${MARKET_NAME}: сайт з найпопулярнішим одягом в Україні`;
+export const MARKET_KEYWORDS = `${MARKET_NAME.toLowerCase()}, ${MARKET_NAME.toUpperCase()}, онлайн-магазин`;
+
 export const MOBILE_VIEWPORT_MAX_WIDTH = 576;
 export const TABLET_VIEWPORT_MAX_WIDTH = 768;
 export const DESKTOP_VIEWPORT_MAX_WIDTH = 1024;

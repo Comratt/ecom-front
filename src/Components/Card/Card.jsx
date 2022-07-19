@@ -42,24 +42,21 @@ export const Card = ({
             <div className="lib-card__heart_wh">
                 <WishlistHeart cardId={cardId} />
             </div>
-            <NavLink to={detailsPath}>
+            <NavLink aria-label={`Детальніше про - ${title}`} to={detailsPath}>
                 <div
                     className="lib-card__picture"
                     style={{ backgroundImage: `url(${imagePath})` }}
                 />
                 {!!discountPercent && (
-                    <div className="discount-label">{`${discountPercent}%`}</div>
+                    <div aria-label={`Знижка ${discountPercent}%`} className="discount-label">{`${discountPercent}%`}</div>
                 )}
             </NavLink>
             {!hideInfo && (
                 <div className={classNames('lib-card__info', { 'hidden-colors': hideColors })}>
                     <NavLink to={detailsPath} className="lib-card__info-content">
-                        <Title
-                            type={4}
-                            className="lib-card__info-title"
-                        >
+                        <p className="lib-card__info-title">
                             {title}
-                        </Title>
+                        </p>
                     </NavLink>
                     <div className="lib-card__info-price-content">
                         {discount > 0 ? (

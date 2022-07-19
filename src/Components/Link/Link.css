@@ -19,3 +19,8 @@
     color: var(--link-color);
     text-decoration: none;
 }
+
+.lib-link:hover {
+    color: var(--color-accent-light);
+    text-decoration: none;
+}

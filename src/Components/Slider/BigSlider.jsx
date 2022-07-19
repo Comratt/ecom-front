@@ -30,7 +30,7 @@ const ItemImageDiv = styled.div`
 `;
 
 const BigSliderItem = memo(({
-    link, title, image, active, onHover, onLeave, onClick,
+    link, title, image, active,
 }) => {
     const componentClasses = classNames('lib-big-slider_item', { active });
     const { clientWidth } = useDetectedMobileDevice();
@@ -38,20 +38,17 @@ const BigSliderItem = memo(({
     return (
         <div
             className={componentClasses}
-            onMouseOver={onHover}
-            onMouseLeave={onLeave}
-            onClick={onClick}
         >
             {link && (
                 <>
-                    <Link className="item-link" to={link} />
+                    <Link aria-label={title} className="item-link" to={link} />
                     <Link className="item-title" to={link}>
                         <Title type={2}>{title}</Title>
                     </Link>
                 </>
             )}
             <div className="item-overlay" />
-            {clientWidth <= 900 ? <ItemImage className="item-image" src={image} /> : <ItemImageDiv className="item-image" image={image} />}
+            {clientWidth <= 900 ? <ItemImage alt="Галерея колекцій" className="item-image" src={image} /> : <ItemImageDiv alt="Галерея колекцій" className="item-image" image={image} />}
         </div>
     );
 });
@@ -66,7 +63,7 @@ const BigSliderDots = memo(({ data, active }) => {
         <ul className="lib-big-slider_dots" role="tablist">
             {data.map(({ title }, index) => {
                 const countedIndex = index + 1;
-                const label = `${countedIndex} из ${data.length}`;
+                const label = `${countedIndex} з ${data.length}`;
 
                 return (
                     <li
@@ -89,10 +86,10 @@ const BigSliderDots = memo(({ data, active }) => {
 });
 
 export const BigSlider = memo(({
-    className, data, onClick, activeImage, hideDots,
+    className, data,
 }) => {
     const timer = useRef(0);
-    const [activeSlide, setActiveSlide] = useState(activeImage || 0);
+    const [activeSlide, setActiveSlide] = useState(0);
     const [touchStart, setTouchStart] = useState(0);
     const [touchEnd, setTouchEnd] = useState(0);
 
@@ -113,19 +110,18 @@ export const BigSlider = memo(({
     const handleTouchStart = (e) => setTouchStart(e.targetTouches[0].clientX);
     const handleTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
     const handleTouchEnd = () => {
-        if (touchStart - touchEnd > 50) {
+        if (touchEnd && (touchStart - touchEnd > 60)) {
             handleNext();
         }
 
-        if (touchStart - touchEnd < -50) {
+        if (touchEnd && (touchStart - touchEnd < -60)) {
             handlePrev();
         }
+        setTouchEnd(0);
     };
 
     const startTimer = useCallback(() => {
-        if (!hideDots) {
-            timer.current = setTimeout(() => handleNext(), 5000);
-        }
+        timer.current = setTimeout(() => handleNext(), 5000);
     }, [timer.current]);
 
     const clearTimer = useCallback(() => clearTimeout(timer.current), [timer.current]);
@@ -144,10 +140,9 @@ export const BigSlider = memo(({
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
-            onClick={onClick}
         >
             <button
-                aria-label="Slider previous slide"
+                aria-label="Попередній слайд"
                 onClick={handlePrev}
                 type="button"
                 className="lib-big-slider-arrow lib-big-slider__prev"
@@ -159,7 +154,6 @@ export const BigSlider = memo(({
                     title={title}
                     link={link}
                     image={image}
-                    onClick={() => ({})}
                 />
             )) : data.map((image, index) => (
                 <BigSliderItem
@@ -168,12 +162,11 @@ export const BigSlider = memo(({
                     title=""
                     link=""
                     image={image}
-                    onClick={onClick}
                 />
             ))}
-            {!hideDots && <BigSliderDots data={data} active={(activeSlide)} />}
+            <BigSliderDots data={data} active={(activeSlide)} />
             <button
-                aria-label="Slider next slide"
+                aria-label="Наступний слайд"
                 onClick={handleNext}
                 type="button"
                 className="lib-big-slider-arrow lib-big-slider__next"

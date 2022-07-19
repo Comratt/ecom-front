@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { MARKET_DESCRIPTION, MARKET_TITLE, MARKET_KEYWORDS } from 'Constants';
 import { View } from 'Components/View';
 import { BigSlider } from 'Components/Slider';
 import { SliderCardList } from 'Components/SliderCardList';
@@ -26,11 +27,11 @@ export const Home = () => {
     return (
         <View>
             <MetaTags
-                title="Інтернет магазин - 13"
-                metaTitle="Інтернет магазин - 12"
-                description="Description"
+                title={MARKET_TITLE}
+                metaTitle={MARKET_TITLE}
+                description={MARKET_DESCRIPTION}
                 tags="Tags"
-                keywords="asd, dds, sfdsf"
+                keywords={MARKET_KEYWORDS}
             />
             <SliderWithDisableVerticalScroll>
                 <BigSlider data={result} />

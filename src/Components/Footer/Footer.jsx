@@ -4,7 +4,6 @@ import './Footer.css';
 import FooterInput from '../FooterInput/FooterInput';
 import FooterLogo from '../../Icons/FooterLogo';
 import { Accordion, AccordionItem } from '../Accordion';
-import { Title } from '../Title';
 import {
     Facebook, Instagram, Telegram, Viber,
 } from '../../Icons';
@@ -18,7 +17,7 @@ export const Footer = ({
     );
 
     return (
-        <div className={componentClasses}>
+        <footer className={componentClasses}>
             <div className="container-footer">
                 <div className="content-footer">
                     <div className="footer-logo-content">
@@ -127,6 +126,6 @@ export const Footer = ({
                     </div>
                 </div>
             </div>
-        </div>
+        </footer>
     );
 };

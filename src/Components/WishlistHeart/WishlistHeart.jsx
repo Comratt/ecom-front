@@ -18,21 +18,20 @@ const WishlistHeart = ({ cardId }) => {
     const isActive = useMemo(() => listWishProducts.includes(cardId), [listWishProducts, cardId]);
 
     return (
-        <div>
-            <button
-                title="Like product"
-                type="button"
-                className="lib-card__heart"
-                onClick={handleClick(cardId, isActive)}
-            >
-                <Heart
-                    height="23"
-                    width="23"
-                    fill={isActive ? '#fa4343' : 'var(--color-accent)'}
-                    fillOpacity={isActive ? '0.8' : '0.7'}
-                />
-            </button>
-        </div>
+        <button
+            title="Додати в список вподобаних"
+            type="button"
+            className="lib-card__heart"
+            aria-label="Додати в список вподобаних"
+            onClick={handleClick(cardId, isActive)}
+        >
+            <Heart
+                height="23"
+                width="23"
+                fill={isActive ? '#fa4343' : 'var(--color-accent)'}
+                fillOpacity={isActive ? '0.8' : '0.7'}
+            />
+        </button>
     );
 };
 

@@ -141,7 +141,7 @@ const HeaderInput = () => {
     const promiseOptions = async (inputValue) => filterProducts(inputValue);
 
     return (
-        <form action="#" className="header-input-form">
+        <div className="header-input-form">
             <AsyncSelect
                 value={null}
                 escapeClearsValue
@@ -151,6 +151,7 @@ const HeaderInput = () => {
                 styles={styles}
                 defaultOptions={[]}
                 placeholder="Пошук"
+                aria-label="Пошук товарів на сайті"
                 loadOptions={promiseOptions}
                 noOptionsMessage={() => 'Збігів не найдено.'}
                 loadingMessage={() => 'Завантажуєм товари...'}
@@ -165,7 +166,7 @@ const HeaderInput = () => {
                 className="react-select-container"
                 classNamePrefix="react-select"
             />
-        </form>
+        </div>
     );
 };
 

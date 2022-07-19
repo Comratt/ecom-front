@@ -21,7 +21,9 @@ const CustomArrowLeft = (props) => {
     const componentClassName = classNames('arrow-left', className);
 
     return (
-        <div
+        <button
+            aria-label="Попередній слайд"
+            type="button"
             className={componentClassName}
             style={style}
             onClick={onClick}
@@ -36,7 +38,9 @@ const CustomArrowRight = (props) => {
     const componentClassName = classNames('arrow-right', className);
 
     return (
-        <div
+        <button
+            aria-label="Наступний слайд"
+            type="button"
             className={componentClassName}
             style={style}
             onClick={onClick}

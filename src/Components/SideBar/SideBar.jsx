@@ -33,12 +33,12 @@ export const SideBar = ({ className }) => {
     };
 
     return (
-        <div className={componentClasses}>
+        <aside className={componentClasses}>
             <div className="lib-sidebar__header">
                 <div className="header-search-field">
                     <HeaderInput />
                 </div>
-                <button type="button" className="lib-sidebar__header-close">
+                <button aria-label="Закрити меню" type="button" className="lib-sidebar__header-close">
                     <Close fill="var(--color-accent-light)" width={25} height={25} onClick={onLinkClick} />
                 </button>
             </div>
@@ -160,6 +160,6 @@ export const SideBar = ({ className }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </aside>
     );
 };
