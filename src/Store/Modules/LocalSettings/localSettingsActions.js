@@ -8,6 +8,7 @@ import {
     SIGN_UP_SUCCESS,
     SIGN_UP_FAILURE,
     LOGOUT,
+    MODIFIED_SUCCESS,
 } from './types';
 
 export const signIn = (params = {}) => (dispatch) => {
@@ -39,5 +40,9 @@ export const login = (email, password, fromAdmin) => (dispatch) => {
             dispatch({ type: LOGIN_FAILURE, payload: { message: clientError.message } });
         });
 };
+
+export const modified = (user) => (dispatch) => (
+    dispatch({ type: MODIFIED_SUCCESS, payload: { user } })
+);
 
 export const logout = () => (dispatch) => dispatch(LOGOUT);

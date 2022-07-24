@@ -16,7 +16,9 @@
     "camelcase": "off",
     "indent": [
       "error",
-      4
+      4, {
+        "ignoredNodes": ["TemplateLiteral"]
+      }
     ],
     "arrow-parens": [
       "error",

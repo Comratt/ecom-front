@@ -1,5 +1,7 @@
 import React from 'react';
 import { useAsync } from 'react-async-hook';
+import { Link } from 'Components/Link';
+import { v4 as uuidv4 } from 'uuid';
 import classNames from 'classnames';
 import OrderService from 'Services/OrderService';
 import { ProductCardHorizontal } from 'Components/SkeletonLoader';
@@ -22,32 +24,44 @@ const UserOrders = ({ email }) => {
         <div className={componentClasses}>
             <div className="lib-user-orders-table">
                 {result?.data?.map((product) => (
-                    <div className="lib-user-orders-table-info">
+                    <Link key={uuidv4()} to={`/products/${product?.product_id}`} className="lib-user-orders-table-info">
                         <img src={getImage(product?.image)} alt="img-order" />
                         <div className="lib-user-orders-table-info-product">
                             <span className="lib-user-orders-product-model">
-                                {'арт. '}
-                                {product?.product_id}
+                                <b>
+                                    {'арт. '}
+                                    {product?.product_id}
+                                </b>
                             </span>
-                            <span>{product?.size}</span>
                             <span>
                                 {product?.model}
                                 {' '}
                                 {product?.name}
                             </span>
                             <span>
-                                Cтатус -
-                                {SHIPPING_CODES[product?.status]}
+                                <b>Cтатус</b>
+                                {' - '}
+                                {SHIPPING_CODES[product?.status_id]}
                             </span>
-                            <span className="lib-user-orders-product-color" />
                             <span>
-                                Ціна:
+                                <b>Колір</b>
+                                {' - '}
+                                {product?.color}
+                            </span>
+                            <span>
+                                <b>Розмір</b>
+                                {' - '}
+                                {product?.size}
+                            </span>
+                            <span>
+                                <b>Ціна</b>
+                                {': '}
                                 {product?.quantity}
                                 {' x '}
                                 {getFormattedPrice(product?.price)}
                             </span>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>

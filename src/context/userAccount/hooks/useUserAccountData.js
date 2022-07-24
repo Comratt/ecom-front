@@ -4,7 +4,7 @@ import { useAsyncCallback } from 'react-async-hook';
 import { useForm } from 'react-hook-form';
 
 import { getAuthToken, getUser } from 'Store/Modules/LocalSettings/selectors';
-import { logout as logoutAction } from 'Store/Modules/LocalSettings/localSettingsActions';
+import { logout as logoutAction, modified } from 'Store/Modules/LocalSettings/localSettingsActions';
 import ClientBaseService from 'Services/ClientBaseService';
 import { clearFilters } from 'Store/Modules/Filters/filtersActions';
 
@@ -32,7 +32,11 @@ export const useUserAccountData = () => {
 
     const logout = () => dispatch(logoutAction());
 
-    const submitHandler = (body) => execute(user.id, body);
+    const submitHandler = (body) => {
+        execute(user.id, body).then((modUser) => {
+            dispatch(modified(modUser));
+        });
+    };
     const onSubmit = handleSubmit(submitHandler);
 
     return useMemo(() => ({

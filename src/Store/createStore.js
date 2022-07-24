@@ -18,7 +18,12 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const persistedState = LocalStorageService.getLocalStorage();
-const store = createStore(reducers, persistedState, enhancer);
+const saved = {
+    localSettings: persistedState.localSettings,
+    cart: persistedState.cart,
+    wishlist: persistedState.wishlist,
+};
+const store = createStore(reducers, saved, enhancer);
 
 store.subscribe(() => {
     const localSettingsState = store.getState().localSettings;
