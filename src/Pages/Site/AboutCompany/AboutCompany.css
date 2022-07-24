@@ -1,0 +1,63 @@
+.lib-about-company .header{
+    color: var(--color-accent);
+    text-align: center;
+}
+.lib-about-company .title{
+    background-image: url('https://cdn.shopify.com/s/files/1/0292/1375/3428/files/image_212_1296x.png?v=1619122206');
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: flex-end;
+    color: #ffffff;
+    margin-bottom: 20px;
+    padding: 15px;
+    letter-spacing: 1px;
+}
+.lib-about-company .images{
+    display: flex;
+    justify-content: center;
+}
+.lib-about-company .img-about{
+    width: 300px;
+    height: 350px;
+    border-radius: 5px;
+}
+.lib-about-company .images p{
+    width: 300px;
+    margin: 15px;
+    color: var(--color-accent-light);
+    letter-spacing: 2px;
+}
+.lib-about-company .about{
+    margin-top: 20px;
+    background-color: var(--color-accent);
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.lib-about-company .about p{
+    max-width: 700px;
+    padding: 10px;
+    color: #ffffff;
+}
+.lib-about-company .btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.lib-about-company .btn-content{
+    display: flex;
+    width: 200px;
+}
+@media (max-width: 700px) {
+    .lib-about-company .images{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
