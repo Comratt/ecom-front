@@ -30,6 +30,9 @@ const CollectionList = lazy(() => import('Pages/Site/collection'));
 const WishList = lazy(() => import('Pages/Site/Wishlist'));
 const OrderFinaly = lazy(() => import('Pages/Site/OrderFinaly'));
 const AdminLogin = lazy(() => import('Pages/Admin/Login'));
+const AboutCompany = lazy(() => import('Pages/Site/AboutCompany'));
+const AboutCompanyDelivery = lazy(() => import('Pages/Site/AboutCompany/Delivery'));
+const AboutCompanyReturns = lazy(() => import('Pages/Site/AboutCompany/Returns'));
 
 const options = {
     position: positions.TOP_RIGHT,
@@ -65,6 +68,9 @@ const RouterComponent = () => (
                             <Route path="/account" component={() => <UserAccount />} />
                             <Route path="/wishlist" component={() => <WishList />} />
                             <Route path="/orderfinaly" component={() => <OrderFinaly />} />
+                            <Route path="/aboutcompany" component={() => <AboutCompany />} />
+                            <Route path="/delivery" component={() => <AboutCompanyDelivery />} />
+                            <Route path="/returns" component={() => <AboutCompanyReturns />} />
                         </Layout>
                     </CategoriesWrapperProvider>
                     <Route path="*" component={NotFoundPage} />
