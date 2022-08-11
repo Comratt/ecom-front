@@ -11,6 +11,7 @@ import { Link } from '../Link';
 import { Title } from '../Title';
 
 import './BigSlider.css';
+import { extensionRegExp } from '../../Constants';
 
 const ItemImage = styled.img`
   background-size: cover;
@@ -28,6 +29,29 @@ const ItemImageDiv = styled.div`
   background-position: center;
   background-attachment: fixed;
 `;
+
+const ItemVideo = ({ path = '', ext = '' }) => {
+    const extWithoutDot = ext.replace('.', '');
+
+    return (
+        <video className="banner-video" height="100%" width="100%" autoPlay muted loop>
+            <source src={path} type={`video/${extWithoutDot}`} />
+        </video>
+    );
+};
+
+const getSliderBody = (image = '', clientWidth) => {
+    const extension = image.match(extensionRegExp)?.[0];
+
+    if (!['.webp', '.jpeg', '.jpg'].includes(extension)) {
+        return <ItemVideo path={image} ext={extension} />;
+    }
+    if (clientWidth <= 900) {
+        return <ItemImage alt="Галерея колекцій" className="item-image" src={image} />;
+    }
+
+    return <ItemImageDiv alt="Галерея колекцій" className="item-image" image={image} />;
+};
 
 const BigSliderItem = memo(({
     link, title, image, active,
@@ -48,7 +72,7 @@ const BigSliderItem = memo(({
                 </>
             )}
             <div className="item-overlay" />
-            {clientWidth <= 900 ? <ItemImage alt="Галерея колекцій" className="item-image" src={image} /> : <ItemImageDiv alt="Галерея колекцій" className="item-image" image={image} />}
+            {getSliderBody(image, clientWidth)}
         </div>
     );
 });
@@ -121,7 +145,7 @@ export const BigSlider = memo(({
     };
 
     const startTimer = useCallback(() => {
-        timer.current = setTimeout(() => handleNext(), 5000);
+        timer.current = setTimeout(() => handleNext(), 10000);
     }, [timer.current]);
 
     const clearTimer = useCallback(() => clearTimeout(timer.current), [timer.current]);

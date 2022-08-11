@@ -144,12 +144,20 @@
 .lib-big-slider_dots-item.active > button {
     background-color: var(--color-lightest);
     width: 24px;
-    animation: load 5s linear;
+    animation: load 10s linear;
 }
 
 .lib-big-slider_dots-item.active {
     width: 24px;
     border-radius: 8px;
+}
+
+.lib-big-slider_item .banner-video {
+    background-size: cover;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 @keyframes load {

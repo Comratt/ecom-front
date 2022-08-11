@@ -1,13 +1,14 @@
 import React from 'react';
 import classNames from 'classnames';
 import './Footer.css';
+import FooterLogo from 'Icons/FooterLogo';
 import Facebook from 'Icons/Facebook';
 import Instagram from 'Icons/Instagram';
 import Telegram from 'Icons/Telegram';
 import Viber from 'Icons/Viber';
-import { Accordion, AccordionItem } from '../Accordion';
-import FooterLogo from '../../Icons/FooterLogo';
 import FooterInput from '../FooterInput/FooterInput';
+import { Link } from '../Link';
+import { Accordion, AccordionItem } from '../Accordion';
 
 export const Footer = ({
     className,
@@ -41,8 +42,14 @@ export const Footer = ({
                         <Accordion defaultIndex="0">
                             <AccordionItem label="Покупателям" index="1" isCollapsed>
                                 <ul className="footer-list">
-                                    <li>Доставка</li>
-                                    <li>Повернення</li>
+                                    <li>
+                                        <Link to="/delivery">
+                                            Доставка
+                                        </Link>
+                                    </li>
+                                    <Link to="/returns">
+                                        Повернення
+                                    </Link>
                                     <li>Як вибрати розмір</li>
                                     <li>Запитання та відповіді</li>
                                     <li>Відгуки</li>
@@ -51,7 +58,11 @@ export const Footer = ({
                             </AccordionItem>
                             <AccordionItem label="О Компании" index="2">
                                 <ul className="footer-list">
-                                    <li>Про нас</li>
+                                    <li>
+                                        <Link to="/aboutcompany">
+                                            Про нас
+                                        </Link>
+                                    </li>
                                     <li>Стійкий розвиток</li>
                                     <li>Капсули</li>
                                     <li>преса про нас</li>
@@ -67,8 +78,16 @@ export const Footer = ({
                             Покупцям
                         </div>
                         <ul className="footer-list">
-                            <li>Доставка</li>
-                            <li>Повернення</li>
+                            <li>
+                                <Link to="/delivery">
+                                    Доставка
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/returns">
+                                    Повернення
+                                </Link>
+                            </li>
                             <li>Как вибрать размер</li>
                             <li>Вопроси и ответи</li>
                             <li>Отзиви</li>
@@ -80,7 +99,11 @@ export const Footer = ({
                             О компании
                         </div>
                         <ul className="footer-list">
-                            <li>О нас</li>
+                            <li>
+                                <Link to="/aboutcompany">
+                                    Про нас
+                                </Link>
+                            </li>
                             <li>Устойчивое развитие</li>
                             <li>Капсулы</li>
                             <li>Пресса о нас</li>

@@ -28,6 +28,7 @@ const ALL_VALIDATION_RULES = [
     VALIDATION_REGEXP_PATTERN,
 ];
 
+export const extensionRegExp = new RegExp('(?:\\.([^.]+))?$');
 export const emailRegExp = new RegExp('^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([a-z]{2,6}(?:\\.[a-z]{2})?)$');
 export const numberRegExp = new RegExp('^[0-9]+$');
 export const floatRegExp = new RegExp('^\\d+(\\.\\d+)?$');

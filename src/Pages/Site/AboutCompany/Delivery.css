@@ -1,0 +1,25 @@
+.lib-delivery-company{
+    padding: 15px;
+}
+.lib-delivery-company p{
+    color: var(--color-accent);
+    display: flex;
+}
+.lib-delivery-company .title{
+    text-align: center;
+    font-size: 24px;
+    color: var(--color-accent);
+}
+.lib-delivery-company variants{
+    font-size: 18px;
+}
+.lib-delivery-company .btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.lib-delivery-company .btn-content{
+    display: flex;
+    width: 200px;
+}
+

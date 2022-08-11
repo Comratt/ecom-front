@@ -1,0 +1,21 @@
+.lib-return-company .title{
+    text-align: center;
+    font-size: 24px;
+    color: var(--color-accent);
+}
+.lib-return-company{
+    padding: 15px;
+}
+.lib-return-company p {
+    color: var(--color-accent);
+}
+.lib-return-company .title2{
+    font-size: 18px;
+    color: var(--color-accent);
+    margin-bottom: 20px;
+}
+.lib-return-company .btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
