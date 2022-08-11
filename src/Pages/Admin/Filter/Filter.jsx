@@ -2,7 +2,7 @@ import React from 'react';
 import debounce from 'lodash/debounce';
 
 import './Filter.css';
-import { Filters } from '../../../Icons';
+import Filters from '../../../Icons/Filters';
 
 const Filter = ({
     filters, handleFilter, fields, resetFilters,
@@ -30,7 +30,7 @@ const Filter = ({
                 <h5>
                     <Filters />
                     {' '}
-                    Filter
+                    Фільтри
                 </h5>
             </div>
             <form className="orderListFilter-form">
@@ -99,7 +99,7 @@ const Filter = ({
                     type="button"
                     onClick={handleResetFilters}
                 >
-                    Обнулить
+                    Очистити
                 </button>
             </form>
         </div>

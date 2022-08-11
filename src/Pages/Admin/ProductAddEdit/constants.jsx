@@ -22,32 +22,32 @@ export const initialValues = {
 export const items = [
     {
         id: 0,
-        name: 'General',
+        name: 'Головна',
         content: <ProductTabGeneral />,
     },
     {
         id: 2,
-        name: 'Links',
+        name: 'Звʼязки',
         content: <ProductTabLinks />,
     },
     {
         id: 4,
-        name: 'Option',
+        name: 'Опції',
         content: <ProductTabOptions />,
     },
     {
         id: 6,
-        name: 'Discount',
+        name: 'Знижки',
         content: <ProductTabDiscount />,
     },
     {
         id: 8,
-        name: 'Image',
+        name: 'Картинки',
         content: <ProductTabImage />,
     },
     {
         id: 10,
-        name: 'Seo',
+        name: 'SEO',
         content: <ProductTabSeo />,
     },
 ];

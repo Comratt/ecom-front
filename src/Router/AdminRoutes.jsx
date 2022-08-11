@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 import { getIsAdmin, getUserExpireDate } from 'Store/Modules/LocalSettings/selectors';
 import { logout } from 'Store/Modules/LocalSettings/localSettingsActions';
+import { CategoriesWrapperProvider } from 'context/CategoriesWrapper/categoriesWrapperContext';
 
 const AdminDashboard = lazy(() => import('Pages/Admin/Dashboard'));
 const AdminBanners = lazy(() => import('Pages/Admin/Banners'));
@@ -26,30 +27,32 @@ export const AdminRoutes = () => {
     const { path } = useRouteMatch();
 
     return (
-        <Switch>
-            <Route path={`${path}/dashboard`} component={AdminDashboard} />
-            <Route path={`${path}/category`} component={AdminCategories} />
-            <Route path={`${path}/banner`} component={AdminBanners} />
-            <Route exact path={`${path}/products`} component={AdminProductList} />
-            <Route path={`${path}/products/:id`} component={AdminProductEdit} />
-            <Route path={`${path}/product/add`} component={(props) => <AdminProductEdit isFromAdd {...props} />} />
-            <Route path={`${path}/option`} component={AdminOptions} />
-            <Route exact path={`${path}/order`} component={AdminOrder} />
-            <Route path={`${path}/order/:id`} component={AdminOrderProduct} />
-            <Route path={`${path}/viewproducts`} component={AdminViewProducts} />
-            <Route path={`${path}/promocode`} component={AdminPromoCode} />
-            <Route path={`${path}/customers`} component={AdminCustomers} />
-            <Route
-                path="*"
-                component={() => (
-                    <Redirect
-                        to={{
-                            pathname: '/admin/dashboard',
-                        }}
-                    />
-                )}
-            />
-        </Switch>
+        <CategoriesWrapperProvider>
+            <Switch>
+                <Route path={`${path}/dashboard`} component={AdminDashboard} />
+                <Route path={`${path}/category`} component={AdminCategories} />
+                <Route path={`${path}/banner`} component={AdminBanners} />
+                <Route exact path={`${path}/products`} component={AdminProductList} />
+                <Route path={`${path}/products/:id`} component={AdminProductEdit} />
+                <Route path={`${path}/product/add`} component={(props) => <AdminProductEdit isFromAdd {...props} />} />
+                <Route path={`${path}/option`} component={AdminOptions} />
+                <Route exact path={`${path}/order`} component={AdminOrder} />
+                <Route path={`${path}/order/:id`} component={AdminOrderProduct} />
+                <Route path={`${path}/viewproducts`} component={AdminViewProducts} />
+                <Route path={`${path}/promocode`} component={AdminPromoCode} />
+                <Route path={`${path}/customers`} component={AdminCustomers} />
+                <Route
+                    path="*"
+                    component={() => (
+                        <Redirect
+                            to={{
+                                pathname: '/admin/dashboard',
+                            }}
+                        />
+                    )}
+                />
+            </Switch>
+        </CategoriesWrapperProvider>
     );
 };
 

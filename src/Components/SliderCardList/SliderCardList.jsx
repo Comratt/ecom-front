@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import Slider from 'react-slick';
 import classNames from 'classnames';
 import { Link } from 'Components/Link';
+import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -89,7 +90,7 @@ export const SliderCardList = ({
         slidesToShow: isTabletSize ? 2 : count,
         slidesToScroll: isTabletSize ? 2 : count,
         draggable: false,
-        lazyLoad: false,
+        lazyLoad: true,
         infinite: false,
         adaptiveHeight: true,
         nextArrow: <CustomArrowRight />,
@@ -127,25 +128,27 @@ export const SliderCardList = ({
                     </svg>
                 </Link>
             </div>
-            <SliderWithDisableVerticalScroll>
-                <Slider {...settings}>
-                    {result && adaptProducts({ data: result }).map((product) => (
-                        <Card
-                            cardId={product.id}
-                            key={product.id}
-                            imagePath={product.image}
-                            detailsPath={product.link}
-                            price={product.price}
-                            title={product.name}
-                            colors={product.colors}
-                            images={product.images}
-                            discount={product.discount}
-                            purePrice={product.purePrice}
-                            hideColors={hideColors}
-                        />
-                    ))}
-                </Slider>
-            </SliderWithDisableVerticalScroll>
+            <LazyLoadComponent>
+                <SliderWithDisableVerticalScroll>
+                    <Slider {...settings}>
+                        {result && adaptProducts({ data: result }).map((product) => (
+                            <Card
+                                cardId={product.id}
+                                key={product.id}
+                                imagePath={product.image}
+                                detailsPath={product.link}
+                                price={product.price}
+                                title={product.name}
+                                colors={product.colors}
+                                images={product.images}
+                                discount={product.discount}
+                                purePrice={product.purePrice}
+                                hideColors={hideColors}
+                            />
+                        ))}
+                    </Slider>
+                </SliderWithDisableVerticalScroll>
+            </LazyLoadComponent>
         </div>
     );
 };

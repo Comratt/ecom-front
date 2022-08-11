@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Loader from 'Components/Loader';
 import Alert from 'Components/Alert';
-import { Remove, Edit } from 'Icons';
+import Remove from 'Icons/Remove';
+import Edit from 'Icons/Edit';
 import Layout from '../Layout';
 import { useFetchCategories } from '../hooks/useFetchCategories';
 import { usePostCategory } from '../hooks/usePostCategory';
@@ -102,7 +103,7 @@ const Categories = () => {
                     <tr>
                         {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
                         <th scope="col" style={{ width: '3%' }} />
-                        <th scope="col">Название категории</th>
+                        <th scope="col">Назва категорії</th>
                         <th scope="col" style={{ width: '10%' }}>Дія</th>
                     </tr>
                 </thead>
@@ -165,7 +166,7 @@ const Categories = () => {
             <div
                 className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
             >
-                <h1 className="h2">Категории</h1>
+                <h1 className="h2">Категорії</h1>
                 {show && (
                     <Modal
                         show={show}

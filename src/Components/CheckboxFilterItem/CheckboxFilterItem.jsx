@@ -5,7 +5,8 @@ import 'reactjs-popup/dist/index.css';
 import classNames from 'classnames';
 import './CheckboxFilterItem.css';
 import PropTypes from 'prop-types';
-import { AccardionArrow, Close } from '../../Icons';
+import AccardionArrow from 'Icons/AccardionArrow';
+import Close from 'Icons/Close';
 
 export const PriceRange = ({
     min, max, onFinalChange, current, maxWidth = 210,

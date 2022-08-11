@@ -10,6 +10,7 @@ export const LAST_NAME_FIELD = 'last_name';
 export const PHONE_FIELD = 'phone';
 export const EMAIL_FIELD = 'email';
 export const PASSWORD_FIELD = 'password';
+export const ROLE_FIELD = 'role';
 
 export const FIELDS = [
     {
@@ -57,6 +58,29 @@ export const FIELDS = [
         placeholder: 'Пароль користувача',
         label: 'Пароль',
     },
+    {
+        name: ROLE_FIELD,
+        type: 'select',
+        required: false,
+        icon: 'tags',
+        iconPosition: 'left',
+        placeholder: 'Пароль користувача',
+        label: 'Роль користувача',
+        options: [
+            {
+                label: 'Користувач',
+                value: 'customer',
+            },
+            {
+                label: 'Адміністратор!',
+                value: 'admin',
+            },
+            {
+                label: 'Менеджер',
+                value: 'subadmin',
+            },
+        ],
+    },
 ];
 
 export const VALIDATION_RULES = {
@@ -103,4 +127,5 @@ export const VALIDATION_RULES = {
             message: 'Введіть пароль не більш ніж 20 символів',
         },
     },
+    [ROLE_FIELD]: {},
 };

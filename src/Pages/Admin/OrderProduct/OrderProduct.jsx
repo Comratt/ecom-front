@@ -2,9 +2,14 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useAsyncCallback } from 'react-async-hook';
 import { useForm } from 'react-hook-form';
 import moment from 'moment';
-import {
-    Calendar, Cart, CardIcon, Truck, Mail, Phone, Edit, PlusIcon,
-} from 'Icons';
+import Edit from 'Icons/Edit';
+import Calendar from 'Icons/Calendar';
+import Cart from 'Icons/Cart';
+import CardIcon from 'Icons/Card';
+import Truck from 'Icons/Truck';
+import Mail from 'Icons/Mail';
+import Phone from 'Icons/Phone';
+import PlusIcon from 'Icons/PlusIcon';
 import User from 'Icons/User';
 import Loader from 'Components/Loader';
 import Alert from 'Components/Alert';
@@ -13,7 +18,6 @@ import {
     DATEDDMMYYYY,
     getFormattedPrice,
     SHIPPING_CODES,
-    SHIPPING_RATE,
 } from 'Constants';
 import OrderService from 'Services/OrderService';
 import Layout from '../Layout';
@@ -301,7 +305,7 @@ const OrderProduct = () => {
                 >
                     <span>
                         {' '}
-                        Order (#
+                        Замовлення (#
                         {result.id}
                         )
                     </span>
@@ -442,14 +446,6 @@ const OrderProduct = () => {
                                 {getFormattedPrice(result.order_total_sum)}
                             </td>
                         </tr>
-                        <tr>
-                            <td className="text-right" colSpan="6">
-                                Фіксована ставка доставки
-                            </td>
-                            <td>
-                                {getFormattedPrice(SHIPPING_RATE)}
-                            </td>
-                        </tr>
                         {result.promoName && (
                             <tr>
                                 <td className="text-right" colSpan="6">
@@ -469,7 +465,7 @@ const OrderProduct = () => {
                             </td>
                             <td>
                                 {/* eslint-disable-next-line max-len */}
-                                {getFormattedPrice(+result.order_total_sum + SHIPPING_RATE - (result.discount))}
+                                {getFormattedPrice(+result.order_total_sum - (result.discount))}
                             </td>
                         </tr>
                     </tbody>

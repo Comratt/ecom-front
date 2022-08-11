@@ -1,6 +1,6 @@
 import React from 'react';
 import { getImage } from 'API';
-import { Remove } from 'Icons';
+import Remove from 'Icons/Remove';
 
 const Banner = ({
     image, title, setShow, onRemove, loading, banner_id,

@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Heart } from 'Icons';
+import Heart from 'Icons/Heart';
 import { useDispatch, useSelector } from 'react-redux';
 import { getWishlistProducts } from 'Store/Modules/Wishlist/selectors';
 import { addToWish, removeFromWish } from 'Store/Modules/Wishlist/wishlistActions';

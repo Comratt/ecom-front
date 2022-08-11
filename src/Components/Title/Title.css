@@ -4,7 +4,7 @@
   --type-1-fz: var(--fz-biggest);
   --type-1-lh: var(--size-biggest);
   --type-2-fz: var(--fz-normal-bigger);
-  --type-2-lh: var(--line-h-biggest);
+  --type-2-lh: var(--line-h-bigger);
 
   font-family: var(--title-ff);
   color: var(--title-color);

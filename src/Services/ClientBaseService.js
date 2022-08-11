@@ -23,6 +23,7 @@ class ClientBaseService {
         firstName,
         lastName,
         phone,
+        role = 'customer',
     }) {
         try {
             const body = {
@@ -31,6 +32,7 @@ class ClientBaseService {
                 firstName,
                 lastName,
                 phone,
+                role,
             };
             const responseUser = await API.post('api/auth/signup', body);
 
@@ -47,6 +49,7 @@ class ClientBaseService {
         email,
         newPassword,
         password,
+        role = 'customer',
     }) {
         try {
             const body = {
@@ -56,6 +59,7 @@ class ClientBaseService {
                 email,
                 newPassword,
                 password,
+                role,
                 id,
             };
             const userResponse = await API.post('api/admin/customers/update', body);

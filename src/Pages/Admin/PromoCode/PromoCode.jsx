@@ -3,9 +3,8 @@ import { useForm } from 'react-hook-form';
 
 import Loader from 'Components/Loader';
 import Alert from 'Components/Alert';
-import {
-    Eye, Remove,
-} from 'Icons';
+import Eye from 'Icons/Eye';
+import Remove from 'Icons/Remove';
 import { useFetchPromo } from '../hooks/useFetchPromo';
 import Layout from '../Layout';
 

@@ -5,7 +5,7 @@ import makeAnimated from 'react-select/animated';
 import { v4 as uuidv4 } from 'uuid';
 // eslint-disable-next-line import/no-cycle
 import { useAddProduct } from 'context/addProduct/useAddProduct';
-import { MinusCircle } from 'Icons';
+import MinusCircle from 'Icons/MinusCircle';
 
 import { useFetchCategories } from '../../hooks/useFetchCategories';
 import { useFetchProductModels } from '../../hooks/useFetchProductModels';

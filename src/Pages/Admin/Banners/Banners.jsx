@@ -29,6 +29,7 @@ const Banners = () => {
     useEffect(() => {
         if (typeof show === 'number') {
             const ban = banners.find((banner) => banner.banner_id === show);
+
             Object.keys(ban).forEach((key) => {
                 if (key !== 'image') {
                     setValue(key, ban[key]);
@@ -94,7 +95,7 @@ const Banners = () => {
             <div
                 className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
             >
-                <h1 className="h2">Баннеры</h1>
+                <h1 className="h2">Банери</h1>
                 {show && (
                     <Modal
                         show={show}

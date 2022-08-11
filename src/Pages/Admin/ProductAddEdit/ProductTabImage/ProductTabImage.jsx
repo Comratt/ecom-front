@@ -1,7 +1,9 @@
 import React from 'react';
 
+// eslint-disable-next-line import/no-cycle
 import { useAddProduct } from 'context/addProduct/useAddProduct';
-import { PlusIcon, Remove } from 'Icons';
+import PlusIcon from 'Icons/PlusIcon';
+import Remove from 'Icons/Remove';
 import { getImage } from 'API';
 
 const ProductTabImage = () => {

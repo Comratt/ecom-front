@@ -14,8 +14,8 @@ import './ProductEdit.css';
 import { items } from './constants';
 
 const ProductEdit = ({ isFromAdd = false }) => {
-    const successText = isFromAdd ? 'Товар успешно добавлен!' : 'Товар успешно обновлен!';
-    const errorText = isFromAdd ? 'Ошибка при добавлении товара!' : 'Ошибка при обновлении товара!';
+    const successText = isFromAdd ? 'Товар успішно добавлений!' : 'Товар успішно оновлено!';
+    const errorText = isFromAdd ? 'Помилка при добавлені товару!' : 'Помилка при оновлені товару!';
     const { result, error, loading } = useProduct(false);
     const history = useHistory();
     const {

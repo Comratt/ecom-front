@@ -33,6 +33,7 @@
     "react-hook-form-input": "^1.1.10",
     "react-image-lightbox": "^5.1.4",
     "react-input-mask": "^2.0.4",
+    "react-lazy-load-image-component": "^1.5.5",
     "react-loader-spinner": "^4.0.0",
     "react-markdown": "^8.0.3",
     "react-modal-sheet": "^1.5.1",

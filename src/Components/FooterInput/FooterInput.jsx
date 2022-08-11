@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './FooterInput.css';
-import { Arrow } from '../../Icons';
+import Arrow from '../../Icons/Arrow';
 
 const FooterInput = () => (
     <form action="#" className="footer-form">

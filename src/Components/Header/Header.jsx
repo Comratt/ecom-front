@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import classNames from 'classnames';
-import {
-    HeaderHeart,
-    Logo,
-    Menu,
-} from 'Icons';
+import HeaderHeart from 'Icons/HeaderHeart';
+import Logo from 'Icons/Logo';
+import Menu from 'Icons/Menu';
 import Cart from 'Icons/Cart';
 import User from 'Icons/User';
 

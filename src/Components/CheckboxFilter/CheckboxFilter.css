@@ -135,6 +135,10 @@
 
 .checkBoxContainerMobile {
     position: relative;
+    border: none;
+    background: transparent;
+    color: var(--color-accent);
+    font-family: var(--accent-ff);
 }
 .checkBoxContainerMobile.filtered:before {
     content: '!';
@@ -162,8 +166,11 @@
         margin: 0;
     }
     .checkbox-filter__container .checkBoxContainerMobile {
-        display: block;
         height: 16px;
+        gap: 8px;
+        font-size: var(--fz-mid);
+        display: flex;
+        align-items: center;
     }
     .lib-checkboxFilter.wrapper {
         position: fixed;

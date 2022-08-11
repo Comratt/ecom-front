@@ -43,13 +43,13 @@ export const OPTION_TYPES = {
 };
 
 export const SHIPPING_CODES = {
-    1: 'Pending manager',
-    2: 'In Progress',
-    3: 'On a way',
-    4: 'Derived',
+    1: 'Очікує менеджера',
+    2: 'В роботі',
+    3: 'Прямує до отримувача',
+    4: 'Очікує на складі',
     5: 'Nova Poshta',
-    6: 'Complete',
-    7: 'Canceled',
+    6: 'Завершено',
+    7: 'Відмінено',
 };
 
 export const SHIPPING_RATE = 45;

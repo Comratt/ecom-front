@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getFormattedPrice } from 'Constants';
 import { Swatches } from '../Swatches';
-import { Title } from '../Title';
 import WishlistHeart from '../WishlistHeart/WishlistHeart';
 
 import './Card.css';

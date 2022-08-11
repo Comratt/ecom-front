@@ -1,11 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import AsyncSelect from 'react-select/async';
 import { components } from 'react-select';
 import { fetchProducts } from 'context/api/fetchProducts';
 import { getFormattedPrice } from 'Constants';
 import { getImage } from 'API';
-import { Search } from '../../Icons';
+import Search from '../../Icons/Search';
 
 import './HeaderInput.css';
 import '../SearchResults/searchResults.css';

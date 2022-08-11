@@ -2,10 +2,12 @@ import React from 'react';
 import { useAsync } from 'react-async-hook';
 
 import OptionService from 'Services/OptionService';
+// eslint-disable-next-line import/no-cycle
 import { useAddProduct } from 'context/addProduct/useAddProduct';
 import { OPTION_TYPES } from 'Constants';
 import { getFilteredOptions } from 'Helpers';
-import { PlusIcon, Remove } from 'Icons';
+import PlusIcon from 'Icons/PlusIcon';
+import Remove from 'Icons/Remove';
 
 import './ProductTabOptions.css';
 

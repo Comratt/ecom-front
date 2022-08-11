@@ -1,9 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
-import {
-    Close, Facebook, Instagram, Telegram, Viber,
-} from 'Icons';
+import Close from 'Icons/Close';
+import Facebook from 'Icons/Facebook';
+import Instagram from 'Icons/Instagram';
+import Telegram from 'Icons/Telegram';
+import Viber from 'Icons/Viber';
 import { useCategories } from 'context/CategoriesWrapper/useCategories';
 import { adaptCategories } from 'context/adapters';
 import { clearFilters } from 'Store/Modules/Filters/filtersActions';

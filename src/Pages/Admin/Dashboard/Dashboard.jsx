@@ -1,10 +1,13 @@
 import React from 'react';
 import './Dashboard.css';
 import { Link } from 'react-router-dom';
+import Box from 'Icons/Box';
+import Customers from 'Icons/Customers';
+import PlusIcon from 'Icons/PlusIcon';
+import Sales from 'Icons/Sales';
+import UkraineIcon from 'Icons/UkraineIcon';
+import UkraineMap from 'Icons/UkraineMap';
 import Layout from '../Layout';
-import {
-    Box, Customers, PlusIcon, Sales, UkraineIcon, UkraineMap,
-} from '../../../Icons';
 import {
     useAnalytics,
     useCategoriesAnalytics,

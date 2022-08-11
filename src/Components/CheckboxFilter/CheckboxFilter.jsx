@@ -7,7 +7,7 @@ import { numberify } from 'apparel-sorter';
 import { Title } from 'Components/Title';
 import { BottomModal } from 'Components/BottomModal';
 import ProductsService from 'Services/ProductsService';
-import { Filters } from 'Icons';
+import Filters from 'Icons/Filters';
 import CheckboxFilterItem from '../CheckboxFilterItem/CheckboxFilterItem';
 import { useDetectedMobileDevice } from '../../hooks/useDetectMobileDevice';
 
@@ -89,17 +89,19 @@ export const CheckboxFilter = ({
                                 isFiltered={isFiltered}
                             />
                         </div>
-                        <div
+                        <button
+                            type="button"
+                            onClick={() => setOpen(true)}
                             className={classNames(
                                 checkBoxContainerMobile,
                                 { filtered: isFiltered },
                             )}
                         >
+                            Фільтр
                             <Filters
-                                onClick={() => setOpen(true)}
                                 className={classNames('filter-icon', { filtered: isFiltered })}
                             />
-                        </div>
+                        </button>
                     </div>
                 )}
             </Sticky>

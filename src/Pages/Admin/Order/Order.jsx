@@ -3,9 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import Loader from 'Components/Loader';
 import Alert from 'Components/Alert';
-import {
-    Eye,
-} from 'Icons';
+import Eye from 'Icons/Eye';
 import { SHIPPING_CODES, getFormattedPrice } from 'Constants';
 import { useFetchOrders } from '../hooks/useFetchOrders';
 import Layout from '../Layout';
@@ -48,7 +46,7 @@ const Order = () => {
                         <th scope="col">Замовник</th>
                         <th scope="col">Статус</th>
                         <th scope="col">Всього</th>
-                        <th scope="col">дату додано</th>
+                        <th scope="col">Дату додано</th>
                         <th scope="col">Дата зміни</th>
                         <th scope="col" style={{ width: '4%' }}>Дія</th>
                     </tr>
@@ -102,18 +100,18 @@ const Order = () => {
     }, [loading, error, result, handleClick]);
 
     const filterFields = [
-        { name: 'orderId', label: 'Order ID', type: 'text' },
+        { name: 'orderId', label: 'ID Замовлення', type: 'text' },
         {
             name: 'status',
-            label: 'Order status',
+            label: 'Статус',
             type: 'select',
             options: Object.keys(SHIPPING_CODES).map((key) => ({
                 value: key,
                 name: SHIPPING_CODES[key],
             })),
         },
-        { name: 'createdAt', label: 'Created At', type: 'date' },
-        { name: 'updatedAt', label: 'Updated At', type: 'date' },
+        { name: 'createdAt', label: 'Дата створення', type: 'date' },
+        { name: 'updatedAt', label: 'Дата зміни', type: 'date' },
     ];
 
     return (
@@ -121,7 +119,7 @@ const Order = () => {
             <div
                 className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
             >
-                <h1>Orders</h1>
+                <h1>Замовлення</h1>
                 <div className="btn-toolbar mb-2 mb-md-0" />
             </div>
             <div className="container">

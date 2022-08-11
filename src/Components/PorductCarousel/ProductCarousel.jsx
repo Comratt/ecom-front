@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Slider from 'react-slick';
 import classNames from 'classnames';
+import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -86,24 +87,26 @@ const ProductCarousel = ({
                 {title}
             </div>
             <div className="lib-product_related_slider">
-                <SliderWithDisableVerticalScroll>
-                    <Slider {...settings}>
-                        {result && adaptProducts({ data: result }).map((product) => (
-                            <Card
-                                cardId={product.id}
-                                key={product.id}
-                                imagePath={product.image}
-                                detailsPath={product.link}
-                                price={product.price}
-                                purePrice={product.purePrice}
-                                title={product.name}
-                                colors={product.colors}
-                                discount={product.discount}
-                                hideColors={hideColors}
-                            />
-                        ))}
-                    </Slider>
-                </SliderWithDisableVerticalScroll>
+                <LazyLoadComponent>
+                    <SliderWithDisableVerticalScroll>
+                        <Slider {...settings}>
+                            {result && adaptProducts({ data: result }).map((product) => (
+                                <Card
+                                    cardId={product.id}
+                                    key={product.id}
+                                    imagePath={product.image}
+                                    detailsPath={product.link}
+                                    price={product.price}
+                                    purePrice={product.purePrice}
+                                    title={product.name}
+                                    colors={product.colors}
+                                    discount={product.discount}
+                                    hideColors={hideColors}
+                                />
+                            ))}
+                        </Slider>
+                    </SliderWithDisableVerticalScroll>
+                </LazyLoadComponent>
             </div>
         </div>
     );

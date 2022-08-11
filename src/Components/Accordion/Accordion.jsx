@@ -1,6 +1,6 @@
 import React from 'react';
 import './Accordion.css';
-import { AccardionArrow } from '../../Icons';
+import AccardionArrow from '../../Icons/AccardionArrow';
 
 export const AccordionItem = ({
     label, isCollapsed, handleClick, children, hideArrow,

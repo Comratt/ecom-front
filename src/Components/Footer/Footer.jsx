@@ -1,12 +1,13 @@
 import React from 'react';
 import classNames from 'classnames';
 import './Footer.css';
-import FooterInput from '../FooterInput/FooterInput';
-import FooterLogo from '../../Icons/FooterLogo';
+import Facebook from 'Icons/Facebook';
+import Instagram from 'Icons/Instagram';
+import Telegram from 'Icons/Telegram';
+import Viber from 'Icons/Viber';
 import { Accordion, AccordionItem } from '../Accordion';
-import {
-    Facebook, Instagram, Telegram, Viber,
-} from '../../Icons';
+import FooterLogo from '../../Icons/FooterLogo';
+import FooterInput from '../FooterInput/FooterInput';
 
 export const Footer = ({
     className,

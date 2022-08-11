@@ -1,5 +1,5 @@
 import React from 'react';
-import { Remove } from 'Icons';
+import Remove from 'Icons/Remove';
 import { useCart } from 'context/cart/useCart';
 
 import './Cart.css';

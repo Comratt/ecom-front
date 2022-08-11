@@ -111,6 +111,9 @@ export const ProductDetails = () => {
 
             return setSizeError(true);
         }
+        const relatedColorSize = result.colorSizes?.find(({ colorValId, sizeValId }) => (
+            colorValId === activeColor?.option_value_id && sizeValId === activeSize.option_value_id
+        ));
 
         dispatch(addToCart({
             id: result?.id,
@@ -118,11 +121,11 @@ export const ProductDetails = () => {
             price: result?.price,
             purePrice: result?.purePrice,
             image: result?.image,
-            sizeId: activeSize?.size_id,
-            colorId: activeSize?.color_id,
-            size: activeSize?.name,
-            color: activeColor?.name,
-            totalCount: activeSize?.product_quantity,
+            sizeId: relatedColorSize?.sizeId,
+            colorId: relatedColorSize?.colorId,
+            size: relatedColorSize?.sizeName,
+            color: relatedColorSize?.colorName,
+            totalCount: relatedColorSize?.quantity,
             discount,
         }));
         setShowAlert(true);
@@ -132,7 +135,9 @@ export const ProductDetails = () => {
         setActiveColor({});
         setActiveSize({});
         setSizeError(false);
-        const viewedPreviously = parsedStorage?.viewed?.length ? parsedStorage?.viewed : [];
+        const storageL = window.localStorage.getItem(localStorageKey);
+        const parsedStorageL = JSON.parse(storageL);
+        const viewedPreviously = parsedStorageL?.viewed?.length ? parsedStorageL?.viewed : [];
         const modifiedViewed = viewedPreviously?.includes(productId)
             ? viewedPreviously
             : [...viewedPreviously, productId];
@@ -140,7 +145,7 @@ export const ProductDetails = () => {
         window.localStorage.setItem(
             localStorageKey,
             JSON.stringify({
-                ...parsedStorage,
+                ...parsedStorageL,
                 viewed: modifiedViewed,
             }),
         );

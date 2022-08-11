@@ -10,7 +10,7 @@ import { useAddProduct } from 'context/addProduct/useAddProduct';
 
 import './ProductTabGeneral.css';
 import { getImage } from '../../../../API';
-import { Remove } from '../../../../Icons';
+import Remove from '../../../../Icons/Remove';
 
 const ProductTabGeneral = () => {
     const [v, setV] = useState();

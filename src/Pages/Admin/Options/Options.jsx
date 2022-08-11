@@ -7,7 +7,8 @@ import OptionService from 'Services/OptionService';
 import Loader from 'Components/Loader';
 import Alert from 'Components/Alert';
 import Modal from 'Components/Modal';
-import { Edit, Remove } from 'Icons';
+import Remove from 'Icons/Remove';
+import Edit from 'Icons/Edit';
 import { usePostOptions } from '../hooks/usePostOptions';
 import Layout from '../Layout';
 import OptionForm from './OptionForm';
@@ -260,7 +261,7 @@ const Options = () => {
                         onSubmit={handleSubmit(onSubmit)}
                     >
                         <OptionForm
-                            showColor={data?.find(({ option_id }) => (option_id === show)).option_type === 1}
+                            showColor={data?.find(({ option_id }) => (option_id === show))?.option_type === 1}
                             register={register}
                             errors={errors}
                             optionValues={optionValues}

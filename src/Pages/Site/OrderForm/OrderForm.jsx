@@ -17,12 +17,10 @@ import PromoCodeService from 'Services/PromoCodeService';
 
 import { Link } from 'Components/Link';
 import { CommonInput } from 'Components/CommonInput';
-import {
-    Logo,
-    Cart,
-    AccardionArrow,
-    Close,
-} from 'Icons';
+import Logo from 'Icons/Logo';
+import Cart from 'Icons/Cart';
+import AccardionArrow from 'Icons/AccardionArrow';
+import Close from 'Icons/Close';
 import { getFormattedPrice, emailRegExp } from 'Constants';
 
 import './OrderForm.css';
@@ -248,7 +246,7 @@ export const OrderForm = (className) => {
                             <div className="order__contact-form">
                                 <CommonInput
                                     name="email"
-                                    ref={register({ required: true, pattern: emailRegExp })}
+                                    ref={register({ pattern: emailRegExp })}
                                     className={classNames('input input__full-width', { 'field-error': errors?.email })}
                                     type="text"
                                     placeholder="Ваш Email"

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Sheet from 'react-modal-sheet';
 import { Title } from 'Components/Title';
 import { PriceRange } from '../CheckboxFilterItem/CheckboxFilterItem';
-import { Check } from '../../Icons';
+import Check from '../../Icons/Check';
 
 const CustomSheet = styled(Sheet)`
   .react-modal-sheet-backdrop {

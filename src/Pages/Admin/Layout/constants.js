@@ -1,13 +1,11 @@
-import {
-    Box,
-    Dashboard,
-    Order,
-    AddImg,
-    Category,
-    Eyes,
-    PromoCode,
-    Edit,
-} from '../../../Icons';
+import Box from 'Icons/Box';
+import Dashboard from 'Icons/Dashboard';
+import Order from 'Icons/Order';
+import AddImg from 'Icons/AddImg';
+import Category from 'Icons/Category';
+import Eyes from 'Icons/Eyes';
+import PromoCode from 'Icons/PromoCode';
+import Edit from 'Icons/Edit';
 
 export const menuItems = [
     {

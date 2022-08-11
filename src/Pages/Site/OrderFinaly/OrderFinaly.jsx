@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import { View } from 'Components/View';
 import { Title } from 'Components/Title';
-import { UkraineIcon } from 'Icons';
+import UkraineIcon from 'Icons/UkraineIcon';
 import Button from 'Components/Button/Button';
 
 import './OrderFinaly.css';

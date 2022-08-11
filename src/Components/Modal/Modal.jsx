@@ -40,7 +40,7 @@ const Modal = ({
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Модальна назва</h5>
+                            <h5 className="modal-title" id="exampleModalLabel">Форма для заповнення</h5>
                             <button
                                 onClick={toggleModal}
                                 type="button"

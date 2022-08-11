@@ -3,9 +3,7 @@ import { useForm } from 'react-hook-form';
 
 import Loader from 'Components/Loader';
 import Alert from 'Components/Alert';
-import {
-    Eye,
-} from 'Icons';
+import Eye from 'Icons/Eye';
 import { useFetchCustomers } from '../hooks/useFetchCustomers';
 import Layout from '../Layout';
 
@@ -36,8 +34,6 @@ const Customers = () => {
         updateLoading,
         setResult,
     } = useFetchCustomers();
-
-    console.log(errors);
 
     useEffect(() => {
         if (typeof show === 'number') {
@@ -114,6 +110,7 @@ const Customers = () => {
                         <th scope="col">Фамілія</th>
                         <th scope="col">Телефон</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Роль</th>
                         <th scope="col">Дата зміни</th>
                         <th scope="col" style={{ width: '4%' }}>Дія</th>
                     </tr>
@@ -135,6 +132,9 @@ const Customers = () => {
                             </td>
                             <td>
                                 {customer.email}
+                            </td>
+                            <td>
+                                {customer.role}
                             </td>
                             <td>
                                 {customer.updated_at}
