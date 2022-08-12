@@ -1,0 +1,9 @@
+.product-tab-image video {
+    background-size: cover;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 122px;
+    width: 100px;
+}

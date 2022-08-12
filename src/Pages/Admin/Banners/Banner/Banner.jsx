@@ -7,7 +7,7 @@ const ItemVideo = ({ path = '', ext = '' }) => {
     const extWithoutDot = ext.replace('.', '');
 
     return (
-        <video height="225" width="100%" autoPlay muted loop>
+        <video height="225" width="100%" autoPlay playsInline muted loop>
             <source src={getImage(path)} type={`video/${extWithoutDot}`} />
         </video>
     );

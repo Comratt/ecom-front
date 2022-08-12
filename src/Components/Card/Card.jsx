@@ -8,6 +8,36 @@ import WishlistHeart from '../WishlistHeart/WishlistHeart';
 
 import './Card.css';
 
+// <video
+//     style={videoCss}
+//     className="banner-video"
+//     height="100%"
+//     width="100%"
+//     autoPlay
+//     playsInline
+//     loop
+//     muted
+// >
+//     <source
+//         src="https://back.paparot.com/uploads/images/i0KUB6q61660240468.mp4?ngsw-bypass=true"
+//         type="video/mp4"
+//     />
+// </video>
+// const videoCss = {
+//     position: 'absolute',
+//     top: 0,
+//     width: '100%',
+//     height: '100%',
+//     bottom: 0,
+//     left: 0,
+//     right: 0,
+//     backgroundSize: 'cover',
+//     objectFit: 'cover',
+//     backgroundRepeat: 'no-repeat',
+//     backgroundPosition: 'center',
+//     backgroundAttachment: 'fixed',
+// };
+
 export const Card = ({
     className,
     detailsPath,

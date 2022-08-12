@@ -34,8 +34,8 @@ const ItemVideo = ({ path = '', ext = '' }) => {
     const extWithoutDot = ext.replace('.', '');
 
     return (
-        <video className="banner-video" height="100%" width="100%" autoPlay muted loop>
-            <source src={path} type={`video/${extWithoutDot}`} />
+        <video className="banner-video" height="100%" width="100%" autoPlay playsInline muted loop>
+            <source src={`${path}?ngsw-bypass=true`} type={`video/${extWithoutDot}`} />
         </video>
     );
 };

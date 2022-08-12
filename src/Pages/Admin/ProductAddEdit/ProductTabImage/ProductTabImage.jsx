@@ -5,6 +5,38 @@ import { useAddProduct } from 'context/addProduct/useAddProduct';
 import PlusIcon from 'Icons/PlusIcon';
 import Remove from 'Icons/Remove';
 import { getImage } from 'API';
+import { extensionRegExp } from 'Constants';
+import './ProductTabImage.css';
+
+const ItemVideo = ({ path = '', ext = '' }) => {
+    const extWithoutDot = ext.replace('.', '');
+    const extension = extWithoutDot || 'mp4';
+
+    return (
+        <video className="img-thumbnail" height="110" width="90" autoPlay playsInline muted loop>
+            <source src={path} type={`video/${extension}`} />
+        </video>
+    );
+};
+
+const ItemImage = ({ image }) => (
+    <img
+        className="img-thumbnail"
+        style={{ width: '100px' }}
+        src={image}
+        alt="product"
+    />
+);
+
+const getBannerBody = (image = '') => {
+    const extension = image.match(extensionRegExp)?.[0];
+
+    if (!['.webp', '.jpeg', '.jpg'].includes(extension)) {
+        return <ItemVideo path={image} ext={extension} />;
+    }
+
+    return <ItemImage image={image} />;
+};
 
 const ProductTabImage = () => {
     const {
@@ -17,7 +49,7 @@ const ProductTabImage = () => {
     } = useAddProduct();
 
     return (
-        <div>
+        <div className="product-tab-image">
             <table className="table table-bordered table-striped">
                 <thead>
                     <th>Зображення</th>
@@ -26,14 +58,7 @@ const ProductTabImage = () => {
                 <tbody>
                     <tr>
                         <td>
-                            <img
-                                className="img-thumbnail"
-                                style={{ width: '100px' }}
-                                src={(
-                                    mainImage.imagePreview || getImage(mainImage.image)
-                                )}
-                                alt="product"
-                            />
+                            {getBannerBody(mainImage.imagePreview || getImage(mainImage.image))}
                         </td>
                         <td>
                             <div className="custom-file">
@@ -62,14 +87,7 @@ const ProductTabImage = () => {
                     {images.map((item) => (
                         <tr key={item.id}>
                             <td>
-                                <img
-                                    className="img-thumbnail"
-                                    style={{ width: '100px' }}
-                                    src={(
-                                        item.imagePreview || getImage(item.image)
-                                    )}
-                                    alt="product"
-                                />
+                                {getBannerBody(item.imagePreview || getImage(item.image))}
                             </td>
                             <td>
                                 <div className="custom-file">
