@@ -67,6 +67,17 @@ const SignUp = ({
                             error={getValidationMessage(errors?.lastName)}
                         />
                         <CommonInput
+                            name="phone"
+                            label="Телефон"
+                            placeholder="Введіть ваш Телефон"
+                            ref={register({
+                                required: 'Це поле обов\'язкове',
+                                maxLength: { message: 'Не більше ніж 13 цифр', value: 13 },
+                                minLength: { message: 'Не менше ніж 10 цифр', value: 10 },
+                            })}
+                            error={getValidationMessage(errors?.phone)}
+                        />
+                        <CommonInput
                             name="email"
                             label="Email"
                             placeholder="Введіть ваш Email"

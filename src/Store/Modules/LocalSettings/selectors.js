@@ -28,7 +28,7 @@ export const getAuthToken = createSelector(
 
 export const getIsAdmin = createSelector(
     [getLocalsSettings], ({ authorizationToken, user }) => (
-        authorizationToken && user?.role === 'admin'
+        authorizationToken && (user?.role === 'admin' || user?.role === 'subadmin')
     ),
 );
 

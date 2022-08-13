@@ -486,6 +486,9 @@ const OrderProduct = () => {
                                 Статус
                             </th>
                             <th>
+                                Менеджер
+                            </th>
+                            <th>
                                 Повідомлено клієнта
                             </th>
                         </tr>
@@ -501,6 +504,9 @@ const OrderProduct = () => {
                                 </td>
                                 <td>
                                     {orderHistory.status}
+                                </td>
+                                <td>
+                                    {orderHistory.manager}
                                 </td>
                                 <td>
                                     {orderHistory.notify}

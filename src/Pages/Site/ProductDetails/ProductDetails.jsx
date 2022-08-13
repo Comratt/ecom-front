@@ -181,6 +181,8 @@ export const ProductDetails = () => {
         history.push('/cart');
     };
 
+    console.log(result.images);
+
     return (
         <>
             <MetaTags

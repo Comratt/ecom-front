@@ -33,3 +33,7 @@
     padding: 10px;
     background-color: #1e91cf;
 }
+.table-cell__label {
+    display: flex;
+    gap: 3px;
+}

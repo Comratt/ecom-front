@@ -31,7 +31,7 @@ const ItemImage = ({ image }) => (
 const getBannerBody = (image = '') => {
     const extension = image.match(extensionRegExp)?.[0];
 
-    if (!['.webp', '.jpeg', '.jpg'].includes(extension)) {
+    if (!['.webp', '.jpeg', '.jpg'].includes(extension.toLowerCase())) {
         return <ItemVideo path={image} ext={extension} />;
     }
 

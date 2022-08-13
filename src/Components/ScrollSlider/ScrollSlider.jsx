@@ -33,7 +33,7 @@ const getSliderBody = (image = '', className, onClick) => {
         }
     };
 
-    if (!['.webp', '.jpeg', '.jpg'].includes(extension)) {
+    if (!['.webp', '.jpeg', '.jpg'].includes(extension.toLowerCase())) {
         return <ItemVideo path={image} ext={extension} className={className} onClick={toggleFullScreen} />;
     }
 
@@ -50,7 +50,7 @@ const getSliderBody = (image = '', className, onClick) => {
 const getSliderSide = (image = '', className, onClick) => {
     const extension = image.match(extensionRegExp)?.[0];
 
-    if (!['.webp', '.jpeg', '.jpg'].includes(extension)) {
+    if (!['.webp', '.jpeg', '.jpg'].includes(extension.toLowerCase())) {
         return <ItemVideo path={image} ext={extension} className={className} onClick={onClick} />;
     }
 

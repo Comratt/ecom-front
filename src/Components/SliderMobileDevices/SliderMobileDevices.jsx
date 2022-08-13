@@ -51,7 +51,7 @@ const ItemImage = ({ image, onClick }) => (
 const getSliderBody = (image = '', onClick) => {
     const extension = image.match(extensionRegExp)?.[0];
 
-    if (!['.webp', '.jpeg', '.jpg'].includes(extension)) {
+    if (!['.webp', '.jpeg', '.jpg'].includes(extension.toLowerCase())) {
         return <ItemVideo path={image} ext={extension} />;
     }
 

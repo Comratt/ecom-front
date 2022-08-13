@@ -42,6 +42,31 @@ class ClientBaseService {
         }
     }
 
+    static async signUpFromAdmin({
+        email,
+        password,
+        firstName,
+        lastName,
+        phone,
+        role = 'customer',
+    }) {
+        try {
+            const body = {
+                email,
+                password,
+                firstName,
+                lastName,
+                phone,
+                role,
+            };
+            const responseUser = await API.post('api/admin/signup-admin', body);
+
+            return responseUser.data;
+        } catch (e) {
+            throw new ServerException(e.response, 'errors');
+        }
+    }
+
     static async modify(id, {
         firstName,
         lastName,
@@ -75,6 +100,16 @@ class ClientBaseService {
             const customers = await API.get('api/admin/customers');
 
             return customers.data;
+        } catch (e) {
+            throw new ServerException(e.response);
+        }
+    }
+
+    static async getAllManagers() {
+        try {
+            const managers = await API.get('api/admin/managers');
+
+            return managers.data;
         } catch (e) {
             throw new ServerException(e.response);
         }

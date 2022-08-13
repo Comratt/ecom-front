@@ -43,7 +43,7 @@ const ItemVideo = ({ path = '', ext = '' }) => {
 const getSliderBody = (image = '', clientWidth) => {
     const extension = image.match(extensionRegExp)?.[0];
 
-    if (!['.webp', '.jpeg', '.jpg'].includes(extension)) {
+    if (!['.webp', '.jpeg', '.jpg'].includes(extension.toLowerCase())) {
         return <ItemVideo path={image} ext={extension} />;
     }
     if (clientWidth <= 900) {

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Loader from 'Components/Loader';
@@ -13,6 +13,7 @@ import Filter from '../Filter';
 import { AdminPagination } from '../../../Components/AdminPagination';
 
 const Order = () => {
+    const [managers, setManagers] = useState([]);
     const history = useHistory();
     const {
         result,
@@ -24,7 +25,12 @@ const Order = () => {
         handleFilter,
         filters,
         resetFilters,
+        executeManagers,
     } = useFetchOrders();
+
+    useEffect(() => {
+        executeManagers().then(({ data }) => setManagers(data));
+    }, []);
 
     const handleClick = (id) => () => history.push(`/admin/order/${id}`);
 
@@ -40,12 +46,11 @@ const Order = () => {
             <table className="table table-bordered">
                 <thead>
                     <tr>
-                        {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-                        <th scope="col" style={{ width: '3%' }} />
                         <th scope="col" style={{ width: '9%' }}>ID</th>
                         <th scope="col">Замовник</th>
                         <th scope="col">Статус</th>
                         <th scope="col">Всього</th>
+                        <th scope="col">Менеджер</th>
                         <th scope="col">Дату додано</th>
                         <th scope="col">Дата зміни</th>
                         <th scope="col" style={{ width: '4%' }}>Дія</th>
@@ -54,13 +59,13 @@ const Order = () => {
                 <tbody>
                     {result.map((order) => (
                         <tr key={order.id}>
-                            <td className="table-cell-badge">
-                                <div>
-                                    {order.viewed ? '' : <span className="badge rounded-pill badge-success">New</span>}
+                            <td>
+                                <div className="table-cell__label">
+                                    {order.id}
+                                    <div>
+                                        {order.viewed ? '' : <span className="badge rounded-pill badge-success">New</span>}
+                                    </div>
                                 </div>
-                            </td>
-                            <td className="table-cell__img">
-                                {order.id}
                             </td>
                             <td>
                                 {order.customer}
@@ -72,6 +77,9 @@ const Order = () => {
                                 {order.promoName ? (
                                     <b>{getFormattedPrice(order.totalPrice - order.discount)}</b>
                                 ) : getFormattedPrice(order.totalPrice)}
+                            </td>
+                            <td>
+                                {order.manager}
                             </td>
                             <td>
                                 {order.dateAdd}
@@ -108,6 +116,15 @@ const Order = () => {
             options: Object.keys(SHIPPING_CODES).map((key) => ({
                 value: key,
                 name: SHIPPING_CODES[key],
+            })),
+        },
+        {
+            name: 'managerId',
+            label: 'Менеджери',
+            type: 'select',
+            options: managers.map((manager) => ({
+                value: manager.id,
+                name: `${manager.first_name} ${manager.first_name}`,
             })),
         },
         { name: 'createdAt', label: 'Дата створення', type: 'date' },

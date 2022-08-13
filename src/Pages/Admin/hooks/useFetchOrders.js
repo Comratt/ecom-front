@@ -9,6 +9,7 @@ import {
     DATEDDMMYYYY,
 } from 'Constants';
 import { useParams } from 'react-router-dom';
+import { useFetchCustomers } from './useFetchCustomers';
 
 const adapt = (order = {}) => ({
     ...order,
@@ -17,6 +18,7 @@ const adapt = (order = {}) => ({
     customer: `${order.first_name} ${order.last_name}`,
     totalPrice: order.order_total_sum,
     id: order.order_id,
+    manager: order?.manager_id ? `${order?.managerFirstName} ${order?.managerLastName}` : '-',
     status: SHIPPING_CODES[order.status_id],
     dateAdd: moment(order.created_at, DATE_FORMAT).format(DATEDDMMYYYY),
     dateUpdate: moment(order.updated_at, DATE_FORMAT).format(DATEDDMMYYYY),
@@ -25,6 +27,7 @@ const adapt = (order = {}) => ({
         dateAdd: moment(orderHistory.created_at, DATE_FORMAT).format(DATEDDMMYYYY),
         status: SHIPPING_CODES[orderHistory.history_status],
         notify: orderHistory.notify_customer ? 'Yes' : 'No',
+        manager: orderHistory?.manager_id ? `${orderHistory?.first_name} ${orderHistory?.last_name}` : '-',
     })) || [],
 });
 
@@ -34,9 +37,11 @@ const defaultFilters = {
     orderId: '',
     createdAt: '',
     updatedAt: '',
+    managerId: null,
 };
 
 export const useFetchOrders = () => {
+    const { executeManagers } = useFetchCustomers();
     const [filters, setFilters] = useState(defaultFilters);
     const handleFilter = (name, value) => setFilters((prevFilters) => ({
         ...prevFilters,
@@ -60,6 +65,7 @@ export const useFetchOrders = () => {
         setPage: handleChangePage,
         handleFilter,
         resetFilters,
+        executeManagers,
     }), [
         loading,
         error,
@@ -68,6 +74,7 @@ export const useFetchOrders = () => {
         handleChangePage,
         handleFilter,
         resetFilters,
+        executeManagers,
     ]);
 };
 

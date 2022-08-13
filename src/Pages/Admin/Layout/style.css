@@ -183,6 +183,13 @@ body {
 .nav__items svg:hover{
     fill: #374957;
 }
+
+.logout-btn-admin {
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    color: white;
+}
 @media screen and (min-width: 600px) {
     .nav__items svg {
         left: -15px;
