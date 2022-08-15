@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Tabs.css';
 
 export const Tabs = (props) => {
-    const [activeTabId, setActiveTab] = React.useState(props.tabs[0].id);
+    const active = props?.activeIndex ? props.tabs?.[props?.activeIndex]?.id : props.tabs[0].id;
+    const [activeTabId, setActiveTab] = React.useState(active);
 
     const activeTab = React.useMemo(() => (
         props.tabs.find((tab) => (
             tab.id === activeTabId
         ))
     ), [activeTabId, props.tabs]);
+
+    useEffect(() => {
+        setActiveTab(active);
+    }, [active]);
 
     return (
 

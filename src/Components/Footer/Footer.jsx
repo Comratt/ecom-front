@@ -22,22 +22,6 @@ export const Footer = ({
         <footer className={componentClasses}>
             <div className="container-footer">
                 <div className="content-footer">
-                    <div className="footer-logo-content">
-                        <div className="footer-logo">
-                            <span className="logo-text">
-                                12storeez
-                            </span>
-                        </div>
-                        <div className="footer-logo-info">
-                            Скачайте додаток для iOSc
-                        </div>
-                        <div>
-                            і отримаєте ранній доступ
-                        </div>
-                        <div>
-                            к новинкам
-                        </div>
-                    </div>
                     <div className="accordion-info">
                         <Accordion defaultIndex="0">
                             <AccordionItem label="Покупателям" index="1" isCollapsed>
@@ -89,7 +73,7 @@ export const Footer = ({
                                 </Link>
                             </li>
                             <li>Как вибрать размер</li>
-                            <li>Вопроси и ответи</li>
+                            <li>Питання і відповідь</li>
                             <li>Отзиви</li>
                             <li>Связаться с нами</li>
                         </ul>
@@ -113,16 +97,6 @@ export const Footer = ({
                         </ul>
                     </div>
                     <div>
-                        <div className="footer-title-info">
-                            Новости и style tips
-                        </div>
-                        <FooterLogo
-                            className="footer-logo-img"
-                            width={100}
-                        />
-                        <div className="footer-form-input">
-                            <FooterInput />
-                        </div>
                         <div className="footer-links">
                             <ul className="sidebar-social">
                                 <li>

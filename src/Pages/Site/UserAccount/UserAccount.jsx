@@ -17,6 +17,7 @@ const UserAccount = () => {
         register,
         loading,
         isLoggedIn,
+        isOrders,
         user,
         logout,
     } = useUserAccount();
@@ -57,7 +58,7 @@ const UserAccount = () => {
                 <Logout width={27} height={27} />
                 <span>Вихід</span>
             </Button>
-            <Tabs tabs={tabs} />
+            <Tabs activeIndex={isOrders ? 1 : 0} tabs={tabs} />
         </div>
     );
 };

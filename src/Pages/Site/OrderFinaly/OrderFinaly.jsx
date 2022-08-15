@@ -19,7 +19,7 @@ const OrderFinaly = () => {
                 </Title>
                 <UkraineIcon />
                 <Title className="orderFinal-page__title" type={2}>Ваше замовлення успішно оформлене. Очікуєте відправлення!</Title>
-                <Title className="orderFinal-page__title" type={2}>Для того щоб відслівкувати своє замовлення увійдіть або зареєструйтесь в особистому кабінеті</Title>
+                <Title className="orderFinal-page__title" type={2}>Для того щоб відслідкувати своє замовлення, увійдіть або зареєструйтесь в особистому кабінеті</Title>
                 <div className="orderFinal-page-btn">
 
                     <Button variant="primary" onClick={() => history.push('/login')}>

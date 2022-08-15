@@ -22,6 +22,10 @@ export const getUser = createSelector(
     [getLocalsSettings], ({ user }) => user || {},
 );
 
+export const isLoggedIn = createSelector(
+    [getLocalsSettings], ({ authorizationToken }) => !!authorizationToken,
+);
+
 export const getAuthToken = createSelector(
     [getLocalsSettings], ({ authorizationToken }) => authorizationToken || '',
 );

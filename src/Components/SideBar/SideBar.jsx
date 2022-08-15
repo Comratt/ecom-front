@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import Close from 'Icons/Close';
 import Facebook from 'Icons/Facebook';
@@ -9,6 +9,7 @@ import Viber from 'Icons/Viber';
 import { useCategories } from 'context/CategoriesWrapper/useCategories';
 import { adaptCategories } from 'context/adapters';
 import { clearFilters } from 'Store/Modules/Filters/filtersActions';
+import { isLoggedIn } from 'Store/Modules/LocalSettings/selectors';
 import HeaderInput from '../HeaderInput/HeaderInput';
 
 import { useLayout } from '../../hooks/useLayout';
@@ -20,6 +21,7 @@ import { Title } from '../Title';
 
 export const SideBar = ({ className }) => {
     const dispatch = useDispatch();
+    const isLogged = useSelector(isLoggedIn);
     const {
         navigationOverlayOpened,
         handleCloseNavigationModal,
@@ -112,16 +114,33 @@ export const SideBar = ({ className }) => {
                             )}
                             index={1}
                         >
-                            <div className="lib-sidebar__item">
-                                <Link to="/account" onClick={onLinkClick}>
-                                    Вхід в кабінет
-                                </Link>
-                            </div>
-                            <div className="lib-sidebar__item">
-                                <Link to="/sign" onClick={onLinkClick}>
-                                    Реєстрація
-                                </Link>
-                            </div>
+                            {isLogged ? (
+                                <>
+                                    <div className="lib-sidebar__item">
+                                        <Link to="/account" onClick={onLinkClick}>
+                                            Мій аккаунт
+                                        </Link>
+                                    </div>
+                                    <div className="lib-sidebar__item">
+                                        <Link to="/account#orders" onClick={onLinkClick}>
+                                            Мої замовлення
+                                        </Link>
+                                    </div>
+                                </>
+                            ) : (
+                                <>
+                                    <div className="lib-sidebar__item">
+                                        <Link to="/account" onClick={onLinkClick}>
+                                            Вхід в кабінет
+                                        </Link>
+                                    </div>
+                                    <div className="lib-sidebar__item">
+                                        <Link to="/sign" onClick={onLinkClick}>
+                                            Реєстрація
+                                        </Link>
+                                    </div>
+                                </>
+                            )}
                         </AccordionItem>
                     </Accordion>
                 </div>

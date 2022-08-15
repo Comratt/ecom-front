@@ -2,6 +2,7 @@ import { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useAsyncCallback } from 'react-async-hook';
 import { useForm } from 'react-hook-form';
+import { useLocation } from 'react-router-dom';
 
 import { getAuthToken, getUser } from 'Store/Modules/LocalSettings/selectors';
 import { logout as logoutAction, modified } from 'Store/Modules/LocalSettings/localSettingsActions';
@@ -9,6 +10,7 @@ import ClientBaseService from 'Services/ClientBaseService';
 import { clearFilters } from 'Store/Modules/Filters/filtersActions';
 
 export const useUserAccountData = () => {
+    const { hash } = useLocation();
     const dispatch = useDispatch();
     const user = useSelector(getUser);
     const isLoggedIn = useSelector(getAuthToken);
@@ -25,6 +27,7 @@ export const useUserAccountData = () => {
             phone: user.phone,
         },
     });
+    const isOrders = hash === '#orders';
 
     useEffect(() => {
         dispatch(clearFilters());
@@ -46,6 +49,7 @@ export const useUserAccountData = () => {
         register,
         errors,
         isLoggedIn,
+        isOrders,
         logout,
     }), [
         user,
@@ -54,6 +58,7 @@ export const useUserAccountData = () => {
         register,
         errors,
         isLoggedIn,
+        isOrders,
         logout,
     ]);
 };
