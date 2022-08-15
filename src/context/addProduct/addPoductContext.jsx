@@ -73,8 +73,8 @@ export const AddProductProvider = ({ children }) => {
 
                 setOptions(optionNames);
             }
-            if (product.discounts && product.discounts.length) {
-                const discountNames = product.discounts.map((discount) => ({
+            if (product.discount && product.discount.length) {
+                const discountNames = product.discount.map((discount) => ({
                     id: discount.discount_id,
                     price: discount.discount_price,
                     quantity: discount.discount_quantity,

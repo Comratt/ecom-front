@@ -70,19 +70,13 @@ const Categories = () => {
                 if (type === UPDATE_METHOD) {
                     setCategories((prevCategories) => prevCategories.map((prevCategory) => {
                         if (+prevCategory.category_id === +category.category_id) {
-                            return {
-                                ...category,
-                                name: `${getParentName(category.parent_id, prevCategories)}${category.category_name}`.trim(),
-                            };
+                            return category;
                         }
 
                         return prevCategory;
                     }));
                 } else {
-                    setCategories((prevCategories) => [...prevCategories, {
-                        ...category,
-                        name: `${getParentName(category.parent_id, prevCategories)}${category.category_name}`.trim(),
-                    }]);
+                    setCategories((prevCategories) => [...prevCategories, category]);
                 }
                 toggleModal();
             })

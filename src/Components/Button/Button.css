@@ -31,7 +31,7 @@
     color: white;
 }
 .lib-custom-button.dark{
-    background-color: #a89583;
+    background-color: var(--color-accent-light);
 }
 .lib-custom-button.logout{
     background-color: inherit;

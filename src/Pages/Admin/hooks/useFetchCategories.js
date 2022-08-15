@@ -5,7 +5,7 @@ import { sortOrder } from 'Helpers';
 export const adaptCategories = (data = []) => {
     const getParentName = (category) => {
         if (category && category.parent_id) {
-            return `${getParentName(data.find(({ category_id }) => +category_id === category.parent_id))} > ${category.category_name}`;
+            return `${getParentName(data.find(({ category_id }) => +category_id === +category?.parent_id))} > ${category.category_name}`;
         }
 
         return category.category_name;

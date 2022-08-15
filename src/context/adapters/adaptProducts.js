@@ -103,6 +103,7 @@ export const adaptProduct = (data = {}, allCategories, isUniq) => {
             name: allCategories.find((cat) => cat.id === category_id)?.name,
         })),
         related: data.related,
+        discount: data.discounts,
         discounts,
         meta_description: data.meta_description,
         meta_keyword: data.meta_keyword,

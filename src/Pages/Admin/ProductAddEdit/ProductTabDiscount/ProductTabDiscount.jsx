@@ -10,6 +10,8 @@ const ProductTabDiscount = () => {
         onAddProductDiscount, onDeleteProductDiscount, discounts, onChangeProductDiscount,
     } = useAddProduct();
 
+    console.log(discounts);
+
     return (
         <div className="table-responsive">
             <table className="table table-bordered table-striped">
