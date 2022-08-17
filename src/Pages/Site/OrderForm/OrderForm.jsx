@@ -17,7 +17,6 @@ import PromoCodeService from 'Services/PromoCodeService';
 
 import { Link } from 'Components/Link';
 import { CommonInput } from 'Components/CommonInput';
-import Logo from 'Icons/Logo';
 import Cart from 'Icons/Cart';
 import AccardionArrow from 'Icons/AccardionArrow';
 import Close from 'Icons/Close';
@@ -228,7 +227,7 @@ export const OrderForm = (className) => {
             <div className="order__main">
                 <div className="order__form">
                     <div className="order__svg">
-                        <Logo />
+                        <h1>KOSTUMCHEK</h1>
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="order__contact-info">

@@ -24,35 +24,27 @@ export const Footer = ({
                 <div className="content-footer">
                     <div className="accordion-info">
                         <Accordion defaultIndex="0">
-                            <AccordionItem label="Покупателям" index="1" isCollapsed>
+                            <AccordionItem label="Покупцям" index="1" isCollapsed>
                                 <ul className="footer-list">
                                     <li>
                                         <Link to="/delivery">
                                             Доставка
                                         </Link>
                                     </li>
-                                    <Link to="/returns">
-                                        Повернення
-                                    </Link>
-                                    <li>Як вибрати розмір</li>
-                                    <li>Запитання та відповіді</li>
-                                    <li>Відгуки</li>
-                                    <li>Зв'язатися з нами</li>
+                                    <li>
+                                        <Link to="/returns">
+                                            Повернення
+                                        </Link>
+                                    </li>
                                 </ul>
                             </AccordionItem>
-                            <AccordionItem label="О Компании" index="2">
+                            <AccordionItem label="Про компанію" index="2">
                                 <ul className="footer-list">
                                     <li>
                                         <Link to="/aboutcompany">
                                             Про нас
                                         </Link>
                                     </li>
-                                    <li>Стійкий розвиток</li>
-                                    <li>Капсули</li>
-                                    <li>преса про нас</li>
-                                    <li>Карьера</li>
-                                    <li>Контакти</li>
-                                    <li>Офіс</li>
                                 </ul>
                             </AccordionItem>
                         </Accordion>
@@ -72,15 +64,11 @@ export const Footer = ({
                                     Повернення
                                 </Link>
                             </li>
-                            <li>Как вибрать размер</li>
-                            <li>Питання і відповідь</li>
-                            <li>Отзиви</li>
-                            <li>Связаться с нами</li>
                         </ul>
                     </div>
                     <div className="footer-title-info-company">
                         <div className="footer-title-info">
-                            О компании
+                            Про компанію
                         </div>
                         <ul className="footer-list">
                             <li>
@@ -88,24 +76,18 @@ export const Footer = ({
                                     Про нас
                                 </Link>
                             </li>
-                            <li>Устойчивое развитие</li>
-                            <li>Капсулы</li>
-                            <li>Пресса о нас</li>
-                            <li>Карьера</li>
-                            <li>Контакты</li>
-                            <li>Офис</li>
                         </ul>
                     </div>
                     <div>
                         <div className="footer-links">
                             <ul className="sidebar-social">
                                 <li>
-                                    <a className="sidebar-social__facebook" href="#">
+                                    <a className="sidebar-social__facebook" rel="noreferrer" target="_blank" href="https://www.facebook.com/Kostumchek/">
                                         <Facebook height="18" width="18" />
                                     </a>
                                 </li>
                                 <li>
-                                    <a className="sidebar-social__instagram" href="#">
+                                    <a className="sidebar-social__instagram" rel="noreferrer" target="_blank" href="https://instagram.com/kostumchek_official?igshid=YmMyMTA2M2Y=">
                                         <Instagram height="18" width="18" />
                                     </a>
                                 </li>

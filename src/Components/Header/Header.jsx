@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 import HeaderHeart from 'Icons/HeaderHeart';
-import Logo from 'Icons/Logo';
 import Menu from 'Icons/Menu';
 import Cart from 'Icons/Cart';
 import User from 'Icons/User';
@@ -73,13 +72,13 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
                         <Link to="/collection">Всі товари</Link>
                     </li>
                     <li className="list-group">
-                        <Link to="/">Про нас</Link>
+                        <Link to="/aboutcompany">Про нас</Link>
                     </li>
                 </ul>
             </div>
             {showLogo && (
                 <Link title="До головної сторінки" to="/" className="header-main-logo">
-                    <Logo isTransparent={transparent} />
+                    <h1>KOSTUMCHEK</h1>
                 </Link>
             )}
             <div className="header-right-menu">

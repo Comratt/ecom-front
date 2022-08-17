@@ -57,6 +57,10 @@
 }
 .lib-footer .footer-list li {
     padding-top: var(--size-normal);
+    font-size: 14px;
+}
+.lib-footer .footer-list a {
+    font-size: 16px;
 }
 .lib-footer .footer-list-title{
     padding-left: var(--size-normal);

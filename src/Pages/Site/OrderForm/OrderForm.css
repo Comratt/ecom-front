@@ -74,6 +74,11 @@
     padding-bottom: var(--size-normal-mid);
 }
 
+.order__svg h1 {
+    margin: 0;
+    padding: 0;
+}
+
 .order__contact-form {
     display: flex;
     flex-direction: column;

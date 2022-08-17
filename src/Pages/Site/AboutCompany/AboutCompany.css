@@ -3,11 +3,12 @@
     text-align: center;
 }
 .lib-about-company .title{
-    background-image: url('https://cdn.shopify.com/s/files/1/0292/1375/3428/files/image_212_1296x.png?v=1619122206');
+    background-image: url('https://back.kostumchek.com/uploads/images/about-1.jpeg');
     width: 100%;
     height: 400px;
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     display: flex;
     align-items: flex-end;
     color: #ffffff;
@@ -53,6 +54,7 @@
 .lib-about-company .btn-content{
     display: flex;
     width: 200px;
+    margin: 50px 0;
 }
 @media (max-width: 700px) {
     .lib-about-company .images{

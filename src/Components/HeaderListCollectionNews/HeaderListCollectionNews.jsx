@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCategories } from 'context/CategoriesWrapper/useCategories';
 import { adaptCategories } from 'context/adapters';
+import { getImage } from 'API';
 import { Link } from '../Link';
 
 import './HeaderListCollectionNews.css';
@@ -65,7 +66,7 @@ const HeaderListCollectionNews = () => {
                         </ul>
                     ))}
                     <div>
-                        <img style={{ zIndex: 1 }} src="https://cdn.shopify.com/s/files/1/0292/1375/3428/files/9fc0642b8a3abc3f4ce53f7b6e5769bc_e229744b-4441-4f91-8614-ab42e6c7c564_320x.jpg?v=1634808767" alt="" />
+                        <img style={{ zIndex: 1 }} src={getImage('header.jpeg')} alt="Костюм чоловічий купити" />
                     </div>
                 </div>
             </div>
