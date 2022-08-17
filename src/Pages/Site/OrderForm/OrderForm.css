@@ -60,6 +60,7 @@
     width: 45%;
     background: var(--color-card-aside-background);
     border-left: 1px solid var(--coror-divides-line-card);
+    overflow: auto;
 }
 
 
