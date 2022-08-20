@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useAsyncCallback } from 'react-async-hook';
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 import moment from 'moment';
 import Edit from 'Icons/Edit';
 import Calendar from 'Icons/Calendar';
@@ -19,6 +20,7 @@ import {
     getFormattedPrice,
     SHIPPING_CODES,
 } from 'Constants';
+import { getUser } from 'Store/Modules/LocalSettings/selectors';
 import OrderService from 'Services/OrderService';
 import Layout from '../Layout';
 import ReturnModal from './ReturnModal';
@@ -28,6 +30,7 @@ import './OrderProduct.css';
 import ReturnService from '../../../Services/ReturnService';
 
 const OrderProduct = () => {
+    const user = useSelector(getUser);
     const [show, setShow] = useState(false);
     const [returnProducts, setReturnProducts] = useState({});
     const [returnComment, setReturnComment] = useState('');
@@ -94,6 +97,7 @@ const OrderProduct = () => {
         }
     }, [result]);
 
+    console.log(result.history);
     const onSubmit = (values) => {
         executeHistory({ ...values, id: orderId })
             .then((resp) => {
@@ -102,13 +106,17 @@ const OrderProduct = () => {
                     result: {
                         ...res.result,
                         history: [
-                            ...res.result.history,
                             {
                                 ...resp,
                                 dateAdd: moment(resp.created_at, DATE_FORMAT).format(DATEDDMMYYYY),
                                 status: SHIPPING_CODES[resp.history_status],
                                 notify: resp.notify_customer ? 'Yes' : 'No',
+                                manager: (user && (user.id === resp.manager_id)) ? `${user.first_name} ${user.last_name}` : '-',
+                                manager_id: resp.manager_id,
+                                first_name: user.first_name,
+                                last_name: user.last_name,
                             },
+                            ...res.result.history,
                         ],
                     },
                 }));

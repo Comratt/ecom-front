@@ -19,7 +19,7 @@ const Options = () => {
     const [show, setShow] = useState(false);
     const [optionType, setOptionType] = useState(null);
     const {
-        register, handleSubmit, errors,
+        register, handleSubmit, errors, reset,
     } = useForm({ mode: 'onChange' });
     const {
         data, loading, error, setData,
@@ -40,6 +40,7 @@ const Options = () => {
 
     useEffect(() => {
         if (typeof show === 'number') {
+            reset();
             ovFetch();
         } else {
             setOptionValues([]);

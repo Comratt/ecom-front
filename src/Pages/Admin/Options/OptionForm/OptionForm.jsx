@@ -45,7 +45,6 @@ const OptionForm = ({
                 <tr>
                     <th scope="col">Значення опції</th>
                     {showColor && <th scope="col" style={{ width: '30%' }}>Колір</th>}
-                    <th scope="col" style={{ maxWidth: '50px' }}>Зображення</th>
                     <th scope="col" style={{ width: '2%' }} />
                 </tr>
             </thead>
@@ -75,24 +74,6 @@ const OptionForm = ({
                             </td>
                         )}
                         <td>
-                            <div className="media d-flex flex-column">
-                                {optionValue.image && (
-                                    <img
-                                        src={(
-                                            optionValue.imagePreview || getImage(optionValue.image)
-                                        )}
-                                        alt="Option describer"
-                                        style={{ maxWidth: 128, maxHeight: 128 }}
-                                    />
-                                )}
-                                <input
-                                    type="file"
-                                    name={OPTION_VALUE_IMAGE}
-                                    onChange={onChangeOptionValueImage(optionValue.id)}
-                                />
-                            </div>
-                        </td>
-                        <td>
                             <button
                                 type="button"
                                 className="btn btn-outline-danger"
@@ -112,7 +93,6 @@ const OptionForm = ({
                     </tr>
                 ))}
                 <tr>
-                    <td />
                     <td />
                     {showColor && <td />}
                     <td>

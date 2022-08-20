@@ -91,19 +91,19 @@ export const VALIDATION_RULES = {
     },
     [CATEGORY_META_TITLE_FIELD]: {
         [VALIDATION_MAX_LENGTH]: {
-            value: 25,
-            message: 'SEO Заголовок должен быть меньше 25 символов',
+            value: 150,
+            message: 'SEO Заголовок должен быть меньше 150 символов',
         },
     },
     [CATEGORY_META_DESCRIPTION_FIELD]: {
         [VALIDATION_MAX_LENGTH]: {
-            value: 50,
-            message: 'SEO Описание должно быть меньше 50 символов',
+            value: 150,
+            message: 'SEO Описание должно быть меньше 150 символов',
         },
     },
     [CATEGORY_META_KEYWORDS_FIELD]: {
         [VALIDATION_MAX_LENGTH]: {
-            value: 50,
+            value: 150,
             message: 'SEO ключевые слова',
         },
     },
