@@ -30,7 +30,7 @@ export const Home = () => {
                 title={MARKET_TITLE}
                 metaTitle={MARKET_TITLE}
                 description={MARKET_DESCRIPTION}
-                tags="Tags"
+                tags="Besco"
                 keywords={MARKET_KEYWORDS}
             />
             <SliderWithDisableVerticalScroll>
