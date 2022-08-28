@@ -89,6 +89,7 @@ export const OrderForm = (className) => {
         defaultValues,
     });
     const shippingCity = watch('shippingCity');
+    const shippingAddress = watch('shippingAddress');
     const areaName = useMemo(() => cities.data.find(({ Description }) => shippingCity === Description)?.AreaDescription, [cities, shippingCity]);
     const componentClasses = classNames('lib-order', className);
     const toggleSidebar = () => setShowSideBar((sideBar) => !sideBar);
@@ -114,6 +115,9 @@ export const OrderForm = (className) => {
     );
 
     const onSubmit = (formInfo) => {
+        const shippingCityRef = cities.data?.find(({ Description }) => Description === shippingCity);
+        const shippingAddressRef = offices.data?.find(({ Description }) => Description === shippingAddress);
+
         if (!selectedCity || !areaName) {
             return setError('shippingCity', { message: 'Введіть місто' });
         }
@@ -128,6 +132,8 @@ export const OrderForm = (className) => {
             comment: orderNotes,
             areaName,
             status_id: 1,
+            shippingCityRef: shippingCityRef?.Ref || '',
+            shippingAddressRef: shippingAddressRef?.Ref || '',
             discount: discountPromo?.name
                 ? {
                     ...discountPromo,
