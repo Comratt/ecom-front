@@ -28,13 +28,16 @@ import ReturnModal from './ReturnModal';
 import { useFetchOrder } from '../hooks/useFetchOrders';
 import './OrderProduct.css';
 import ReturnService from '../../../Services/ReturnService';
+import TtnModal from './TtnModal';
 
 const OrderProduct = () => {
     const user = useSelector(getUser);
     const [show, setShow] = useState(false);
+    const [showTtnModal, setShowTtnModal] = useState(false);
     const [returnProducts, setReturnProducts] = useState({});
     const [returnComment, setReturnComment] = useState('');
     const toggleModal = () => setShow((prevState) => !prevState);
+    const toggleTtnModal = () => setShowTtnModal((prevState) => !prevState);
     const { register, handleSubmit, errors } = useForm();
     const {
         result,
@@ -143,6 +146,14 @@ const OrderProduct = () => {
                     toggleModal={toggleModal}
                     onSubmit={onReturnSubmit}
                     loading={loadingReturn}
+                />
+            )}
+            {showTtnModal && (
+                <TtnModal
+                    result={result}
+                    showTtnModal={showTtnModal}
+                    toggleTtnModal={toggleTtnModal}
+                    setResult={setResult}
                 />
             )}
             <div className="orderProductDetailsTable">
@@ -272,7 +283,13 @@ const OrderProduct = () => {
                     <tbody>
                         <tr>
                             <td>
-                                Рахунок-фактура
+                                <button
+                                    type="button"
+                                    className="btn btn-outline-secondary"
+                                    onClick={toggleTtnModal}
+                                >
+                                    ТТН
+                                </button>
                                 <Edit
                                     style={{ float: 'right' }}
                                     fill="var(--color-accent)"

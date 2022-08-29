@@ -50,6 +50,16 @@ class OrderService {
             throw new ServerException(e.response);
         }
     }
+
+    static async addTtn(id, ttnRef) {
+        try {
+            const orders = await API.post(`api/admin/orders-ttn/${id}`, { ttnRef });
+
+            return orders.data;
+        } catch (e) {
+            throw new ServerException(e.response);
+        }
+    }
 }
 
 export default OrderService;
