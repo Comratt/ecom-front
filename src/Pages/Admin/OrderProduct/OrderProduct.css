@@ -1,6 +1,13 @@
 .orderContent {
     margin: 50px 0;
 }
+
+.ttn-container .form-control {
+    min-height: 38px;
+}
+.return-modal {
+    overflow-y: auto;
+}
 .orderContent table, thead, tbody, th, td {
     border: 1px solid #dcdcdc;
 }

@@ -2,9 +2,9 @@ import axios from 'axios';
 
 import store from './Store/createStore';
 
-export const baseURL = 'https://back.paparot.com/';
+export const baseURL = 'https://back.phoenix-voentorg.store/';
 export const novaPoshtaURL = 'https://api.novaposhta.ua/v2.0/json/';
-export const novaPoshtaAPIKEY = '3c34390ca4d3a3b2b97eeb228159beea';
+export const novaPoshtaAPIKEY = '90496fafa7d0779f1446a6f4c90d67e6';
 
 export const loginUrl = 'api/auth/login';
 export const dataUrl = 'api';

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import classNames from 'classnames';
 
 import { useForm } from 'react-hook-form';
 import Modal from 'Components/Modal';
-import { baseURL, novaPoshtaAPI, novaPoshtaAPIKEY } from '../../../API';
+import { novaPoshtaAPI } from 'API';
 import SelectedCity from './SelectedCity';
 import OrderService from '../../../Services/OrderService';
 
@@ -15,7 +16,6 @@ const TtnModal = ({
         error: null,
     });
 
-    console.log(result);
     const [recipientOffices, setRecipientOffices] = useState({
         data: [],
         loading: true,
@@ -57,9 +57,9 @@ const TtnModal = ({
     } = useForm({
         mode: 'onChange',
         defaultValues: {
-            description: '',
-            price: '',
-            weight: '',
+            description: 'Одяг',
+            price: `${Math.ceil(result.total)}`,
+            weight: '0.5',
             payer: 'Recipient',
             paymentMethod: 'Cash',
             dateTime: '',
@@ -192,9 +192,7 @@ const TtnModal = ({
     }, [refSenderCounterParty]);
 
     useEffect(() => {
-        console.log('-----', watch('recipientCityName'));
         if (watch('recipientCityName')) {
-            console.log(watch('recipientCityName'));
             novaPoshtaAPI.post('', {
                 modelName: 'AddressGeneral',
                 calledMethod: 'getWarehouses',
@@ -248,7 +246,7 @@ const TtnModal = ({
                 toggleModal={toggleTtnModal}
                 className="return-modal"
             >
-                <div className="App">
+                <div className="ttn-container">
                     <div className="container">
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-row">
@@ -256,47 +254,59 @@ const TtnModal = ({
                                     <label htmlFor="description">Опис відправлення</label>
                                     <input
                                         name="description"
-                                        ref={register({ required: 'Error' })}
+                                        ref={register({ required: 'Обовʼязкове поле' })}
                                         type="text"
-                                        className="form-control"
+                                        className={classNames('form-control', { 'is-invalid': errors?.description })}
                                         id="description"
                                         placeholder="Опис відправлення"
                                     />
+                                    <div className="invalid-feedback">
+                                        {errors?.description?.message}
+                                    </div>
                                 </div>
                                 <div className="form-group col-md-6">
                                     <label htmlFor="price">Оголошена вартість</label>
                                     <input
-                                        ref={register({ required: 'Error' })}
+                                        ref={register({ required: 'Обовʼязкове поле' })}
                                         type="text"
-                                        className="form-control"
+                                        className={classNames('form-control', { 'is-invalid': errors?.price })}
                                         name="price"
                                         id="price"
                                         placeholder="Оголошена вартість"
                                     />
+                                    <div className="invalid-feedback">
+                                        {errors?.price?.message}
+                                    </div>
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="weight">Загальна вага</label>
                                 <input
-                                    ref={register({ required: 'Error' })}
+                                    ref={register({ required: 'Обовʼязкове поле' })}
                                     type="text"
-                                    className="form-control"
+                                    className={classNames('form-control', { 'is-invalid': errors?.weight })}
                                     name="weight"
                                     id="weight"
                                     placeholder="Загальна вага"
                                 />
+                                <div className="invalid-feedback">
+                                    {errors?.weight?.message}
+                                </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="disabledTextInput">Відправник</label>
+                                <label htmlFor="disabledTextInput"><b>Відправник</b></label>
                                 <input
-                                    ref={register({ required: 'Error' })}
+                                    ref={register({ required: 'Обовʼязкове поле' })}
                                     type="text"
                                     id="sender"
                                     name="sender"
-                                    className="form-control"
+                                    className={classNames('form-control', { 'is-invalid': errors?.sender })}
                                     disabled
                                     value={`${refSender.Description} +${refSender.Phones}`}
                                 />
+                                <div className="invalid-feedback">
+                                    {errors?.sender?.message}
+                                </div>
                             </div>
                             <div className="form-row">
 
@@ -304,58 +314,70 @@ const TtnModal = ({
                                     <label htmlFor="citySender">Населений пункт</label>
                                     <SelectedCity name="citySender" control={control} />
                                 </div>
-                                <div className="form-group col-md-4">
+                                <div className="form-group col-md-6">
                                     <label htmlFor="inputState">Відділення</label>
                                     <select
                                         name="senderAddress"
-                                        ref={register({ required: 'asd' })}
+                                        ref={register({ required: 'Обовʼязкове поле' })}
                                         id="senderAddress"
-                                        className="form-control"
+                                        className={classNames('form-control ttn-select', { 'is-invalid': errors?.senderAddress })}
                                     >
-                                        <option selected>Відділення</option>
+                                        <option selected disabled value={0}>Відділення</option>
                                         {offices.data.map(({ Description, Ref }) => (
                                             <option value={Ref}>
                                                 {Description}
                                             </option>
                                         ))}
                                     </select>
+                                    <div className="invalid-feedback">
+                                        {errors?.senderAddress?.message}
+                                    </div>
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="disabledTextInput">Одержувач</label>
+                                <label htmlFor="disabledTextInput"><b>Одержувач</b></label>
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
                                         <label htmlFor="recipientsPhone">Номер телефону</label>
                                         <input
-                                            ref={register({ required: 'Error' })}
+                                            ref={register({ required: 'Обовʼязкове поле' })}
                                             name="recipientsPhone"
                                             type="text"
-                                            className="form-control"
+                                            className={classNames('form-control', { 'is-invalid': errors?.recipientsPhone })}
                                             id="recipientsPhone"
                                             placeholder="Номер телефону"
                                         />
+                                        <div className="invalid-feedback">
+                                            {errors?.recipientsPhone?.message}
+                                        </div>
                                     </div>
                                     <div className="form-group col-md-6">
                                         <label htmlFor="recipientSurname">Прізвище</label>
                                         <input
-                                            ref={register({ required: 'Error' })}
+                                            ref={register({ required: 'Обовʼязкове поле' })}
                                             type="text"
-                                            className="form-control"
+                                            className={classNames('form-control', { 'is-invalid': errors?.recipientSurname })}
                                             id="recipientSurname"
                                             name="recipientSurname"
                                             placeholder="Прізвище"
                                         />
+                                        <div className="invalid-feedback">
+                                            {errors?.recipientSurname?.message}
+                                        </div>
                                     </div>
                                     <div className="form-group col-md-6">
                                         <label htmlFor="recipientName">Імя</label>
                                         <input
-                                            ref={register({ required: 'Error' })}
+                                            ref={register({ required: 'Обовʼязкове поле' })}
                                             type="text"
-                                            className="form-control"
+                                            className={classNames('form-control', { 'is-invalid': errors?.recipientName })}
                                             id="recipientName"
                                             name="recipientName"
                                             placeholder="Імя"
                                         />
+                                        <div className="invalid-feedback">
+                                            {errors?.recipientName?.message}
+                                        </div>
                                     </div>
                                     <div className="form-group col-md-6">
                                         <label htmlFor="recipientFullName">По батькові</label>
@@ -382,14 +404,14 @@ const TtnModal = ({
                                         }}
                                     />
                                 </div>
-                                <div className="form-group col-md-4">
+                                <div className="form-group col-md-6">
                                     <label htmlFor="recipientAddressName">Відділення</label>
                                     <select
-                                        className="form-control"
-                                        ref={register({ required: 'asd' })}
+                                        className={classNames('form-control ttn-select', { 'is-invalid': errors?.recipientAddress })}
+                                        ref={register({ required: 'Обовʼязкове поле' })}
                                         name="recipientAddress"
                                     >
-                                        <option>Відділення</option>
+                                        <option selected disabled>Відділення</option>
                                         {recipientOffices.data.map(({ Description, Ref }) => (
                                             <option
                                                 selected={Ref === result.shipping_address_ref}
@@ -399,6 +421,9 @@ const TtnModal = ({
                                             </option>
                                         ))}
                                     </select>
+                                    <div className="invalid-feedback">
+                                        {errors?.recipientAddress?.message}
+                                    </div>
                                 </div>
                             </div>
                             <button type="submit" className="btn btn-primary">Створити накладну</button>
@@ -407,7 +432,7 @@ const TtnModal = ({
                                     <button
                                         type="button"
                                         onClick={redirectToPrint}
-                                        className="btn btn-primary"
+                                        className="btn btn-outline-primary ml-3"
                                     >
                                         Роздрукувати
                                     </button>
