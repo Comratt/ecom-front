@@ -3,35 +3,57 @@ import { getValidationMessage } from 'Constants';
 import Input from 'Components/Input';
 import { FIELDS, SEO_FIELDS, VALIDATION_RULES } from './constants';
 
-const CategoryForm = ({ register, errors, categories }) => (
-    <div>
-        {FIELDS.map((field) => {
-            if (field.type === 'select') {
+const CategoryForm = ({
+    register, errors, categories = [], selectedId,
+}) => {
+    // eslint-disable-next-line max-len
+    const categoriesWithoutMain = categories?.filter(({ category_id }) => +category_id !== +selectedId);
+
+    return (
+        <div>
+            {FIELDS.map((field) => {
+                if (field.type === 'select') {
+                    return (
+                        <div className="form-row mb-2" key={field.name}>
+                            <div className="col-12">
+                                <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">{field.label}</label>
+                                <select
+                                    name={field.name}
+                                    ref={register(VALIDATION_RULES[field.name])}
+                                    className="custom-select my-1 mr-sm-2"
+                                    id="inlineFormCustomSelectPref"
+                                >
+                                    <option value={0} disabled selected>Категория</option>
+                                    {categoriesWithoutMain.map((category) => (
+                                        <option
+                                            value={category.category_id}
+                                        >
+                                            {category.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+                    );
+                }
+
                 return (
                     <div className="form-row mb-2" key={field.name}>
                         <div className="col-12">
-                            <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">{field.label}</label>
-                            <select
-                                name={field.name}
+                            <Input
                                 ref={register(VALIDATION_RULES[field.name])}
-                                className="custom-select my-1 mr-sm-2"
-                                id="inlineFormCustomSelectPref"
-                            >
-                                <option value={0} disabled selected>Категория</option>
-                                {categories.map((category) => (
-                                    <option
-                                        value={category.category_id}
-                                    >
-                                        {category.name}
-                                    </option>
-                                ))}
-                            </select>
+                                name={field.name}
+                                type={field.type}
+                                required={field.required}
+                                placeholder={field.placeholder}
+                                label={field.label}
+                                error={getValidationMessage(errors[field.name])}
+                            />
                         </div>
                     </div>
                 );
-            }
-
-            return (
+            })}
+            {SEO_FIELDS.map((field) => (
                 <div className="form-row mb-2" key={field.name}>
                     <div className="col-12">
                         <Input
@@ -45,24 +67,9 @@ const CategoryForm = ({ register, errors, categories }) => (
                         />
                     </div>
                 </div>
-            );
-        })}
-        {SEO_FIELDS.map((field) => (
-            <div className="form-row mb-2" key={field.name}>
-                <div className="col-12">
-                    <Input
-                        ref={register(VALIDATION_RULES[field.name])}
-                        name={field.name}
-                        type={field.type}
-                        required={field.required}
-                        placeholder={field.placeholder}
-                        label={field.label}
-                        error={getValidationMessage(errors[field.name])}
-                    />
-                </div>
-            </div>
-        ))}
-    </div>
-);
+            ))}
+        </div>
+    );
+};
 
 export default CategoryForm;

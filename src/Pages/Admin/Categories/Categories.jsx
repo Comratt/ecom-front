@@ -170,6 +170,7 @@ const Categories = () => {
                         onSubmit={handleSubmit(onSubmit)}
                     >
                         <CategoryForm
+                            selectedId={show}
                             categories={categories}
                             register={register}
                             errors={errors}
