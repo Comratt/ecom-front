@@ -11,7 +11,7 @@ export const initialState = {
     color: [],
     size: [],
     price: [],
-    available: false,
+    available: true,
 };
 
 const filtersReducer = (state = initialState, { type, payload }) => {
