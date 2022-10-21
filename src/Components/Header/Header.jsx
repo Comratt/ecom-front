@@ -78,7 +78,7 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
             </div>
             {showLogo && (
                 <Link title="До головної сторінки" to="/" className="header-main-logo">
-                    <h1>PHOENIX</h1>
+                    <h1>ФЕНІКС</h1>
                 </Link>
             )}
             <div className="header-right-menu">

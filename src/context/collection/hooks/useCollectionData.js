@@ -28,7 +28,7 @@ export const useCollectionData = () => {
         color: [],
         size: [],
         price: [],
-        available: false,
+        available: true,
     };
     const defaultReduxFilters = {
         page: reduxFilters.page || 1,
@@ -39,7 +39,7 @@ export const useCollectionData = () => {
         color: reduxFilters.color || [],
         size: reduxFilters.size || [],
         price: reduxFilters.price || [],
-        available: reduxFilters.available || false,
+        available: reduxFilters.available || true,
     };
     const [filters, setFilters] = useState({ ...defaultReduxFilters, ...urlFilters });
     const {
