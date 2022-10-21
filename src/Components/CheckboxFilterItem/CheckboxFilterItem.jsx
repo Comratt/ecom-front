@@ -172,6 +172,7 @@ const CheckboxFilterItem = ({
     sizes,
     resetFilters,
     isFiltered,
+    filtersDiff,
 }) => {
     const [staticFilters, setStaticFilters] = useState([
         { name: 'Колір', id: 1, text: [{ name: 'color' }] },
@@ -309,7 +310,7 @@ const CheckboxFilterItem = ({
     };
 
     const checkIsFiltered = ({ name }) => {
-        if (filters[name]?.length || filters[name] === true) {
+        if (filtersDiff?.includes(name)) {
             return ' filtered';
         }
 
