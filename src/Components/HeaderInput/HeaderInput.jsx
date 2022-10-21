@@ -133,7 +133,7 @@ const HeaderInput = () => {
     } = useLayout();
 
     const filterProducts = async (inputValue) => {
-        const products = await fetchProducts({ search: inputValue });
+        const products = await fetchProducts({ search: inputValue, available: true });
 
         return adaptFoundedProducts(products.data);
     };

@@ -87,6 +87,7 @@ export const CheckboxFilter = ({
                                 sizes={sortedSizes}
                                 resetFilters={resetFilters}
                                 isFiltered={isFiltered}
+                                filtersDiff={filtersDiff}
                             />
                         </div>
                         <button
