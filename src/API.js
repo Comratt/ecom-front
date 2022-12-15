@@ -4,7 +4,7 @@ import store from './Store/createStore';
 
 export const baseURL = 'https://back.kostumchek.com/';
 export const novaPoshtaURL = 'https://api.novaposhta.ua/v2.0/json/';
-export const novaPoshtaAPIKEY = '3c34390ca4d3a3b2b97eeb228159beea';
+export const novaPoshtaAPIKEY = '95675baba5da7b09c40f5a2054d57fa6';
 
 export const loginUrl = 'api/auth/login';
 export const dataUrl = 'api';
