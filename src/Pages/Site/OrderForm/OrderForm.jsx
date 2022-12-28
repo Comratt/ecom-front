@@ -20,7 +20,7 @@ import { CommonInput } from 'Components/CommonInput';
 import Cart from 'Icons/Cart';
 import AccardionArrow from 'Icons/AccardionArrow';
 import Close from 'Icons/Close';
-import { getFormattedPrice, emailRegExp } from 'Constants';
+import { getFormattedPrice, emailRegExp, MARKET_NAME } from 'Constants';
 
 import './OrderForm.css';
 import { useHistory } from 'react-router-dom';
@@ -227,7 +227,7 @@ export const OrderForm = (className) => {
             <div className="order__main">
                 <div className="order__form">
                     <div className="order__svg">
-                        <h1>KOSTUMCHEK</h1>
+                        <h1>{MARKET_NAME}</h1>
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="order__contact-info">

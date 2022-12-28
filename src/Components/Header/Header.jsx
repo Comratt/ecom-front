@@ -5,6 +5,7 @@ import HeaderHeart from 'Icons/HeaderHeart';
 import Menu from 'Icons/Menu';
 import Cart from 'Icons/Cart';
 import User from 'Icons/User';
+import { MARKET_NAME } from 'Constants';
 
 import { getCartQuantity } from 'Store/Modules/Cart/selectors';
 import { getWishlistQuantity } from 'Store/Modules/Wishlist/selectors';
@@ -78,7 +79,7 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
             </div>
             {showLogo && (
                 <Link title="До головної сторінки" to="/" className="header-main-logo">
-                    <h1>KOSTUMCHEK</h1>
+                    <h1>{MARKET_NAME}</h1>
                 </Link>
             )}
             <div className="header-right-menu">
