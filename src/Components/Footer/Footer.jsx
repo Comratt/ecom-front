@@ -92,7 +92,7 @@ export const Footer = ({
                                     </a>
                                 </li>
                                 <li>
-                                    <a className="sidebar-social__telegram" href="#">
+                                    <a className="sidebar-social__telegram" href="https://t.me/kostumchekofficial_bot">
                                         <Telegram height="18" width="18" />
                                     </a>
                                 </li>
