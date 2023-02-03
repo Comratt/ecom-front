@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import classNames from 'classnames';
 import { Link } from 'Components/Link';
@@ -85,6 +85,38 @@ export const SliderCardList = ({
         }, 700)
     );
 
+    useEffect(() => {
+        if (result && result?.length) {
+            let index = 0;
+            const items = result.map((product) => {
+                const quantity = product.colors?.reduce((acc, val) => acc + val.quantity, 0);
+
+                return product.colors?.map((color) => {
+                    index += 1;
+
+                    return ({
+                        item_name: product.name,
+                        item_id: product.product_id,
+                        price: parseFloat(product.price),
+                        item_brand: product.name,
+                        item_category: title,
+                        item_variant: color?.name_value,
+                        index,
+                        quantity,
+                    });
+                });
+            });
+
+            window.dataLayer?.push({ ecommerce: null });
+            window.dataLayer?.push({
+                event: 'view_item_list',
+                ecommerce: {
+                    items: items.flat(),
+                },
+            });
+        }
+    }, [result]);
+
     const settings = {
         speed: 500,
         slidesToShow: isTabletSize ? 2 : count,
@@ -144,6 +176,7 @@ export const SliderCardList = ({
                                 discount={product.discount}
                                 purePrice={product.purePrice}
                                 hideColors={hideColors}
+                                category={product?.category}
                             />
                         ))}
                     </Slider>
