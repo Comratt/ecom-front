@@ -41,6 +41,19 @@ class OrderService {
         }
     }
 
+    static async changeStatus(id, status) {
+        try {
+            const orders = await API.post('api/admin/orders-status', {
+                order_id: id,
+                status,
+            });
+
+            return orders.data;
+        } catch (e) {
+            throw new ServerException(e.response);
+        }
+    }
+
     static async store(params) {
         try {
             const orders = await API.post('api/admin/orders', params);

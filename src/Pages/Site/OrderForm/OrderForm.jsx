@@ -14,19 +14,28 @@ import { getUser } from 'Store/Modules/LocalSettings/selectors';
 import { clearCart, addDiscount, removeDiscount } from 'Store/Modules/Cart/cartActions';
 import OrderService from 'Services/OrderService';
 import PromoCodeService from 'Services/PromoCodeService';
+import { useScript } from 'hooks/useScript';
 
 import { Link } from 'Components/Link';
 import { CommonInput } from 'Components/CommonInput';
 import Cart from 'Icons/Cart';
 import AccardionArrow from 'Icons/AccardionArrow';
 import Close from 'Icons/Close';
-import { getFormattedPrice, emailRegExp } from 'Constants';
+import {
+    getFormattedPrice,
+    emailRegExp,
+    PAYMENT_ONLINE,
+    PAYMENT_NP,
+    PAYMENT_ONLINE_FAILURE,
+    WAYFORPAY_MERCHANT, WAYFORPAY_WEBSITE,
+} from 'Constants';
 
 import './OrderForm.css';
 import { useHistory } from 'react-router-dom';
 import Button from '../../../Components/Button/Button';
 import { Title } from '../../../Components/Title';
 import { clearFilters } from '../../../Store/Modules/Filters/filtersActions';
+import { getMerchantSignature } from '../../../Helpers';
 
 export const OrderForm = (className) => {
     const dispatch = useDispatch();
@@ -44,6 +53,7 @@ export const OrderForm = (className) => {
     const orderNotes = useSelector(getCartNotes);
     const discountPromo = useSelector(getCartDiscount);
     const [formLoading, setFormLoading] = useState(false);
+    const [onlinePayment, setOnlinePayment] = useState(false);
     const [selectedCity, setSelectedCity] = useState('');
     const [showSideBar, setShowSideBar] = useState(false);
     const [discountValue, setDiscount] = useState('');
@@ -72,6 +82,7 @@ export const OrderForm = (className) => {
             firstName: '',
             lastName: '',
             phone: '',
+            paymentStatus: '1',
         };
     }, [user]);
     const cityNames = useMemo(() => cities.data.map(({ Description }) => Description),
@@ -113,42 +124,97 @@ export const OrderForm = (className) => {
         ), 0)
     );
 
-    const onSubmit = (formInfo) => {
+    const orderSubmit = (formInfo) => OrderService.store({
+        ...formInfo,
+        products: products?.map((product) => ({
+            ...product,
+            purePrice: product?.purePrice - (product?.discount || 0),
+        })),
+        comment: orderNotes,
+        areaName,
+        status_id: 1,
+        paymentStatus: +formInfo.paymentStatus === PAYMENT_ONLINE
+            ? PAYMENT_ONLINE_FAILURE
+            : PAYMENT_NP,
+        discount: discountPromo?.name
+            ? {
+                ...discountPromo,
+                // eslint-disable-next-line no-nested-ternary
+                total: !discountPromo?.name
+                    ? 0
+                    // eslint-disable-next-line max-len
+                    : discountPromo?.prefix ? (subtotalPrice(products) / 100) * discountPromo?.price : discountPromo?.price,
+            }
+            : null,
+    });
+
+    const onSubmit = async (formInfo) => {
         if (!selectedCity || !areaName) {
             return setError('shippingCity', { message: 'Введіть місто' });
         }
         setFormLoading(true);
+        try {
+            const order = await orderSubmit(formInfo);
 
-        OrderService.store({
-            ...formInfo,
-            products: products?.map((product) => ({
-                ...product,
-                purePrice: product?.purePrice - (product?.discount || 0),
-            })),
-            comment: orderNotes,
-            areaName,
-            status_id: 1,
-            discount: discountPromo?.name
-                ? {
-                    ...discountPromo,
-                    // eslint-disable-next-line no-nested-ternary
-                    total: !discountPromo?.name
-                        ? 0
-                        // eslint-disable-next-line max-len
-                        : discountPromo?.prefix ? (subtotalPrice(products) / 100) * discountPromo?.price : discountPromo?.price,
-                }
-                : null,
-        })
-            .then((response) => {
+            if (+formInfo.paymentStatus === PAYMENT_ONLINE) {
+                const merchantSignature = getMerchantSignature({ ...formInfo, products }, order);
+                const productNames = products?.map((val) => val?.name);
+                const productQuantity = products?.map((val) => val?.quantity);
+                const productPrices = products?.map((val) => val?.purePrice);
+                // eslint-disable-next-line max-len
+                const productAmount = products?.reduce((acc, val) => acc + +val?.purePrice, 0).toFixed(2);
+                const body = {
+                    merchantAccount: WAYFORPAY_MERCHANT,
+                    merchantDomainName: WAYFORPAY_WEBSITE,
+                    authorizationType: 'SimpleSignature',
+                    merchantSignature,
+                    orderReference: order?.order_id,
+                    orderDate: new Date(order.created_at).getTime() / 1000,
+                    amount: productAmount,
+                    currency: 'UAH',
+                    productName: productNames,
+                    productPrice: productPrices,
+                    productCount: productQuantity,
+                    clientFirstName: formInfo?.firstName,
+                    clientLastName: formInfo?.lastName,
+                    clientEmail: formInfo?.email,
+                    clientPhone: formInfo?.phone,
+                    language: 'UA',
+                };
+                const wayforpay = new window.Wayforpay();
+
+                const resp = await wayforpay?.run(body,
+                    (response) => {
+                        console.log(response);
+                        OrderService.changeStatus(order?.order_id, 2)
+                            .then(() => {
+                                setFormLoading(false);
+                                dispatch(clearCart());
+                                alert.success({ name: 'Дякуємо! Замовлення успішно оформлене.' });
+                                handleGoNextPage();
+                            })
+                            .catch((e) => {});
+                    },
+                    (response) => {
+                        console.log('error', response);
+                        setFormLoading(false);
+                        alert.error({ name: 'Упсс... Щось пішло не так з оплатою.' });
+                    },
+                    (response) => {
+                        console.log('pending', response);
+                    });
+
+                console.log(resp);
+            } else {
                 setFormLoading(false);
                 dispatch(clearCart());
                 alert.success({ name: 'Дякуємо! Замовлення успішно оформлене.' });
                 handleGoNextPage();
-            })
-            .catch((error) => {
-                setFormLoading(false);
-                alert.error({ name: 'Упсс... Щось пішло не так з оформленням Вашого замовлення.' });
-            });
+            }
+        } catch (e) {
+            setFormLoading(false);
+            alert.error({ name: 'Упсс... Щось пішло не так з оформленням Вашого замовлення.' });
+        }
     };
 
     const totalPrice = ({ purePrice, quantity, discount }) => {
@@ -169,6 +235,23 @@ export const OrderForm = (className) => {
         setSelectedCity(city);
         clearErrors('shippingCity');
     };
+
+    useScript('https://secure.wayforpay.com/server/pay-widget.js', 'widget-wfp-script');
+
+    useEffect(() => {
+        const script = document.querySelector('#widget-wfp-script');
+
+        setOnlinePayment(false);
+
+        script.addEventListener('load', () => {
+            setOnlinePayment(true);
+        });
+        window.addEventListener('message', (e) => {
+            if (e.data === 'WfpWidgetEventClose') {
+                setFormLoading(false);
+            }
+        }, false);
+    }, []);
 
     useEffect(() => {
         register('shippingCity', { required: true });
@@ -334,6 +417,26 @@ export const OrderForm = (className) => {
                                     type="text"
                                 />
                                 {errors?.phone && <p className="field-message__error">Введіть коректний номер</p>}
+                            </div>
+                            <div>
+                                <input
+                                    type="radio"
+                                    id="payment-status-1"
+                                    name="paymentStatus"
+                                    ref={register({ required: true })}
+                                    value="1"
+                                    defaultChecked
+                                />
+                                <label htmlFor="payment-status-1">Оплата через Нову пошту</label>
+                                <input
+                                    type="radio"
+                                    disabled={!onlinePayment}
+                                    id="payment-status-2"
+                                    name="paymentStatus"
+                                    ref={register({ required: true })}
+                                    value="2"
+                                />
+                                <label htmlFor="payment-status-2">Оплата онлайн</label>
                             </div>
                             <div className="order__order-button">
 

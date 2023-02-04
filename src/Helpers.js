@@ -1,4 +1,7 @@
 import isEqual from 'lodash/isEqual';
+import trim from 'lodash/trim';
+import hmacMD5 from 'crypto-js/hmac-md5';
+import { WAYFORPAY_KEY, WAYFORPAY_MERCHANT, WAYFORPAY_WEBSITE } from './Constants';
 
 export const getFilteredOptions = (options = [], type) => (
     options.filter(({ option_type }) => option_type === type)?.map(
@@ -65,4 +68,18 @@ export const scrollToElm = (container, elm, duration) => {
     const pos = getRelativePos(elm);
 
     scrollTo(container, pos.top, duration); // duration in seconds
+};
+
+export const getMerchantSignature = (params, order) => {
+    const orderTime = new Date(order.created_at).getTime() / 1000;
+    const productNames = params?.products?.reduce((acc, val) => `${acc }${val?.name};`, '');
+    const productQuantity = params?.products?.reduce((acc, val) => `${acc }${val?.quantity};`, '');
+    const productPrices = params?.products?.reduce((acc, val) => `${acc }${val?.purePrice};`, '');
+    // eslint-disable-next-line max-len
+    const productAmount = params?.products?.reduce((acc, val) => acc + +val?.purePrice, 0).toFixed(2);
+    const string = trim(`${WAYFORPAY_MERCHANT};${WAYFORPAY_WEBSITE};${order.order_id};${orderTime};${productAmount};UAH;${productNames}${productQuantity}${productPrices}`, ';');
+
+    console.log(string);
+
+    return hmacMD5(string, WAYFORPAY_KEY).toString();
 };

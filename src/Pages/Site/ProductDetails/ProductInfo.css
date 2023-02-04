@@ -54,10 +54,11 @@
 }
 .lib-product_info_size_list {
     display: flex;
+    flex-wrap: wrap;
+    gap: var(--size-small);
 }
 .lib-product_info_size_list li {
     list-style: none;
-    padding-right: var(--size-small);
     font-size: var(--fz-mid);
 }
 .lib-product_info_size_list{

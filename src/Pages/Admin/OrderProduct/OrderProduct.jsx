@@ -17,7 +17,7 @@ import Alert from 'Components/Alert';
 import {
     DATE_FORMAT,
     DATEDDMMYYYY,
-    getFormattedPrice,
+    getFormattedPrice, PAYMENT_CODES, PAYMENT_NP, PAYMENT_ONLINE, PAYMENT_ONLINE_FAILURE,
     SHIPPING_CODES,
 } from 'Constants';
 import { getUser } from 'Store/Modules/LocalSettings/selectors';
@@ -185,7 +185,17 @@ const OrderProduct = () => {
                                     width={18}
                                     fill="var(--color-accent)"
                                 />
-                                Наложений платіж
+                                {(() => {
+                                    switch (result.payment_status) {
+                                    case PAYMENT_ONLINE:
+                                        return PAYMENT_CODES[PAYMENT_ONLINE];
+                                    case PAYMENT_ONLINE_FAILURE:
+                                        return PAYMENT_CODES[PAYMENT_ONLINE_FAILURE];
+                                    case PAYMENT_NP:
+                                    default:
+                                        return PAYMENT_CODES[PAYMENT_NP];
+                                    }
+                                })()}
                             </td>
                         </tr>
                         <tr>

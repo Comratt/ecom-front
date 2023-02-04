@@ -5,6 +5,9 @@ export const MARKET_DESCRIPTION = `Інтернет-магазин ${MARKET_NAME
 export const MARKET_TITLE = `Інтернет-магазин ${MARKET_NAME}: сайт з найпопулярнішими чоловічими куртками та костюмами в Україні`;
 export const MARKET_KEYWORDS = `${MARKET_NAME.toLowerCase()}, ${MARKET_NAME.toUpperCase()}, костюми, чоловічі костюми, куртки, чоловічі куртки, купити, костюм на весілля, свадьба, костюм для нареченого, наречений, дешевий весільний костюм, костюм на пошив, онлайн-магазин`;
 
+export const WAYFORPAY_KEY = '952d060f4ae51e43a00e919381ec7ab9ad279f04';
+export const WAYFORPAY_MERCHANT = 'kostumchek_com1';
+export const WAYFORPAY_WEBSITE = 'www.kostumchek.com';
 export const MOBILE_VIEWPORT_MAX_WIDTH = 576;
 export const TABLET_VIEWPORT_MAX_WIDTH = 768;
 export const DESKTOP_VIEWPORT_MAX_WIDTH = 1024;
@@ -51,6 +54,16 @@ export const SHIPPING_CODES = {
     5: 'Nova Poshta',
     6: 'Завершено',
     7: 'Відмінено',
+};
+
+export const PAYMENT_NP = 1;
+export const PAYMENT_ONLINE = 2;
+export const PAYMENT_ONLINE_FAILURE = 3;
+
+export const PAYMENT_CODES = {
+    [PAYMENT_NP]: 'Оплата Нова Пошта',
+    [PAYMENT_ONLINE]: 'Оплата онлайн',
+    [PAYMENT_ONLINE_FAILURE]: 'Помилка онлайн оплати',
 };
 
 export const SHIPPING_RATE = 45;

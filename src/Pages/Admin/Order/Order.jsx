@@ -4,7 +4,14 @@ import { useHistory } from 'react-router-dom';
 import Loader from 'Components/Loader';
 import Alert from 'Components/Alert';
 import Eye from 'Icons/Eye';
-import { SHIPPING_CODES, getFormattedPrice } from 'Constants';
+import {
+    SHIPPING_CODES,
+    getFormattedPrice,
+    PAYMENT_NP,
+    PAYMENT_ONLINE,
+    PAYMENT_ONLINE_FAILURE,
+    PAYMENT_CODES,
+} from 'Constants';
 import { useFetchOrders } from '../hooks/useFetchOrders';
 import Layout from '../Layout';
 
@@ -64,6 +71,17 @@ const Order = () => {
                                     {order.id}
                                     <div>
                                         {order.viewed ? '' : <span className="badge rounded-pill badge-success">New</span>}
+                                        {(() => {
+                                            switch (order.payment_status) {
+                                            case PAYMENT_ONLINE:
+                                                return <span className="badge rounded-pill badge-success">{PAYMENT_CODES[PAYMENT_ONLINE]}</span>;
+                                            case PAYMENT_ONLINE_FAILURE:
+                                                return <span className="badge rounded-pill badge-danger">{PAYMENT_CODES[PAYMENT_ONLINE_FAILURE]}</span>;
+                                            case PAYMENT_NP:
+                                            default:
+                                                return <span className="badge rounded-pill badge-primary">{PAYMENT_CODES[PAYMENT_NP]}</span>;
+                                            }
+                                        })()}
                                     </div>
                                 </div>
                             </td>
