@@ -418,25 +418,31 @@ export const OrderForm = (className) => {
                                 />
                                 {errors?.phone && <p className="field-message__error">Введіть коректний номер</p>}
                             </div>
-                            <div>
-                                <input
-                                    type="radio"
-                                    id="payment-status-1"
-                                    name="paymentStatus"
-                                    ref={register({ required: true })}
-                                    value="1"
-                                    defaultChecked
-                                />
-                                <label htmlFor="payment-status-1">Оплата через Нову пошту</label>
-                                <input
-                                    type="radio"
-                                    disabled={!onlinePayment}
-                                    id="payment-status-2"
-                                    name="paymentStatus"
-                                    ref={register({ required: true })}
-                                    value="2"
-                                />
-                                <label htmlFor="payment-status-2">Оплата онлайн</label>
+                            <div className="radio-toolbar">
+                                <div>
+                                    <input
+                                        className="option-input radio"
+                                        type="radio"
+                                        id="payment-status-1"
+                                        name="paymentStatus"
+                                        ref={register({ required: true })}
+                                        value="1"
+                                        defaultChecked
+                                    />
+                                    <label htmlFor="payment-status-1">Оплата через Нову пошту</label>
+                                </div>
+                                <div>
+                                    <input
+                                        className="option-input radio"
+                                        type="radio"
+                                        disabled={!onlinePayment}
+                                        id="payment-status-2"
+                                        name="paymentStatus"
+                                        ref={register({ required: true })}
+                                        value="2"
+                                    />
+                                    <label htmlFor="payment-status-2">Оплата онлайн</label>
+                                </div>
                             </div>
                             <div className="order__order-button">
 
