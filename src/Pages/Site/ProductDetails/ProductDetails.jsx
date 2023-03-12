@@ -75,12 +75,9 @@ export const ProductDetails = () => {
     );
 
     const isSizeDisabled = (sizeId) => (
-        !filteredColorSizes
-            ?.map(({ sizeValId }) => sizeValId)
-            .includes(sizeId)
-        || !filteredColorSizes
-            ?.find(({ sizeValId }) => sizeValId === sizeId)
-            ?.quantity > 0
+        result.colorSizes?.find(({ colorValId, sizeValId }) => (
+            colorValId === activeColor?.option_value_id && sizeValId === sizeId
+        ))?.quantity <= 0
     );
 
     const handleSizeChange = (id) => () => {
@@ -314,7 +311,7 @@ export const ProductDetails = () => {
                                             type="button"
                                             onClick={handleSizeChange(size.id)}
                                             className={itemClassNames(size.id)}
-                                            disabled={isSizeDisabled(size.id)}
+                                            disabled={isSizeDisabled(size.option_value_id)}
                                         >
                                             {size.name_value}
                                         </button>
