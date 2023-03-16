@@ -1,0 +1,10 @@
+.lib-contact-company {
+    padding: 25px;
+}
+.lib-contact-company .contacts-container__logo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: var(--color-accent)
+}
