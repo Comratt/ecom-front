@@ -92,12 +92,12 @@ export const SideBar = ({ className }) => {
                         >
                             <div className="lib-sidebar__item">
                                 <label className="checkbox">
-                                    <span>Хто ми</span>
+                                    <Link to="/aboutcompany" onClick={onLinkClick}>Хто ми</Link>
                                 </label>
                             </div>
                             <div className="lib-sidebar__item">
                                 <label className="checkbox">
-                                    <span>Де нас знайти</span>
+                                    <Link to="contacts" onClick={onLinkClick}>Де нас знайти</Link>
                                 </label>
                             </div>
                         </AccordionItem>

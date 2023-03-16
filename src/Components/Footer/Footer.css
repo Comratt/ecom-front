@@ -16,8 +16,6 @@
 .lib-footer .content-footer {
     display: flex;
     justify-content: space-around;
-    padding-top: 67px;
-    margin-top: 40px;
 }
 .lib-footer .footer-logo {
     width: 59px;
@@ -100,6 +98,12 @@
 }
 .lib-footer .sidebar-social .sidebar-social__instagram {
     background: linear-gradient(45deg,#ffb700 14.65%,#ff6800 31.68%,#cb217d 54.72%,#7e00aa 85.35%);
+}
+.lib-footer .container-title{
+    margin: 10px 20px;
+}
+.lib-footer .footer-list-city{
+    font-size: 20px;
 }
 
 .lib-footer .sidebar-social a {

@@ -21,6 +21,9 @@ export const Footer = ({
     return (
         <footer className={componentClasses}>
             <div className="container-footer">
+                <div className="container-title">
+                    <h1>KOSTUMCHEK</h1>
+                </div>
                 <div className="content-footer">
                     <div className="accordion-info">
                         <Accordion defaultIndex="0">
@@ -36,9 +39,53 @@ export const Footer = ({
                                             Повернення
                                         </Link>
                                     </li>
+                                    <li>
+                                        <Link to="/">
+                                            Бонусна програма
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/contacts">
+                                            Контакти
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/">
+                                            +380 50 660 7097
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/">
+                                            Kostumchek.pro@gmail.com
+                                        </Link>
+                                    </li>
                                 </ul>
                             </AccordionItem>
-                            <AccordionItem label="Про компанію" index="2">
+                            <AccordionItem label="Ми в магазинах України" index="2" isCollapsed>
+                                <ul className="footer-list">
+                                    <li>
+                                        <Link to="/">
+                                            м.Чернівці,вул.Героїв Майдану 12
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/">
+                                            шоу-рум “Kostumchek”
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/">
+                                            м.Львів,вул.Івана-Франка 33
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/">
+                                            шоу-рум “Treskare”
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </AccordionItem>
+                            <AccordionItem label="Про компанію" index="3">
                                 <ul className="footer-list">
                                     <li>
                                         <Link to="/aboutcompany">
@@ -50,13 +97,39 @@ export const Footer = ({
                         </Accordion>
                     </div>
                     <div className="footer-title-info-client">
-                        <div className="footer-title-info">
-                            Покупцям
-                        </div>
                         <ul className="footer-list">
                             <li>
                                 <Link to="/delivery">
-                                    Доставка
+                                    <b className="footer-list-city">Ми в магазинах України</b>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/returns">
+                                    м.Чернівці,вул.Героїв Майдану 12
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/returns">
+                                    <u>шоу-рум “Kostumchek”</u>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/returns">
+                                    м.Львів,вул.Івана-Франка 33
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/returns">
+                                    <u>шоу-рум “Treskare”</u>
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="footer-title-info-client">
+                        <ul className="footer-list">
+                            <li>
+                                <Link to="/delivery">
+                                    Доставка і оплата
                                 </Link>
                             </li>
                             <li>
@@ -64,21 +137,53 @@ export const Footer = ({
                                     Повернення
                                 </Link>
                             </li>
-                        </ul>
-                    </div>
-                    <div className="footer-title-info-company">
-                        <div className="footer-title-info">
-                            Про компанію
-                        </div>
-                        <ul className="footer-list">
                             <li>
-                                <Link to="/aboutcompany">
-                                    Про нас
+                                <Link to="/">
+                                    Бонусна програма
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/contacts">
+                                    Контакти
+                                </Link>
+                            </li>
+                            <br />
+                            <br />
+                            <li>
+                                <Link to="/">
+                                    +380 50 660 7097
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/">
+                                    Kostumchek.pro@gmail.com
                                 </Link>
                             </li>
                         </ul>
                     </div>
-                    <div>
+                    <div className="footer-title-info-client">
+                        <ul className="footer-list">
+                            <li>
+                                <Link to="/delivery">
+                                    Новини
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/returns">
+                                    Питання і відповіді
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/returns">
+                                    Подарункові сертифікати
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/returns">
+                                    Гарантія
+                                </Link>
+                            </li>
+                        </ul>
                         <div className="footer-links">
                             <ul className="sidebar-social">
                                 <li>
@@ -104,6 +209,19 @@ export const Footer = ({
                             </ul>
                         </div>
                     </div>
+                    <div className="footer-title-info-company">
+                        <div className="footer-title-info">
+                            Про компанію
+                        </div>
+                        <ul className="footer-list">
+                            <li>
+                                <Link to="/aboutcompany">
+                                    Про нас
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+                    <div />
                 </div>
             </div>
         </footer>
