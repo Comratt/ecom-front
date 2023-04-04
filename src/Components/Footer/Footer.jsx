@@ -80,7 +80,7 @@ export const Footer = ({
                                     </li>
                                     <li>
                                         <Link to="/">
-                                            шоу-рум “Treskare”
+                                            шоу-рум “Kostumchek”
                                         </Link>
                                     </li>
                                 </ul>

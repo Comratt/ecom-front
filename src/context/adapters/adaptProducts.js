@@ -15,6 +15,8 @@ export const adaptProducts = ({ data = [] } = {}) => {
         discounts,
         colors,
         sizes,
+        category_name,
+        categories,
     }) => {
         const colorsF = colors?.map(
             (item) => ({ ...item, id: item.option_value_id, name: item.name_value }),
@@ -36,6 +38,8 @@ export const adaptProducts = ({ data = [] } = {}) => {
             description,
             related,
             discount,
+            category: category_name,
+            categories,
         });
     });
 };
