@@ -69,6 +69,42 @@ export const CardList = ({
     }, [loading]);
 
     useEffect(() => {
+        if (data && data?.length) {
+            let index = 0;
+            const items = data.map((product) => {
+                const quantity = product.colors?.reduce((acc, val) => acc + val.quantity, 0);
+                const categoriesArr = product.categories?.reduce((acc, val, indx) => ({
+                    ...acc,
+                    [`item_category${indx || ''}`]: val?.category_name || product?.category_name,
+                }), {});
+
+                return product.colors?.map((color) => {
+                    index += 1;
+
+                    return ({
+                        item_name: product.name,
+                        item_id: product.id,
+                        price: parseFloat(product.price),
+                        item_brand: product.name,
+                        ...categoriesArr,
+                        item_variant: color?.name_value,
+                        index,
+                        quantity,
+                    });
+                });
+            });
+
+            window.dataLayer?.push({ ecommerce: null });
+            window.dataLayer?.push({
+                event: 'view_item_list',
+                ecommerce: {
+                    items: items.flat(),
+                },
+            });
+        }
+    }, [data]);
+
+    useEffect(() => {
         const handleScroll = () => {
             scrollYRef.current = window.scrollY;
         };
@@ -114,6 +150,7 @@ export const CardList = ({
                         colors={product.colors}
                         discount={product.discount}
                         images={images}
+                        category={product?.category}
                     />
                 ))}
             </View>

@@ -35,9 +35,26 @@ export const useCartData = () => {
         }));
     };
 
-    const removeProduct = ({ id, size, color }) => () => (
-        dispatch(removeItemFromCart({ id, size, color }))
-    );
+    const removeProduct = ({
+        id, name, purePrice, quantity, size, color,
+    }) => () => {
+        window.dataLayer?.push({ ecommerce: null });
+        window.dataLayer?.push({
+            event: 'remove_from_cart',
+            ecommerce: {
+                items: [{
+                    item_name: name,
+                    item_id: id,
+                    price: purePrice,
+                    item_variant: color,
+                    item_variant2: size,
+                    quantity,
+                }],
+            },
+        });
+        dispatch(removeItemFromCart({ id, size, color }));
+    };
+
     const changeCartNotes = ({ target }) => dispatch(changeNotes(target.value));
 
     const goToCheckoutPage = () => history.push('/order');

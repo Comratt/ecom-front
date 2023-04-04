@@ -51,6 +51,7 @@ export const Card = ({
     discount,
     hideInfo,
     hideColors,
+    category,
 }) => {
     const componentClassNames = classNames('lib-card', className);
     let priceClassNames = classNames('lib-card__info-price');
@@ -65,13 +66,28 @@ export const Card = ({
     if (discount > 0) {
         priceClassNames = classNames(priceClassNames, 'sale');
     }
+    const handleClick = () => {
+        window.dataLayer?.push({ ecommerce: null });
+        window.dataLayer?.push({
+            event: 'select_item',
+            ecommerce: {
+                items: [{
+                    item_name: title,
+                    item_id: cardId,
+                    price: parseFloat(purePrice),
+                    item_brand: title,
+                    item_category: category,
+                }],
+            },
+        });
+    };
 
     return (
         <div className={componentClassNames}>
             <div className="lib-card__heart_wh">
                 <WishlistHeart cardId={cardId} />
             </div>
-            <NavLink aria-label={`Детальніше про - ${title}`} to={detailsPath}>
+            <NavLink onClick={handleClick} aria-label={`Детальніше про - ${title}`} to={detailsPath}>
                 <div
                     className="lib-card__picture"
                     style={{ backgroundImage: `url(${imagePath})` }}
@@ -82,7 +98,7 @@ export const Card = ({
             </NavLink>
             {!hideInfo && (
                 <div className={classNames('lib-card__info', { 'hidden-colors': hideColors })}>
-                    <NavLink to={detailsPath} className="lib-card__info-content">
+                    <NavLink onClick={handleClick} to={detailsPath} className="lib-card__info-content">
                         <p className="lib-card__info-title">
                             {title}
                         </p>

@@ -198,6 +198,27 @@ export const OrderForm = (className) => {
                     (response) => {
                         console.log('error', response);
                         setFormLoading(false);
+                        // eslint-disable-next-line max-len
+                        const totalPrice = products?.reduce((acc, val) => acc + (val?.purePrice * val?.quantity), 0);
+                        const items = products?.map((product) => ({
+                            item_name: product.name,
+                            item_id: product.id,
+                            price: product.purePrice,
+                            item_variant: product.color,
+                            item_variant2: product.size,
+                            quantity: product.quantity,
+                        }));
+
+                        window.dataLayer?.push({ ecommerce: null });
+                        window.dataLayer?.push({
+                            event: 'purchase',
+                            ecommerce: {
+                                transaction_id: response?.order_id,
+                                value: totalPrice,
+                                currency: 'UAH',
+                                items,
+                            },
+                        });
                         alert.error({ name: 'Упсс... Щось пішло не так з оплатою.' });
                     },
                     (response) => {
@@ -259,6 +280,27 @@ export const OrderForm = (className) => {
 
         window.scrollTo(0, 0);
     }, []);
+
+    useEffect(() => {
+        if (products && products?.length) {
+            const items = products.map((product) => ({
+                item_name: product?.name,
+                item_id: product?.id,
+                price: product?.purePrice,
+                item_variant: product?.color,
+                item_variant2: product?.size,
+                quantity: product?.quantity,
+            }));
+
+            window.dataLayer?.push({ ecommerce: null });
+            window.dataLayer?.push({
+                event: 'begin_checkout',
+                ecommerce: {
+                    items,
+                },
+            });
+        }
+    }, [products]);
 
     useEffect(() => {
         novaPoshtaAPI.post('', {

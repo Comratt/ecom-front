@@ -80,7 +80,7 @@ export const Footer = ({
                                     </li>
                                     <li>
                                         <Link to="/">
-                                            шоу-рум “Treskare”
+                                            шоу-рум “Kostumchek”
                                         </Link>
                                     </li>
                                 </ul>
@@ -120,7 +120,7 @@ export const Footer = ({
                             </li>
                             <li>
                                 <Link to="/returns">
-                                    <u>шоу-рум “Treskare”</u>
+                                    <u>шоу-рум “Kostumchek”</u>
                                 </Link>
                             </li>
                         </ul>
@@ -151,7 +151,7 @@ export const Footer = ({
                             <br />
                             <li>
                                 <Link to="/">
-                                    +380 50 660 7097
+                                    +380 (68) 807 12 47
                                 </Link>
                             </li>
                             <li>
