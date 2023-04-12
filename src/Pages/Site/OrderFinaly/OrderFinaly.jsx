@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { View } from 'Components/View';
@@ -10,6 +10,10 @@ import './OrderFinaly.css';
 
 const OrderFinaly = () => {
     const history = useHistory();
+
+    useEffect(() => {
+        window.gtag('event', 'conversion', { send_to: 'AW-11137792874/VCmMCN3z5JUYEOr29L4p' });
+    }, []);
 
     return (
         <div>
