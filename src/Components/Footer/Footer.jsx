@@ -6,6 +6,8 @@ import Facebook from 'Icons/Facebook';
 import Instagram from 'Icons/Instagram';
 import Telegram from 'Icons/Telegram';
 import Viber from 'Icons/Viber';
+import Visa from 'Icons/Visa';
+import MasterCard from 'Icons/MasterCard';
 import FooterInput from '../FooterInput/FooterInput';
 import { Link } from '../Link';
 import { Accordion, AccordionItem } from '../Accordion';
@@ -144,13 +146,20 @@ export const Footer = ({
                             </li>
                             <li>
                                 <Link to="/contacts">
-                                    Контакти
+                                    Контактна особа
                                 </Link>
                             </li>
-                            <br />
-                            <br />
                             <li>
                                 <Link to="/">
+                                    ФОП Степанов Олександр Миколайович
+                                    {' '}
+                                    <br />
+                                    М.Чернівці вул. Воробкевича 13
+                                    {' '}
+                                    <br />
+                                    ІПН:3046114751
+                                    {' '}
+                                    <br />
                                     +380 (68) 807 12 47
                                 </Link>
                             </li>
@@ -218,6 +227,12 @@ export const Footer = ({
                                 <Link to="/aboutcompany">
                                     Про нас
                                 </Link>
+                            </li>
+                            <li>
+                                <Visa style={{ marginLeft: '10px' }} />
+                            </li>
+                            <li>
+                                <MasterCard style={{ marginLeft: '10px' }} />
                             </li>
                         </ul>
                     </div>
