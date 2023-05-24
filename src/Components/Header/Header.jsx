@@ -5,11 +5,12 @@ import HeaderHeart from 'Icons/HeaderHeart';
 import Menu from 'Icons/Menu';
 import Cart from 'Icons/Cart';
 import User from 'Icons/User';
-
 import { getCartQuantity } from 'Store/Modules/Cart/selectors';
 import { getWishlistQuantity } from 'Store/Modules/Wishlist/selectors';
 
 import { useLayout } from 'hooks/useLayout';
+import imgBlack from '../../assets/img/logoblack.png';
+import img from '../../assets/img/logo.png';
 import { Link } from '../Link';
 import HeaderInput from '../HeaderInput/HeaderInput';
 import HeaderListCollectionNews from '../HeaderListCollectionNews/HeaderListCollectionNews';
@@ -78,7 +79,10 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
             </div>
             {showLogo && (
                 <Link title="До головної сторінки" to="/" className="header-main-logo">
-                    <h1>KOSTUMCHEK</h1>
+                    <h1>
+                        {' '}
+                        <img width={200} src={!transparent ? imgBlack : img} alt="kostumchek" className="header-main-logo-img" />
+                    </h1>
                 </Link>
             )}
             <div className="header-right-menu">

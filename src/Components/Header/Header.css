@@ -16,6 +16,9 @@
     top: 0;
     transition: .3s;
 }
+.lib-header .header-main-logo-img{
+    width: 285px;
+}
 
 .lib-header .lib-header__btn {
     border: none;
