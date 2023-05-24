@@ -34,7 +34,7 @@ const AboutCompany = ({
             <h2 className="lib-about-company header">
                 Про компанію
             </h2>
-            <div className="lib-about-company title">
+            {/* <div className="lib-about-company title">
                 <div>
                     <h2>KOSTUMCHEK: Хто ми</h2>
                     <p>
@@ -44,7 +44,7 @@ const AboutCompany = ({
                         Приємно познайомитися.
                     </p>
                 </div>
-            </div>
+            </div> */}
             <div className="lib-about-company images">
                 <img className="lib-about-company img-about" src={getImage('about-us-334.jpeg')} alt="asd" />
                 <p>
