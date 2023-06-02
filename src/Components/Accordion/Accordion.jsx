@@ -3,7 +3,7 @@ import './Accordion.css';
 import AccardionArrow from '../../Icons/AccardionArrow';
 
 export const AccordionItem = ({
-    label, isCollapsed, handleClick, children, hideArrow,
+    label, isCollapsed, handleClick, children, hideArrow, className = '',
 }) => (
     <>
         <button type="button" className="accordion-button" onClick={handleClick}>
@@ -18,7 +18,7 @@ export const AccordionItem = ({
             )}
         </button>
         <div
-            className={`accordion-item ${isCollapsed ? 'collapsed' : 'expanded'}`}
+            className={`accordion-item ${className} ${isCollapsed ? 'collapsed' : 'expanded'}`}
             aria-expanded={isCollapsed}
         >
             {children}
@@ -42,6 +42,7 @@ export const Accordion = ({ defaultIndex, onItemClick, children }) => {
                 key={child?.props.index}
                 isCollapsed={bindIndex !== child?.props.index}
                 label={child?.props.label}
+                className={child?.props?.className}
                 hideArrow={child?.props.hideArrow}
                 handleClick={() => changeItem(child?.props.index)}
             >

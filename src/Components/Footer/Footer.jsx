@@ -206,7 +206,7 @@ export const Footer = ({
                                     </a>
                                 </li>
                                 <li>
-                                    <a className="sidebar-social__telegram" href="https://t.me/kostumchekofficial_bot">
+                                    <a className="sidebar-social__telegram" href="https://t.me/kostumchek_official">
                                         <Telegram height="18" width="18" />
                                     </a>
                                 </li>

@@ -168,7 +168,7 @@ export const SideBar = ({ className }) => {
                                 </a>
                             </li>
                             <li>
-                                <a className="sidebar-social__telegram" href="#">
+                                <a className="sidebar-social__telegram" rel="noreferrer" target="_blank" href="https://t.me/kostumchek_official">
                                     <Telegram height="18" width="18" />
                                 </a>
                             </li>
