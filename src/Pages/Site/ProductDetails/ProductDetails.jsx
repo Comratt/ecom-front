@@ -135,7 +135,16 @@ export const ProductDetails = () => {
             [`item_category${indx || ''}`]: val?.category_name,
         }), {});
 
-        console.log(window.dataLayer?.push);
+        window?.fbq('track', 'AddToCart', {
+            value: result?.purePrice,
+            currency: 'UAH',
+            contents: [
+                {
+                    id: result?.id,
+                    quantity: 1,
+                },
+            ],
+        });
         window.dataLayer?.push({ ecommerce: null });
         window.dataLayer?.push({
             event: 'add_to_cart',
@@ -197,6 +206,12 @@ export const ProductDetails = () => {
                 ...acc,
                 [`item_category${indx || ''}`]: val?.category_name,
             }), {});
+
+            window?.fbq('track', 'ViewContent', {
+                value: result?.purePrice,
+                currency: 'UAH',
+                content_ids: result?.id,
+            });
 
             window.dataLayer?.push({ ecommerce: null });
             window.dataLayer?.push({
