@@ -8,6 +8,7 @@ import Telegram from 'Icons/Telegram';
 import Viber from 'Icons/Viber';
 import Visa from 'Icons/Visa';
 import MasterCard from 'Icons/MasterCard';
+import imgBlack from '../../assets/img/logoblack.png';
 import FooterInput from '../FooterInput/FooterInput';
 import { Link } from '../Link';
 import { Accordion, AccordionItem } from '../Accordion';
@@ -24,7 +25,7 @@ export const Footer = ({
         <footer className={componentClasses}>
             <div className="container-footer">
                 <div className="container-title">
-                    <h1>KOSTUMCHEK</h1>
+                    <img src={imgBlack} alt="logo" style={{ width: '250px' }} />
                 </div>
                 <div className="content-footer">
                     <div className="accordion-info">
