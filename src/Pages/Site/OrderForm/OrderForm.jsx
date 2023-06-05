@@ -155,6 +155,18 @@ export const OrderForm = (className) => {
         setFormLoading(true);
         try {
             const order = await orderSubmit(formInfo);
+            // FB PIXEL
+            // eslint-disable-next-line max-len
+            const totalPrice = products?.reduce((acc, val) => acc + (val?.purePrice * val?.quantity), 0);
+
+            window?.fbq('track', 'Purchase', {
+                value: totalPrice,
+                currency: 'UAH',
+                contents: products?.map((product) => ({
+                    id: product?.id,
+                    quantity: product?.quantity,
+                })),
+            });
 
             if (+formInfo.paymentStatus === PAYMENT_ONLINE) {
                 const merchantSignature = getMerchantSignature({ ...formInfo, products }, order);
@@ -198,8 +210,6 @@ export const OrderForm = (className) => {
                     (response) => {
                         console.log('error', response);
                         setFormLoading(false);
-                        // eslint-disable-next-line max-len
-                        const totalPrice = products?.reduce((acc, val) => acc + (val?.purePrice * val?.quantity), 0);
                         const items = products?.map((product) => ({
                             item_name: product.name,
                             item_id: product.id,

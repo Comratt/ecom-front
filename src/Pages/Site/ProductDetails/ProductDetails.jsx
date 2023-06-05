@@ -136,7 +136,16 @@ export const ProductDetails = () => {
             [`item_category${indx || ''}`]: val?.category_name,
         }), {});
 
-        console.log(window.dataLayer?.push);
+        window?.fbq('track', 'AddToCart', {
+            value: result?.purePrice,
+            currency: 'UAH',
+            contents: [
+                {
+                    id: result?.id,
+                    quantity: 1,
+                },
+            ],
+        });
         window.dataLayer?.push({ ecommerce: null });
         window.dataLayer?.push({
             event: 'add_to_cart',
@@ -198,6 +207,12 @@ export const ProductDetails = () => {
                 ...acc,
                 [`item_category${indx || ''}`]: val?.category_name,
             }), {});
+
+            window?.fbq('track', 'ViewContent', {
+                value: result?.purePrice,
+                currency: 'UAH',
+                content_ids: result?.id,
+            });
 
             window.dataLayer?.push({ ecommerce: null });
             window.dataLayer?.push({
@@ -356,6 +371,29 @@ export const ProductDetails = () => {
                                     <AccordionItem label="Детальніше про товар" index="0">
                                         <ReactMarkdown remarkPlugins={[remarkGfm]}>
                                             {result.description}
+                                        </ReactMarkdown>
+                                    </AccordionItem>
+                                    <AccordionItem className="product-delivery" label="Доставка та оплата" index="1">
+                                        <ReactMarkdown>
+                                            {'#### Клієнт може оплатити своє замовлення будь-яким зручним для нього способом: \n'
+                                                + '- Готівкою чи картою безпосередньо в шоу-румі: \n'
+                                                + 'м. Львів, вул. Івана Франка, 33 \n'
+                                                + 'м. Чернівці, вул. Героїв Майдану 12 \n'
+                                                + '- При замовленні від 2000грн безкоштовна доставка у зручне відділення будь-якої пошти. \n'
+                                                + '- Безкоштовна адресна доставка кур’єром при замовленні від 6000грн. \n'
+                                                + '(Ви нічим не ризикуєте, при умові, якщо костюм вам не підходе, зворотня доставка за наш рахунок) \n'
+                                                + '- Оплата може бути як по повній передоплаті, або по накладеним платежем, за вашим вибором. \n'
+                                                + '- Самовивіз з наших шоу-румів.'}
+                                        </ReactMarkdown>
+                                    </AccordionItem>
+                                    <AccordionItem className="product-delivery" label="Бонусна програма" index="2">
+                                        <ReactMarkdown>
+                                            {'1.  Все дуже просто! При першій покупці з сайту ви отримуєте -10% на будь-яку товар.\n'
+                                                + '2.  Відтепер від кожної вашої покупки, 5% від вартості замовлення буде відкладено на ваш рахунок (кешбек).\n'
+                                                + '3.  На що може використати накопичені бонуси? Коштами (бонусами) ви можете сплатити до половини вартості товару, новинок й тих, що на розпродажі.\n'
+                                                + '\n'
+                                                + 'Про що слід пам\'ятати?\n'
+                                                + 'Бонуси (кешбек) слід використувати до кінця поточного року.'}
                                         </ReactMarkdown>
                                     </AccordionItem>
                                 </Accordion>

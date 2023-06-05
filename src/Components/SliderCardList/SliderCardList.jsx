@@ -59,6 +59,7 @@ export const SliderCardList = ({
         page: 1,
         count: (count * 2) + 1,
         category: category || [],
+        available: true,
     });
     const {
         loading,

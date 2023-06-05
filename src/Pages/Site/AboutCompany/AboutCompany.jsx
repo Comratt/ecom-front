@@ -34,7 +34,7 @@ const AboutCompany = ({
             <h2 className="lib-about-company header">
                 Про компанію
             </h2>
-            <div className="lib-about-company title">
+            {/* <div className="lib-about-company title">
                 <div>
                     <h2>KOSTUMCHEK: Хто ми</h2>
                     <p>
@@ -44,9 +44,9 @@ const AboutCompany = ({
                         Приємно познайомитися.
                     </p>
                 </div>
-            </div>
+            </div> */}
             <div className="lib-about-company images">
-                <img className="lib-about-company img-about" src={getImage('about-2.jpeg')} alt="asd" />
+                <img className="lib-about-company img-about" src={getImage('about-us-334.jpeg')} alt="asd" />
                 <p>
                     Всі ці роки компанія створює для покупців якісний і зручний чоловічий одяг для бізнесу та відпочинку з оптимальним поєднанням ціни і якості. Сьогодні роздрібна мережа KOSTUMCHEK налічує 7 магазинів і шоу-рум.
                     KOSTUMCHEK орієнтований на впевнених в собі чоловіків, які цінують якість, комфорт і живуть з відчуттям повноти життя.

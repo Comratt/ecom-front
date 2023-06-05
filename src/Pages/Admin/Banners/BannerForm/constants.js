@@ -30,7 +30,7 @@ export const FIELDS = [
     },
     {
         name: LINK_FIELD,
-        type: 'text',
+        type: 'select',
         required: true,
         icon: 'tags',
         iconPosition: 'left',

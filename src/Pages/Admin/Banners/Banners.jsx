@@ -13,8 +13,10 @@ import { usePostBanner } from '../hooks/usePostBanner';
 const Banners = () => {
     const [show, setShow] = useState(false);
     const {
-        register, handleSubmit, errors, setValue,
-    } = useForm();
+        register, handleSubmit, errors, setValue, getValues,
+    } = useForm({
+        mode: 'onChange',
+    });
     const {
         loading, banners, setBanners, error,
     } = useFetchAllBanners();
@@ -105,6 +107,7 @@ const Banners = () => {
                         onSubmit={handleSubmit(onSubmit)}
                     >
                         <BannerForm
+                            link={banners.find((banner) => banner.banner_id === show)?.link}
                             register={register}
                             errors={errors}
                         />
