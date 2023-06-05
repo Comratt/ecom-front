@@ -34,6 +34,7 @@ const AboutCompany = lazy(() => import('Pages/Site/AboutCompany'));
 const AboutCompanyDelivery = lazy(() => import('Pages/Site/AboutCompany/Delivery'));
 const AboutCompanyReturns = lazy(() => import('Pages/Site/AboutCompany/Returns'));
 const Contact = lazy(() => import('Pages/Site/Contacts/Contacts'));
+const Bonus = lazy(() => import('Pages/Site/AboutCompany/Bonus'));
 
 const options = {
     position: positions.TOP_RIGHT,
@@ -73,6 +74,7 @@ const RouterComponent = () => (
                             <Route path="/delivery" component={() => <AboutCompanyDelivery />} />
                             <Route path="/returns" component={() => <AboutCompanyReturns />} />
                             <Route path="/contacts" component={() => <Contact />} />
+                            <Route path="/bonus" component={() => <Bonus />} />
                         </Layout>
                     </CategoriesWrapperProvider>
                     <Route path="*" component={NotFoundPage} />

@@ -28,6 +28,7 @@ import { ProductDetailsLoader } from 'Components/SkeletonLoader';
 import { ImagePreview } from 'Components/ImagePreview';
 import MetaTags from 'Components/MetaTags';
 import { useDetectedMobileDevice } from 'hooks/useDetectMobileDevice';
+import NovaPoshta from '../../../Icons/NovaPoshta';
 import './ProductInfo.css';
 
 export const ProductDetails = () => {
@@ -344,6 +345,11 @@ export const ProductDetails = () => {
                                 </span>
                             </div>
                         </div>
+                        <a className="lib-product_novaposhta_label" target="_blank" href="https://www.youtube.com/watch?v=8ddPeGYXgL8&embeds_referring_euri=https%3A%2F%2Fnovaposhta.ua%2F&source_ve_path=Mjg2NjY&feature=emb_logo&ab_channel=%D0%9D%D0%BE%D0%B2%D0%B0%D0%BF%D0%BE%D1%88%D1%82%D0%B0">
+                            <NovaPoshta width={20} />
+                            {' '}
+                            Легке повернення
+                        </a>
                         <div className="lib-product_info_product_description_block">
                             <div className="lib-product_info_product_description">
                                 <Accordion defaultIndex="0">

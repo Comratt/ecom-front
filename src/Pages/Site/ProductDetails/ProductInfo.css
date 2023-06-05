@@ -64,6 +64,19 @@
 .lib-product_info_size_list{
     padding-left: 0;
 }
+.lib-product_novaposhta_label{
+    padding: 8px 12px;
+    color: white;
+    background-color: #da291c;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 200px;
+}
 .lib-product_info_size button.table-size{
     text-decoration: underline;
     color: var(--color-accent-light);

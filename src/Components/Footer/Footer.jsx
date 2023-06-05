@@ -42,7 +42,7 @@ export const Footer = ({
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/">
+                                        <Link to="/bonus">
                                             Бонусна програма
                                         </Link>
                                     </li>
@@ -140,7 +140,7 @@ export const Footer = ({
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/">
+                                <Link to="/bonus">
                                     Бонусна програма
                                 </Link>
                             </li>
