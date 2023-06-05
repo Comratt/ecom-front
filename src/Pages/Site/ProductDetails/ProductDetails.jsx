@@ -284,6 +284,9 @@ export const ProductDetails = () => {
                                 {'Артикул: '}
                                 {result.model}
                             </h3>
+                            <h4 className="lib-product_info_product-subtitle" style={{ marginTop: '10px' }}>
+                                При замовленні з сайту 15% знижка на кожну позицію
+                            </h4>
                             {discount
                                 ? (
                                     <div>
