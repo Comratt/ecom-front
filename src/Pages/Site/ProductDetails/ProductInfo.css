@@ -22,6 +22,19 @@
     color: var(--header-color);
     display: flex;
 }
+.lib-product_info_product-subtitle-sale{
+    padding: 8px 12px;
+    color: white;
+    background-color: var(--color-accent-light);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 200px;
+}
 
 .lib-product_info .container {
     display: flex;
