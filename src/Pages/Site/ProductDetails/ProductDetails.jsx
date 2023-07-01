@@ -285,7 +285,7 @@ export const ProductDetails = () => {
                                 {result.model}
                             </h3>
                             <h4 className="lib-product_info_product-subtitle-sale" style={{ marginTop: '10px' }}>
-                                15% знижка при замовленні з сайту
+                                10% знижка при замовленні з сайту
                             </h4>
                             {discount
                                 ? (
