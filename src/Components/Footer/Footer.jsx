@@ -64,7 +64,7 @@ export const Footer = ({
                                     </li>
                                 </ul>
                             </AccordionItem>
-                            <AccordionItem label="Наші шоу-руми" index="2" isCollapsed>
+                            <AccordionItem label="Наші шоу-руми в Україні" index="2" isCollapsed>
                                 <ul className="footer-list">
                                     <li>
                                         <Link to="/">
@@ -103,7 +103,7 @@ export const Footer = ({
                         <ul className="footer-list">
                             <li>
                                 <Link to="/delivery">
-                                    <b className="footer-list-city">Наші шоу-руми</b>
+                                    <b className="footer-list-city">Наші шоу-руми в Україні</b>
                                 </Link>
                             </li>
                             <li>
