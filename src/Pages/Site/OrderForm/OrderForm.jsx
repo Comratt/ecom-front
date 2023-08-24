@@ -227,7 +227,7 @@ export const OrderForm = (className) => {
             <div className="order__main">
                 <div className="order__form">
                     <div className="order__svg">
-                        <h1>KOSTUMCHEK</h1>
+                        <h1>LANCASTER</h1>
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="order__contact-info">
