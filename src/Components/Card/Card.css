@@ -27,7 +27,7 @@
     text-align: center;
     font-size: var(--size-normal-small);
     color: var(--color-dark-light);
-    background: rgba(196, 169, 150, .7);
+    background: rgba(255, 40, 40, 0.7);
     border-top-left-radius: 4px;
     font-family: var(--accent-ff-bold);
     border-bottom-right-radius: 4px;
@@ -92,6 +92,10 @@
     font-family: var(--accent-ff);
     margin-right: 10px;
     white-space: nowrap;
+}
+
+.lib-card .lib-card__info-price.sales {
+    color: var(--color-sallary);
 }
 .lib-card .sale{
     color: var(--color-accent-light)!important;
