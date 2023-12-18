@@ -73,6 +73,8 @@ export const Card = ({
             </div>
             <NavLink aria-label={`Детальніше про - ${title}`} to={detailsPath}>
                 <div
+                    role="img"
+                    alt={title}
                     className="lib-card__picture"
                     style={{ backgroundImage: `url(${imagePath})` }}
                 />

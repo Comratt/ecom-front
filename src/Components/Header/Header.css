@@ -48,6 +48,7 @@
 }
 
 .header-main-logo {
+    font-size: 1.3em;
     display: flex;
     align-items: center;
     width: 60%;

@@ -1,3 +1,8 @@
 .home-page .layout__content-wrapper {
     padding-top: 0;
 }
+
+.home-page .main-text {
+    max-width: 1200px;
+    margin: 0 auto;
+}

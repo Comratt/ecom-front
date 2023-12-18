@@ -102,7 +102,7 @@ const Products = () => {
                                 <button
                                     type="button"
                                     className="btn btn-outline-primary mr-2"
-                                    onClick={handleClick(product.product_id)}
+                                    onClick={handleClick(product.slug)}
                                 >
                                     <Edit
                                         fill="blue"

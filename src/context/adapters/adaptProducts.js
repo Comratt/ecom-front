@@ -15,6 +15,7 @@ export const adaptProducts = ({ data = [] } = {}) => {
         discounts,
         colors,
         sizes,
+        slug,
     }) => {
         const colorsF = colors?.map(
             (item) => ({ ...item, id: item.option_value_id, name: item.name_value }),
@@ -26,7 +27,7 @@ export const adaptProducts = ({ data = [] } = {}) => {
 
         return ({
             id: p_id,
-            link: `/products/${p_id}`,
+            link: `/products/${slug}`,
             name,
             image: getImage(image),
             price: getFormattedPrice(price),

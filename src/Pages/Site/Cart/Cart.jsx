@@ -106,9 +106,9 @@ export const Cart = () => {
                                             <tr key={`${product.id}-${product.size}-${product.color}`}>
                                                 <td>
                                                     <div className="cart-product-description">
-                                                        <Link to={`/products/${product.id}`}><img src={product.image} alt="product-photo" /></Link>
+                                                        <Link to={`/products/${product.slug}`}><img src={product.image} alt="product-photo" /></Link>
                                                         <ul className="cart-product-description-list">
-                                                            <Link to={`/products/${product.id}`}>
+                                                            <Link to={`/products/${product.slug}`}>
                                                                 <li className="card-item-title">
                                                                     {product.name}
                                                                 </li>

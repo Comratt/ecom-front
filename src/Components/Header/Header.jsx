@@ -79,7 +79,7 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
             </div>
             {showLogo && (
                 <Link title="До головної сторінки" to="/" className="header-main-logo">
-                    <h1>{MARKET_NAME}</h1>
+                    <h3>{MARKET_NAME.toUpperCase()}</h3>
                 </Link>
             )}
             <div className="header-right-menu">

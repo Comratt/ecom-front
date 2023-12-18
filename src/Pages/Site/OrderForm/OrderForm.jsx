@@ -383,7 +383,7 @@ export const OrderForm = (className) => {
                     style={{ height: showSideBar ? height : 0 }}
                 >
                     {products.map((product) => (
-                        <Link to={`/products/${product.id}`} key={`${product.id}-${product.size}-${product.color}`} className="order__item">
+                        <Link to={`/products/${product.slug}`} key={`${product.id}-${product.size}-${product.color}`} className="order__item">
                             <div className="order__item-section">
                                 <div className="order__item-image">
                                     <div className="cart-badge">{product.quantity}</div>

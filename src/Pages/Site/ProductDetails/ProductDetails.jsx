@@ -25,6 +25,7 @@ import { ScrollSlider } from 'Components/ScrollSlider';
 import SliderMobileDevices from 'Components/SliderMobileDevices/SliderMobileDevices';
 import ProductCarousel from 'Components/PorductCarousel';
 import { ProductDetailsLoader } from 'Components/SkeletonLoader';
+import { Title } from 'Components/Title';
 import { ImagePreview } from 'Components/ImagePreview';
 import MetaTags from 'Components/MetaTags';
 import { useDetectedMobileDevice } from 'hooks/useDetectMobileDevice';
@@ -121,6 +122,7 @@ export const ProductDetails = () => {
             price: result?.price,
             purePrice: result?.purePrice,
             image: result?.image,
+            slug: result?.slug,
             sizeId: relatedColorSize?.sizeId,
             colorId: relatedColorSize?.colorId,
             size: relatedColorSize?.sizeName,
@@ -332,6 +334,22 @@ export const ProductDetails = () => {
                     data={result.images}
                     hideColors
                 />
+            </div>
+            <div className="lib-product_info">
+                <div className="container">
+                    <Title type={1}>
+                        Вітаємо в інтернет-магазині жіночого одягу Paparot - Вашому провіднику у світі моди та стилю! Відібрані тільки найстрімніші тренди та найбільший вибір жіночого одягу, який задовільнить найвибагливіші смаки! Успішні покупки починаються з Paparot, мета якого - полегшити і зробити приємним Ваш досвід купівлі жіночого одягу онлайн.
+                    </Title>
+                    <Title type={2}>
+                        Цінуєте якість та різноманітність товарів? На полицях нашого магазину зібрані тільки свіжі, актуальні новинки від провідних світових брендів та молодих дизайнерів. Відкрийте для себе широкий асортимент рішень для будь-якого випадку: від феєричного вечірнього плаття до зручних джинсів або світшотів.
+                    </Title>
+                    <Title type={3}>
+                        Paparot - магазин, що враховує дрібниці, що роблять Ваші покупки максимально комфортними. Ми пропонуєmo швидку та безкоштовну доставку для оселярів України. Крім того, Вам належить право на безкоштовне повернення товару протягом 14 днів!
+                    </Title>
+                    <Title type={4}>
+                        З Paparot Ви завжди будете в курсі актуальних акцій та обов'язково знайдете найкращі пропозиції серед новинок! Уважно стежте за асортиментом товарів, робіть вибір та насолоджуйтеся чудовою атмосферою Вашого улюбленого магазину. Дозвольте Paparot зробити Ваші покупки незабутнім та ефективним досвідом і переконайтеся самі, що справжній успіх в пошуках неймовірного жіночого одягу лежить в Paparot!
+                    </Title>
+                </div>
             </div>
         </>
     );

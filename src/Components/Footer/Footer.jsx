@@ -82,12 +82,12 @@ export const Footer = ({
                         <div className="footer-links">
                             <ul className="sidebar-social">
                                 <li>
-                                    <a className="sidebar-social__facebook" rel="noreferrer" target="_blank" href="https://www.facebook.com/Kostumchek/">
+                                    <a className="sidebar-social__facebook" rel="noreferrer" target="_blank" href="#">
                                         <Facebook height="18" width="18" />
                                     </a>
                                 </li>
                                 <li>
-                                    <a className="sidebar-social__instagram" rel="noreferrer" target="_blank" href="https://instagram.com/kostumchek_official?igshid=YmMyMTA2M2Y=">
+                                    <a className="sidebar-social__instagram" rel="noreferrer" target="_blank" href="#">
                                         <Instagram height="18" width="18" />
                                     </a>
                                 </li>

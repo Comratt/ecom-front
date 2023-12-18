@@ -1,9 +1,9 @@
 import currency from 'currency.js';
 
-export const MARKET_NAME = 'PAPAROT';
-export const MARKET_DESCRIPTION = `Інтернет-магазин ${MARKET_NAME}: купити чоловічі костюми та куртки саме в нас. Купуйте в ${MARKET_NAME}! | Офіційна гарантія | Доставка по всій Україні | Якісні чоловічі куртки, костюми $ Вигідні ціни та знижки %`;
-export const MARKET_TITLE = `Інтернет-магазин ${MARKET_NAME}: сайт з найпопулярнішими чоловічими куртками та костюмами в Україні`;
-export const MARKET_KEYWORDS = `${MARKET_NAME.toLowerCase()}, ${MARKET_NAME.toUpperCase()}, костюми, чоловічі костюми, куртки, чоловічі куртки, купити, костюм на весілля, свадьба, костюм для нареченого, наречений, дешевий весільний костюм, костюм на пошив, онлайн-магазин`;
+export const MARKET_NAME = 'Paparot';
+export const MARKET_DESCRIPTION = `Відкрийте для себе інтернет-магазин ${MARKET_NAME} — кращі світові тенденції моди та вишуканий асортимент жіночого одягу. Швидка безоплатна доставка по Україні а також 14-ти денне безкоштовне поверення.`;
+export const MARKET_TITLE = `Жіночий одяг від ${MARKET_NAME} | Купити модний одяг для жінок з безкоштовною доставкою`;
+export const MARKET_KEYWORDS = `купити жіночий одяг, інтернет-магазин, одяг для жінок, стильний гардероб, тренди моди, безкоштовна доставка, відомі бренди, молоді дизайнери, акції, нові надходження ${MARKET_NAME}, ${MARKET_NAME.toUpperCase()}`;
 
 export const MOBILE_VIEWPORT_MAX_WIDTH = 576;
 export const TABLET_VIEWPORT_MAX_WIDTH = 768;

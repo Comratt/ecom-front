@@ -24,7 +24,7 @@ const UserOrders = ({ email }) => {
         <div className={componentClasses}>
             <div className="lib-user-orders-table">
                 {result?.data?.map((product) => (
-                    <Link key={uuidv4()} to={`/products/${product?.product_id}`} className="lib-user-orders-table-info">
+                    <Link key={uuidv4()} to={`/products/${product?.slug}`} className="lib-user-orders-table-info">
                         <img src={getImage(product?.image)} alt="img-order" />
                         <div className="lib-user-orders-table-info-product">
                             <span className="lib-user-orders-product-model">

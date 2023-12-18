@@ -14,7 +14,7 @@ export const useProduct = (isUniq = true) => {
         result,
         error,
         loading,
-        productId: id,
+        productId: result?.id,
     }), [
         result,
         error,
