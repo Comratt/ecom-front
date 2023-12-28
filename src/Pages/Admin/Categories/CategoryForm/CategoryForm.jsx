@@ -3,7 +3,9 @@ import { getValidationMessage } from 'Constants';
 import Input from 'Components/Input';
 import { FIELDS, SEO_FIELDS, VALIDATION_RULES } from './constants';
 
-const CategoryForm = ({ register, errors, categories }) => (
+const CategoryForm = ({
+    register, errors, categories, active,
+}) => (
     <div>
         {FIELDS.map((field) => {
             if (field.type === 'select') {
@@ -18,7 +20,7 @@ const CategoryForm = ({ register, errors, categories }) => (
                                 id="inlineFormCustomSelectPref"
                             >
                                 <option value={0} disabled selected>Категория</option>
-                                {categories.map((category) => (
+                                {categories.filter((cat) => cat.category_id !== active).map((category) => (
                                     <option
                                         value={category.category_id}
                                     >
