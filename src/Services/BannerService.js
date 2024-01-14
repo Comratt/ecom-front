@@ -31,6 +31,7 @@ class BannerService {
             formData.append('description', params.description);
             formData.append('sort_order', params.sort_order);
             formData.append('image', params.image ? params.image[0] : '');
+            formData.append('image_mobile', params.image_mobile ? params.image_mobile[0] : '');
             const settings = { headers: { 'Content-Type': 'multipart/form-data' } };
 
             const banner = await API.post('api/admin/banners', formData, settings);
@@ -50,6 +51,7 @@ class BannerService {
             formData.append('description', params.description);
             formData.append('sort_order', params.sort_order || 1);
             formData.append('image', params.image ? params.image[0] : '');
+            formData.append('image_mobile', params.image_mobile ? params.image_mobile[0] : '');
             const settings = { headers: { 'Content-Type': 'multipart/form-data' } };
 
             const banner = await API.post(`api/admin/banners/${id}/edit`, formData, settings);

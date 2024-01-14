@@ -8,6 +8,7 @@ export const DESCRIPTION_FIELD = 'description';
 export const LINK_FIELD = 'link';
 export const SORT_FIELD = 'sort_order';
 export const IMAGE_FIELD = 'image';
+export const IMAGE_MOBILE_FIELD = 'image_mobile';
 
 export const FIELDS = [
     {
@@ -55,6 +56,15 @@ export const FIELDS = [
         placeholder: 'Добавить картинку',
         label: 'Картинка',
     },
+    {
+        name: IMAGE_MOBILE_FIELD,
+        type: 'file',
+        required: true,
+        icon: 'tags',
+        iconPosition: 'left',
+        placeholder: 'Добавить картинку для моб. девайсов',
+        label: 'Картинка для мобильных девайсов',
+    },
 ];
 
 export const VALIDATION_RULES = {
@@ -85,4 +95,5 @@ export const VALIDATION_RULES = {
         },
     },
     [IMAGE_FIELD]: {},
+    [IMAGE_MOBILE_FIELD]: {},
 };
