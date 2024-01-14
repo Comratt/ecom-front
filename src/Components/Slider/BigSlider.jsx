@@ -116,6 +116,8 @@ export const BigSlider = memo(({
     const [activeSlide, setActiveSlide] = useState(0);
     const [touchStart, setTouchStart] = useState(0);
     const [touchEnd, setTouchEnd] = useState(0);
+    const { clientWidth } = useDetectedMobileDevice();
+    const isMobile = clientWidth <= 550;
 
     const handlePrev = useCallback((e) => {
         e?.stopPropagation();
@@ -171,13 +173,15 @@ export const BigSlider = memo(({
                 type="button"
                 className="lib-big-slider-arrow lib-big-slider__prev"
             />
-            {typeof data[0] === 'object' ? data.map(({ title, link, image }, index) => (
+            {typeof data[0] === 'object' ? data.map(({
+                title, link, image, image_mobile,
+            }, index) => (
                 <BigSliderItem
                     key={title}
                     active={(activeSlide === index)}
                     title={title}
                     link={link}
-                    image={image}
+                    image={isMobile ? image_mobile : image}
                 />
             )) : data.map((image, index) => (
                 <BigSliderItem
