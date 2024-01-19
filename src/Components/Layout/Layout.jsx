@@ -10,8 +10,10 @@ import { Footer } from '../Footer';
 import { useLayout } from '../../hooks/useLayout';
 
 import './Layout.css';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 export const Layout = ({ children }) => {
+    const history = useHistory();
     const {
         layoutState: { className },
         navigationOverlayOpened,
