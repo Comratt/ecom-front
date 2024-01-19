@@ -75,7 +75,6 @@ const HeaderListCollectionNews = () => {
                         </ul>
                     )}
                     {selectedCategory && (
-
                         <ul className="header-list-collection-woman">
                             <li className="main">
                                 <div className="header-list-collection-woman-arrow-btn">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import Close from 'Icons/Close';
@@ -18,6 +18,31 @@ import './SideBar.css';
 import { Link } from '../Link';
 import { Accordion, AccordionItem } from '../Accordion';
 import { Title } from '../Title';
+import HeaderListCollectionNews from 'Components/HeaderListCollectionNews/HeaderListCollectionNews';
+import AccardionArrow from 'Icons/AccardionArrow';
+
+const adaptParentCategories = (data = []) => {
+    if (!Array.isArray(data)) {
+        return { withSub: [], withoutSub: [] };
+    }
+
+    return data.reduce(
+        (acc, item) => {
+            if (item?.subcategories?.length) {
+                return {
+                    ...acc,
+                    withSub: [...acc.withSub, item],
+                };
+            }
+
+            return {
+                ...acc,
+                withoutSub: [...acc.withoutSub, item],
+            };
+        },
+        { withSub: [], withoutSub: [] },
+    );
+};
 
 export const SideBar = ({ className }) => {
     const dispatch = useDispatch();
@@ -29,6 +54,17 @@ export const SideBar = ({ className }) => {
     const {
         categories,
     } = useCategories();
+    const adaptedCategories = adaptParentCategories(adaptCategories(categories));
+
+    const [selectedCategory, setSelectedCategory] = useState(false);
+    const [subCategoryIndex, setSubCategoryIndex] = useState(null);
+    const getToCollection = (id) => `/collection/${id}`;
+
+    const [subCategory, setSubCategory] = useState({ subcategories: [] });
+
+    useEffect(() => {
+        setSubCategory(() => adaptedCategories.withSub.find((_, index) => index === subCategoryIndex));
+    }, [setSubCategoryIndex, subCategoryIndex]);
 
     const componentClasses = classNames('lib-sidebar', className, { open: navigationOverlayOpened });
     const onLinkClick = () => {
@@ -48,37 +84,61 @@ export const SideBar = ({ className }) => {
             </div>
             <div className="lib-sidebar__content">
                 <div className="lib-sidebar__content-wrapper">
-                    <Accordion>
-                        <AccordionItem
-                            label={(
-                                <Link
-                                    to="/collection"
-                                    className="lib-sidebar__item"
-                                    onClick={onLinkClick}
-                                >
-                                    <span>Всі товари</span>
-                                </Link>
-                            )}
-                            index={1}
-                            hideArrow
-                        />
-                        {adaptCategories(categories).map(({ id, name }) => (
-                            <AccordionItem
-                                label={(
-                                    <Link
-                                        to={`/collection/${id}`}
-                                        className="lib-sidebar__item"
-                                        onClick={onLinkClick}
-                                    >
-                                        <span>{name}</span>
+                    <div className="header-list-collection-item">
+                        {!selectedCategory && (
+                            <ul className="header-list-collection-woman">
+                                <li>
+                                    <Link to={getToCollection(34)} className="header-list-collection-woman-sale">
+                                        Sale
                                     </Link>
-                                )}
-                                key={id}
-                                index={id}
-                                hideArrow
-                            />
-                        ))}
-                    </Accordion>
+                                </li>
+                                {adaptedCategories.withSub.map(({ name, id }, index) => (
+                                    <>
+                                        <li
+                                            key={id}
+                                            onClick={() => {
+                                                setSelectedCategory(true);
+                                                setSubCategoryIndex(index);
+                                            }}
+                                            className="main"
+                                        >
+                                            {name}
+                                            <div className="header-list-collection-woman-arrow">
+                                                <AccardionArrow width={20} />
+                                            </div>
+                                        </li>
+                                    </>
+                                ))}
+                            </ul>
+                        )}
+                        {selectedCategory && (
+                            <ul className="header-list-collection-woman">
+                                <li className="main">
+                                    <div className="header-list-collection-woman-arrow-btn">
+                                        <AccardionArrow
+                                            transform="rotate(30deg)"
+                                            width={20}
+                                            onClick={() => {
+                                                setSelectedCategory(false);
+                                                setSubCategoryIndex(null);
+                                            }}
+                                        />
+                                    </div>
+                                </li>
+                                <>
+                                    {subCategory?.subcategories?.map(
+                                        ({ category_id, category_name }) => (
+                                            <li className="main">
+                                                <Link to={getToCollection(category_id)}>
+                                                    {category_name}
+                                                </Link>
+                                            </li>
+                                        ),
+                                    )}
+                                </>
+                            </ul>
+                        )}
+                    </div>
                 </div>
                 <div className="lib-sidebar__content-wrapper">
                     <Accordion>
