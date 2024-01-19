@@ -19,6 +19,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    color: var(--color-accent-light);
 }
 .header-list-collection-woman-arrow{
     transform: rotate(270deg);
