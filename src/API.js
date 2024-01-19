@@ -2,9 +2,9 @@ import axios from 'axios';
 
 import store from './Store/createStore';
 
-export const baseURL = 'https://back.pulse.cv.ua/';
+export const baseURL = 'https://back.pulsestore.com.ua/';
 export const novaPoshtaURL = 'https://api.novaposhta.ua/v2.0/json/';
-export const novaPoshtaAPIKEY = '3c34390ca4d3a3b2b97eeb228159beea';
+export const novaPoshtaAPIKEY = '5603f77f4a5cb889662cfe3f6a0510fc';
 
 export const loginUrl = 'api/auth/login';
 export const dataUrl = 'api';
