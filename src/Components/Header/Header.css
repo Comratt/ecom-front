@@ -151,13 +151,14 @@
     position: absolute;
     top: 100%;
     left: 0;
-    width: 100%;
+    width: 450px;
     box-shadow: 0 6px 10px -15px #111;
     transition: .3s;
     background-color: var(--color-lightest);
     color: var(--header-color);
     z-index: 100;
     opacity: 0;
+    height: 100vh;
     visibility: hidden;
 }
 

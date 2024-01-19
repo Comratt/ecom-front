@@ -27,6 +27,7 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
             showLogo,
         },
     } = useLayout();
+
     const cartQuantity = useSelector(getCartQuantity);
     const wishQuantity = useSelector(getWishlistQuantity);
 
