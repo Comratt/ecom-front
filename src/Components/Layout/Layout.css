@@ -21,3 +21,52 @@ body {
 .hot-link{
     height: 32px;
 }
+.call-menu{
+    align-items: center;
+    background-color: var(--bwc-widget-main-color) !important;
+    background-image: none;
+    border: unset;
+    border-radius: 0;
+    box-shadow: 0 0 5px rgba(33,37,41,.12);
+    cursor: pointer;
+    display: flex;
+    fill: #fff;
+    height: 56px;
+    justify-content: center;
+    min-width: 56px;
+    outline: none;
+    padding: 0;
+    position: relative;
+    transition: background-color .3s linear,color .2s linear;
+    width: auto;
+}
+.call-menu-wrapper{
+    position: fixed;
+    bottom: 20px;
+    right: 50px;
+    z-index: 1;
+    background: var(--color-accent);
+    border-radius: 5px;
+}
+
+@keyframes ringing {
+    0% {
+      transform: translateY(0);
+    }
+    25% {
+      transform: translateY(-5px);
+    }
+    50% {
+      transform: translateY(5px);
+    }
+    75% {
+      transform: translateY(-3px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+.call-menu-animation {
+    animation: ringing 1s infinite;
+}

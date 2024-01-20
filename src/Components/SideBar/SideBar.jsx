@@ -10,16 +10,14 @@ import { useCategories } from 'context/CategoriesWrapper/useCategories';
 import { adaptCategories } from 'context/adapters';
 import { clearFilters } from 'Store/Modules/Filters/filtersActions';
 import { isLoggedIn } from 'Store/Modules/LocalSettings/selectors';
+import AccardionArrow from 'Icons/AccardionArrow';
 import HeaderInput from '../HeaderInput/HeaderInput';
-
 import { useLayout } from '../../hooks/useLayout';
 
 import './SideBar.css';
 import { Link } from '../Link';
 import { Accordion, AccordionItem } from '../Accordion';
 import { Title } from '../Title';
-import HeaderListCollectionNews from 'Components/HeaderListCollectionNews/HeaderListCollectionNews';
-import AccardionArrow from 'Icons/AccardionArrow';
 
 const adaptParentCategories = (data = []) => {
     if (!Array.isArray(data)) {
@@ -88,7 +86,11 @@ export const SideBar = ({ className }) => {
                         {!selectedCategory && (
                             <ul className="header-list-collection-woman">
                                 <li>
-                                    <Link to={getToCollection(34)} className="header-list-collection-woman-sale">
+                                    <Link
+                                        to={getToCollection(34)}
+                                        className="header-list-collection-woman-sale"
+                                        onClick={onLinkClick}
+                                    >
                                         Sale
                                     </Link>
                                 </li>
@@ -129,7 +131,10 @@ export const SideBar = ({ className }) => {
                                     {subCategory?.subcategories?.map(
                                         ({ category_id, category_name }) => (
                                             <li className="main">
-                                                <Link to={getToCollection(category_id)}>
+                                                <Link
+                                                    to={getToCollection(category_id)}
+                                                    onClick={onLinkClick}
+                                                >
                                                     {category_name}
                                                 </Link>
                                             </li>
