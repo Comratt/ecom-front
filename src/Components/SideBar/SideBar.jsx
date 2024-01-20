@@ -115,15 +115,17 @@ export const SideBar = ({ className }) => {
                         )}
                         {selectedCategory && (
                             <ul className="header-list-collection-woman">
-                                <li className="main">
+                                <li
+                                    className="main"
+                                    onClick={() => {
+                                        setSelectedCategory(false);
+                                        setSubCategoryIndex(null);
+                                    }}
+                                >
                                     <div className="header-list-collection-woman-arrow-btn">
                                         <AccardionArrow
                                             transform="rotate(30deg)"
                                             width={20}
-                                            onClick={() => {
-                                                setSelectedCategory(false);
-                                                setSubCategoryIndex(null);
-                                            }}
                                         />
                                     </div>
                                 </li>
