@@ -178,7 +178,7 @@
 
 @media (max-width: 550px) {
     .lib-big-slider {
-        height: 60vh;
+        height: 100vh;
     }
     .lib-big-slider .item-title h2 {
         color: var(--color-lightest);
