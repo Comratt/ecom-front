@@ -19,27 +19,24 @@ import { Link } from '../Link';
 import { Accordion, AccordionItem } from '../Accordion';
 import { Title } from '../Title';
 
-const adaptParentCategories = (data = []) => {
-    if (!Array.isArray(data)) {
-        return { withSub: [], withoutSub: [] };
+const buildHierarchy = (data, parentId = null) => {
+    const result = [];
+
+    for (const key in data) {
+        const category = data[key];
+
+        if (category.parent_id === parentId) {
+            const subcategories = buildHierarchy(data, category.category_id);
+            const newCategory = {
+                ...category,
+                subcategory: subcategories,
+            };
+
+            result.push(newCategory);
+        }
     }
 
-    return data.reduce(
-        (acc, item) => {
-            if (item?.subcategories?.length) {
-                return {
-                    ...acc,
-                    withSub: [...acc.withSub, item],
-                };
-            }
-
-            return {
-                ...acc,
-                withoutSub: [...acc.withoutSub, item],
-            };
-        },
-        { withSub: [], withoutSub: [] },
-    );
+    return result;
 };
 
 export const SideBar = ({ className }) => {
@@ -52,7 +49,7 @@ export const SideBar = ({ className }) => {
     const {
         categories,
     } = useCategories();
-    const adaptedCategories = adaptParentCategories(adaptCategories(categories));
+    const adaptedCategories = buildHierarchy(categories).filter((item) => item.subcategory.length > 0);
 
     const [selectedCategory, setSelectedCategory] = useState(false);
     const [subCategoryIndex, setSubCategoryIndex] = useState(null);
@@ -61,7 +58,11 @@ export const SideBar = ({ className }) => {
     const [subCategory, setSubCategory] = useState({ subcategories: [] });
 
     useEffect(() => {
-        setSubCategory(() => adaptedCategories.withSub.find((_, index) => index === subCategoryIndex));
+        if (subCategoryIndex === 43) {
+            setSubCategory(() => adaptedCategories.find((item) => item.category_id === 36)?.subcategory.find((item) => item.category_id === 43));
+        } else {
+            setSubCategory(() => adaptedCategories.find((_, index) => index === subCategoryIndex));
+        }
     }, [setSubCategoryIndex, subCategoryIndex]);
 
     const componentClasses = classNames('lib-sidebar', className, { open: navigationOverlayOpened });
@@ -85,16 +86,7 @@ export const SideBar = ({ className }) => {
                     <div className="header-list-collection-item">
                         {!selectedCategory && (
                             <ul className="header-list-collection-woman">
-                                <li>
-                                    <Link
-                                        to={getToCollection(34)}
-                                        className="header-list-collection-woman-sale"
-                                        onClick={onLinkClick}
-                                    >
-                                        Sale
-                                    </Link>
-                                </li>
-                                {adaptedCategories.withSub.map(({ name, id }, index) => (
+                                {adaptedCategories.map(({ category_name, id }, index) => (
                                     <>
                                         <li
                                             key={id}
@@ -104,13 +96,22 @@ export const SideBar = ({ className }) => {
                                             }}
                                             className="main"
                                         >
-                                            {name}
+                                            {category_name}
                                             <div className="header-list-collection-woman-arrow">
                                                 <AccardionArrow width={20} />
                                             </div>
                                         </li>
                                     </>
                                 ))}
+                                <li>
+                                    <Link
+                                        to={getToCollection(34)}
+                                        className="header-list-collection-woman-sale"
+                                        onClick={onLinkClick}
+                                    >
+                                        Sale
+                                    </Link>
+                                </li>
                             </ul>
                         )}
                         {selectedCategory && (
@@ -130,15 +131,27 @@ export const SideBar = ({ className }) => {
                                     </div>
                                 </li>
                                 <>
-                                    {subCategory?.subcategories?.map(
+                                    {subCategory?.subcategory?.map(
                                         ({ category_id, category_name }) => (
-                                            <li className="main">
+                                            <li
+                                                className="main"
+                                                onClick={() => {
+                                                    if (category_id === 43) {
+                                                        setSubCategoryIndex(category_id);
+                                                    }
+                                                }}
+                                            >
                                                 <Link
                                                     to={getToCollection(category_id)}
                                                     onClick={onLinkClick}
                                                 >
                                                     {category_name}
                                                 </Link>
+                                                {category_id === 43 && (
+                                                    <div className="header-list-collection-woman-arrow">
+                                                        <AccardionArrow width={20} />
+                                                    </div>
+                                                )}
                                             </li>
                                         ),
                                     )}
