@@ -65,9 +65,9 @@ const BigSliderItem = memo(({
         >
             {link && (
                 <>
-                    <Link aria-label={title} className="item-link" to={link} />
+                    <Link aria-label={title.replace(/\./g, 'чоловічі костюми')} className="item-link" to={link} />
                     <Link className="item-title" to={link}>
-                        <Title type={2}>{title}</Title>
+                        <Title type={2}>{title.replace(/\./g, '')}</Title>
                     </Link>
                 </>
             )}
