@@ -285,7 +285,7 @@ export const ProductDetails = () => {
                                 {result.model}
                             </h3>
                             <h4 className="lib-product_info_product-subtitle-sale" style={{ marginTop: '10px' }}>
-                                10% знижка та безкоштовна доставка при замовленні з сайту.
+                                10% знижка та безкоштовна доставка при замовленні від 3000 грн.
                             </h4>
                             {discount
                                 ? (

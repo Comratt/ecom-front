@@ -23,7 +23,6 @@ body {
 }
 .call-menu{
     align-items: center;
-    background-color: var(--bwc-widget-main-color) !important;
     background-image: none;
     border: unset;
     border-radius: 0;
@@ -37,16 +36,23 @@ body {
     outline: none;
     padding: 0;
     position: relative;
-    transition: background-color .3s linear,color .2s linear;
     width: auto;
+    background: var(--color-accent);
+    border-radius: 10px;
 }
 .call-menu-wrapper{
     position: fixed;
     bottom: 20px;
-    right: 50px;
+    right: 25px;
     z-index: 1;
-    background: var(--color-accent);
-    border-radius: 5px;
+    display: flex;
+}
+.call-menu-text{
+  border-radius: 20px;
+  background: var(--color-accent);
+  border: none;
+  color: white;
+  margin-left: 10px;
 }
 
 @keyframes ringing {
@@ -66,7 +72,3 @@ body {
       transform: translateY(0);
     }
   }
-
-.call-menu-animation {
-    animation: ringing 1s infinite;
-}
