@@ -376,6 +376,11 @@ export const ProductDetails = () => {
                                             {result.description}
                                         </ReactMarkdown>
                                     </AccordionItem>
+                                    <AccordionItem label="Особливості та догляд" index="3">
+                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                                            {result.care}
+                                        </ReactMarkdown>
+                                    </AccordionItem>
                                     <AccordionItem className="product-delivery" label="Доставка та оплата" index="1">
                                         <ReactMarkdown>
                                             {'#### Клієнт може оплатити своє замовлення будь-яким зручним для нього способом: \n'

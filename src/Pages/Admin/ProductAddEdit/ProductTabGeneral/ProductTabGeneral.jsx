@@ -14,10 +14,12 @@ import Remove from '../../../../Icons/Remove';
 
 const ProductTabGeneral = () => {
     const [v, setV] = useState();
+    const [care, setCare] = useState();
     const {
         values,
         handleValuesChange,
         handleDescriptionChange,
+        handleCareChange,
         product,
         tableSizeImage,
         onChangeTableSizeImage,
@@ -26,6 +28,10 @@ const ProductTabGeneral = () => {
     const onEditorStateChange = (editorState) => {
         setV(editorState);
         handleDescriptionChange(draftToMarkdown(convertToRaw(editorState.getCurrentContent())));
+    };
+    const onEditorCareStateChange = (editorState) => {
+        setCare(editorState);
+        handleCareChange(draftToMarkdown(convertToRaw(editorState.getCurrentContent())));
     };
 
     useEffect(() => {
@@ -36,7 +42,14 @@ const ProductTabGeneral = () => {
 
             setV(newEditorState);
         }
-    }, [product.description]);
+        if (product.care) {
+            const rawData = markdownToDraft(product.care);
+            const contentState = convertFromRaw(rawData);
+            const newEditorState = EditorState.createWithContent(contentState);
+
+            setCare(newEditorState);
+        }
+    }, [product.description, product.care]);
 
     return (
         <div>
@@ -167,6 +180,24 @@ const ProductTabGeneral = () => {
                         <Editor
                             editorState={v}
                             onEditorStateChange={onEditorStateChange}
+                            toolbar={{
+                                history: { inDropdown: true },
+                            }}
+                        />
+                    </div>
+                </div>
+                <div className="from-section">
+                    <div className="productTabLabel">
+                        <label htmlFor="productTextArea">
+                            <b>
+                                Особливості та догляд
+                            </b>
+                        </label>
+                    </div>
+                    <div className="productTabInput input-description">
+                        <Editor
+                            editorState={care}
+                            onEditorStateChange={onEditorCareStateChange}
                             toolbar={{
                                 history: { inDropdown: true },
                             }}

@@ -31,6 +31,7 @@ export const AddProductProvider = ({ children }) => {
                 productName: product.name,
                 model: product.model,
                 description: product.description,
+                care: product.care,
                 metaDescription: product.meta_description,
                 metaKeywords: product.meta_keyword,
                 metaTitle: product.meta_title,
@@ -118,6 +119,13 @@ export const AddProductProvider = ({ children }) => {
         setValues((prevState) => ({
             ...prevState,
             description: value,
+        }))
+    );
+
+    const handleCareChange = (value) => (
+        setValues((prevState) => ({
+            ...prevState,
+            care: value,
         }))
     );
 
@@ -278,6 +286,7 @@ export const AddProductProvider = ({ children }) => {
         onChangeProductDiscount,
         setProduct,
         handleDescriptionChange,
+        handleCareChange,
     }), [
         selectedCategories,
         setSelectedCategories,
@@ -308,6 +317,7 @@ export const AddProductProvider = ({ children }) => {
         onChangeProductDiscount,
         setProduct,
         handleDescriptionChange,
+        handleCareChange,
     ]);
 
     return (

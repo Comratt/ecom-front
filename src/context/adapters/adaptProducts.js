@@ -8,6 +8,7 @@ export const adaptProducts = ({ data = [] } = {}) => {
     return data.map(({
         p_id,
         description,
+        care,
         name,
         image,
         price,
@@ -36,6 +37,7 @@ export const adaptProducts = ({ data = [] } = {}) => {
             colors: uniqBy(colorsF, 'id'),
             sizes: uniqBy(sizesF, 'id'),
             description,
+            care,
             related,
             discount,
             category: category_name,
@@ -101,6 +103,7 @@ export const adaptProduct = (data = {}, allCategories, isUniq) => {
         sizes: uniqSizes,
         colorSizes,
         description: data.description,
+        care: data.care,
         categories: data.categories?.map(({ category_id, ...rest }) => ({
             ...rest,
             category_id,

@@ -82,7 +82,7 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
                 <Link title="До головної сторінки" to="/" className="header-main-logo">
                     <h1>
                         {' '}
-                        <img width={200} src={!transparent ? imgBlack : img} alt="kostumchek" className="header-main-logo-img" />
+                        <img width={200} src={(!transparent || hoverItem) ? imgBlack : img} alt="kostumchek" className="header-main-logo-img" />
                     </h1>
                 </Link>
             )}
