@@ -1,12 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
 import './Footer.css';
-import FooterLogo from 'Icons/FooterLogo';
-import Facebook from 'Icons/Facebook';
 import Instagram from 'Icons/Instagram';
 import Telegram from 'Icons/Telegram';
-import Viber from 'Icons/Viber';
-import FooterInput from '../FooterInput/FooterInput';
+import Phone from 'Icons/Phone';
+import Mail from 'Icons/Mail';
+import User from 'Icons/User';
 import { Link } from '../Link';
 import { Accordion, AccordionItem } from '../Accordion';
 
@@ -24,16 +23,16 @@ export const Footer = ({
                 <div className="content-footer">
                     <div className="accordion-info">
                         <Accordion defaultIndex="0">
-                            <AccordionItem label="Покупцям" index="1" isCollapsed>
+                            <AccordionItem label="Наш Сервіс" index="1" isCollapsed>
                                 <ul className="footer-list">
                                     <li>
                                         <Link to="/delivery">
-                                            Доставка
+                                            Оплата і доставка
                                         </Link>
                                     </li>
                                     <li>
                                         <Link to="/returns">
-                                            Повернення
+                                            Обмін і повернення
                                         </Link>
                                     </li>
                                 </ul>
@@ -42,7 +41,7 @@ export const Footer = ({
                                 <ul className="footer-list">
                                     <li>
                                         <Link to="/aboutcompany">
-                                            Про нас
+                                            Про Компанію
                                         </Link>
                                     </li>
                                 </ul>
@@ -51,17 +50,27 @@ export const Footer = ({
                     </div>
                     <div className="footer-title-info-client">
                         <div className="footer-title-info">
-                            Покупцям
+                            Наш Сервіс
                         </div>
                         <ul className="footer-list">
                             <li>
                                 <Link to="/delivery">
-                                    Доставка
+                                    Оплата і доставка
                                 </Link>
                             </li>
                             <li>
                                 <Link to="/returns">
-                                    Повернення
+                                    Обмін і повернення
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/collection/15">
+                                    Подарункові карти
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/collection/16">
+                                    Аксесуари
                                 </Link>
                             </li>
                         </ul>
@@ -73,34 +82,44 @@ export const Footer = ({
                         <ul className="footer-list">
                             <li>
                                 <Link to="/aboutcompany">
-                                    Про нас
+                                    Про Компанію
                                 </Link>
                             </li>
                         </ul>
                     </div>
                     <div>
                         <div className="footer-links">
+                            <div className="footer-title-info">
+                                Контакти
+                            </div>
                             <ul className="sidebar-social">
-                                {/* <li>
-                                    <a className="sidebar-social__facebook" rel="noreferrer" target="_blank" href="#">
-                                        <Facebook height="18" width="18" />
-                                    </a>
-                                </li> */}
-                                <li>
+                                <li className="sidebar-social--items">
+                                    <User width={18} fill="#7a6c64" />
+                                    {' '}
+                                    <span style={{ marginLeft: '10px' }}>Пн-Нд 09:00 — 19:00</span>
+                                </li>
+                                <li className="sidebar-social--items">
+                                    <Phone width={18} fill="#7a6c64" />
+                                    {' '}
+                                    <a href="tel:+380963947792" style={{ marginLeft: '10px' }}>+38(096)3947792</a>
+                                </li>
+                                <li className="sidebar-social--items">
+                                    <Mail width={18} fill="#7a6c64" />
+                                    {' '}
+                                    <a href="mailto:pulse.cv.ua@gmail.com" style={{ marginLeft: '10px' }}>pulse.cv.ua@gmail.com</a>
+                                </li>
+                                <li className="sidebar-social--items">
                                     <a className="sidebar-social__instagram" rel="noreferrer" target="_blank" href="https://www.instagram.com/pulse.cv/">
                                         <Instagram height="18" width="18" />
                                     </a>
+                                    <span style={{ marginLeft: '10px' }}>INSTAGRAM</span>
                                 </li>
-                                <li>
-                                    <a className="sidebar-social__telegram" rel="noreferrer" target="_blank" href="https://t.me/+1cik1Q3L0rxiNGQ6">
+                                <li className="sidebar-social--items">
+                                    <a className="sidebar-social__telegram" rel="noreferrer" target="_blank" href="https://t.me/pulse_cv">
                                         <Telegram height="18" width="18" />
                                     </a>
+                                    <span style={{ marginLeft: '10px' }}>TELEGRAM</span>
                                 </li>
-                                {/* <li>
-                                    <a className="sidebar-social__viber" href="#">
-                                        <Viber height="18" width="18" />
-                                    </a>
-                                </li> */}
                             </ul>
                         </div>
                     </div>

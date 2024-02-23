@@ -87,11 +87,6 @@ export const SideBar = ({ className }) => {
                     <div className="header-list-collection-item">
                         {!selectedCategory && (
                             <ul className="header-list-collection-woman">
-                                <li>
-                                    <Link to={getToCollection(34)} className="header-list-collection-woman-sale">
-                                        Sale
-                                    </Link>
-                                </li>
                                 {adaptedCategories.withSub.map(({ name, id }, index) => (
                                     <>
                                         <li
@@ -109,6 +104,11 @@ export const SideBar = ({ className }) => {
                                         </li>
                                     </>
                                 ))}
+                                <li>
+                                    <Link to={getToCollection(17)} className="header-list-collection-woman-sale" onClick={onLinkClick}>
+                                        Sale
+                                    </Link>
+                                </li>
                             </ul>
                         )}
                         {selectedCategory && (
@@ -128,7 +128,7 @@ export const SideBar = ({ className }) => {
                                 <>
                                     {subCategory?.subcategories?.map(
                                         ({ category_id, category_name }) => (
-                                            <li className="main">
+                                            <li className="main" onClick={onLinkClick}>
                                                 <Link to={getToCollection(category_id)}>
                                                     {category_name}
                                                 </Link>

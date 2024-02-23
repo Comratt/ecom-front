@@ -1,9 +1,9 @@
 .lib-delivery-company{
     padding: 15px;
+    color: var(--color-accent);
 }
 .lib-delivery-company p{
     color: var(--color-accent);
-    display: flex;
 }
 .lib-delivery-company .title{
     text-align: center;
@@ -12,7 +12,6 @@
 }
 .lib-delivery-company .variants{
     font-size: 18px;
-    border-bottom: 1px solid;
 }
 .lib-delivery-company .btn{
     width: 100%;

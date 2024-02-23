@@ -5,6 +5,7 @@
 }
 .lib-return-company{
     padding: 15px;
+    color: var(--color-accent);
 }
 .lib-return-company p {
     color: var(--color-accent);
@@ -12,7 +13,7 @@
 .lib-return-company .title2{
     font-size: 18px;
     color: var(--color-accent);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .lib-return-company .btn{
     width: 100%;

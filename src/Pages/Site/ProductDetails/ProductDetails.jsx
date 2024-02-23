@@ -29,6 +29,7 @@ import { ImagePreview } from 'Components/ImagePreview';
 import MetaTags from 'Components/MetaTags';
 import { useDetectedMobileDevice } from 'hooks/useDetectMobileDevice';
 import './ProductInfo.css';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 export const ProductDetails = () => {
     const localStorageKey = process.env.REACT_APP_REDUX_STORAGE_NAME;
@@ -49,6 +50,7 @@ export const ProductDetails = () => {
     const {
         result, loading, productId,
     } = useProduct();
+    const id = useParams();
     const filteredColorSizes = result?.colorSizes
         ?.filter(({ colorValId }) => activeColor.id === colorValId);
     const listWishProducts = useSelector(getWishlistProducts);
@@ -258,7 +260,7 @@ export const ProductDetails = () => {
                         />
                         <div className="lib-product_info_size">
                             <p className="size-title">
-                                <b>Розмір</b>
+                                <b>{id.id == '1241' ? 'Номінал' : 'Розмір'}</b>
                                 {activeSize?.name && (
                                     <b>
                                         {` - ${activeSize?.name}`}

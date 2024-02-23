@@ -50,11 +50,6 @@ const HeaderListCollectionNews = () => {
                 <div className="header-list-collection-item">
                     {!selectedCategory && (
                         <ul className="header-list-collection-woman">
-                            <li>
-                                <Link to={getToCollection(34)} className="header-list-collection-woman-sale">
-                                    Sale
-                                </Link>
-                            </li>
                             {adaptedCategories.withSub.map(({ name, id }, index) => (
                                 <>
                                     <li
@@ -72,6 +67,11 @@ const HeaderListCollectionNews = () => {
                                     </li>
                                 </>
                             ))}
+                            <li>
+                                <Link to={getToCollection(17)} className="header-list-collection-woman-sale">
+                                    Sale
+                                </Link>
+                            </li>
                         </ul>
                     )}
                     {selectedCategory && (
@@ -108,28 +108,3 @@ const HeaderListCollectionNews = () => {
 };
 
 export default HeaderListCollectionNews;
-
-// {!!adaptedCategories.withoutSub.length && (
-//     <ul className="header-list-collection-woman">
-//         {adaptedCategories.withoutSub?.map(({ id, name }) => (
-//             <li key={id} className="main">
-//                 <Link to={getToCollection(id)}>{name}</Link>
-//             </li>
-//         ))}
-//     </ul>
-// )}
-// {adaptedCategories.withSub?.map(({ id, name, subcategories }) => (
-//     <ul key={id} className="header-list-collection-woman">
-//         <li className="main">
-//             <Link to={getToCollection(id)}>{name}</Link>
-//         </li>
-//         {subcategories?.map(({ category_name, category_id }) => (
-//             <li key={category_id}>
-//                 <Link to={getToCollection(category_id)}>{category_name}</Link>
-//             </li>
-//         ))}
-//     </ul>
-// ))}
-// <div>
-//     <img style={{ zIndex: 1 }} src={getImage('header.jpeg')} alt="Костюм чоловічий купити" />
-// </div>
