@@ -30,6 +30,7 @@ import { ImagePreview } from 'Components/ImagePreview';
 import MetaTags from 'Components/MetaTags';
 import { useDetectedMobileDevice } from 'hooks/useDetectMobileDevice';
 import './ProductInfo.css';
+import { BreadCrumb } from '../../../Components/BreadCrumb';
 
 export const ProductDetails = () => {
     const localStorageKey = process.env.REACT_APP_REDUX_STORAGE_NAME;
@@ -182,8 +183,36 @@ export const ProductDetails = () => {
     const handleClick = () => {
         history.push('/cart');
     };
+    const getBreadcrumbCategory = () => {
+        if (result?.categories?.length > 1) {
+            const parentCategory = result?.categories?.find((cat) => !cat?.parent_id);
 
-    console.log(result.images);
+            if (parentCategory) {
+                const restCategory = result?.categories?.find((cat) => cat?.parent_id);
+
+                return [
+                    {
+                        href: `/collection/${parentCategory.category_id}`,
+                        position: 2,
+                        name: parentCategory?.category_name,
+                    },
+                    {
+                        href: `/collection/${restCategory.category_id}`,
+                        position: 3,
+                        name: restCategory?.category_name,
+                    },
+                ];
+            }
+        }
+
+        return [
+            {
+                href: result?.categories?.[0]?.category_id ? `/collection/${result?.categories?.[0]?.category_id}` : '/collection',
+                position: 2,
+                name: result?.categories?.[0]?.category_id ? result?.categories?.[0]?.category_name : 'Всі товари',
+            },
+        ];
+    };
 
     return (
         <>
@@ -194,6 +223,11 @@ export const ProductDetails = () => {
                 metaTitle={result.meta_title}
                 title={result.name}
             />
+            {!isTabletSize && (
+                <div className="breadcrumb-wrapper">
+                    <BreadCrumb items={getBreadcrumbCategory()} />
+                </div>
+            )}
             <div className="lib-product_info">
                 <div className="container">
                     <div className="left-part">
@@ -222,6 +256,7 @@ export const ProductDetails = () => {
                     </div>
                     <div className="lib-product_info_content">
                         <div>
+                            {isTabletSize && <BreadCrumb items={getBreadcrumbCategory()} />}
                             <h1 className="lib-product_info_product-title">
                                 {result.name}
                             </h1>

@@ -1,0 +1,21 @@
+.lib-breadcrumb {
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    list-style: none;
+    font-size: 13px;
+}
+
+.lib-breadcrumb li:after {
+    display: inline-block;
+    content: '/';
+    font-size: 13px;
+    font-family: var(--title-ff);
+    color: var(--title-color);
+    padding: 0 7px;
+}
+
+.lib-breadcrumb li:last-child:after {
+    padding: 0;
+    display: none;
+}

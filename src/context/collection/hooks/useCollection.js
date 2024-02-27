@@ -18,6 +18,7 @@ export const useCollection = () => {
         resetFilters,
         isFiltered,
         filtersDiff,
+        breadcrumbs,
     } = useCollectionData();
     const handleSelectCategory = ({ target: { id } }) => {
         setFilters((prevFilters) => {
@@ -125,6 +126,7 @@ export const useCollection = () => {
         isFiltered,
         filtersDiff,
         filters,
+        breadcrumbs,
         meta,
     }), [
         loading,
@@ -144,6 +146,7 @@ export const useCollection = () => {
         isFiltered,
         filtersDiff,
         filters,
+        breadcrumbs,
         meta,
     ]);
 };

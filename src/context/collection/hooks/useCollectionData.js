@@ -13,6 +13,12 @@ import { getAllFilters } from 'Store/Modules/Filters/selectors';
 import { getObjectDiff } from 'Helpers';
 import { useFetchProducts } from '../../hooks/useFetchProducts';
 
+const defaultBreadcrumb = {
+    href: '/collection',
+    name: 'Всі товари',
+    position: 2,
+};
+
 export const useCollectionData = () => {
     const dispatch = useDispatch();
     const reduxFilters = useSelector(getAllFilters);
@@ -42,6 +48,7 @@ export const useCollectionData = () => {
         available: reduxFilters.available || true,
     };
     const [filters, setFilters] = useState({ ...defaultReduxFilters, ...urlFilters });
+    const [breadcrumbs, setBreadcrumbs] = useState([defaultBreadcrumb]);
     const {
         categories,
         categoriesLoading,
@@ -77,6 +84,40 @@ export const useCollectionData = () => {
         ...filtersWithoutPage,
         category: filtersWithoutPage?.category?.map((v) => +v),
     });
+
+    useEffect(() => {
+        const selectedCategory = filters.category?.[0] || 0;
+
+        if (selectedCategory) {
+            const category = categories.find((cat) => +cat.category_id === +selectedCategory);
+
+            if (category && !category?.parent_id) {
+                setBreadcrumbs([
+                    defaultBreadcrumb,
+                    {
+                        href: `/collection/${selectedCategory}`,
+                        position: 3,
+                        name: category.category_name,
+                    },
+                ]);
+            } else if (category && category?.parent_id) {
+                const categoryParent = categories.find((cat) => +cat.category_id === +category?.parent_id);
+
+                if (categoryParent) {
+                    setBreadcrumbs([
+                        defaultBreadcrumb,
+                        {
+                            href: `/collection/${categoryParent.category_id}`,
+                            position: 3,
+                            name: categoryParent.category_name,
+                        },
+                    ]);
+                }
+            }
+        } else {
+            setBreadcrumbs([defaultBreadcrumb]);
+        }
+    }, [filters, categories]);
 
     useEffect(() => {
         const { page: pageFilter, category } = filters;
@@ -124,6 +165,7 @@ export const useCollectionData = () => {
         resetFilters,
         isFiltered,
         filtersDiff,
+        breadcrumbs,
     }), [
         loading,
         loadingNext,
@@ -133,6 +175,7 @@ export const useCollectionData = () => {
         resetFilters,
         isFiltered,
         filtersDiff,
+        breadcrumbs,
         isLastPage,
         currentPage,
         setFilters,

@@ -8,6 +8,7 @@ import { CatalogLoader } from 'Components/SkeletonLoader';
 import MetaTags from 'Components/MetaTags';
 
 import './Collection.css';
+import { BreadCrumb } from '../../../Components/BreadCrumb';
 
 export const Collection = () => {
     const {
@@ -27,6 +28,7 @@ export const Collection = () => {
         resetFilters,
         isFiltered,
         filtersDiff,
+        breadcrumbs,
         meta,
     } = useCollection();
 
@@ -48,6 +50,7 @@ export const Collection = () => {
                 title={meta.title}
             />
             <View className="collection-page__container">
+                <BreadCrumb items={breadcrumbs} />
                 <CollectionList
                     filtered={filters?.category}
                     onChange={handleSelectCategory}

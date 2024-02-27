@@ -3,6 +3,11 @@
     flex-direction: column;
 }
 
+.breadcrumb-wrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
 .product-details-page .lib-product_info {
     max-width: 1440px;
     margin: 0 auto;
