@@ -212,7 +212,7 @@ export const Footer = ({
                                     </a>
                                 </li>
                                 <li>
-                                    <a className="sidebar-social__viber" href="#">
+                                    <a className="sidebar-social__viber" target="_blank" href="https://www.tiktok.com/@kostumchek_official?_t=8kIPp8sTrMc">
                                         <Viber height="18" width="18" />
                                     </a>
                                 </li>

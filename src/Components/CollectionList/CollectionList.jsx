@@ -18,12 +18,14 @@ const CollectionList = ({
     const componentClassNames = classNames('lib-collection-list', className);
     const adaptedCatIds = filtered?.map((catId) => +catId);
 
+    console.log(data);
+
     return (
         <div className={componentClassNames}>
             <aside>
                 <div>
                     <Accordion defaultIndex={+collectionId}>
-                        {data.map(({ id, name, subcategories }) => (
+                        {data.sort((a, b) => b.subcategories.length - a.subcategories.length).map(({ id, name, subcategories }) => (
                             <AccordionItem
                                 label={(
                                     <Link to={`/collection/${id}`} className="collection-title">
