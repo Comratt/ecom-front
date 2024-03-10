@@ -36,7 +36,7 @@ const buildHierarchy = (data, parentId = null) => {
         }
     }
 
-    return result;
+    return result.sort((a, b) => a.sort_order - b.sort_order);
 };
 
 export const SideBar = ({ className }) => {
@@ -104,6 +104,11 @@ export const SideBar = ({ className }) => {
                                     </>
                                 ))}
                                 <li>
+                                    <Link to={getToCollection(31)} className="header-list-collection__item">
+                                        Вишиванки
+                                    </Link>
+                                </li>
+                                <li>
                                     <Link
                                         to={getToCollection(46)}
                                         className="header-list-collection-woman-sale"
@@ -131,7 +136,7 @@ export const SideBar = ({ className }) => {
                                     </div>
                                 </li>
                                 <>
-                                    {subCategory?.subcategory?.map(
+                                    {subCategory?.subcategory?.filter(({ category_id }) => category_id !== 31)?.map(
                                         ({ category_id, category_name }) => (
                                             <li
                                                 className="main"

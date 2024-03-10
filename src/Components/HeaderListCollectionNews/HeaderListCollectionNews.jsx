@@ -22,7 +22,7 @@ const buildHierarchy = (data, parentId = null) => {
         }
     }
 
-    return result;
+    return result.sort((a, b) => a.sort_order - b.sort_order);
 };
 const HeaderListCollectionNews = () => {
     const { categories } = useCategories();
@@ -32,8 +32,6 @@ const HeaderListCollectionNews = () => {
     const [subCategoryIndex, setSubCategoryIndex] = useState(null);
 
     const [subCategory, setSubCategory] = useState({ subcategories: [] });
-
-    console.log(adaptedCategories);
 
     useEffect(() => {
         if (subCategoryIndex === 43) {
@@ -51,7 +49,7 @@ const HeaderListCollectionNews = () => {
                 <div className="header-list-collection-item">
                     {!selectedCategory && (
                         <ul className="header-list-collection-woman">
-                            {adaptedCategories.sort((a, b) => a.sort_order - b.sort_order).map(({ category_name, id }, index) => (
+                            {adaptedCategories.map(({ category_name, id }, index) => (
                                 <>
                                     <li
                                         key={id}
