@@ -33,6 +33,8 @@ const HeaderListCollectionNews = () => {
 
     const [subCategory, setSubCategory] = useState({ subcategories: [] });
 
+    console.log(adaptedCategories);
+
     useEffect(() => {
         if (subCategoryIndex === 43) {
             setSubCategory(() => adaptedCategories.find((item) => item.category_id === 36)?.subcategory.find((item) => item.category_id === 43));
@@ -49,7 +51,7 @@ const HeaderListCollectionNews = () => {
                 <div className="header-list-collection-item">
                     {!selectedCategory && (
                         <ul className="header-list-collection-woman">
-                            {adaptedCategories.map(({ category_name, id }, index) => (
+                            {adaptedCategories.sort((a, b) => a.sort_order - b.sort_order).map(({ category_name, id }, index) => (
                                 <>
                                     <li
                                         key={id}
@@ -67,7 +69,12 @@ const HeaderListCollectionNews = () => {
                                 </>
                             ))}
                             <li>
-                                <Link to={getToCollection(34)} className="header-list-collection-woman-sale">
+                                <Link to={getToCollection(31)} className="header-list-collection__item">
+                                    Вишиванки
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to={getToCollection(46)} className="header-list-collection-woman-sale">
                                     Sale
                                 </Link>
                             </li>
@@ -90,7 +97,7 @@ const HeaderListCollectionNews = () => {
                                 </div>
                             </li>
                             <>
-                                {subCategory?.subcategory?.map(
+                                {subCategory?.subcategory?.filter(({ category_id }) => category_id !== 31).map(
                                     ({ category_id, category_name }) => (
                                         <li
                                             className="main"

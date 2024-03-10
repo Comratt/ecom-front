@@ -21,6 +21,10 @@
     width: 100%;
     color: var(--color-accent-light);
 }
+.header-list-collection__item{
+    color: var(--color-accent-light)!important;
+     
+}
 .header-list-collection-woman-arrow{
     transform: rotate(270deg);
 }

@@ -128,9 +128,10 @@ export const CardList = ({
             return (
                 <div className="card-list-page product-empty">
                     <Title type={2}>
-                        {'В категорії '}
+                        {'Наразі '}
                         {selectedCategoryNames}
-                        {' товарів в наявності немає('}
+                        {' немає, підпишіться на наші сторінки в соціальних мережах та дізнавайтесь першими про актуальні '}
+                        {selectedCategoryNames}
                     </Title>
                 </div>
             );

@@ -105,7 +105,7 @@ export const SideBar = ({ className }) => {
                                 ))}
                                 <li>
                                     <Link
-                                        to={getToCollection(34)}
+                                        to={getToCollection(46)}
                                         className="header-list-collection-woman-sale"
                                         onClick={onLinkClick}
                                     >

@@ -18,8 +18,6 @@ const CollectionList = ({
     const componentClassNames = classNames('lib-collection-list', className);
     const adaptedCatIds = filtered?.map((catId) => +catId);
 
-    console.log(data);
-
     return (
         <div className={componentClassNames}>
             <aside>
