@@ -186,7 +186,7 @@ class Sidebar extends Component {
 
 Sidebar.propTypes = {
     open: PropTypes.bool.isRequired,
-    onToggle: PropTypes.func.isRequired,
+    onToggle: PropTypes.func,
     options: PropTypes.array.isRequired,
     header: PropTypes.oneOfType([
         PropTypes.string,

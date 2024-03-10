@@ -59,7 +59,7 @@ export const SideBar = ({ className }) => {
                                     <span>Всі товари</span>
                                 </Link>
                             )}
-                            index={1}
+                            index={13234}
                             hideArrow
                         />
                         {adaptCategories(categories).map(({ id, name }) => (
@@ -112,7 +112,7 @@ export const SideBar = ({ className }) => {
                                     Кабінет користувача
                                 </span>
                             )}
-                            index={1}
+                            index={2}
                         >
                             {isLogged ? (
                                 <>

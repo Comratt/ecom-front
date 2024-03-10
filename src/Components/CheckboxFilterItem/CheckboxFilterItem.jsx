@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Range } from 'react-range';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import { v4 as uuidv4 } from 'uuid';
 import classNames from 'classnames';
 import './CheckboxFilterItem.css';
 import PropTypes from 'prop-types';
@@ -343,7 +344,7 @@ const CheckboxFilterItem = ({
                         >
                             <ul>
                                 {list.text.map((data) => (data?.value ? (
-                                    <li className="filters__item__checkbox_list" key={data.value}>
+                                    <li className="filters__item__checkbox_list" key={uuidv4()}>
                                         <label className="checkbox">
                                             <input
                                                 onClick={handleInputChange(+list.id)}
@@ -356,7 +357,7 @@ const CheckboxFilterItem = ({
                                         </label>
                                     </li>
                                 ) : (
-                                    <div className="popup-price">
+                                    <div className="popup-price" key={uuidv4()}>
                                         <PriceRange
                                             onFinalChange={handleFilterBy}
                                             min={data.min}

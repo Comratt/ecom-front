@@ -88,7 +88,7 @@ export const useCollectionData = () => {
     useEffect(() => {
         const selectedCategory = filters.category?.[0] || 0;
 
-        if (selectedCategory) {
+        if (selectedCategory && !categoriesLoading) {
             const category = categories.find((cat) => +cat.category_id === +selectedCategory);
 
             if (category && !category?.parent_id) {

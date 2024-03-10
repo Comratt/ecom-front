@@ -26,8 +26,8 @@ const WishlistHeart = ({ cardId }) => {
             onClick={handleClick(cardId, isActive)}
         >
             <Heart
-                height="23"
-                width="23"
+                height="27"
+                width="27"
                 fill={isActive ? '#fa4343' : 'var(--color-accent)'}
                 fillOpacity={isActive ? '0.8' : '0.7'}
             />

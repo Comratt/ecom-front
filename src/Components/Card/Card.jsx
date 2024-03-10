@@ -73,6 +73,7 @@ export const Card = ({
             </div>
             <NavLink aria-label={`Детальніше про - ${title}`} to={detailsPath}>
                 <div
+                    fetchpriority="high"
                     role="img"
                     alt={title}
                     className="lib-card__picture"

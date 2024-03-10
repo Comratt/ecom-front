@@ -85,8 +85,8 @@ export const VALIDATION_RULES = {
     [CATEGORY_DESCRIPTION_FIELD]: {
         [VALIDATION_REQUIRED]: 'Описание обязательное поле',
         [VALIDATION_MAX_LENGTH]: {
-            value: 50,
-            message: 'Описание должно быть меньше 50 символов',
+            value: 3000,
+            message: 'Описание должно быть меньше 3000 символов',
         },
     },
     [CATEGORY_META_TITLE_FIELD]: {
@@ -109,8 +109,8 @@ export const VALIDATION_RULES = {
     },
     [SORT_FIELD]: {
         [VALIDATION_MIN_NUMBER]: {
-            value: 1,
-            message: 'Сортування починається з 1',
+            value: 0,
+            message: 'Сортування починається з 0',
         },
     },
     [PARENT_ID_FIELD]: {},

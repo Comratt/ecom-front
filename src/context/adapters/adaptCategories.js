@@ -8,6 +8,7 @@ export const adaptCategories = (data = []) => {
     return parentCategories.map((cat) => ({
         id: cat.category_id,
         name: cat.category_name,
+        description: cat.description,
         subcategories: data.filter((subCat) => cat.category_id === subCat.parent_id),
     }));
 };

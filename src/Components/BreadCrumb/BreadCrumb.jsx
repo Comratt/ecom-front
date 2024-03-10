@@ -11,8 +11,8 @@ export const BreadCrumb = ({ items }) => (
             </Link>
             <meta itemProp="position" content="1" />
         </li>
-        {items.sort((a, b) => a.position - b.position).map(({ href, name }) => (
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+        {items.sort((a, b) => a.position - b.position).map(({ href, name, position }) => (
+            <li key={position} itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
                 <Link
                     itemScope
                     itemType="https://schema.org/Thing"

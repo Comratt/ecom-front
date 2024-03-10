@@ -9,6 +9,7 @@ import MetaTags from 'Components/MetaTags';
 
 import './Collection.css';
 import { BreadCrumb } from '../../../Components/BreadCrumb';
+import { Title } from '../../../Components/Title';
 
 export const Collection = () => {
     const {
@@ -31,6 +32,9 @@ export const Collection = () => {
         breadcrumbs,
         meta,
     } = useCollection();
+    const selectedCategory = categories?.find(({ id }) => id === collectionId);
+
+    console.log(selectedCategory);
 
     if (loading) {
         return (
@@ -80,6 +84,11 @@ export const Collection = () => {
                         />
                     </div>
                 </CollectionList>
+                <View padHrMedium>
+                    <Title type={3}>
+                        {selectedCategory?.description}
+                    </Title>
+                </View>
             </View>
         </>
     );

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import loadable from '@loadable/component';
 import classNames from 'classnames';
 import HeaderHeart from 'Icons/HeaderHeart';
 import Menu from 'Icons/Menu';
@@ -13,9 +14,10 @@ import { getWishlistQuantity } from 'Store/Modules/Wishlist/selectors';
 import { useLayout } from 'hooks/useLayout';
 import { Link } from '../Link';
 import HeaderInput from '../HeaderInput/HeaderInput';
-import HeaderListCollectionNews from '../HeaderListCollectionNews/HeaderListCollectionNews';
 
 import './Header.css';
+
+const HeaderListCollectionNews = loadable(() => import('../HeaderListCollectionNews/HeaderListCollectionNews'));
 
 export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
     const [hoverItem, setHoverItem] = useState(false);

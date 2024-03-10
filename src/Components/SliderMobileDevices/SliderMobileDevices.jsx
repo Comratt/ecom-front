@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Slider from 'react-slick';
+import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { SliderWithDisableVerticalScroll } from 'Components/Slider/SliderWithDisableVerticalScroll';
@@ -40,22 +41,33 @@ const ItemVideo = ({ path = '', ext = '' }) => {
     );
 };
 
-const ItemImage = ({ image, onClick }) => (
-    <img
-        src={image}
-        alt="product details"
-        onClick={onClick}
-    />
-);
+const ItemImage = ({ image, onClick }) => {
+    const [imgLoad, setImgLoad] = useState(true);
+
+    return (
+        <img
+            src={image}
+            fetchpriority="high"
+            decoding="async"
+            style={imgLoad ? {
+                width: '100%',
+                height: '100vh',
+            } : null}
+            alt="product details"
+            // onLoad={() => setImgLoad(false)}
+            onClick={onClick}
+        />
+    );
+};
 
 const getSliderBody = (image = '', onClick) => {
     const extension = image.match(extensionRegExp)?.[0];
 
     if (!['.webp', '.jpeg', '.jpg'].includes(extension.toLowerCase())) {
-        return <ItemVideo path={image} ext={extension} />;
+        return <ItemVideo key={image} path={image} ext={extension} />;
     }
 
-    return <ItemImage image={image} onClick={onClick} />;
+    return <ItemImage key={image} image={image} onClick={onClick} />;
 };
 
 const SliderMobileDevices = ({ data, setModalOpen }) => {
@@ -65,11 +77,13 @@ const SliderMobileDevices = ({ data, setModalOpen }) => {
     };
 
     return (
-        <SliderWithDisableVerticalScroll>
-            <Slider className="slider-mobile" {...settings}>
-                {data.map((imageSrc) => getSliderBody(imageSrc, () => setModalOpen(imageSrc)))}
-            </Slider>
-        </SliderWithDisableVerticalScroll>
+        <LazyLoadComponent>
+            <SliderWithDisableVerticalScroll>
+                <Slider className="slider-mobile" {...settings}>
+                    {data.map((imageSrc) => getSliderBody(imageSrc, () => setModalOpen(imageSrc)))}
+                </Slider>
+            </SliderWithDisableVerticalScroll>
+        </LazyLoadComponent>
     );
 };
 

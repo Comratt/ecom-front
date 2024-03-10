@@ -1,12 +1,14 @@
 import React, {
-    Suspense, memo, lazy,
+    Suspense, memo,
 } from 'react';
+import loadable from '@loadable/component';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Redirect,
 } from 'react-router-dom';
+import SiteProductDetails from 'Pages/Site/ProductDetails';
 import isEqual from 'lodash/isEqual';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert';
 
@@ -17,22 +19,22 @@ import { Layout } from '../Components/Layout';
 import { ThreeDots } from '../Components/SkeletonLoader';
 
 const NotFoundPage = () => <Redirect to="/" />;
-const CheckboxFilter = lazy(() => import('Components/CheckboxFilter/CheckboxFilter'));
-const OrderForm = lazy(() => import('Pages/Site/OrderForm'));
-const Login = lazy(() => import('Pages/Site/Login'));
-const SignUp = lazy(() => import('Pages/Site/SignUp'));
-const SiteHome = lazy(() => import('Pages/Site/Home'));
-const SiteProductDetails = lazy(() => import('Pages/Site/ProductDetails'));
-const SearchResults = lazy(() => import('Components/SearchResults/searchResults'));
-const Cart = lazy(() => import('Pages/Site/Cart'));
-const UserAccount = lazy(() => import('Pages/Site/UserAccount/UserAccount'));
-const CollectionList = lazy(() => import('Pages/Site/collection'));
-const WishList = lazy(() => import('Pages/Site/Wishlist'));
-const OrderFinaly = lazy(() => import('Pages/Site/OrderFinaly'));
-const AdminLogin = lazy(() => import('Pages/Admin/Login'));
-const AboutCompany = lazy(() => import('Pages/Site/AboutCompany'));
-const AboutCompanyDelivery = lazy(() => import('Pages/Site/AboutCompany/Delivery'));
-const AboutCompanyReturns = lazy(() => import('Pages/Site/AboutCompany/Returns'));
+const CheckboxFilter = loadable(() => import('Components/CheckboxFilter/CheckboxFilter'));
+const OrderForm = loadable(() => import('Pages/Site/OrderForm'));
+const Login = loadable(() => import('Pages/Site/Login'));
+const SignUp = loadable(() => import('Pages/Site/SignUp'));
+const SiteHome = loadable(() => import('Pages/Site/Home'));
+// const SiteProductDetails = loadable(() => import('Pages/Site/ProductDetails'));
+const SearchResults = loadable(() => import('Components/SearchResults/searchResults'));
+const Cart = loadable(() => import('Pages/Site/Cart'));
+const UserAccount = loadable(() => import('Pages/Site/UserAccount/UserAccount'));
+const CollectionList = loadable(() => import('Pages/Site/collection'));
+const WishList = loadable(() => import('Pages/Site/Wishlist'));
+const OrderFinaly = loadable(() => import('Pages/Site/OrderFinaly'));
+const AdminLogin = loadable(() => import('Pages/Admin/Login'));
+const AboutCompany = loadable(() => import('Pages/Site/AboutCompany'));
+const AboutCompanyDelivery = loadable(() => import('Pages/Site/AboutCompany/Delivery'));
+const AboutCompanyReturns = loadable(() => import('Pages/Site/AboutCompany/Returns'));
 
 const options = {
     position: positions.TOP_RIGHT,

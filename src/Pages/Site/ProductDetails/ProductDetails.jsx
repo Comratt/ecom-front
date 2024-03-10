@@ -3,6 +3,7 @@ import React, {
     useEffect,
     useMemo,
     useRef,
+    Suspense,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
@@ -10,6 +11,8 @@ import { useAlert } from 'react-alert';
 import { useHistory } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import loadable from '@loadable/component';
+import { Helmet } from 'react-helmet';
 
 import { useProduct } from 'context/product/hooks/useProduct';
 import { addToCart } from 'Store/Modules/Cart/cartActions';
@@ -22,15 +25,18 @@ import Button from 'Components/Button/Button';
 import WishlistHeart from 'Components/WishlistHeart/WishlistHeart';
 import { Accordion, AccordionItem } from 'Components/Accordion';
 import { ScrollSlider } from 'Components/ScrollSlider';
-import SliderMobileDevices from 'Components/SliderMobileDevices/SliderMobileDevices';
+// import SliderMobileDevices from 'Components/SliderMobileDevices/SliderMobileDevices';
 import ProductCarousel from 'Components/PorductCarousel';
 import { ProductDetailsLoader } from 'Components/SkeletonLoader';
 import { Title } from 'Components/Title';
-import { ImagePreview } from 'Components/ImagePreview';
+// import { ImagePreview } from 'Components/ImagePreview';
 import MetaTags from 'Components/MetaTags';
 import { useDetectedMobileDevice } from 'hooks/useDetectMobileDevice';
 import './ProductInfo.css';
 import { BreadCrumb } from '../../../Components/BreadCrumb';
+
+const ImagePreview = loadable(() => import('Components/ImagePreview'));
+const SliderMobileDevices = loadable(() => import('Components/SliderMobileDevices/SliderMobileDevices'));
 
 export const ProductDetails = () => {
     const localStorageKey = process.env.REACT_APP_REDUX_STORAGE_NAME;
@@ -216,6 +222,18 @@ export const ProductDetails = () => {
 
     return (
         <>
+            <Helmet>
+                {result.images?.map((img) => (
+                    <link
+                        rel="preload"
+                        key={img}
+                        fetchpriority="high"
+                        as="image"
+                        href={img}
+                        type="image/webp"
+                    />
+                ))}
+            </Helmet>
             <MetaTags
                 description={result.meta_description}
                 keywords={result.meta_keyword}
@@ -230,40 +248,42 @@ export const ProductDetails = () => {
             )}
             <div className="lib-product_info">
                 <div className="container">
-                    <div className="left-part">
-                        {modalSrc && (
-                            <ImagePreview
-                                activeIndex={result.images.indexOf(modalSrc)}
-                                onClose={() => setModalSrc(null)}
-                                images={result.images}
-                            />
-                        )}
-                        {modalTableSizeSrc && (
-                            <ImagePreview
-                                activeIndex={0}
-                                onClose={() => setModalTableSizeSrc(null)}
-                                images={result.tableSize}
-                            />
-                        )}
-                        {!isMobileSize && !isTabletSize ? (
-                            <ScrollSlider setModalOpen={setModalSrc} data={result.images} />
-                        ) : (
-                            <SliderMobileDevices
-                                setModalOpen={setModalSrc}
-                                data={result.images}
-                            />
-                        )}
-                    </div>
+                    <Suspense fallback={() => <div>Loading...</div>}>
+                        <div className="left-part">
+                            {modalSrc && (
+                                <ImagePreview
+                                    activeIndex={result.images.indexOf(modalSrc)}
+                                    onClose={() => setModalSrc(null)}
+                                    images={result.images}
+                                />
+                            )}
+                            {modalTableSizeSrc && (
+                                <ImagePreview
+                                    activeIndex={0}
+                                    onClose={() => setModalTableSizeSrc(null)}
+                                    images={result.tableSize}
+                                />
+                            )}
+                            {!isMobileSize && !isTabletSize ? (
+                                <ScrollSlider setModalOpen={setModalSrc} data={result.images} />
+                            ) : (
+                                <SliderMobileDevices
+                                    setModalOpen={setModalSrc}
+                                    data={result.images}
+                                />
+                            )}
+                        </div>
+                    </Suspense>
                     <div className="lib-product_info_content">
                         <div>
                             {isTabletSize && <BreadCrumb items={getBreadcrumbCategory()} />}
                             <h1 className="lib-product_info_product-title">
                                 {result.name}
                             </h1>
-                            <h3 className="lib-product_info_product-subtitle">
+                            <h2 className="lib-product_info_product-subtitle">
                                 {'Артикул: '}
                                 {result.model}
-                            </h3>
+                            </h2>
                             {discount
                                 ? (
                                     <div>

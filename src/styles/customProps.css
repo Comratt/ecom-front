@@ -16,15 +16,15 @@
     --fz-smaller: 14px;
     --fz-small: 14px;
     --fz-mid: 15px;
-    --fz-normal: 16px;
+    --fz-normal: 17px;
     --fz-normal-bigger: 20px;
     --fz-biggest: 30px;
 
     /*----------- COLORS ---------*/
 
     --color-lightest: #fff;
-    --color-accent: #7a6c64;
-    --color-accent-light: #b09687;
+    --color-accent: #655853;
+    --color-accent-light: #a68e7f;
     --color-grayish: #e5e5e5;
     --color-border-accent: #e6e6e6;
     --color-border-lightest: #E5E5E5;

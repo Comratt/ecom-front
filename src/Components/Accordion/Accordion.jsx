@@ -19,7 +19,7 @@ export const AccordionItem = ({
         </button>
         <div
             className={`accordion-item ${isCollapsed ? 'collapsed' : 'expanded'}`}
-            aria-expanded={isCollapsed}
+            aria-expanded={!isCollapsed}
         >
             {children}
         </div>

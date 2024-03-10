@@ -66,7 +66,7 @@ const HeaderListCollectionNews = () => {
                         </ul>
                     ))}
                     <div>
-                        <img style={{ zIndex: 1 }} src={getImage('header.webp')} alt="Костюм чоловічий купити" />
+                        <img style={{ zIndex: 1 }} src={getImage('header.webp')} alt="Жіноча сукня" />
                     </div>
                 </div>
             </div>

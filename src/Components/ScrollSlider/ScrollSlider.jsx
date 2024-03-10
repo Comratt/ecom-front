@@ -39,6 +39,7 @@ const getSliderBody = (image = '', className, onClick) => {
 
     return (
         <img
+            fetchpriority="high"
             alt="Галерея колекцій"
             className="image-inner"
             src={image}
@@ -56,6 +57,7 @@ const getSliderSide = (image = '', className, onClick) => {
 
     return (
         <img
+            fetchpriority="high"
             onClick={onClick}
             className={className}
             key={image}

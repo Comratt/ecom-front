@@ -140,7 +140,7 @@ CardList.propTypes = {
         colors: PropTypes.arrayOf(PropTypes.shape({})),
     })).isRequired,
     filters: PropTypes.shape({
-        category: PropTypes.arrayOf(PropTypes.string),
+        category: PropTypes.arrayOf(PropTypes.number),
     }),
     categories: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number,
