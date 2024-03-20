@@ -7,7 +7,6 @@ import Instagram from 'Icons/Instagram';
 import Telegram from 'Icons/Telegram';
 import Viber from 'Icons/Viber';
 import { useCategories } from 'context/CategoriesWrapper/useCategories';
-import { adaptCategories } from 'context/adapters';
 import { clearFilters } from 'Store/Modules/Filters/filtersActions';
 import { isLoggedIn } from 'Store/Modules/LocalSettings/selectors';
 import AccardionArrow from 'Icons/AccardionArrow';
@@ -126,11 +125,6 @@ export const SideBar = ({ className }) => {
                         )}
                     </div>
                     <ul className="header-list-collection-woman">
-                        <li>
-                            <Link to={getToCollection(31)} onClick={onLinkClick}>
-                                Вишиванки
-                            </Link>
-                        </li>
                         <li>
                             <Link to={getToCollection(46)} onClick={onLinkClick}>
                                 Sale

@@ -13,7 +13,6 @@ import imgBlack from '../../assets/img/logoblack.png';
 import img from '../../assets/img/logo.png';
 import { Link } from '../Link';
 import HeaderInput from '../HeaderInput/HeaderInput';
-import HeaderListCollectionNews from '../HeaderListCollectionNews/HeaderListCollectionNews';
 
 import './Header.css';
 
@@ -60,16 +59,6 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
                     />
                 </button>
                 <ul className="header-list-navigation">
-                    <li
-                        className="list-group"
-                        onMouseEnter={() => setHoverItem(true)}
-                        onMouseLeave={() => setHoverItem(false)}
-                    >
-                        <Link to="/">
-                            Одяг та взуття
-                        </Link>
-                        <HeaderListCollectionNews className="header-list-collection" />
-                    </li>
                     <li className="list-group">
                         <Link to="/collection">Всі товари</Link>
                     </li>
