@@ -52,24 +52,53 @@ export const SideBar = ({ className }) => {
     const adaptedCategories = buildHierarchy(categories).filter((item) => item.subcategory.length > 0);
 
     const [selectedCategory, setSelectedCategory] = useState(false);
-    const [subCategoryIndex, setSubCategoryIndex] = useState(null);
+    const [currentCategory, setCurrentCategory] = useState(null);
+
     const getToCollection = (id) => `/collection/${id}`;
 
-    const [subCategory, setSubCategory] = useState({ subcategories: [] });
-
-    useEffect(() => {
-        if (subCategoryIndex === 43) {
-            setSubCategory(() => adaptedCategories.find((item) => item.category_id === 36)?.subcategory.find((item) => item.category_id === 43));
-        } else {
-            setSubCategory(() => adaptedCategories.find((_, index) => index === subCategoryIndex));
-        }
-    }, [setSubCategoryIndex, subCategoryIndex]);
-
-    const componentClasses = classNames('lib-sidebar', className, { open: navigationOverlayOpened });
     const onLinkClick = () => {
         handleCloseNavigationModal();
         dispatch(clearFilters());
     };
+
+    const handleCategoryClick = (category) => {
+        if (category.subcategory.length === 0) {
+            setSelectedCategory(false);
+            setCurrentCategory(null);
+            onLinkClick();
+        } else {
+            setSelectedCategory(true);
+            setCurrentCategory(category);
+        }
+    };
+
+    const handleBackClick = () => {
+        setSelectedCategory(false);
+        setCurrentCategory(null);
+    };
+
+    const renderCategories = (categoryList) => (
+        <ul className="header-list-collection-woman">
+            {categoryList.map((category) => (
+                <li key={category.category_id} className="main" onClick={() => handleCategoryClick(category)}>
+                    {category.subcategory.length === 0 ? (
+                        <Link to={getToCollection(category.category_id)}>
+                            {category.category_name}
+                        </Link>
+                    ) : (
+                        <span className="lib-link">{category.category_name}</span>
+                    )}
+                    {category.subcategory.length > 0 && (
+                        <div className="header-list-collection-woman-arrow">
+                            <AccardionArrow width={20} />
+                        </div>
+                    )}
+                </li>
+            ))}
+        </ul>
+    );
+
+    const componentClasses = classNames('lib-sidebar', className, { open: navigationOverlayOpened });
 
     return (
         <aside className={componentClasses}>
@@ -84,86 +113,30 @@ export const SideBar = ({ className }) => {
             <div className="lib-sidebar__content">
                 <div className="lib-sidebar__content-wrapper">
                     <div className="header-list-collection-item">
-                        {!selectedCategory && (
-                            <ul className="header-list-collection-woman">
-                                {adaptedCategories.map(({ category_name, id }, index) => (
-                                    <>
-                                        <li
-                                            key={id}
-                                            onClick={() => {
-                                                setSelectedCategory(true);
-                                                setSubCategoryIndex(index);
-                                            }}
-                                            className="main"
-                                        >
-                                            {category_name}
-                                            <div className="header-list-collection-woman-arrow">
-                                                <AccardionArrow width={20} />
-                                            </div>
-                                        </li>
-                                    </>
-                                ))}
-                                <li>
-                                    <Link to={getToCollection(31)} className="header-list-collection__item">
-                                        Вишиванки
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        to={getToCollection(46)}
-                                        className="header-list-collection-woman-sale"
-                                        onClick={onLinkClick}
-                                    >
-                                        Sale
-                                    </Link>
-                                </li>
-                            </ul>
-                        )}
+                        {!selectedCategory && renderCategories(adaptedCategories)}
                         {selectedCategory && (
                             <ul className="header-list-collection-woman">
-                                <li
-                                    className="main"
-                                    onClick={() => {
-                                        setSelectedCategory(false);
-                                        setSubCategoryIndex(null);
-                                    }}
-                                >
+                                <li className="main" onClick={handleBackClick}>
                                     <div className="header-list-collection-woman-arrow-btn">
-                                        <AccardionArrow
-                                            transform="rotate(30deg)"
-                                            width={20}
-                                        />
+                                        <AccardionArrow transform="rotate(30deg)" width={20} />
                                     </div>
                                 </li>
-                                <>
-                                    {subCategory?.subcategory?.filter(({ category_id }) => category_id !== 31)?.map(
-                                        ({ category_id, category_name }) => (
-                                            <li
-                                                className="main"
-                                                onClick={() => {
-                                                    if (category_id === 43) {
-                                                        setSubCategoryIndex(category_id);
-                                                    }
-                                                }}
-                                            >
-                                                <Link
-                                                    to={getToCollection(category_id)}
-                                                    onClick={onLinkClick}
-                                                >
-                                                    {category_name}
-                                                </Link>
-                                                {category_id === 43 && (
-                                                    <div className="header-list-collection-woman-arrow">
-                                                        <AccardionArrow width={20} />
-                                                    </div>
-                                                )}
-                                            </li>
-                                        ),
-                                    )}
-                                </>
+                                {currentCategory && renderCategories(currentCategory.subcategory)}
                             </ul>
                         )}
                     </div>
+                    <ul className="header-list-collection-woman">
+                        <li>
+                            <Link to={getToCollection(31)} onClick={onLinkClick}>
+                                Вишиванки
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={getToCollection(46)} onClick={onLinkClick}>
+                                Sale
+                            </Link>
+                        </li>
+                    </ul>
                 </div>
                 <div className="lib-sidebar__content-wrapper">
                     <Accordion>
