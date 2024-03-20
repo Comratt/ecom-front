@@ -87,11 +87,6 @@ const HeaderListCollectionNews = () => {
                 </div>
                 <ul className="header-list-collection-woman">
                     <li>
-                        <Link to={getToCollection(31)}>
-                            Вишиванки
-                        </Link>
-                    </li>
-                    <li>
                         <Link to={getToCollection(46)}>
                             Sale
                         </Link>
