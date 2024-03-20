@@ -43,8 +43,6 @@ const CollectionList = ({
     const [selectedCategory, setSelectedCategory] = useState(false);
     const [currentCategory, setCurrentCategory] = useState(null);
 
-    const getToCollection = (id) => `/collection/${id}`;
-
     const handleCategoryClick = (category) => {
         if (category.subcategory.length !== 0) {
             setSelectedCategory(true);
@@ -60,7 +58,11 @@ const CollectionList = ({
     const renderCategories = (categoryList) => (
         <ul className="header-list-collection-woman">
             {categoryList.sort((a, b) => b.subcategory.length - a.subcategory.length).map((category) => (
-                <li key={category.category_id} onClick={() => handleCategoryClick(category)}>
+                <li
+                    key={category.category_id}
+                    onClick={() => handleCategoryClick(category)}
+                    className={`${selectedCategory ? 'header-list-collection-woman-small' : ''}`}
+                >
                     {category.subcategory.length === 0 ? (
                         <label className="checkbox" htmlFor={+category.category_id}>
                             <input
