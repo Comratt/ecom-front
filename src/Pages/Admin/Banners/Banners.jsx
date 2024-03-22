@@ -33,7 +33,7 @@ const Banners = () => {
             const ban = banners.find((banner) => banner.banner_id === show);
 
             Object.keys(ban).forEach((key) => {
-                if (key !== 'image') {
+                if (key !== 'image' && key !== 'image_mobile') {
                     setValue(key, ban[key]);
                 }
             });
