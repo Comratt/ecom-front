@@ -69,14 +69,11 @@
 }
 
 .lib-card .lib-card__info-title {
-    line-height: 1.5;
     color: var(--color-accent);
     font-size: var(--fz-mid);
     font-family: var(--accent-ff);
     margin-bottom: 0;
     margin-top: 0;
-    overflow: hidden;
-    display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
 }
