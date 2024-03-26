@@ -2,7 +2,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    padding: 0 4px;
+    padding: 0 10px;
 }
 
 .lib-card .lib-card__picture {
@@ -77,7 +77,7 @@
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -132,6 +132,9 @@
     height: 100px;
 }
 @media (max-width: 768px) {
+    .lib-card{
+        margin-bottom: 20px;
+    }
     .lib-card__heart_wh{
         right: 1px;
         top: 5px;

@@ -101,16 +101,16 @@ export const Card = ({
                     <NavLink onClick={handleClick} to={detailsPath} className="lib-card__info-content">
                         <p className="lib-card__info-title">
                             {title}
+                            <div className="lib-card__info-price-content">
+                                {discount > 0 ? (
+                                    <>
+                                        <div className="lib-card__info-price">{getFormattedPrice(purePrice - discount)}</div>
+                                        <div className={priceClassNames}>{price}</div>
+                                    </>
+                                ) : <div className={priceClassNames}>{price}</div>}
+                            </div>
                         </p>
                     </NavLink>
-                    <div className="lib-card__info-price-content">
-                        {discount > 0 ? (
-                            <>
-                                <div className="lib-card__info-price">{getFormattedPrice(purePrice - discount)}</div>
-                                <div className={priceClassNames}>{price}</div>
-                            </>
-                        ) : <div className={priceClassNames}>{price}</div>}
-                    </div>
                     {!hideColors && <Swatches data={colors} />}
                 </div>
             )}
