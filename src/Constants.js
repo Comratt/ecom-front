@@ -1,6 +1,6 @@
 import currency from 'currency.js';
 
-export const MARKET_NAME = 'Paparot';
+export const MARKET_NAME = 'Bozhevilno';
 export const MARKET_DESCRIPTION = `Відкрийте для себе інтернет-магазин ${MARKET_NAME} — кращі світові тенденції моди та вишуканий асортимент жіночого одягу. Швидка безоплатна доставка по Україні а також 14-ти денне безкоштовне поверення.`;
 export const MARKET_TITLE = `Жіночий одяг від ${MARKET_NAME} | Купити модний одяг для жінок з безкоштовною доставкою`;
 export const MARKET_KEYWORDS = `купити жіночий одяг, інтернет-магазин, одяг для жінок, стильний гардероб, тренди моди, безкоштовна доставка, відомі бренди, молоді дизайнери, акції, нові надходження ${MARKET_NAME}, ${MARKET_NAME.toUpperCase()}`;

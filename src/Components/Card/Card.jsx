@@ -19,7 +19,7 @@ import './Card.css';
 //     muted
 // >
 //     <source
-//         src="https://back.paparot.com/uploads/images/i0KUB6q61660240468.mp4?ngsw-bypass=true"
+//         src="https://back.Bozhevilno.com/uploads/images/i0KUB6q61660240468.mp4?ngsw-bypass=true"
 //         type="video/mp4"
 //     />
 // </video>
