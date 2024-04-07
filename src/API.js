@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import store from './Store/createStore';
 
-export const baseURL = 'https://back.paparot.com/';
+export const baseURL = 'https://back.bozhevilno.com/';
 export const novaPoshtaURL = 'https://api.novaposhta.ua/v2.0/json/';
 export const novaPoshtaAPIKEY = '95675baba5da7b09c40f5a2054d57fa6';
 
