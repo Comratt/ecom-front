@@ -15,6 +15,7 @@ import { Link } from '../Link';
 import HeaderInput from '../HeaderInput/HeaderInput';
 
 import './Header.css';
+import Logo from 'Icons/Logo';
 
 export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
     const [hoverItem, setHoverItem] = useState(false);
@@ -71,7 +72,7 @@ export const Header = ({ setNavigationMenu, handleOpenNavigationModal }) => {
                 <Link title="До головної сторінки" to="/" className="header-main-logo">
                     <h1>
                         {' '}
-                        <img width={200} src={(!transparent || hoverItem) ? imgBlack : img} alt="kostumchek" className="header-main-logo-img" />
+                        <Logo width={120} fill="black" color={(!transparent || hoverItem) ? 'black' : 'white'} />
                     </h1>
                 </Link>
             )}
