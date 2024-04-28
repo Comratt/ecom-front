@@ -51,9 +51,9 @@ const ItemImage = ({ image, onClick }) => {
             decoding="async"
             style={imgLoad ? {
                 width: '100%',
-                height: '100vh',
+                height: '100%',
             } : null}
-            alt="product details"
+            alt="Сукні жіночі"
             // onLoad={() => setImgLoad(false)}
             onClick={onClick}
         />
@@ -78,11 +78,9 @@ const SliderMobileDevices = ({ data, setModalOpen }) => {
 
     return (
         <LazyLoadComponent>
-            <SliderWithDisableVerticalScroll>
-                <Slider className="slider-mobile" {...settings}>
-                    {data.map((imageSrc) => getSliderBody(imageSrc, () => setModalOpen(imageSrc)))}
-                </Slider>
-            </SliderWithDisableVerticalScroll>
+            <Slider className="slider-mobile" {...settings}>
+                {data.map((imageSrc) => getSliderBody(imageSrc, () => setModalOpen(imageSrc)))}
+            </Slider>
         </LazyLoadComponent>
     );
 };
