@@ -18,6 +18,7 @@ import './SideBar.css';
 import { Link } from '../Link';
 import { Accordion, AccordionItem } from '../Accordion';
 import { Title } from '../Title';
+import { conforms } from 'lodash';
 
 export const SideBar = ({ className }) => {
     const dispatch = useDispatch();
@@ -34,6 +35,7 @@ export const SideBar = ({ className }) => {
     const onLinkClick = () => {
         handleCloseNavigationModal();
         dispatch(clearFilters());
+        console.log(1);
     };
 
     return (

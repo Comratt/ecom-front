@@ -189,36 +189,13 @@ export const ProductDetails = () => {
     const handleClick = () => {
         history.push('/cart');
     };
-    const getBreadcrumbCategory = () => {
-        if (result?.categories?.length > 1) {
-            const parentCategory = result?.categories?.find((cat) => !cat?.parent_id);
-
-            if (parentCategory) {
-                const restCategory = result?.categories?.find((cat) => cat?.parent_id);
-
-                return [
-                    {
-                        href: `/collection/${parentCategory.category_id}`,
-                        position: 2,
-                        name: parentCategory?.category_name,
-                    },
-                    {
-                        href: `/collection/${restCategory.category_id}`,
-                        position: 3,
-                        name: restCategory?.category_name,
-                    },
-                ];
-            }
-        }
-
-        return [
-            {
-                href: result?.categories?.[0]?.category_id ? `/collection/${result?.categories?.[0]?.category_id}` : '/collection',
-                position: 2,
-                name: result?.categories?.[0]?.category_id ? result?.categories?.[0]?.category_name : 'Всі товари',
-            },
-        ];
-    };
+    const getBreadcrumbCategory = () => [
+        {
+            href: result?.categories?.[0]?.category_id ? `/collection/${result?.categories?.[0]?.category_id}` : '/collection',
+            position: 2,
+            name: result?.categories?.[0]?.category_id ? result?.categories?.[0]?.category_name : 'Всі товари',
+        },
+    ];
 
     return (
         <>

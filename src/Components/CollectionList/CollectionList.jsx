@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import { StickyContainer } from 'react-sticky';
 import { useParams } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { Link } from '../Link';
 import { Accordion, AccordionItem } from '../Accordion';
 
 import './CollectionList.css';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const CollectionList = ({
     className,

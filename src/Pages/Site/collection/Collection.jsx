@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useCollection } from 'context/collection/hooks/useCollection';
 import { View } from 'Components/View';
 import CollectionList from 'Components/CollectionList';
@@ -8,6 +8,7 @@ import { CatalogLoader } from 'Components/SkeletonLoader';
 import MetaTags from 'Components/MetaTags';
 
 import './Collection.css';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { BreadCrumb } from '../../../Components/BreadCrumb';
 import { Title } from '../../../Components/Title';
 
@@ -34,7 +35,14 @@ export const Collection = () => {
     } = useCollection();
     const selectedCategory = categories?.find(({ id }) => id === collectionId);
 
-    console.log(selectedCategory);
+    const url = useHistory();
+
+    useEffect(() => {
+        console.log('test', url.location.pathname);
+        if (url.location.pathname === '/collection') {
+            resetFilters();
+        }
+    }, [url, collectionId]);
 
     if (loading) {
         return (
