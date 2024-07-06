@@ -52,7 +52,7 @@ export const SideBar = ({ className }) => {
                         <AccordionItem
                             label={(
                                 <Link
-                                    to="/collection"
+                                    to="/collection?available=true&count=15&page=1&sortBy="
                                     className="lib-sidebar__item"
                                     onClick={onLinkClick}
                                 >
@@ -163,7 +163,7 @@ export const SideBar = ({ className }) => {
                                 </a>
                             </li>
                             <li>
-                                <a className="sidebar-social__instagram" rel="noreferrer" target="_blank" href="#">
+                                <a className="sidebar-social__instagram" rel="noreferrer" target="_blank" href="https://www.instagram.com/bozhevilno_com?">
                                     <Instagram height="18" width="18" />
                                 </a>
                             </li>

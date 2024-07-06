@@ -87,7 +87,7 @@ export const Footer = ({
                                     </a>
                                 </li>
                                 <li>
-                                    <a className="sidebar-social__instagram" rel="noreferrer" target="_blank" href="#">
+                                    <a className="sidebar-social__instagram" rel="noreferrer" target="_blank" href="https://www.instagram.com/bozhevilno_com?">
                                         <Instagram height="18" width="18" />
                                     </a>
                                 </li>
