@@ -339,11 +339,17 @@ export const ProductDetails = () => {
                         </div>
                         <div className="lib-product_info_product_description_block">
                             <div className="lib-product_info_product_description">
-                                <Accordion defaultIndex="0">
-                                    <AccordionItem label="Детальніше про товар" index="0">
+                                <Accordion>
+                                    <AccordionItem label="Детальніше про товар" index="1">
                                         <ReactMarkdown remarkPlugins={[remarkGfm]}>
                                             {result.description}
                                         </ReactMarkdown>
+                                    </AccordionItem>
+                                    <AccordionItem label="Доставка та оплата" index="0">
+                                        <p>- Термін доставки 1-2 дні.</p>
+                                        <p>- Відправляємо в день замовлення відділення нової пошти.</p>
+                                        <p>- Оплата здійснюється за товар накладним платижем у відділенні нп.</p>
+                                        <p>- Є Обмін та повернення.</p>
                                     </AccordionItem>
                                 </Accordion>
                             </div>

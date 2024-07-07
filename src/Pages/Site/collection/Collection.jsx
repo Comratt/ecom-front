@@ -38,11 +38,14 @@ export const Collection = () => {
     const url = useHistory();
 
     useEffect(() => {
-        console.log('test', url.location.pathname);
         if (url.location.pathname === '/collection') {
             resetFilters();
         }
     }, [url, collectionId]);
+
+    useEffect(() => {
+        resetFilters();
+    }, []);
 
     if (loading) {
         return (
