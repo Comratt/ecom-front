@@ -333,7 +333,7 @@ export const OrderForm = (className) => {
                                     placeholder="Номер телефону"
                                     type="text"
                                 />
-                                {errors?.phone && <p className="field-message__error">Введіть коректний номер</p>}
+                                {errors?.phone && <p className="field-message__error">Введіть коректний номер формат - 380509853244</p>}
                             </div>
                             <div className="order__order-button">
 
