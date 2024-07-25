@@ -124,13 +124,13 @@ export const SideBar = ({ className }) => {
                             </ul>
                         )}
                     </div>
-                    <ul className="header-list-collection-woman">
+                    {/* <ul className="header-list-collection-woman">
                         <li>
                             <Link to={getToCollection(46)} onClick={onLinkClick}>
                                 Sale
                             </Link>
                         </li>
-                    </ul>
+                    </ul> */}
                 </div>
                 <div className="lib-sidebar__content-wrapper">
                     <Accordion>

@@ -210,11 +210,11 @@
     }
     .lib-product_info_content .lib-swatches{
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
     }
     .lib-product_info_size_list{
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
     }
     .lib-product_info_wishlist{
         display: flex;
