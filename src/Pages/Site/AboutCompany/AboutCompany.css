@@ -46,6 +46,10 @@
     padding: 10px;
     color: #ffffff;
 }
+.lib-about-company .about h3 {
+    text-align: center;
+    margin-top: 0;
+}
 .lib-about-company .btn{
     width: 100%;
     display: flex;

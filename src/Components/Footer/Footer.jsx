@@ -25,7 +25,9 @@ export const Footer = ({
         <footer className={componentClasses}>
             <div className="container-footer">
                 <div className="container-title">
-                    <img src={imgBlack} alt="logo" style={{ width: '250px' }} />
+                    <a href="/aboutcompany">
+                        <img src={imgBlack} alt="logo" style={{ width: '250px' }} />
+                    </a>
                 </div>
                 <div className="content-footer">
                     <div className="accordion-info">
