@@ -78,7 +78,7 @@ export const SideBar = ({ className }) => {
 
     const renderCategories = (categoryList) => (
         <ul className="header-list-collection-woman">
-            {categoryList.map((category) => (
+            {categoryList.filter((category) => category.category_id !== 46).map((category) => (
                 <li key={category.category_id} className="main" onClick={() => handleCategoryClick(category)}>
                     {category.subcategory.length === 0 ? (
                         <Link to={getToCollection(category.category_id)}>
@@ -124,13 +124,13 @@ export const SideBar = ({ className }) => {
                             </ul>
                         )}
                     </div>
-                    {/* <ul className="header-list-collection-woman">
+                    <ul className="header-list-collection-woman">
                         <li>
                             <Link to={getToCollection(46)} onClick={onLinkClick}>
                                 Sale
                             </Link>
                         </li>
-                    </ul> */}
+                    </ul>
                 </div>
                 <div className="lib-sidebar__content-wrapper">
                     <Accordion>
